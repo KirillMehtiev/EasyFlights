@@ -86,7 +86,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configurations\UserConfiguration.cs" />
-    <Compile Include="DataContexts\EFDataContext.cs" />
+    <Compile Include="DataContexts\EasyFlightsDataContext.cs" />
     <Compile Include="DataContexts\IDataContext.cs" />
     <Compile Include="Identity\ApplicationOAuthProvider.cs" />
     <Compile Include="Identity\ApplicationRoleManager.cs" />

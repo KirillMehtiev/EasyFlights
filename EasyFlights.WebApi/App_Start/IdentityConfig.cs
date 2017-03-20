@@ -19,7 +19,7 @@ namespace EasyFlights.WebApi
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
         {
             //TODO: rewrite initialization
-            var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<EFDataContext>()));
+            var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<EasyFlightsDataContext>()));
 
             // Configure validation logic for usernames
             manager.UserValidator = new UserValidator<ApplicationUser>(manager)
