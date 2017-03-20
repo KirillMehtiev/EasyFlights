@@ -127,6 +127,7 @@
     <Content Include="Client\App\Components.js" />
     <Content Include="Client\App\Config.js" />
     <Content Include="Client\App\Layout\Footer\FooterTemplate.html" />
+    <Content Include="Client\App\Layout\Header\HeaderTemplate.html" />
     <Content Include="Client\App\Layout\ILayoutOptions.js" />
     <Content Include="Client\App\Layout\ILayoutOptions.js.map" />
     <Content Include="Client\App\Layout\LayoutComponent.js" />
@@ -188,6 +189,8 @@
     <TypeScriptCompile Include="Client\App\Components.ts" />
     <TypeScriptCompile Include="Client\App\Layout\Footer\FooterComponent.ts" />
     <TypeScriptCompile Include="Client\App\Layout\Footer\FooterViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\Layout\Header\HeaderComponent.ts" />
+    <TypeScriptCompile Include="Client\App\Layout\Header\HeaderViewModel.ts" />
     <TypeScriptCompile Include="Client\App\Layout\ILayoutOptions.ts" />
     <TypeScriptCompile Include="Client\App\Layout\LayoutComponent.ts" />
     <TypeScriptCompile Include="Client\App\Layout\LayoutViewModel.ts" />
@@ -204,9 +207,7 @@
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Client\App\Layout\Header\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
