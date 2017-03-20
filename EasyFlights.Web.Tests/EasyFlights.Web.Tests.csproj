@@ -59,7 +59,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EasyFlights.WebApi\EasyFlights.WebApi.csproj">
+    <ProjectReference Include="..\EasyFlights.Web\EasyFlights.Web.csproj">
       <Project>{fede72bc-8985-4dfa-a132-4962ea83e722}</Project>
       <Name>EasyFlights.WebApi</Name>
     </ProjectReference>
