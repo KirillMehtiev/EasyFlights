@@ -2,9 +2,8 @@
 {
     using System.IO;
     using System.Linq;
-    using EasyFlights.DomainModel.Entities;
-    using EasyFlights.Data.DataContexts;
-
+    using DataContexts;
+    using DomainModel.Entities;
 
     /// <summary>
     /// Seeder class for initiating airports, cities and countries tables.
@@ -14,7 +13,7 @@
         /// <summary>
         /// The name of initial *.CSV file.
         /// </summary>
-        private const string Filename = "../../airports.csv";
+        private readonly string filename = Directory.GetCurrentDirectory() + "/airports.csv";
 
         /// <summary>
         /// The method for seeding tables.
@@ -22,7 +21,7 @@
         public void Seed()
         {
             var context = new EasyFlightsDataContext();
-            using (var stream = new FileStream(Filename, FileMode.OpenOrCreate))
+            using (var stream = new FileStream(this.filename, FileMode.OpenOrCreate))
             {
                 var reader = new StreamReader(stream);
                 string row;
