@@ -2,7 +2,7 @@
 {
     using System.IO;
     using System.Linq;
-    using EasyFlights.DomainModel;
+    using EasyFlights.DomainModel.Entities;
     using EasyFlights.Data.DataContexts;
 
 

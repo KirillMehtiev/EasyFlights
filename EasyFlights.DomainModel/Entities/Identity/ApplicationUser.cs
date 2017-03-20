@@ -3,8 +3,9 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using EasyFlights.DomainModel.Entities;
 
-namespace EasyFlights.DomainModel.Identity
+namespace EasyFlights.DomainModel.Entities.Identity
 {
     public class ApplicationUser : IdentityUser
     {

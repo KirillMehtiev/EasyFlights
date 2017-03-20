@@ -1,4 +1,4 @@
-﻿using EasyFlights.DomainModel;
+﻿using EasyFlights.DomainModel.Entities;
 using System.Data.Entity.ModelConfiguration;
 
 namespace EasyFlights.Data.MappingConfigurations

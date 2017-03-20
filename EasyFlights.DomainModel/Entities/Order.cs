@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using EasyFlights.DomainModel.Identity;
+using EasyFlights.DomainModel.Entities.Identity;
 
-namespace EasyFlights.DomainModel.Identity
+namespace EasyFlights.DomainModel.Entities
 {
     public class Order : BaseEntity
     {

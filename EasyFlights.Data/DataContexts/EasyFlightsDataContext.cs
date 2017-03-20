@@ -2,7 +2,7 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
 using System.Reflection;
-using EasyFlights.DomainModel.Identity;
+using EasyFlights.DomainModel.Entities.Identity;
 
 namespace EasyFlights.Data.DataContexts
 {

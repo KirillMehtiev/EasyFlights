@@ -1,5 +1,5 @@
 ﻿using System.Data.Entity.ModelConfiguration;
-using EasyFlights.DomainModel;
+using EasyFlights.DomainModel.Entities;
 
 namespace EasyFlights.Data.MappingConfigurations
 {

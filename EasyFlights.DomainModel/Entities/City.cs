@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace EasyFlights.DomainModel.Identity
+namespace EasyFlights.DomainModel.Entities
 {
     public class City : BaseEntity
     {

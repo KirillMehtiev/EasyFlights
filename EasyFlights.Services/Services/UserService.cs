@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
-using EasyFlights.DomainModel.Identity;
+using EasyFlights.DomainModel.Entities.Identity;
 
 namespace EasyFlights.Services.Services
 {

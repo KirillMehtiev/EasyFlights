@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using EasyFlights.Data.DataContexts;
 using EasyFlights.DomainModel;
-using EasyFlights.DomainModel.Identity;
+using EasyFlights.DomainModel.Entities.Identity;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;

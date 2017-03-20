@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace EasyFlights.DomainModel.Identity
+namespace EasyFlights.DomainModel.Entities.Identity
 {
     public sealed class AppRole : IdentityRole
     {

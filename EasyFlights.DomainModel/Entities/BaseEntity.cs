@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EasyFlights.DomainModel.Identity
+namespace EasyFlights.DomainModel.Entities
 {
     public abstract class BaseEntity
     {
