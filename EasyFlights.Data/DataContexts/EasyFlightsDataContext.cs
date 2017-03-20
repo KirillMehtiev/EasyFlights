@@ -7,10 +7,10 @@ using EasyFlights.Data.Configurations;
 
 namespace EasyFlights.Data.DataContexts
 {
-    public class EFDataContext : IdentityDbContext<ApplicationUser>, IDataContext
+    public class EasyFlightsDataContext : IdentityDbContext<ApplicationUser>, IDataContext
     {
         // TODO: add connection to db
-        public EFDataContext() : base("DefaultConnection", throwIfV1Schema: false)
+        public EasyFlightsDataContext() : base("DefaultConnection", throwIfV1Schema: false)
         {
 
         }
@@ -18,7 +18,7 @@ namespace EasyFlights.Data.DataContexts
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             //configurations have been placed in MappingConfigurations folder
-            modelBuilder.Configurations.AddFromAssembly(Assembly.GetAssembly(typeof(EFDataContext)));
+            modelBuilder.Configurations.AddFromAssembly(Assembly.GetAssembly(typeof(EasyFlightsDataContext)));
             modelBuilder.Entity<IdentityUserLogin>().HasKey<string>(l => l.UserId);
             modelBuilder.Entity<IdentityRole>().HasKey<string>(r => r.Id);
             modelBuilder.Entity<IdentityUserRole>().HasKey(r => new { r.RoleId, r.UserId });
@@ -27,9 +27,9 @@ namespace EasyFlights.Data.DataContexts
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
 
-        public static EFDataContext Create()
+        public static EasyFlightsDataContext Create()
         {
-            return new EFDataContext();
+            return new EasyFlightsDataContext();
         }
     }
 }
