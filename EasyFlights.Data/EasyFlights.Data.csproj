@@ -91,7 +91,18 @@
     <Compile Include="Identity\ApplicationOAuthProvider.cs" />
     <Compile Include="Identity\ApplicationRoleManager.cs" />
     <Compile Include="Identity\ApplicationUserManager.cs" />
+    <Compile Include="Aircraft.cs" />
+    <Compile Include="Airport.cs" />
+    <Compile Include="BaseEntity.cs" />
+    <Compile Include="City.cs" />
+    <Compile Include="Country.cs" />
+    <Compile Include="EasyFlightsContext.cs" />
+    <Compile Include="Flight.cs" />
+    <Compile Include="Order.cs" />
+    <Compile Include="Passenger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Ticket.cs" />
+    <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EasyFlights.DomainModel\EasyFlights.DomainModel.csproj">
