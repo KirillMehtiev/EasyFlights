@@ -1,6 +1,6 @@
 ﻿using Ninject.Modules;
 
-namespace EasyFlights.WebApi.Infrastructure.NinjectModules
+namespace EasyFlights.Web.Infrastructure.NinjectModules
 {
     public class DataModule : NinjectModule
     {

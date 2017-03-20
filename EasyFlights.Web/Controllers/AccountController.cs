@@ -13,11 +13,11 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
-using EasyFlights.WebApi.Models;
-using EasyFlights.WebApi.Providers;
-using EasyFlights.WebApi.Results;
+using EasyFlights.Web.Models;
+using EasyFlights.Web.Providers;
+using EasyFlights.Web.Results;
 
-namespace EasyFlights.WebApi.Controllers
+namespace EasyFlights.Web.Controllers
 {
     [Authorize]
     [RoutePrefix("api/Account")]

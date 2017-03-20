@@ -1,7 +1,7 @@
 ﻿using System.Web.Http;
 using Microsoft.Owin.Security.OAuth;
 
-namespace EasyFlights.WebApi
+namespace EasyFlights.Web
 {
     public static class WebApiConfig
     {

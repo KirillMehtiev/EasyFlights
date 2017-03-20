@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace EasyFlights.WebApi.Models
+namespace EasyFlights.Web.Models
 {
     // Models returned by AccountController actions.
 

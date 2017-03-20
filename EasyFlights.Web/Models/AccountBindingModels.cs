@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
 
-namespace EasyFlights.WebApi.Models
+namespace EasyFlights.Web.Models
 {
     // Models used as parameters to AccountController actions.
 

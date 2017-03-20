@@ -4,7 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http;
 
-namespace EasyFlights.WebApi.Results
+namespace EasyFlights.Web.Results
 {
     public class ChallengeResult : IHttpActionResult
     {

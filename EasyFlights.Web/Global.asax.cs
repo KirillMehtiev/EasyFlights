@@ -1,7 +1,8 @@
 ﻿using System.Web.Http;
 using System.Web.Mvc;
+using System.Web.Routing;
 
-namespace EasyFlights.WebApi
+namespace EasyFlights.Web
 {
     public class WebApiApplication : System.Web.HttpApplication
     {
@@ -10,6 +11,7 @@ namespace EasyFlights.WebApi
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
     }
 }

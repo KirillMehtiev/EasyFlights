@@ -10,9 +10,9 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
-using EasyFlights.WebApi.Models;
+using EasyFlights.Web.Models;
 
-namespace EasyFlights.WebApi.Providers
+namespace EasyFlights.Web.Providers
 {
     public class ApplicationOAuthProvider : OAuthAuthorizationServerProvider
     {

@@ -1,7 +1,7 @@
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(EasyFlights.WebApi.App_Start.NinjectWebCommon), "Start")]
-[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(EasyFlights.WebApi.App_Start.NinjectWebCommon), "Stop")]
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(EasyFlights.Web.App_Start.NinjectWebCommon), "Start")]
+[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(EasyFlights.Web.App_Start.NinjectWebCommon), "Stop")]
 
-namespace EasyFlights.WebApi.App_Start
+namespace EasyFlights.Web.App_Start
 {
     using System;
     using System.Web;

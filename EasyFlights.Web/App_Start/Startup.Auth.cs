@@ -9,10 +9,10 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
-using EasyFlights.WebApi.Providers;
-using EasyFlights.WebApi.Models;
+using EasyFlights.Web.Providers;
+using EasyFlights.Web.Models;
 
-namespace EasyFlights.WebApi
+namespace EasyFlights.Web
 {
     public partial class Startup
     {

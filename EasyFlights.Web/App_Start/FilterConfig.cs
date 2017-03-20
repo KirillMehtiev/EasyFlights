@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace EasyFlights.WebApi
+namespace EasyFlights.Web
 {
     public class FilterConfig
     {

@@ -1,9 +1,9 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartup(typeof(EasyFlights.WebApi.Startup))]
+[assembly: OwinStartup(typeof(EasyFlights.Web.Startup))]
 
-namespace EasyFlights.WebApi
+namespace EasyFlights.Web
 {
     public partial class Startup
     {
