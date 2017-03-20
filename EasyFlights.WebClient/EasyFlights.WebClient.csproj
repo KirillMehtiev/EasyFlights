@@ -120,26 +120,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Client\App\About\AboutComponent.js" />
     <Content Include="Client\App\About\AboutTemplate.html" />
-    <Content Include="Client\App\About\AboutViewModel.js" />
-    <Content Include="Client\App\App.js" />
-    <Content Include="Client\App\Components.js" />
-    <Content Include="Client\App\Config.js" />
     <Content Include="Client\App\Layout\Footer\FooterTemplate.html" />
-    <Content Include="Client\App\Layout\ILayoutOptions.js" />
-    <Content Include="Client\App\Layout\ILayoutOptions.js.map" />
-    <Content Include="Client\App\Layout\LayoutComponent.js" />
     <Content Include="Client\App\Layout\LayoutTemplate.html" />
-    <Content Include="Client\App\Layout\LayoutViewModel.js" />
-    <Content Include="Client\App\ToDoList\ToDoListComponent.js" />
-    <Content Include="Client\App\ToDoList\ToDoListItem\IToDoListItemOptions.js" />
-    <Content Include="Client\App\ToDoList\ToDoListItem\ToDoListItem.js" />
-    <Content Include="Client\App\ToDoList\ToDoListItem\ToDoListItemComponent.js" />
     <Content Include="Client\App\ToDoList\ToDoListItem\ToDoListItemTemplate.html" />
-    <Content Include="Client\App\ToDoList\ToDoListItem\ToDoListItemViewModel.js" />
     <Content Include="Client\App\ToDoList\ToDoListTemplate.html" />
-    <Content Include="Client\App\ToDoList\ToDoListViewModel.js" />
     <Content Include="Client\Libs\bootstrap.css" />
     <Content Include="Client\Libs\bootstrap.js" />
     <Content Include="Client\Libs\jquery.js" />
@@ -163,22 +148,9 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Client\App\About\AboutComponent.js.map" />
-    <Content Include="Client\App\About\AboutViewModel.js.map" />
-    <Content Include="Client\App\App.js.map" />
     <Content Include="Client\App\App.scss" />
-    <Content Include="Client\App\Components.js.map" />
-    <Content Include="Client\App\Config.js.map" />
-    <Content Include="Client\App\Layout\LayoutComponent.js.map" />
-    <Content Include="Client\App\Layout\LayoutViewModel.js.map" />
     <Content Include="Client\App\Layout\_Layout.scss" />
-    <Content Include="Client\App\ToDoList\ToDoListComponent.js.map" />
-    <Content Include="Client\App\ToDoList\ToDoListItem\IToDoListItemOptions.js.map" />
-    <Content Include="Client\App\ToDoList\ToDoListItem\ToDoListItem.js.map" />
-    <Content Include="Client\App\ToDoList\ToDoListItem\ToDoListItemComponent.js.map" />
-    <Content Include="Client\App\ToDoList\ToDoListItem\ToDoListItemViewModel.js.map" />
     <Content Include="Client\App\ToDoList\ToDoListItem\_ToDoListItem.scss" />
-    <Content Include="Client\App\ToDoList\ToDoListViewModel.js.map" />
     <Content Include="Client\App\ToDoList\_ToDoList.scss" />
   </ItemGroup>
   <ItemGroup>
