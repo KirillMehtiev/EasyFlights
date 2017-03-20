@@ -1,4 +1,0 @@
-﻿class FooterViewModel {
-}
-
-export = FooterViewModel;
