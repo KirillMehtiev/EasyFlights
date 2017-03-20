@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace EasyFlights.Data
+﻿namespace EasyFlights.DomainModel
 {
     public enum FlightClass
     {
@@ -15,10 +9,10 @@ namespace EasyFlights.Data
 
     public class Ticket : BaseEntity
     {
-        public Passenger Passenger { get; set; }
+        public virtual Passenger Passenger { get; set; }
         public double Fare { get; set; }
         public double Discount { get; set; }
-        public Flight Flight { get; set; }
+        public virtual Flight Flight { get; set; }
         public int Seat { get; set; }
         public FlightClass FlightClass { get; set; }
     }
