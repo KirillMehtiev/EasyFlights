@@ -1,9 +1,8 @@
 ﻿using System.Security.Claims;
 using System.Threading.Tasks;
-using EasyFlights.DomainModel;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
-
+using EasyFlights.DomainModel.Entities.Identity;
 
 namespace EasyFlights.Services.Services
 {

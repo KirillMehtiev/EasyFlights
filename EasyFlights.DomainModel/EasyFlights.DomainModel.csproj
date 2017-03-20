@@ -85,24 +85,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Aircraft.cs" />
-    <Compile Include="Airport.cs" />
-    <Compile Include="BaseEntity.cs" />
-    <Compile Include="City.cs" />
-    <Compile Include="Country.cs" />
-    <Compile Include="EasyFlightsContext.cs" />
-    <Compile Include="Flight.cs" />
-    <Compile Include="Identity\ApplicationRole.cs" />
-    <Compile Include="Identity\ApplicationUser.cs" />
-    <Compile Include="Order.cs" />
-    <Compile Include="Passenger.cs" />
+    <Compile Include="Entities\Aircraft.cs" />
+    <Compile Include="Entities\Airport.cs" />
+    <Compile Include="Entities\BaseEntity.cs" />
+    <Compile Include="Entities\City.cs" />
+    <Compile Include="Entities\Country.cs" />
+    <Compile Include="Entities\Flight.cs" />
+    <Compile Include="Entities\Identity\ApplicationRole.cs" />
+    <Compile Include="Entities\Identity\ApplicationUser.cs" />
+    <Compile Include="Entities\Order.cs" />
+    <Compile Include="Entities\Passenger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Ticket.cs" />
-    <Compile Include="User.cs" />
+    <Compile Include="Entities\Ticket.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DTOs\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

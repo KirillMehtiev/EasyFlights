@@ -125,14 +125,6 @@
       <HintPath>..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="WebGrease">
-      <Private>True</Private>
-      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
-    </Reference>
-    <Reference Include="Antlr3.Runtime">
-      <Private>True</Private>
-      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="EntityFramework">
@@ -211,7 +203,10 @@
     <Content Include="Client\App\Index\IndexTemplate.html" />
     <Content Include="Client\App\Index\Search\RadioChooser\RadioChooserTemplate.html" />
     <Content Include="Client\App\Layout\Footer\FooterTemplate.html" />
+
+    <Content Include="Client\App\Layout\Header\HeaderTemplate.html" />
     <Content Include="Client\App\Layout\LayoutTemplate.html" />
+    <Content Include="Client\App\SearchResults\SearchResults.html" />
     <Content Include="Client\App\ToDoList\ToDoListItem\ToDoListItemTemplate.html" />
     <Content Include="Client\App\ToDoList\ToDoListTemplate.html" />
     <Content Include="Client\Libs\bootstrap.css" />
@@ -272,9 +267,13 @@
     <TypeScriptCompile Include="Client\App\Index\Search\RadioChooser\RadioChooserViewModel.ts" />
     <TypeScriptCompile Include="Client\App\Layout\Footer\FooterComponent.ts" />
     <TypeScriptCompile Include="Client\App\Layout\Footer\FooterViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\Layout\Header\HeaderComponent.ts" />
+    <TypeScriptCompile Include="Client\App\Layout\Header\HeaderViewModel.ts" />
     <TypeScriptCompile Include="Client\App\Layout\ILayoutOptions.ts" />
     <TypeScriptCompile Include="Client\App\Layout\LayoutComponent.ts" />
     <TypeScriptCompile Include="Client\App\Layout\LayoutViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\SearchResults\SearchResultComponent.ts" />
+    <TypeScriptCompile Include="Client\App\SearchResults\SearchResultViewModel.ts" />
     <TypeScriptCompile Include="Client\App\ToDoList\ToDoListComponent.ts" />
     <TypeScriptCompile Include="Client\App\ToDoList\ToDoListItem\IToDoListItemOptions.ts" />
     <TypeScriptCompile Include="Client\App\ToDoList\ToDoListItem\ToDoListItem.ts" />

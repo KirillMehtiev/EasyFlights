@@ -1,4 +1,0 @@
-﻿class AboutViewModel {
-}
-
-export = AboutViewModel;

@@ -86,13 +86,29 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AirportsCSVSeeder.cs" />
-    <Compile Include="Configurations\UserConfiguration.cs" />
+    <Compile Include="MappingConfigurations\AircraftConfiguration.cs" />
+    <Compile Include="MappingConfigurations\AirportConfiguration.cs" />
+    <Compile Include="MappingConfigurations\ApplicationUserConfiguration.cs" />
     <Compile Include="DataContexts\EasyFlightsDataContext.cs" />
     <Compile Include="DataContexts\IDataContext.cs" />
     <Compile Include="Identity\ApplicationOAuthProvider.cs" />
     <Compile Include="Identity\ApplicationRoleManager.cs" />
     <Compile Include="Identity\ApplicationUserManager.cs" />
+    <Compile Include="MappingConfigurations\BaseEntityConfiguration.cs" />
+    <Compile Include="MappingConfigurations\CityConfiguration.cs" />
+    <Compile Include="MappingConfigurations\CountryConfiguration.cs" />
+    <Compile Include="MappingConfigurations\FlightConfiguration.cs" />
+    <Compile Include="MappingConfigurations\OrderConfiguration.cs" />
+    <Compile Include="MappingConfigurations\PassengerConfiguration.cs" />
+    <Compile Include="MappingConfigurations\TicketConfiguration.cs" />
+    <Compile Include="Migrations\201703201645320_Initial.cs" />
+    <Compile Include="Migrations\201703201645320_Initial.Designer.cs">
+      <DependentUpon>201703201645320_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Base\IRepository.cs" />
+    <Compile Include="Repositories\Base\Repository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EasyFlights.DomainModel\EasyFlights.DomainModel.csproj">
@@ -105,8 +121,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="MappingConfigurations\" />
-    <Folder Include="Repositories\Base\" />
+    <EmbeddedResource Include="Migrations\201703201645320_Initial.resx">
+      <DependentUpon>201703201645320_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

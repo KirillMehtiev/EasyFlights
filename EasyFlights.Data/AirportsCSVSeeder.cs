@@ -1,10 +1,9 @@
-﻿
-
-namespace EasyFlights.Data
+﻿namespace EasyFlights.Data
 {
     using System.IO;
     using System.Linq;
-    using EasyFlights.DomainModel;
+    using DataContexts;
+    using DomainModel.Entities;
 
     /// <summary>
     /// Seeder class for initiating airports, cities and countries tables.
@@ -14,15 +13,15 @@ namespace EasyFlights.Data
         /// <summary>
         /// The name of initial *.CSV file.
         /// </summary>
-        private const string Filename = "../../airports.csv";
+        private readonly string filename = Directory.GetCurrentDirectory() + "/airports.csv";
 
         /// <summary>
         /// The method for seeding tables.
         /// </summary>
         public void Seed()
         {
-            var context = new EasyFlightsContext();
-            using (var stream = new FileStream(Filename, FileMode.OpenOrCreate))
+            var context = new EasyFlightsDataContext();
+            using (var stream = new FileStream(this.filename, FileMode.OpenOrCreate))
             {
                 var reader = new StreamReader(stream);
                 string row;
@@ -31,17 +30,17 @@ namespace EasyFlights.Data
                 {
                     string[] info = row.Split(';');
 
-                    City city = context.Cities.FirstOrDefault(x => x.Name == info[2]);
+                    City city = context.Set<City>().FirstOrDefault(x => x.Name == info[2]);
                     if (city == null)
                     {
                         city = new City() { Name = info[2] };
-                        context.Cities.Add(city);
+                        context.Set<City>().Add(city);
                     }
-                    Country country = context.Countries.FirstOrDefault(x => x.Name == info[3]);
+                    Country country = context.Set<Country>().FirstOrDefault(x => x.Name == info[3]);
                     if (country == null)
                     {
                         country = new Country() { Name = info[3] };
-                        context.Countries.Add(country);
+                        context.Set<Country>().Add(country);
                     }
                     var airport = new Airport()
                     {
@@ -51,7 +50,7 @@ namespace EasyFlights.Data
                         AirportCodeIcao = info[5],
                         TimeZoneOffset = int.Parse(info[6])
                     };
-                    context.Airports.Add(airport);
+                    context.Set<Airport>().Add(airport);
                     context.SaveChanges();
                 }
 
