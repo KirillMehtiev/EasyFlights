@@ -7,6 +7,7 @@ namespace EasyFlights.DomainModel
         Adult = 0,
         Child = 1
     }
+
     public enum Sex
     {
         Male = 0,

@@ -9,11 +9,14 @@
 
     public class Ticket : BaseEntity
     {
-        public virtual Passenger Passenger { get; set; }
+        
         public double Fare { get; set; }
         public double Discount { get; set; }
-        public virtual Flight Flight { get; set; }
         public int Seat { get; set; }
         public FlightClass FlightClass { get; set; }
+
+        public virtual Passenger Passenger { get; set; }
+        public virtual Flight Flight { get; set; }
+        public virtual Order Order { get; set; }
     }
 }

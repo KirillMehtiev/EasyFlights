@@ -1,0 +1,1 @@
+//# sourceMappingURL=SearchResultViewModel.js.map
