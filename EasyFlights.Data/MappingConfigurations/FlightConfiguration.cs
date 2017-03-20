@@ -7,6 +7,12 @@ namespace EasyFlights.Data.MappingConfigurations
     {
         public FlightConfiguration()
         {
+            this.Map(m =>
+            {
+                m.MapInheritedProperties();
+                m.ToTable("Flights");
+            });
+
             this.HasRequired(flight => flight.DepartureAirport).WithMany(ap => ap.Flights);
 
             this.HasRequired(flight => flight.DestinationAirport);

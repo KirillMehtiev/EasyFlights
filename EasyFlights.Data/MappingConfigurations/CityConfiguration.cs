@@ -7,6 +7,12 @@ namespace EasyFlights.Data.MappingConfigurations
     {
         public CityConfiguration()
         {
+            this.Map(m =>
+            {
+                m.MapInheritedProperties();
+                m.ToTable("Cities");
+            });
+
             this.Property(city => city.Name).IsRequired();
 
             this.HasRequired(city => city.Country).WithMany(country => country.Cities);

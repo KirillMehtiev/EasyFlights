@@ -101,7 +101,14 @@
     <Compile Include="MappingConfigurations\OrderConfiguration.cs" />
     <Compile Include="MappingConfigurations\PassengerConfiguration.cs" />
     <Compile Include="MappingConfigurations\TicketConfiguration.cs" />
+    <Compile Include="Migrations\201703201645320_Initial.cs" />
+    <Compile Include="Migrations\201703201645320_Initial.Designer.cs">
+      <DependentUpon>201703201645320_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Base\IRepository.cs" />
+    <Compile Include="Repositories\Base\Repository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EasyFlights.DomainModel\EasyFlights.DomainModel.csproj">
@@ -114,7 +121,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Repositories\Base\" />
+    <EmbeddedResource Include="Migrations\201703201645320_Initial.resx">
+      <DependentUpon>201703201645320_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

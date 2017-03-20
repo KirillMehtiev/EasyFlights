@@ -7,6 +7,12 @@ namespace EasyFlights.Data.MappingConfigurations
     {
         public PassengerConfiguration()
         {
+            this.Map(m =>
+            {
+                m.MapInheritedProperties();
+                m.ToTable("Passengers");
+            });
+
             this.Property(p => p.FirstName).IsRequired();
             this.Property(p => p.LastName).IsRequired();
             this.Property(p => p.DocumentNo).IsRequired();

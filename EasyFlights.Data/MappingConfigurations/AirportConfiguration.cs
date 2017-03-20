@@ -7,6 +7,12 @@ namespace EasyFlights.Data.MappingConfigurations
     {
         public AirportConfiguration()
         {
+            this.Map(m =>
+            {
+                m.MapInheritedProperties();
+                m.ToTable("Airports");
+            });
+
             this.Property(ap => ap.Title).IsRequired();
             this.Property(ap => ap.AirportCodeIata).IsRequired();
             this.Property(ap => ap.AirportCodeIcao).IsRequired();

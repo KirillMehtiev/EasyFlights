@@ -7,6 +7,12 @@ namespace EasyFlights.Data.MappingConfigurations
     {
         public TicketConfiguration()
         {
+            this.Map(m =>
+            {
+                m.MapInheritedProperties();
+                m.ToTable("Tickets");
+            });
+
             this.HasRequired(ticket => ticket.Passenger);
             this.HasRequired(ticket => ticket.Flight);
             this.HasRequired(ticket => ticket.Order).WithMany(order => order.Tickets);

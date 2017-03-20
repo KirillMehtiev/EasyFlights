@@ -7,6 +7,12 @@ namespace EasyFlights.Data.MappingConfigurations
     {
         public AircraftConfiguration()
         {
+            this.Map(m =>
+            {
+                m.MapInheritedProperties();
+                m.ToTable("Aircrafts");
+            });
+
             this.Property(ac => ac.Model).IsRequired();
 
             // one to one

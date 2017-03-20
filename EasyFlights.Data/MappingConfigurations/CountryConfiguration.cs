@@ -7,6 +7,12 @@ namespace EasyFlights.Data.MappingConfigurations
     {
         public CountryConfiguration()
         {
+            this.Map(m =>
+            {
+                m.MapInheritedProperties();
+                m.ToTable("Countries");
+            });
+
             this.Property(country => country.Name).IsRequired();
         }
     }
