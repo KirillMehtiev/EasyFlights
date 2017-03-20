@@ -4,6 +4,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using EasyFlights.DomainModel;
 using EasyFlights.Data.DataContexts;
+using EasyFlights.DomainModel.Identity;
 
 namespace EasyFlights.Web
 {

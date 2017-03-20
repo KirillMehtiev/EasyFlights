@@ -1,0 +1,15 @@
+﻿using System.Data.Entity.ModelConfiguration;
+using EasyFlights.DomainModel;
+
+namespace EasyFlights.Data.MappingConfigurations
+{
+    public class PassengerConfiguration : EntityTypeConfiguration<Passenger>
+    {
+        public PassengerConfiguration()
+        {
+            this.Property(p => p.FirstName).IsRequired();
+            this.Property(p => p.LastName).IsRequired();
+            this.Property(p => p.DocumentNo).IsRequired();
+        }
+    }
+}
