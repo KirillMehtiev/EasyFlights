@@ -13,7 +13,7 @@ namespace EasyFlights.Data.Identity
 
         public static AppRoleManager Create(IdentityFactoryOptions<AppRoleManager> options, IOwinContext context)
         {
-            return new AppRoleManager(new RoleStore<AppRole>(context.Get<EFDataContext>()));
+            return new AppRoleManager(new RoleStore<AppRole>(context.Get<EasyFlightsDataContext>()));
         }
     }
 }
