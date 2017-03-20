@@ -85,20 +85,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Aircraft.cs" />
-    <Compile Include="Airport.cs" />
-    <Compile Include="BaseEntity.cs" />
-    <Compile Include="City.cs" />
-    <Compile Include="Country.cs" />
-    <Compile Include="EasyFlightsContext.cs" />
-    <Compile Include="Flight.cs" />
+    <Compile Include="Identity\Aircraft.cs" />
+    <Compile Include="Identity\Airport.cs" />
+    <Compile Include="Identity\BaseEntity.cs" />
+    <Compile Include="Identity\City.cs" />
+    <Compile Include="Identity\Country.cs" />
+    <Compile Include="Identity\Flight.cs" />
     <Compile Include="Identity\ApplicationRole.cs" />
     <Compile Include="Identity\ApplicationUser.cs" />
-    <Compile Include="Order.cs" />
-    <Compile Include="Passenger.cs" />
+    <Compile Include="Identity\Order.cs" />
+    <Compile Include="Identity\Passenger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Ticket.cs" />
-    <Compile Include="User.cs" />
+    <Compile Include="Identity\Ticket.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

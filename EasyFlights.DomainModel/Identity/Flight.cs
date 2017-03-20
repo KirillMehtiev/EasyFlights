@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace EasyFlights.DomainModel
+namespace EasyFlights.DomainModel.Identity
 {
     public class Flight : BaseEntity
     {

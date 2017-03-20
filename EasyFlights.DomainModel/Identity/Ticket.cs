@@ -1,4 +1,4 @@
-﻿namespace EasyFlights.DomainModel
+﻿namespace EasyFlights.DomainModel.Identity
 {
     public enum FlightClass
     {
