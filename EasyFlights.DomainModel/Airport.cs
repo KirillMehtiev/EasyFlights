@@ -6,9 +6,10 @@ namespace EasyFlights.DomainModel
     public class Airport : BaseEntity
     {
         public string Title { get; set; }
-        public string AirportCode { get; set; }
+        public string AirportCodeIata { get; set; }
+        public string AirportCodeIcao { get; set; }
         public virtual City City { get; set; }
-        public TimeZone TimeZone { get; set; }
+        public int TimeZoneOffset { get; set; }
         public virtual ICollection<Flight> Flights { get; set; }
     }
 }

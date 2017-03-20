@@ -85,6 +85,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AirportsCSVSeeder.cs" />
     <Compile Include="Configurations\UserConfiguration.cs" />
     <Compile Include="DataContexts\EasyFlightsDataContext.cs" />
     <Compile Include="DataContexts\IDataContext.cs" />
