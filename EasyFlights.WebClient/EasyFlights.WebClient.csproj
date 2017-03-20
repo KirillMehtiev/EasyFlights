@@ -123,7 +123,6 @@
     <Content Include="Client\App\About\AboutTemplate.html" />
     <Content Include="Client\App\Layout\Footer\FooterTemplate.html" />
     <Content Include="Client\App\Layout\Header\HeaderTemplate.html" />
-
     <Content Include="Client\App\Layout\LayoutTemplate.html" />
     <Content Include="Client\App\ToDoList\ToDoListItem\ToDoListItemTemplate.html" />
     <Content Include="Client\App\ToDoList\ToDoListTemplate.html" />
