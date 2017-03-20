@@ -1,0 +1,50 @@
+﻿<link rel="stylesheet" type="text/css" href="../../Libs/bootstrap.css">
+<div class="container" data-bind="foreach : {data: tickets, as: 'ticket' }">
+    <div class="row well">
+        <div class="col-md-12 well well-lg">
+            Ticket <span data-bind="text: ticket.number"></span>
+        </div>
+        <div class="col-md-3 well well-lg">
+            Flight: <span data-bind="text: ticket.flight"></span><br />
+            Country: <span data-bind="text: ticket.country"></span><br />
+            Flight type: <span data-bind="text: ticket.flightType"></span>
+        </div>
+
+        <div class="col-md-3 well well-lg">
+            Departure: <span data-bind="text: ticket.departure"></span><br />
+            City: <span data-bind="text: ticket.cityDeparture"></span>
+        </div>
+
+        <div class="col-md-3 well well-lg">
+            Duration: <span data-bind="text: ticket.duration"></span><br />
+            =============>
+        </div>
+
+        <div class="col-md-3 well well-lg">
+            Arrival: <span data-bind="text: ticket.arrival"></span><br />
+            City: <span data-bind="text: ticket.departure"></span>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/knockout/knockout-3.4.0.js"></script>
+<script>
+    function Ticket(number, flight, country, flightType,departure,cityDeparture,duration,arrival,cityArrival){
+        this.number=number;
+        this.flight=flight;
+        this.country=country;
+        this.flightType=flightType;
+        this.departure = departure;
+        this.cityDeparture = cityDeparture;
+        this.duration = duration;
+        this.arrival = arrival;
+        this.cityArrival = cityArrival;
+        
+    };
+    var viewModel ={
+    tickets: ko.observableArray([new Ticket(12,"Flight","Country","Economy","13:30","City","2 h 20 min","15:50","City 2")
+    , new Ticket(12, "Flight", "Country", "Economy", "13:30", "City", "2 h 20 min", "15:50", "City 2")
+    ])
+    };
+ko.applyBindings(viewModel);
+</script>
+
