@@ -1,0 +1,4 @@
+﻿class HeaderViewModel {
+}
+
+export = HeaderViewModel;

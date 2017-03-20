@@ -208,8 +208,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Client\App\About\AboutTemplate.html" />
+    <Content Include="Client\App\Layout\Footer\FooterComponent.js" />
     <Content Include="Client\App\Layout\Footer\FooterTemplate.html" />
+    <Content Include="Client\App\Layout\Footer\FooterViewModel.js" />
+    <Content Include="Client\App\Layout\Header\HeaderComponent.js" />
+    <Content Include="Client\App\Layout\Header\HeaderTemplate.html" />
+    <Content Include="Client\App\Layout\Header\HeaderViewModel.js" />
     <Content Include="Client\App\Layout\LayoutTemplate.html" />
+    <Content Include="Client\App\SearchResults\SearchResultComponent.js" />
+    <Content Include="Client\App\SearchResults\SearchResults.html" />
+    <Content Include="Client\App\SearchResults\SearchResultViewModel.js" />
     <Content Include="Client\App\ToDoList\ToDoListItem\ToDoListItemTemplate.html" />
     <Content Include="Client\App\ToDoList\ToDoListTemplate.html" />
     <Content Include="Client\Libs\bootstrap.css" />
@@ -266,9 +274,13 @@
     <TypeScriptCompile Include="Client\App\Components.ts" />
     <TypeScriptCompile Include="Client\App\Layout\Footer\FooterComponent.ts" />
     <TypeScriptCompile Include="Client\App\Layout\Footer\FooterViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\Layout\Header\HeaderComponent.ts" />
+    <TypeScriptCompile Include="Client\App\Layout\Header\HeaderViewModel.ts" />
     <TypeScriptCompile Include="Client\App\Layout\ILayoutOptions.ts" />
     <TypeScriptCompile Include="Client\App\Layout\LayoutComponent.ts" />
     <TypeScriptCompile Include="Client\App\Layout\LayoutViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\SearchResults\SearchResultComponent.ts" />
+    <TypeScriptCompile Include="Client\App\SearchResults\SearchResultViewModel.ts" />
     <TypeScriptCompile Include="Client\App\ToDoList\ToDoListComponent.ts" />
     <TypeScriptCompile Include="Client\App\ToDoList\ToDoListItem\IToDoListItemOptions.ts" />
     <TypeScriptCompile Include="Client\App\ToDoList\ToDoListItem\ToDoListItem.ts" />
@@ -294,8 +306,18 @@
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Client\App\Layout\Header\" />
+    <Content Include="Client\App\SearchResults\SearchResultComponent.js.map" />
+    <Content Include="Client\App\SearchResults\SearchResultViewModel.js.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Client\App\Layout\Footer\FooterComponent.js.map" />
+    <Content Include="Client\App\Layout\Footer\FooterViewModel.js.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Client\App\Layout\Header\HeaderComponent.js.map" />
+    <Content Include="Client\App\Layout\Header\HeaderViewModel.js.map" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
