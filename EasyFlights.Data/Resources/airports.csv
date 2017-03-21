@@ -1308,7 +1308,7 @@ id;name_eng;city_eng;country_eng;IATA;ICAO;timeZone
 1342;Valence-Chabeuil Airport;Valence;France;VAF;LFLU;1
 1343;Vichy-Charmeil Airport;Vichy;France;VHY;LFLV;1
 1344;Aurillac Airport;Aurillac;France;AUR;LFLW;1
-1345;"Châteauroux-Déols \Marcel Dassault\"" Airport""";Chateauroux;France;CHR;LFLX;1
+1345;Châteauroux-Déols Marcel Dassault Airport;Chateauroux;France;CHR;LFLX;1
 1346;Lyon-Bron Airport;Lyon;France;LYN;LFLY;1
 1347;Aix-en-Provence (BA 114) Airport;Aix-les-milles;France;QXB;LFMA;1
 1348;Le Luc-Le Cannet Airport;Le Luc;France; ;LFMC;1
@@ -1461,8 +1461,8 @@ id;name_eng;city_eng;country_eng;IATA;ICAO;timeZone
 1499;Amendola Air Base;Amendola;Italy; ;LIBA;1
 1500;Crotone Airport;Crotone;Italy;CRV;LIBC;1
 1501;Bari Karol Wojtyła Airport;Bari;Italy;BRI;LIBD;1
-1502;"Foggia \Gino Lisa\"" Airport""";Foggia;Italy;FOG;LIBF;1
-1503;"Taranto-Grottaglie \Marcello Arlotta\"" Airport""";Grottaglie;Italy;TAR;LIBG;1
+1502;Foggia Gino Lisa Airport;Foggia;Italy;FOG;LIBF;1
+1503;Taranto-Grottaglie Marcello Arlotta Airport;Grottaglie;Italy;TAR;LIBG;1
 1504;Lecce Galatina Air Base;Lecce;Italy;LCC;LIBN;1
 1505;Pescara International Airport;Pescara;Italy;PSR;LIBP;1
 1506;Brindisi – Salento Airport;Brindisi;Italy;BDS;LIBR;1
@@ -2680,7 +2680,7 @@ id;name_eng;city_eng;country_eng;IATA;ICAO;timeZone
 2822;Barinas Airport;Barinas;Venezuela;BNS;SVBI;-4
 2823;El Libertador Airbase;Maracaibo;Venezuela; ;SVBL;-4
 2824;Barquisimeto International Airport;Barquisimeto;Venezuela;BRM;SVBM;-4
-2826;"Aeropuerto \General Tomas de Heres\"". Ciudad Bolivar""";Ciudad Bolivar;Venezuela;CBL;SVCB;-4
+2826;Aeropuerto General Tomas de Heres. Ciudad Bolivar;Ciudad Bolivar;Venezuela;CBL;SVCB;-4
 2827;Caicara del Orinoco Airport;Caicara De Orinoco;Venezuela; ;SVCD;-4
 2828;San Carlos Airport;San Carlos;Venezuela; ;SVCJ;-4
 2829;Calabozo Airport;Calabozo;Venezuela; ;SVCL;-4
@@ -3825,7 +3825,7 @@ id;name_eng;city_eng;country_eng;IATA;ICAO;timeZone
 4063;Grand Junction Regional Airport;Grand Junction;United States;GJT;KGJT;-7
 4064;St George Municipal Airport;Saint George;United States;SGU;KSGU;-7
 4065;David Wayne Hooks Memorial Airport;Houston;United States;DWH;KDWH;-6
-4066;Port O'Connor Private Airport;Port O\\'Connor;United States;S46;XS46;-6
+4066;Port O'Connor Private Airport;Port O'Connor;United States;S46;XS46;-6
 4067;Sarasota Bradenton International Airport;Sarasota;United States;SRQ;KSRQ;-5
 4069;L.F. Wade International International Airport;Bermuda;Bermuda;BDA;TXKF;-4
 4071;Van Nuys Airport;Van Nuys;United States;VNY;KVNY;-8
@@ -4051,7 +4051,7 @@ id;name_eng;city_eng;country_eng;IATA;ICAO;timeZone
 4343;Renner Field-Goodland Municipal Airport;Goodland;United States;GLD;KGLD;-7
 4344;Yellowstone Regional Airport;Cody;United States;COD;KCOD;-7
 4345;Ørsta-Volda Airport, Hovden;Orsta-Volda;Norway;HOV;ENOV;1
-4347;St. Mary's Airport;ST MARY\\'S;United Kingdom;ISC;EGHE;0
+4347;St. Mary's Airport;ST MARY'S;United Kingdom;ISC;EGHE;0
 4348;Springfield Branson National Airport;Springfield;United States;SGF;KSGF;-6
 4349;Narvik Framnes Airport;Narvik;Norway;NVK;ENNK;1
 4350;Berlevåg Airport;Berlevag;Norway;BVG;ENBV;1
@@ -5297,7 +5297,7 @@ id;name_eng;city_eng;country_eng;IATA;ICAO;timeZone
 7047;Whiting Field Naval Air Station South Airport;Cuxhaven;Germany;NDZ;KNDZ;-6
 7048;Volk Field;Camp Douglas;United States;VOK;KVOK;-6
 7051;Gunnison Crested Butte Regional Airport;Gunnison;United States;GUC;KGUC;-7
-7052;Xi'an Xiguan Airport;Xi\\'AN;China;SIA;ZLSN;8
+7052;Xi'an Xiguan Airport;Xi'AN;China;SIA;ZLSN;8
 7053;Zamperini Field;Torrance;United States;TOA;KTOA;-8
 7054;Manistee Co Blacker Airport;Manistee;United States;MBL;KMBL;-5
 7056;Charlotte County Airport;Punta Gorda;United States;PGD;KPGD;-5
@@ -5663,7 +5663,7 @@ id;name_eng;city_eng;country_eng;IATA;ICAO;timeZone
 7619;Yandina Airport;Yandina;Solomon Islands;XYA;AGGY;11
 7621;Bartow Municipal Airport;Bartow;United States;BOW;KBOW;-5
 7622;Dyagilevo Air Base;Kostroma;Russia; ;UUBD;3
-7627;Fitiuta Airport;Fiti\\'uta;American Samoa;FTI;NSFQ;-11
+7627;Fitiuta Airport;Fiti'uta;American Samoa;FTI;NSFQ;-11
 7629;Livermore Municipal Airport;Livermore;United States;LVK;KLVK;-8
 7630;Mariposa Yosemite Airport;Mariposa;United States;RMY;KMPI;-8
 7633;Grootfontein Airport;Grootfontein;Namibia;GFY;FYGF;1

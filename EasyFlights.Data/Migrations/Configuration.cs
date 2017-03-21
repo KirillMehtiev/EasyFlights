@@ -9,8 +9,10 @@ namespace EasyFlights.Data.Migrations
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(EasyFlights.Data.DataContexts.EasyFlightsDataContext context)
+        protected override void Seed(DataContexts.EasyFlightsDataContext context)
         {
+            var seeder = new Seed.AirportsCsvSeeder();
+            seeder.Seed(context);
         }
     }
 }

@@ -6,14 +6,9 @@ using EasyFlights.DomainModel.Entities;
 
 namespace EasyFlights.Data.Migrations.Seed
 {
-    /// <summary>
-    /// Seeder class for initiating airports, cities and countries tables.
-    /// </summary>
+
     public class AirportsCsvSeeder
     {
-        /// <summary>
-        /// The method for seeding tables.
-        /// </summary>
         private const int AirportTitleIndex = 1;
 
         private const int CityNameIndex = 2;
@@ -36,19 +31,18 @@ namespace EasyFlights.Data.Migrations.Seed
                 while ((row = reader.ReadLine()) != null)
                 {
                     string[] info = row.Split(';');
-
-                    City city = context.Set<City>().FirstOrDefault(x => x.Name == info[CityNameIndex]);
-                    if (city == null)
-                    {
-                        city = new City() { Name = info[CityNameIndex] };
-                        context.Set<City>().Add(city);
-                    }
                     Country country = context.Set<Country>().FirstOrDefault(x => x.Name == info[CountryNameIndex]);
                     if (country == null)
                     {
                         country = new Country() { Name = info[CountryNameIndex] };
                         context.Set<Country>().Add(country);
                     }
+                    City city = context.Set<City>().FirstOrDefault(x => x.Name == info[CityNameIndex]);
+                    if (city == null)
+                    {
+                        city = new City() { Name = info[CityNameIndex], Country = country};
+                        context.Set<City>().Add(city);
+                    }                  
                     var airport = new Airport()
                     {
                         Title = info[AirportTitleIndex],
