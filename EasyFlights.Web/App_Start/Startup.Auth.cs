@@ -1,14 +1,14 @@
-﻿using System;
-using EasyFlights.Data.DataContexts;
-using EasyFlights.Data.Identity;
-using Microsoft.AspNet.Identity;
-using Microsoft.Owin;
-using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.OAuth;
-using Owin;
-
-namespace EasyFlights.Web
+﻿namespace EasyFlights.Web
 {
+    using System;
+    using EasyFlights.Data.DataContexts;
+    using EasyFlights.Data.Identity;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.Owin;
+    using Microsoft.Owin.Security.Cookies;
+    using Microsoft.Owin.Security.OAuth;
+    using Owin;
+
     public partial class Startup
     {
         public static OAuthAuthorizationServerOptions OAuthOptions { get; private set; }

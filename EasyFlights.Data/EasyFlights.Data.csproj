@@ -104,9 +104,9 @@
     <Compile Include="MappingConfigurations\OrderConfiguration.cs" />
     <Compile Include="MappingConfigurations\PassengerConfiguration.cs" />
     <Compile Include="MappingConfigurations\TicketConfiguration.cs" />
-    <Compile Include="Migrations\201703201645320_Initial.cs" />
-    <Compile Include="Migrations\201703201645320_Initial.Designer.cs">
-      <DependentUpon>201703201645320_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201703211040049_Initial.cs" />
+    <Compile Include="Migrations\201703211040049_Initial.Designer.cs">
+      <DependentUpon>201703211040049_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -130,8 +130,8 @@
     <None Include="Resources\airports.csv" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201703201645320_Initial.resx">
-      <DependentUpon>201703201645320_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201703211040049_Initial.resx">
+      <DependentUpon>201703211040049_Initial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

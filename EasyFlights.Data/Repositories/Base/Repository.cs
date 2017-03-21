@@ -1,35 +1,36 @@
-﻿using EasyFlights.Data.DataContexts;
-using System.Linq;
-
-namespace EasyFlights.Data.Repositories.Base
+﻿namespace EasyFlights.Data.Repositories.Base
 {
-    public class Repository<T> : IRepository<T> where T : class
+    using System.Linq;
+    using EasyFlights.Data.DataContexts;
+    using EasyFlights.DomainModel.Entities;    
+
+    public class Repository<T> : IRepository<T> where T : BaseEntity
     {
-        private IDataContext _dataContext;
+        private IDataContext dataContext;
 
         public Repository(IDataContext dataContext)
         {
-            this._dataContext = dataContext;
+            this.dataContext = dataContext;
         }
 
         public void Add(T entity)
         {
-            this._dataContext.Set<T>().Add(entity);
+            this.dataContext.Set<T>().Add(entity);
         }
 
         public void Delete(T entity)
         {
-            this._dataContext.Set<T>().Remove(entity);
+            this.dataContext.Set<T>().Remove(entity);
         }
 
         public IQueryable<T> GetAll()
         {
-            return this._dataContext.Set<T>().AsQueryable();
+            return this.dataContext.Set<T>().AsQueryable();
         }
 
         public void SaveChanges()
         {
-            this._dataContext.SaveChanges();
+            this.dataContext.SaveChanges();
         }
     }
 }

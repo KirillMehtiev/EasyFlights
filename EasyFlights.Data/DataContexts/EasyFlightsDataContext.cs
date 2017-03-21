@@ -1,12 +1,10 @@
-﻿using System.Data.Entity;
-using System.Reflection;
-using EasyFlights.Data.Configurations;
-using EasyFlights.Data.MappingConfigurations;
-using EasyFlights.DomainModel.Entities.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-
-namespace EasyFlights.Data.DataContexts
+﻿namespace EasyFlights.Data.DataContexts
 {
+    using System.Data.Entity;
+    using System.Reflection;
+    using EasyFlights.DomainModel.Entities.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+
     public class EasyFlightsDataContext : IdentityDbContext<ApplicationUser>, IDataContext
     {
         // TODO: add connection to db
@@ -22,10 +20,6 @@ namespace EasyFlights.Data.DataContexts
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.AddFromAssembly(Assembly.GetAssembly(typeof(EasyFlightsDataContext)));
-            modelBuilder.Configurations.Add(new ApplicationUserConfiguration());
-            modelBuilder.Configurations.Add(new ApplicationUserLoginConfiguration());
-            modelBuilder.Configurations.Add(new ApplicationRoleConfiguration());
-            modelBuilder.Configurations.Add(new ApplicationUserRoleConfiguration());
         }
     }
 }
