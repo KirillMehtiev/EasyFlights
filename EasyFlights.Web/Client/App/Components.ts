@@ -5,4 +5,7 @@ import "./About/AboutComponent";
 import "./ToDoList/ToDoListComponent";
 import "./ToDoList/ToDoListItem/ToDoListItemComponent";
 import "./Index/IndexComponent";
-import "./Index/Search/RadioChooser/RadioChooserComponent"
+import "./Index/Search/RadioChooser/RadioChooserComponent";
+import "./SearchResults/SearchResultComponent"
+import "./SearchResults/Sorting/SortingComponent";
+import "./SearchResults/SearchHeader/SearchHeaderComponent"

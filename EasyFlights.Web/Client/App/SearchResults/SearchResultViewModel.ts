@@ -1,1 +1,4 @@
-﻿
+﻿class SearchResultViewModel {
+}
+
+export = SearchResultViewModel;

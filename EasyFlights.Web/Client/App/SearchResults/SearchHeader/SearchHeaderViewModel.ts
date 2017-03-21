@@ -1,0 +1,4 @@
+﻿class SearchHeaderViewModel {
+  
+}
+export = SearchHeaderViewModel;

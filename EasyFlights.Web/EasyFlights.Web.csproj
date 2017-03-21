@@ -203,7 +203,9 @@
     <Content Include="Client\App\Layout\Footer\FooterTemplate.html" />
     <Content Include="Client\App\Layout\Header\HeaderTemplate.html" />
     <Content Include="Client\App\Layout\LayoutTemplate.html" />
-    <Content Include="Client\App\SearchResults\SearchResults.html" />
+    <Content Include="Client\App\SearchResults\SearchHeader\SearchHeaderTemplate.html" />
+    <Content Include="Client\App\SearchResults\SearchResultTemplate.html" />
+    <Content Include="Client\App\SearchResults\Sorting\SortingTemplate.html" />
     <Content Include="Client\App\ToDoList\ToDoListItem\ToDoListItemTemplate.html" />
     <Content Include="Client\App\ToDoList\ToDoListTemplate.html" />
     <Content Include="Client\Libs\bootstrap.css" />
@@ -269,8 +271,12 @@
     <TypeScriptCompile Include="Client\App\Layout\ILayoutOptions.ts" />
     <TypeScriptCompile Include="Client\App\Layout\LayoutComponent.ts" />
     <TypeScriptCompile Include="Client\App\Layout\LayoutViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\SearchResults\SearchHeader\SearchHeaderComponent.ts" />
+    <TypeScriptCompile Include="Client\App\SearchResults\SearchHeader\SearchHeaderViewModel.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\SearchResultComponent.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\SearchResultViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\SearchResults\Sorting\SortingComponent.ts" />
+    <TypeScriptCompile Include="Client\App\SearchResults\Sorting\SortingViewModel.ts" />
     <TypeScriptCompile Include="Client\App\ToDoList\ToDoListComponent.ts" />
     <TypeScriptCompile Include="Client\App\ToDoList\ToDoListItem\IToDoListItemOptions.ts" />
     <TypeScriptCompile Include="Client\App\ToDoList\ToDoListItem\ToDoListItem.ts" />

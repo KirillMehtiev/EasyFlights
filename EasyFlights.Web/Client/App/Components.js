@@ -8,4 +8,7 @@ require("./ToDoList/ToDoListComponent");
 require("./ToDoList/ToDoListItem/ToDoListItemComponent");
 require("./Index/IndexComponent");
 require("./Index/Search/RadioChooser/RadioChooserComponent");
+require("./SearchResults/SearchResultComponent");
+require("./SearchResults/Sorting/SortingComponent");
+require("./SearchResults/SearchHeader/SearchHeaderComponent");
 //# sourceMappingURL=Components.js.map
