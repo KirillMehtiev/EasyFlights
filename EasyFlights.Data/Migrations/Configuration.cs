@@ -2,15 +2,17 @@ namespace EasyFlights.Data.Migrations
 {
     using System.Data.Entity.Migrations;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<EasyFlights.Data.DataContexts.EasyFlightsDataContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<DataContexts.EasyFlightsDataContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(EasyFlights.Data.DataContexts.EasyFlightsDataContext context)
+        protected override void Seed(DataContexts.EasyFlightsDataContext context)
         {
+            var seeder = new Seed.AirportsCsvSeeder();
+            seeder.Seed(context);
         }
     }
 }

@@ -1,5 +1,5 @@
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(EasyFlights.Web.App_Start.NinjectWebCommon), "Start")]
-[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(EasyFlights.Web.App_Start.NinjectWebCommon), "Stop")]
+[assembly: WebActivatorEx.ApplicationShutdownMethod(typeof(EasyFlights.Web.App_Start.NinjectWebCommon), "Stop")]
 
 namespace EasyFlights.Web.App_Start
 {
@@ -49,10 +49,10 @@ namespace EasyFlights.Web.App_Start
                 RegisterServices(kernel);
                 return kernel;
             }
-            catch
+            catch(Exception e)
             {
                 kernel.Dispose();
-                throw;
+                throw e;
             }
         }
 

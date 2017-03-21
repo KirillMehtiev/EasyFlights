@@ -177,6 +177,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiControllers\TypeaheadController.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -187,9 +188,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Infrastructure\NinjectModules\DataModule.cs" />
-    <Compile Include="Infrastructure\NinjectModules\EnginesModule.cs" />
-    <Compile Include="Infrastructure\NinjectModules\ServicesModule.cs" />
+    <Compile Include="NinjectModules\DataModule.cs" />
+    <Compile Include="NinjectModules\EnginesModule.cs" />
+    <Compile Include="NinjectModules\ServicesModule.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -200,11 +201,14 @@
     <Content Include="Client\App\About\AboutTemplate.html" />
     <Content Include="Client\App\Index\IndexTemplate.html" />
     <Content Include="Client\App\Index\Search\SearchTemplate.html" />
+    <Content Include="Client\App\Index\Search\DatePicker\DatePickerTemplate.html" />
     <Content Include="Client\App\Index\Search\RadioChooser\RadioChooserTemplate.html" />
     <Content Include="Client\App\Layout\Footer\FooterTemplate.html" />
     <Content Include="Client\App\Layout\Header\HeaderTemplate.html" />
     <Content Include="Client\App\Layout\LayoutTemplate.html" />
-    <Content Include="Client\App\SearchResults\SearchResults.html" />
+    <Content Include="Client\App\SearchResults\SearchHeader\SearchHeaderTemplate.html" />
+    <Content Include="Client\App\SearchResults\SearchResultTemplate.html" />
+    <Content Include="Client\App\SearchResults\Sorting\SortingTemplate.html" />
     <Content Include="Client\App\ToDoList\ToDoListItem\ToDoListItemTemplate.html" />
     <Content Include="Client\App\ToDoList\ToDoListTemplate.html" />
     <Content Include="Client\Libs\bootstrap.css" />
@@ -261,6 +265,9 @@
     <TypeScriptCompile Include="Client\App\Components.ts" />
     <TypeScriptCompile Include="Client\App\Index\IndexComponent.ts" />
     <TypeScriptCompile Include="Client\App\Index\IndexViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\Index\Search\DatePicker\DatePickerComponent.ts" />
+    <TypeScriptCompile Include="Client\App\Index\Search\DatePicker\DatePickerViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\Index\Search\DatePicker\IDatePickerOptions.ts" />
     <TypeScriptCompile Include="Client\App\Index\Search\SearchComponent.ts" />
     <TypeScriptCompile Include="Client\App\Index\Search\SearchViewModel.ts" />
     <TypeScriptCompile Include="Client\App\Index\Search\RadioChooser\RadioChooserComponent.ts" />
@@ -274,8 +281,12 @@
     <TypeScriptCompile Include="Client\App\Layout\ILayoutOptions.ts" />
     <TypeScriptCompile Include="Client\App\Layout\LayoutComponent.ts" />
     <TypeScriptCompile Include="Client\App\Layout\LayoutViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\SearchResults\SearchHeader\SearchHeaderComponent.ts" />
+    <TypeScriptCompile Include="Client\App\SearchResults\SearchHeader\SearchHeaderViewModel.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\SearchResultComponent.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\SearchResultViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\SearchResults\Sorting\SortingComponent.ts" />
+    <TypeScriptCompile Include="Client\App\SearchResults\Sorting\SortingViewModel.ts" />
     <TypeScriptCompile Include="Client\App\ToDoList\ToDoListComponent.ts" />
     <TypeScriptCompile Include="Client\App\ToDoList\ToDoListItem\IToDoListItemOptions.ts" />
     <TypeScriptCompile Include="Client\App\ToDoList\ToDoListItem\ToDoListItem.ts" />

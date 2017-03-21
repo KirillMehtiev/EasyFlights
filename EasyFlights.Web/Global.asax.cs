@@ -1,9 +1,10 @@
-﻿using System.Web.Http;
-using System.Web.Mvc;
-using System.Web.Routing;
+﻿namespace EasyFlights.Web
+{   
+    using System.Web.Http;
+    using System.Web.Mvc;
+    using System.Web.Routing;
+    using EasyFlights.Web.App_Start;
 
-namespace EasyFlights.Web
-{
     public class WebApiApplication : System.Web.HttpApplication
     {
         protected void Application_Start()

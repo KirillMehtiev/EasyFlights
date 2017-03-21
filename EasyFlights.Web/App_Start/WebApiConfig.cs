@@ -1,8 +1,8 @@
-﻿using System.Web.Http;
-using Microsoft.Owin.Security.OAuth;
-
-namespace EasyFlights.Web
+﻿namespace EasyFlights.Web.App_Start
 {
+    using System.Web.Http;
+    using Microsoft.Owin.Security.OAuth;
+
     public static class WebApiConfig
     {
         public static void Register(HttpConfiguration config)

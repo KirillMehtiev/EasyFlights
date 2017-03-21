@@ -10,6 +10,5 @@ class Application {
         pager.start();
     }
 }
-
 let application: Application = new Application();
 application.run();

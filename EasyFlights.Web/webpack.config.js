@@ -8,6 +8,7 @@ const extractSass = new ExtractTextPlugin({
     filename: "[name].css"
 });
 const appDirectory = path.resolve("./Client/");
+var dependencies = Object.keys(require('./package').dependencies);
 
 module.exports = {
     context: appDirectory,
@@ -20,7 +21,7 @@ module.exports = {
         extensions: ['.ts', '.tsx', '.js']
     },
     entry: {
-        libs: ["knockout", "pager", "jquery"],
+        libs: dependencies,
         app: "./App/App.ts"
     },
     output: {
