@@ -664,7 +664,7 @@ id;name_eng;city_eng;country_eng;IATA;ICAO;timeZone
 673;Mielec Airport;Mielec;Poland; ;EPML;1
 674;Poznań-Ławica Airport;Poznan;Poland;POZ;EPPO;1
 675;Rzeszów-Jasionka Airport;Rzeszow;Poland;RZE;EPRZ;1
-676;"Szczecin-Goleniów \Solidarność\"" Airport""";Szczecin;Poland;SZZ;EPSC;1
+676;Szczecin-Goleniów Solidarność Airport;Szczecin;Poland;SZZ;EPSC;1
 677;Redzikowo Air Base;Slupsk;Poland;OSP;EPSK;1
 678;Swidwin Military Air Base;Shapaja;Poland; ;EPSN;1
 679;Warsaw Chopin Airport;Warsaw;Poland;WAW;EPWA;1
