@@ -1,14 +1,12 @@
-﻿using EasyFlights.Data.Typeahead;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using EasyFlights.Data.Repositories.Base;
+using EasyFlights.DomainModel.Entities;
+using EasyFlights.Services.Interfaces;
 
 namespace EasyFlights.Services.Services.Typeahead
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text.RegularExpressions;
-    using Data.Repositories.Base;
-    using DomainModel.Entities;
-
     public class TypeaheadByCitiesService : ITypeaheadProvider<City>
     {
         private readonly IRepository<City> repository;
@@ -18,15 +16,14 @@ namespace EasyFlights.Services.Services.Typeahead
             this.repository = repository;
         }
 
-        public IEnumerable<City> GetTypeahead(string partialName)
+        public List<City> GetTypeahead(string partialName)
         {
             if (partialName.Contains('\\'))
             {
-                throw new ArgumentException("Pattern contains unacceptable characters");
+                throw new ArgumentException(nameof(partialName) + " contains unacceptable characters");
             }
             partialName = partialName.ToUpperInvariant().FirstOrDefault() + partialName.ToLowerInvariant().Substring(1);
-            var regex = new Regex(partialName + "\\w*");
-            return this.repository.GetAll().Where(x => regex.IsMatch(x.Name));
+            return repository.GetAll().Where(x => x.Name.StartsWith(partialName)).ToList(); 
         }
     }
 }

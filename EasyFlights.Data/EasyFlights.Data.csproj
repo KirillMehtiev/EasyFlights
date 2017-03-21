@@ -85,7 +85,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Typeahead\ITypeaheadProvider.cs" />
     <Compile Include="Migrations\Seed\AirportsCSVSeeder.cs" />
     <Compile Include="MappingConfigurations\AircraftConfiguration.cs" />
     <Compile Include="MappingConfigurations\AirportConfiguration.cs" />
