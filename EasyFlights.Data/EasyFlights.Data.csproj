@@ -88,12 +88,15 @@
     <Compile Include="AirportsCSVSeeder.cs" />
     <Compile Include="MappingConfigurations\AircraftConfiguration.cs" />
     <Compile Include="MappingConfigurations\AirportConfiguration.cs" />
+    <Compile Include="MappingConfigurations\ApplicationRoleConfiguration.cs" />
     <Compile Include="MappingConfigurations\ApplicationUserConfiguration.cs" />
     <Compile Include="DataContexts\EasyFlightsDataContext.cs" />
     <Compile Include="DataContexts\IDataContext.cs" />
     <Compile Include="Identity\ApplicationOAuthProvider.cs" />
     <Compile Include="Identity\ApplicationRoleManager.cs" />
     <Compile Include="Identity\ApplicationUserManager.cs" />
+    <Compile Include="MappingConfigurations\ApplicationUserLoginConfiguration.cs" />
+    <Compile Include="MappingConfigurations\ApplicationUserRoleConfiguration.cs" />
     <Compile Include="MappingConfigurations\BaseEntityConfiguration.cs" />
     <Compile Include="MappingConfigurations\CityConfiguration.cs" />
     <Compile Include="MappingConfigurations\CountryConfiguration.cs" />

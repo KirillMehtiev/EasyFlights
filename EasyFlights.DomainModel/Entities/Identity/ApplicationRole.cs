@@ -2,18 +2,17 @@
 
 namespace EasyFlights.DomainModel.Entities.Identity
 {
-    public sealed class AppRole : IdentityRole
+    public sealed class ApplicationRole : IdentityRole
     {
-
-        public string Description { get; set; }
-
-        public AppRole()
+        public ApplicationRole()
         {
         }
 
-        public AppRole(string name, string description) : base(name)
+        public ApplicationRole(string name, string description) : base(name)
         {
             this.Description = description;
         }
+
+        public string Description { get; set; }
     }
 }

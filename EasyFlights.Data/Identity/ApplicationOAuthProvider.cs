@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
-using EasyFlights.DomainModel;
 using EasyFlights.DomainModel.Entities.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -10,7 +11,7 @@ namespace EasyFlights.Data.Identity
 {
     public class ApplicationOAuthProvider : OAuthAuthorizationServerProvider
     {
-        private readonly string _publicClientId;
+        private readonly string publicClientId;
 
         public ApplicationOAuthProvider(string publicClientId)
         {
@@ -19,7 +20,16 @@ namespace EasyFlights.Data.Identity
                 throw new ArgumentNullException(nameof(publicClientId));
             }
 
-            _publicClientId = publicClientId;
+            this.publicClientId = publicClientId;
+        }
+
+        public static AuthenticationProperties CreateProperties(string userName)
+        {
+            IDictionary<string, string> data = new Dictionary<string, string>
+            {
+                { "userName", userName }
+            };
+            return new AuthenticationProperties(data);
         }
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
@@ -34,15 +44,43 @@ namespace EasyFlights.Data.Identity
                 return;
             }
 
-            var oAuthIdentity = await userManager.GenerateUserIdentityAsync(user, OAuthDefaults.AuthenticationType);
+            ClaimsIdentity authIdentity = await userManager.GenerateUserIdentityAsync(user, OAuthDefaults.AuthenticationType);
             var properties = new AuthenticationProperties();
-            var ticket = new AuthenticationTicket(oAuthIdentity, properties);
+            var ticket = new AuthenticationTicket(authIdentity, properties);
             context.Validated(ticket);
         }
 
         public override Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
         {
             if (context.ClientId == null)
+            {
+                context.Validated();
+            }
+
+            return Task.FromResult<object>(null);
+        }
+
+        public override Task TokenEndpoint(OAuthTokenEndpointContext context)
+        {
+            foreach (KeyValuePair<string, string> property in context.Properties.Dictionary)
+            {
+                context.AdditionalResponseParameters.Add(property.Key, property.Value);
+            }
+
+            return Task.FromResult<object>(null);
+        }
+
+
+        public override Task ValidateClientRedirectUri(OAuthValidateClientRedirectUriContext context)
+        {
+            if (context.ClientId != publicClientId)
+            {
+                return Task.FromResult<object>(null);
+            }
+
+            var expectedRootUri = new Uri(context.Request.Uri, "/");
+
+            if (expectedRootUri.AbsoluteUri == context.RedirectUri)
             {
                 context.Validated();
             }

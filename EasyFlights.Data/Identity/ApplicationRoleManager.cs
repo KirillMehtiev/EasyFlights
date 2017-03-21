@@ -7,13 +7,15 @@ using Microsoft.Owin;
 
 namespace EasyFlights.Data.Identity
 {
-    public class AppRoleManager : RoleManager<AppRole>
+    public class ApplicationRoleManager : RoleManager<ApplicationRole>
     {
-        public AppRoleManager(RoleStore<AppRole> store) : base(store) { }
-
-        public static AppRoleManager Create(IdentityFactoryOptions<AppRoleManager> options, IOwinContext context)
+        public ApplicationRoleManager(IRoleStore<ApplicationRole, string> store) : base(store)
         {
-            return new AppRoleManager(new RoleStore<AppRole>(context.Get<EasyFlightsDataContext>()));
+        }
+
+        public static ApplicationRoleManager Create(IdentityFactoryOptions<ApplicationRoleManager> options, IOwinContext context)
+        {
+            return new ApplicationRoleManager(new RoleStore<ApplicationRole>(context.Get<EasyFlightsDataContext>()));
         }
     }
 }

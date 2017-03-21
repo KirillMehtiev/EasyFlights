@@ -1,8 +1,9 @@
-﻿using EasyFlights.DomainModel;
-using Microsoft.AspNet.Identity.EntityFramework;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Reflection;
+using EasyFlights.Data.Configurations;
+using EasyFlights.Data.MappingConfigurations;
 using EasyFlights.DomainModel.Entities.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace EasyFlights.Data.DataContexts
 {
@@ -11,22 +12,20 @@ namespace EasyFlights.Data.DataContexts
         // TODO: add connection to db
         public EasyFlightsDataContext() : base("DefaultConnection", throwIfV1Schema: false)
         {
-
-        }
-
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            //configurations have been placed in MappingConfigurations folder
-            modelBuilder.Configurations.AddFromAssembly(Assembly.GetAssembly(typeof(EasyFlightsDataContext)));
-
-            modelBuilder.Entity<IdentityUserLogin>().HasKey<string>(l => l.UserId);
-            modelBuilder.Entity<IdentityRole>().HasKey<string>(r => r.Id);
-            modelBuilder.Entity<IdentityUserRole>().HasKey(r => new { r.RoleId, r.UserId });
         }
 
         public static EasyFlightsDataContext Create()
         {
             return new EasyFlightsDataContext();
+        }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Configurations.AddFromAssembly(Assembly.GetAssembly(typeof(EasyFlightsDataContext)));
+            modelBuilder.Configurations.Add(new ApplicationUserConfiguration());
+            modelBuilder.Configurations.Add(new ApplicationUserLoginConfiguration());
+            modelBuilder.Configurations.Add(new ApplicationRoleConfiguration());
+            modelBuilder.Configurations.Add(new ApplicationUserRoleConfiguration());
         }
     }
 }
