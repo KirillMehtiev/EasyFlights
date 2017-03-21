@@ -13,5 +13,12 @@
     "ts-loader": "^2.0.2",
     "typescript": "^2.2.1",
     "webpack": "^2.2.1"
+  },
+  "dependencies": {
+    "bootstrap-datepicker": "^1.6.4",
+    "jquery": "^3.2.1",
+    "jquery-ui": "^1.12.1",
+    "knockout": "^3.4.2",
+    "pager": "^0.1.3"
   }
 }
