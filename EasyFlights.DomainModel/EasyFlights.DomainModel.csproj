@@ -91,6 +91,9 @@
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\City.cs" />
     <Compile Include="Entities\Country.cs" />
+    <Compile Include="Entities\Enums\AgeCategory.cs" />
+    <Compile Include="Entities\Enums\FlightClass.cs" />
+    <Compile Include="Entities\Enums\Sex.cs" />
     <Compile Include="Entities\Flight.cs" />
     <Compile Include="Entities\Identity\ApplicationRole.cs" />
     <Compile Include="Entities\Identity\ApplicationUser.cs" />

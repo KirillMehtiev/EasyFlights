@@ -15,7 +15,7 @@ namespace EasyFlights.Data.MappingConfigurations
 
             this.Property(p => p.FirstName).IsRequired();
             this.Property(p => p.LastName).IsRequired();
-            this.Property(p => p.DocumentNo).IsRequired();
+            this.Property(p => p.DocumentNumber).IsRequired();
         }
     }
 }
