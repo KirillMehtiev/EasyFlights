@@ -1,4 +1,4 @@
 ﻿class SearchHeaderViewModel {
-  
+
 }
 export = SearchHeaderViewModel;
