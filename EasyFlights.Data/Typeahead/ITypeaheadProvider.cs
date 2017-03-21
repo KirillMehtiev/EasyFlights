@@ -1,4 +1,4 @@
-﻿namespace EasyFlights.Data.Autocomplete
+﻿namespace EasyFlights.Data.Typeahead
 {
     using System.Collections.Generic;
 
