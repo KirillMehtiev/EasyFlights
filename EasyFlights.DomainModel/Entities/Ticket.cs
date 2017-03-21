@@ -1,22 +1,21 @@
-﻿namespace EasyFlights.DomainModel.Entities
-{
-    public enum FlightClass
-    {
-        Economy    = 0,
-        Business   = 1,
-        FirstClass = 2
-    }
+﻿using EasyFlights.DomainModel.Entities.Enums;
 
+namespace EasyFlights.DomainModel.Entities
+{
     public class Ticket : BaseEntity
     {
-        
-        public double Fare { get; set; }
-        public double Discount { get; set; }
+        public decimal Fare { get; set; }
+
+        public decimal Discount { get; set; }
+
         public int Seat { get; set; }
+
         public FlightClass FlightClass { get; set; }
 
         public virtual Passenger Passenger { get; set; }
+
         public virtual Flight Flight { get; set; }
+
         public virtual Order Order { get; set; }
     }
 }

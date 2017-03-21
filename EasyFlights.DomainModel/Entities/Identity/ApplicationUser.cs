@@ -13,6 +13,8 @@ namespace EasyFlights.DomainModel.Entities.Identity
 
         public string LastName { get; set; }
 
+        public virtual ICollection<Order> Orders { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -23,7 +25,5 @@ namespace EasyFlights.DomainModel.Entities.Identity
             // Add custom user claims here
             return userIdentity;
         }
-
-        public virtual ICollection<Order> Orders { get; set; }
     }
 }

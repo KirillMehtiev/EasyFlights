@@ -1,9 +1,7 @@
-﻿using System;
-
-namespace EasyFlights.DomainModel.Entities
+﻿namespace EasyFlights.DomainModel.Entities
 {
     public abstract class BaseEntity
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
     }
 }
