@@ -199,6 +199,7 @@
   <ItemGroup>
     <Content Include="Client\App\About\AboutTemplate.html" />
     <Content Include="Client\App\Index\IndexTemplate.html" />
+    <Content Include="Client\App\Index\Search\SearchTemplate.html" />
     <Content Include="Client\App\Index\Search\RadioChooser\RadioChooserTemplate.html" />
     <Content Include="Client\App\Layout\Footer\FooterTemplate.html" />
     <Content Include="Client\App\Layout\Header\HeaderTemplate.html" />
@@ -260,8 +261,12 @@
     <TypeScriptCompile Include="Client\App\Components.ts" />
     <TypeScriptCompile Include="Client\App\Index\IndexComponent.ts" />
     <TypeScriptCompile Include="Client\App\Index\IndexViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\Index\Search\SearchComponent.ts" />
+    <TypeScriptCompile Include="Client\App\Index\Search\SearchViewModel.ts" />
     <TypeScriptCompile Include="Client\App\Index\Search\RadioChooser\RadioChooserComponent.ts" />
     <TypeScriptCompile Include="Client\App\Index\Search\RadioChooser\RadioChooserViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\Index\Search\RadioChooser\RadioChooserItem.ts" />
+    <TypeScriptCompile Include="Client\App\Index\Search\RadioChooser\IRadioChooserOptions.ts" />
     <TypeScriptCompile Include="Client\App\Layout\Footer\FooterComponent.ts" />
     <TypeScriptCompile Include="Client\App\Layout\Footer\FooterViewModel.ts" />
     <TypeScriptCompile Include="Client\App\Layout\Header\HeaderComponent.ts" />

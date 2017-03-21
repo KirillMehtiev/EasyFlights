@@ -5,4 +5,5 @@ import "./About/AboutComponent";
 import "./ToDoList/ToDoListComponent";
 import "./ToDoList/ToDoListItem/ToDoListItemComponent";
 import "./Index/IndexComponent";
+import "./Index/Search/SearchComponent"
 import "./Index/Search/RadioChooser/RadioChooserComponent"

@@ -1,30 +1,16 @@
-﻿//interface IRadioOption {
-//    value: string;
-//    label: string;
-//}
-
-// TODO: add options, and user foreach for it
+﻿import ko = require("knockout");
+import { IRadioChooserOptions } from "./IRadioChooserOptions";
+import { RadioItem } from "./RadioChooserItem";
 
 class RadioChooserViewModel {
-    //public radioOptions: KnockoutObservableArray<IRadioOption>;
+    public options: Array<RadioItem>;
     public selectedOption: KnockoutObservable<string>;
 
-    constructor() {
-        let preselected: string = "one-way";
-
-        //this.radioOptions = ko.observableArray([
-        //    {
-        //        label: "one-way",
-        //        value: "One way"
-        //    },
-        //    {
-        //        label: "rount-trip",
-        //        value: "Round trip"
-        //    }
-        //]);
-
-        this.selectedOption = ko.observable(preselected);
+    constructor(params: IRadioChooserOptions) {
+        this.options = params.options;
+        this.selectedOption = params.preselected;
     }
+
 }
 
 export = RadioChooserViewModel;
