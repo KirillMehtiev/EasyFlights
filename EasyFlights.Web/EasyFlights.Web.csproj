@@ -198,7 +198,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Client\App\About\AboutTemplate.html" />
     <Content Include="Client\App\Index\IndexTemplate.html" />
     <Content Include="Client\App\Index\Search\SearchTemplate.html" />
     <Content Include="Client\App\Index\Search\DatePicker\DatePickerTemplate.html" />
@@ -209,8 +208,6 @@
     <Content Include="Client\App\SearchResults\SearchHeader\SearchHeaderTemplate.html" />
     <Content Include="Client\App\SearchResults\SearchResultTemplate.html" />
     <Content Include="Client\App\SearchResults\Sorting\SortingTemplate.html" />
-    <Content Include="Client\App\ToDoList\ToDoListItem\ToDoListItemTemplate.html" />
-    <Content Include="Client\App\ToDoList\ToDoListTemplate.html" />
     <Content Include="Client\Libs\bootstrap.css" />
     <Content Include="Client\Libs\bootstrap.js" />
     <Content Include="Client\Libs\jquery.js" />
@@ -259,8 +256,6 @@
     <Content Include="tsconfig.json" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="Client\App\About\AboutComponent.ts" />
-    <TypeScriptCompile Include="Client\App\About\AboutViewModel.ts" />
     <TypeScriptCompile Include="Client\App\App.ts" />
     <TypeScriptCompile Include="Client\App\Components.ts" />
     <TypeScriptCompile Include="Client\App\Index\IndexComponent.ts" />
@@ -287,12 +282,6 @@
     <TypeScriptCompile Include="Client\App\SearchResults\SearchResultViewModel.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\Sorting\SortingComponent.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\Sorting\SortingViewModel.ts" />
-    <TypeScriptCompile Include="Client\App\ToDoList\ToDoListComponent.ts" />
-    <TypeScriptCompile Include="Client\App\ToDoList\ToDoListItem\IToDoListItemOptions.ts" />
-    <TypeScriptCompile Include="Client\App\ToDoList\ToDoListItem\ToDoListItem.ts" />
-    <TypeScriptCompile Include="Client\App\ToDoList\ToDoListItem\ToDoListItemComponent.ts" />
-    <TypeScriptCompile Include="Client\App\ToDoList\ToDoListItem\ToDoListItemViewModel.ts" />
-    <TypeScriptCompile Include="Client\App\ToDoList\ToDoListViewModel.ts" />
     <TypeScriptCompile Include="Client\Libs\typings\knockout\knockout.d.ts" />
     <TypeScriptCompile Include="Client\Libs\typings\pager\pager.d.ts" />
     <TypeScriptCompile Include="Client\Libs\typings\require\require.d.ts" />
@@ -302,12 +291,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Client\App\Layout\_Layout.scss" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Client\App\ToDoList\_ToDoList.scss" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Client\App\ToDoList\ToDoListItem\_ToDoListItem.scss" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
