@@ -1,7 +1,7 @@
-﻿using Ninject.Modules;
-
-namespace EasyFlights.Web.Infrastructure.NinjectModules
+﻿namespace EasyFlights.Web.NinjectModules
 {
+    using Ninject.Modules;
+
     public class ServicesModule : NinjectModule
     {
         public override void Load()

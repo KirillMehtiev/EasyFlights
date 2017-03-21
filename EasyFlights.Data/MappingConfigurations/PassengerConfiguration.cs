@@ -1,8 +1,8 @@
-﻿using System.Data.Entity.ModelConfiguration;
-using EasyFlights.DomainModel.Entities;
-
-namespace EasyFlights.Data.MappingConfigurations
+﻿namespace EasyFlights.Data.MappingConfigurations
 {
+    using System.Data.Entity.ModelConfiguration;
+    using EasyFlights.DomainModel.Entities;
+
     public class PassengerConfiguration : EntityTypeConfiguration<Passenger>
     {
         public PassengerConfiguration()

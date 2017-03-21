@@ -13,7 +13,7 @@ namespace EasyFlights.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201703201645320_Initial"; }
+            get { return "201703211040049_Initial"; }
         }
         
         string IMigrationMetadata.Source
