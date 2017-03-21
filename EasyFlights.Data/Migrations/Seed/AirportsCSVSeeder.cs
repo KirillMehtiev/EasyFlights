@@ -51,7 +51,11 @@ namespace EasyFlights.Data.Migrations.Seed
                         AirportCodeIcao = info[AirportIcaoIndex],
                         TimeZoneOffset = int.Parse(info[AirportTimeZoneOffsetIndex])
                     };
-                    context.Set<Airport>().Add(airport);                   
+                    if (context.Set<Airport>().Contains(airport))
+                    {
+                        break;
+                    }
+                    context.Set<Airport>().Add(airport);
                 }
                 context.SaveChanges();
                 reader.Close();
