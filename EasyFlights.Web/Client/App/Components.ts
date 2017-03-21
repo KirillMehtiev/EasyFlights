@@ -8,4 +8,5 @@ import "./Index/IndexComponent";
 import "./Index/Search/RadioChooser/RadioChooserComponent";
 import "./SearchResults/SearchResultComponent"
 import "./SearchResults/Sorting/SortingComponent";
-import "./SearchResults/SearchHeader/SearchHeaderComponent"
+import "./SearchResults/SearchHeader/SearchHeaderComponent";
+import "./Index/Search/DatePicker/DatePickerComponent";

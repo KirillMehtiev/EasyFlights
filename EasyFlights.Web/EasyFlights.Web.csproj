@@ -199,6 +199,7 @@
   <ItemGroup>
     <Content Include="Client\App\About\AboutTemplate.html" />
     <Content Include="Client\App\Index\IndexTemplate.html" />
+    <Content Include="Client\App\Index\Search\DatePicker\DatePickerTemplate.html" />
     <Content Include="Client\App\Index\Search\RadioChooser\RadioChooserTemplate.html" />
     <Content Include="Client\App\Layout\Footer\FooterTemplate.html" />
     <Content Include="Client\App\Layout\Header\HeaderTemplate.html" />
@@ -262,6 +263,9 @@
     <TypeScriptCompile Include="Client\App\Components.ts" />
     <TypeScriptCompile Include="Client\App\Index\IndexComponent.ts" />
     <TypeScriptCompile Include="Client\App\Index\IndexViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\Index\Search\DatePicker\DatePickerComponent.ts" />
+    <TypeScriptCompile Include="Client\App\Index\Search\DatePicker\DatePickerViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\Index\Search\DatePicker\IDatePickerOptions.ts" />
     <TypeScriptCompile Include="Client\App\Index\Search\RadioChooser\RadioChooserComponent.ts" />
     <TypeScriptCompile Include="Client\App\Index\Search\RadioChooser\RadioChooserViewModel.ts" />
     <TypeScriptCompile Include="Client\App\Layout\Footer\FooterComponent.ts" />
