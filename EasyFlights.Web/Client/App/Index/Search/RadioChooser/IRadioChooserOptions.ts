@@ -2,5 +2,5 @@
 
 export interface IRadioChooserOptions {
     options: Array<RadioItem>;
-    preselected: KnockoutObservable<string>;
+    selectedOption: KnockoutObservable<string>;
 }

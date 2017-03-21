@@ -8,7 +8,7 @@ class RadioChooserViewModel {
 
     constructor(params: IRadioChooserOptions) {
         this.options = params.options;
-        this.selectedOption = params.preselected;
+        this.selectedOption = params.selectedOption;
     }
 
 }
