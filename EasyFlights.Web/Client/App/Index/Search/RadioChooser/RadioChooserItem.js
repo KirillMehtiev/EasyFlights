@@ -1,12 +1,11 @@
 "use strict";
 exports.__esModule = true;
-var ko = require("knockout");
-var RadioItem = (function () {
-    function RadioItem(label, value) {
-        this.label = ko.observable(label);
-        this.value = ko.observable(value);
+var RadioChooserItem = (function () {
+    function RadioChooserItem(label, value) {
+        this.label = label;
+        this.value = value;
     }
-    return RadioItem;
+    return RadioChooserItem;
 }());
-exports.RadioItem = RadioItem;
+exports.RadioChooserItem = RadioChooserItem;
 //# sourceMappingURL=RadioChooserItem.js.map
