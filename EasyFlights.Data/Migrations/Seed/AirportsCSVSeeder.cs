@@ -1,13 +1,13 @@
-﻿using System.Globalization;
-using System.IO;
+﻿using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using EasyFlights.Data.DataContexts;
 using EasyFlights.Data.Properties;
 using EasyFlights.DomainModel.Entities;
+using EasyFlights.DomainModel.Entities.Comparers;
 
 namespace EasyFlights.Data.Migrations.Seed
 {
-
     public class AirportsCsvSeeder
     {
         private const int AirportTitleIndex = 1;
@@ -28,40 +28,35 @@ namespace EasyFlights.Data.Migrations.Seed
             {
                 return;
             }
-            using (var stream = new FileStream(Resources.airports, FileMode.OpenOrCreate))
+            string[] airportsInfo = Resources.airports.Split('\n');
+            for (var i = 1; i < airportsInfo.Length; i++)
             {
-                using (var reader = new StreamReader(stream))
+                string[] info = airportsInfo[i].Split(';');
+                string countryName = info[CountryNameIndex];
+                Country country = context.Set<Country>().Local.FirstOrDefault(x => x.Name == countryName) ?? context.Set<Country>().FirstOrDefault(x => x.Name == countryName);
+                if (country == null)
                 {
-                    string row;
-                    reader.ReadLine();
-                    while ((row = reader.ReadLine()) != null)
-                    {
-                        string[] info = row.Split(';');
-                        Country country = context.Set<Country>().FirstOrDefault(x => x.Name == info[CountryNameIndex]);
-                        if (country == null)
-                        {
-                            country = new Country() { Name = info[CountryNameIndex] };
-                            context.Set<Country>().Add(country);
-                        }
-                        City city = context.Set<City>().FirstOrDefault(x => x.Name == info[CityNameIndex]);
-                        if (city == null)
-                        {
-                            city = new City() { Name = info[CityNameIndex], Country = country };
-                            context.Set<City>().Add(city);
-                        }
-                        var airport = new Airport()
-                        {
-                            Title = info[AirportTitleIndex],
-                            City = city,
-                            AirportCodeIata = info[AirportIataIndex],
-                            AirportCodeIcao = info[AirportIcaoIndex],
-                            TimeZoneOffset = int.Parse(info[AirportTimeZoneOffsetIndex], CultureInfo.InvariantCulture)
-                        };
-                        context.Set<Airport>().Add(airport);
-                    }
+                    country = new Country() { Name = countryName };
+                    context.Set<Country>().Add(country);
                 }
-                context.SaveChanges();
+                string cityName = info[CityNameIndex];
+                City city = context.Set<City>().Local.FirstOrDefault(x => x.Name == cityName) ?? context.Set<City>().FirstOrDefault(x => x.Name == cityName);
+                if (city == null)
+                {
+                    city = new City() { Name = cityName, Country = country };
+                    context.Set<City>().Add(city);
+                }
+                var airport = new Airport
+                {
+                    Title = info[AirportTitleIndex],
+                    City = city,
+                    AirportCodeIata = info[AirportIataIndex],
+                    AirportCodeIcao = info[AirportIcaoIndex],
+                    TimeZoneOffset = double.Parse(info[AirportTimeZoneOffsetIndex], CultureInfo.InvariantCulture)
+                };
+                context.Set<Airport>().Add(airport);
             }
+            context.SaveChanges();
         }
     }
 }
