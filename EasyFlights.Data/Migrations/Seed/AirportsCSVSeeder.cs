@@ -1,11 +1,12 @@
-﻿namespace EasyFlights.Data.Migrations.Seed
+﻿using System.Globalization;
+using System.IO;
+using System.Linq;
+using EasyFlights.Data.DataContexts;
+using EasyFlights.Data.Properties;
+using EasyFlights.DomainModel.Entities;
+
+namespace EasyFlights.Data.Migrations.Seed
 {
-    using System.Globalization;
-    using System.IO;
-    using System.Linq;
-    using DataContexts;
-    using DomainModel.Entities;
-    using Properties;
 
     public class AirportsCsvSeeder
     {
