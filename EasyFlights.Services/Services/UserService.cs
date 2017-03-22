@@ -1,61 +1,66 @@
-﻿using System.Security.Claims;
+﻿using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
-using System.Web;
-using EasyFlights.Data.Identity;
 using EasyFlights.DomainModel.DTOs;
 using EasyFlights.DomainModel.Entities.Identity;
-using EasyFlights.Services.Interfaces;
+using EasyFlights.Services.Infrastracture;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace EasyFlights.Services.Services
 {
-    public class UserService : IUserService
+    public class UserService 
     {
-        public UserManager<ApplicationUser> UserManager => HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
-
-        public IAuthenticationManager AuthenticationManager => HttpContext.Current.GetOwinContext().Authentication;
-
-        public async Task<ApplicationUser> Login(string username, string password)
+        public UserService()
         {
-            ApplicationUser user = await UserManager.FindAsync(username, password);
-            if (user == null)
+            UserManager = new ApplicationUserManager(new UserStore<ApplicationUser>());
+        }
+
+        public UserManager<ApplicationUser> UserManager { get; }
+
+        public async Task<ClaimsIdentity> Authenticate(UserDto userDto)
+        {
+            ClaimsIdentity claim = null;
+
+            ApplicationUser user = await UserManager.FindAsync(userDto.Email, userDto.Password);
+
+            if (user != null)
             {
-                return null;
+                claim = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
             }
 
-            ClaimsIdentity claim = await this.UserManager.CreateIdentityAsync(user,  DefaultAuthenticationTypes.ApplicationCookie);
-            this.AuthenticationManager.SignOut();
-            this.AuthenticationManager.SignIn(new AuthenticationProperties { IsPersistent = true }, claim);
-            return user;
+            return claim;
         }
 
-        public void Logout()
+        public async Task<IdentityResult> ChangePassword(UserDto userDto, string newPassword)
         {
-           AuthenticationManager.SignOut();
-        }
-
-        public async Task<bool> Register(UserDto model)
-        {
-            var user = new ApplicationUser
+            if (userDto == null)
             {
-                Email = model.Email, FirstName = model.Name, LastName = model.Surname
-            };
-
-           IdentityResult result = await UserManager.CreateAsync(user);
-           return result.Succeeded;
-        }
-
-        public async Task<bool> ChangePassword(UserDto user, string newPassword)
-        {
-            if (user == null)
-            {
-                return false;
+                return IdentityResult.Failed();
             }
 
-            IdentityResult result = await UserManager.ChangePasswordAsync(user.Id, user.Password, newPassword);
-            return result.Succeeded;
+            IdentityResult result = await UserManager.ChangePasswordAsync(userDto.Id, userDto.Password, newPassword);
+            return result;
+        }
+
+        public async Task<OperationDetails> Create(UserDto userDto)
+        {
+            ApplicationUser user = await UserManager.FindByEmailAsync(userDto.Email);
+            if (user != null)
+            {
+                return new OperationDetails(false, "User with such login already exists", "Email");
+            }
+
+            user = new ApplicationUser { Email = userDto.Email, UserName = userDto.Email };
+            IdentityResult result = await this.UserManager.CreateAsync(user, userDto.Password);
+            if (result.Errors.Any())
+            {
+                return new OperationDetails(false, result.Errors.FirstOrDefault(), string.Empty);
+            }
+
+            await UserManager.AddToRoleAsync(user.Id, userDto.Role);
+
+            return new OperationDetails(true, "The operation was successful", string.Empty);
         }
     }
 }
