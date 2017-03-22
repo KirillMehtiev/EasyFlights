@@ -85,6 +85,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTOs\CityDTO.cs" />
     <Compile Include="DTOs\UserDTO.cs" />
     <Compile Include="Entities\Aircraft.cs" />
     <Compile Include="Entities\Airport.cs" />

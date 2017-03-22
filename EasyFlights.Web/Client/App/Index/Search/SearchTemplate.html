@@ -1,5 +1,9 @@
 ﻿<form>
     <!-- params is IRadioChooserOption if change signarute reflect it here -->
     <radio-chooser params="options: options, selectedOption:selectedTicketType"></radio-chooser>
-    <p data-bind="text: selectedTicketType"></p>
+
+    <div class="row">
+        <date-picker class="col-md-6" params="label: 'Departure date:', selectedDate: selectedDepartureDate"></date-picker>
+        <date-picker class="col-md-6" params="label: 'Return date:', selectedDate: selectedReturnDate" data-bind="visible: isRoundTripSelected"></date-picker>
+    </div>
 </form>

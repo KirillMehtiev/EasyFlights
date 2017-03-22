@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using EasyFlights.Data.Repositories.Base;
+using EasyFlights.DomainModel.DTOs;
 using EasyFlights.DomainModel.Entities;
 using EasyFlights.Services.Interfaces;
 
 namespace EasyFlights.Services.Services.Typeahead
 {
-    public class TypeaheadByCitiesService : ITypeaheadProvider<City>
+    public class TypeaheadByCitiesService : ITypeaheadProvider<CityDto>
     {
         private readonly IRepository<City> repository;
 
@@ -16,7 +17,7 @@ namespace EasyFlights.Services.Services.Typeahead
             this.repository = repository;
         }
 
-        public List<City> GetTypeahead(string partialName)
+        public List<CityDto> GetTypeahead(string partialName)
         {
             if (partialName.Length > 1)
             {
@@ -26,12 +27,12 @@ namespace EasyFlights.Services.Services.Typeahead
                 }
                 partialName = partialName.ToUpperInvariant().FirstOrDefault() +
                               partialName.ToLowerInvariant().Substring(1);
-                return repository.GetAll().Where(x => x.Name.StartsWith(partialName)).ToList();
+                List<City> cities = repository.GetAll().Where(x => x.Name.StartsWith(partialName)).ToList();
+                var result = new List<CityDto>();
+                cities.ForEach(x => result.Add(new CityDto() { Name = x?.Name, Country = x?.Country?.Name }));
+                return result;
             }
-            else
-            {
-                return new List<City>();
-            }
+            return new List<CityDto>();
         }
     }
 }

@@ -1,7 +1,7 @@
 "use strict";
 var DatePickerViewModel = (function () {
     function DatePickerViewModel(options) {
-        this.selectedDate = ko.observable("");
+        this.selectedDate = options.selectedDate;
         this.label = options.label;
     }
     return DatePickerViewModel;
