@@ -46,8 +46,20 @@
       <HintPath>..\packages\Moq.4.7.1\lib\net45\Moq.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -56,9 +68,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiControllers\TypeaheadControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EasyFlights.Data\EasyFlights.Data.csproj">
+      <Project>{E5848801-9915-491A-913B-6C01FB9A818D}</Project>
+      <Name>EasyFlights.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EasyFlights.DomainModel\EasyFlights.DomainModel.csproj">
+      <Project>{499631CA-1843-4D61-8EC8-B206A20236F7}</Project>
+      <Name>EasyFlights.DomainModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EasyFlights.Services\EasyFlights.Services.csproj">
+      <Project>{DD2B32CB-28F0-4FB7-AE5F-9DBD59BB66BE}</Project>
+      <Name>EasyFlights.Services</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EasyFlights.Web\EasyFlights.Web.csproj">
       <Project>{fede72bc-8985-4dfa-a132-4962ea83e722}</Project>
       <Name>EasyFlights.WebApi</Name>
@@ -68,6 +93,7 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
