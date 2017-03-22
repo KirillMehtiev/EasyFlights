@@ -1,11 +1,9 @@
-﻿import ko = require("knockout");
-
-export class RadioItem {
-    label: KnockoutObservable<string>;
-    value: KnockoutObservable<string>;
+﻿export class RadioChooserItem {
+    public label: string;
+    public value: string;
 
     constructor(label: string, value: string) {
-        this.label = ko.observable(label);
-        this.value = ko.observable(value);
+        this.label = label;
+        this.value = value;
     }
 }

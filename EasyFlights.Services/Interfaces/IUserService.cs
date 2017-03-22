@@ -1,17 +1,17 @@
-﻿using System.Threading.Tasks;
+﻿using System.Security.Claims;
+using System.Threading.Tasks;
 using EasyFlights.DomainModel.DTOs;
-using EasyFlights.DomainModel.Entities.Identity;
+using EasyFlights.Services.Infrastracture;
+using Microsoft.AspNet.Identity;
 
 namespace EasyFlights.Services.Interfaces
 {
     public interface IUserService
     {
-        Task<ApplicationUser> Login(string username, string password);
+        Task<ClaimsIdentity> Authenticate(UserDto userDto);
 
-        void Logout();
+        Task<IdentityResult> ChangePassword(UserDto userDto, string newPassword);
 
-        Task<bool> Register(UserDto model);
-
-        Task<bool> ChangePassword(UserDto user, string newPassword);
+        Task<OperationDetails> Create(UserDto userDto);
     }
 }

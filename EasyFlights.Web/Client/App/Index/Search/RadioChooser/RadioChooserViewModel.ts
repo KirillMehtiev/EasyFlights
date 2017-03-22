@@ -1,9 +1,8 @@
-﻿import ko = require("knockout");
-import { IRadioChooserOptions } from "./IRadioChooserOptions";
-import { RadioItem } from "./RadioChooserItem";
+﻿import { IRadioChooserOptions } from "./IRadioChooserOptions";
+import { RadioChooserItem } from "./RadioChooserItem";
 
 class RadioChooserViewModel {
-    public options: Array<RadioItem>;
+    public options: Array<RadioChooserItem>;
     public selectedOption: KnockoutObservable<string>;
 
     constructor(params: IRadioChooserOptions) {
