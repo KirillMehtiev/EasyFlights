@@ -17,10 +17,6 @@ class SearchViewModel {
             new RadioChooserItem("Round trip", TicketType.roundTrip)
         ];
         this.selectedTicketType = ko.observable(TicketType.oneWay);
-
-        this.selectedTicketType.subscribe(value => {
-            alert(value);
-        });
     }
 }
 
