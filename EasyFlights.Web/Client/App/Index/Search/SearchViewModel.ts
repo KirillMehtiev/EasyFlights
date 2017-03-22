@@ -30,7 +30,12 @@ class SearchViewModel {
     }
 
     public onTicketTypeChanged = (newValue: string) => {
-        this.isRoundTripSelected(newValue === "round-trip");
+        this.isRoundTripSelected(newValue === TicketType.roundTrip);
+
+        // clean a return date if don't need it'
+        if (!this.isRoundTripSelected()) {
+            this.selectedReturnDate("");
+        }
     }
 }
 
