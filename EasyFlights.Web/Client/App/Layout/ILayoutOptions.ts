@@ -1,3 +1,3 @@
-﻿export interface ILayoutOptions {
-    title: string;
-}
+﻿//export interface ILayoutOptions {
+//    title: string;
+//}

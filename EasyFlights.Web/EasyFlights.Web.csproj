@@ -273,7 +273,6 @@
     <TypeScriptCompile Include="Client\App\Layout\Footer\FooterViewModel.ts" />
     <TypeScriptCompile Include="Client\App\Layout\Header\HeaderComponent.ts" />
     <TypeScriptCompile Include="Client\App\Layout\Header\HeaderViewModel.ts" />
-    <TypeScriptCompile Include="Client\App\Layout\ILayoutOptions.ts" />
     <TypeScriptCompile Include="Client\App\Layout\LayoutComponent.ts" />
     <TypeScriptCompile Include="Client\App\Layout\LayoutViewModel.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\SearchHeader\SearchHeaderComponent.ts" />
