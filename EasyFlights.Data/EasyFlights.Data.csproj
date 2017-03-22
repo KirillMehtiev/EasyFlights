@@ -85,6 +85,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\201703221413599_Initial.cs" />
+    <Compile Include="Migrations\201703221413599_Initial.Designer.cs">
+      <DependentUpon>201703221413599_Initial.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Seed\AirportsCSVSeeder.cs" />
     <Compile Include="MappingConfigurations\AircraftConfiguration.cs" />
     <Compile Include="MappingConfigurations\AirportConfiguration.cs" />
@@ -101,10 +105,6 @@
     <Compile Include="MappingConfigurations\OrderConfiguration.cs" />
     <Compile Include="MappingConfigurations\PassengerConfiguration.cs" />
     <Compile Include="MappingConfigurations\TicketConfiguration.cs" />
-    <Compile Include="Migrations\201703211040049_Initial.cs" />
-    <Compile Include="Migrations\201703211040049_Initial.Designer.cs">
-      <DependentUpon>201703211040049_Initial.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -127,8 +127,8 @@
     <None Include="Resources\airports.csv" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201703211040049_Initial.resx">
-      <DependentUpon>201703211040049_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201703221413599_Initial.resx">
+      <DependentUpon>201703221413599_Initial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

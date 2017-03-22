@@ -1,5 +1,6 @@
 namespace EasyFlights.Data.Migrations
 {
+    using System;
     using System.Data.Entity.Migrations;
     
     public partial class Initial : DbMigration
@@ -99,7 +100,7 @@ namespace EasyFlights.Data.Migrations
                         Title = c.String(nullable: false),
                         AirportCodeIata = c.String(nullable: false),
                         AirportCodeIcao = c.String(nullable: false),
-                        TimeZoneOffset = c.Int(nullable: false),
+                        TimeZoneOffset = c.Double(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Cities", t => t.City_Id)

@@ -10,7 +10,7 @@ namespace EasyFlights.DomainModel.Entities
 
         public string AirportCodeIcao { get; set; }
 
-        public int TimeZoneOffset { get; set; }
+        public double TimeZoneOffset { get; set; }
 
         public virtual City City { get; set; }
 
