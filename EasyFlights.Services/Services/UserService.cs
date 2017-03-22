@@ -4,12 +4,13 @@ using System.Threading.Tasks;
 using EasyFlights.DomainModel.DTOs;
 using EasyFlights.DomainModel.Entities.Identity;
 using EasyFlights.Services.Infrastracture;
+using EasyFlights.Services.Interfaces;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace EasyFlights.Services.Services
 {
-    public class UserService 
+    public class UserService : IUserService
     {
         public UserService()
         {
