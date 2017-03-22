@@ -5,7 +5,7 @@ class DatePickerViewModel {
     label: string;
 
     constructor(options: IDatePickerOptions) {
-        this.selectedDate = ko.observable("");
+        this.selectedDate = options.selectedDate;
         this.label = options.label;
     }
 }
