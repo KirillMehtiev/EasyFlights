@@ -1,9 +1,9 @@
-﻿namespace EasyFlights.Data.Repositories.Base
-{
-    using System.Linq;
-    using EasyFlights.Data.DataContexts;
-    using EasyFlights.DomainModel.Entities;    
+﻿using System.Linq;
+using EasyFlights.Data.DataContexts;
+using EasyFlights.DomainModel.Entities;
 
+namespace EasyFlights.Data.Repositories.Base
+{
     public class Repository<T> : IRepository<T> where T : BaseEntity
     {
         private IDataContext dataContext;

@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Web.Http;
+using EasyFlights.DomainModel.DTOs;
 using EasyFlights.DomainModel.Entities;
 using EasyFlights.Services.Interfaces;
 
@@ -8,24 +8,17 @@ namespace EasyFlights.WebApi.ApiControllers
 {
     public class TypeaheadController : ApiController
     {
-        private readonly ITypeaheadProvider<City> provider;
+        private readonly ITypeaheadProvider<CityDto> provider;
 
-        public TypeaheadController(ITypeaheadProvider<City> provider)
+        public TypeaheadController(ITypeaheadProvider<CityDto> provider)
         {
             this.provider = provider;
         }
 
-        [System.Web.Http.HttpPost]
-        public List<City> GetCitiesForTypeahead(string name)
+        [HttpPost]
+        public List<CityDto> GetCitiesForTypeahead(string name)
         {
-            try
-            {
-                return provider.GetTypeahead(name);
-            }
-            catch (ArgumentException)
-            {
-                return null;
-            }
+            return provider.GetTypeahead(name);
         }
     }
 }
