@@ -1,21 +1,21 @@
-﻿namespace EasyFlights.Data.MappingConfigurations
-{
-    using System.Data.Entity.ModelConfiguration;
-    using EasyFlights.DomainModel.Entities;
+﻿using System.Data.Entity.ModelConfiguration;
+using EasyFlights.DomainModel.Entities;
 
+namespace EasyFlights.Data.MappingConfigurations
+{
     public class CityConfiguration : EntityTypeConfiguration<City>
     {
         public CityConfiguration()
         {
-            this.Map(m =>
+            Map(m =>
             {
                 m.MapInheritedProperties();
                 m.ToTable("Cities");
             });
 
-            this.Property(city => city.Name).IsRequired();
+            Property(city => city.Name).IsRequired();
 
-            this.HasRequired(city => city.Country).WithMany(country => country.Cities);
+            HasRequired(city => city.Country).WithMany(country => country.Cities);
         }
     }
 }

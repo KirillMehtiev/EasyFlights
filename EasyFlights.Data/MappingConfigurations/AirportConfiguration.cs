@@ -1,27 +1,27 @@
-﻿namespace EasyFlights.Data.MappingConfigurations
-{
-    using EasyFlights.DomainModel.Entities;
-    using System.Data.Entity.ModelConfiguration;
+﻿using System.Data.Entity.ModelConfiguration;
+using EasyFlights.DomainModel.Entities;
 
+namespace EasyFlights.Data.MappingConfigurations
+{
     public class AirportConfiguration : EntityTypeConfiguration<Airport>
     {
         public AirportConfiguration()
         {
-            this.Map(m =>
+            Map(m =>
             {
                 m.MapInheritedProperties();
                 m.ToTable("Airports");
             });
 
-            this.Property(ap => ap.Title).IsRequired();
-            this.Property(ap => ap.AirportCodeIata).IsRequired();
-            this.Property(ap => ap.AirportCodeIcao).IsRequired();
-            this.Property(ap => ap.TimeZoneOffset).IsRequired();
+            Property(ap => ap.Title).IsRequired();
+            Property(ap => ap.AirportCodeIata).IsRequired();
+            Property(ap => ap.AirportCodeIcao).IsRequired();
+            Property(ap => ap.TimeZoneOffset).IsRequired();
 
             // TODO: clarify what property a flight should have
-            this.HasMany(ap => ap.Flights).WithRequired(flight => flight.DepartureAirport);
+            HasMany(ap => ap.Flights).WithRequired(flight => flight.DepartureAirport);
 
-            this.HasRequired(ap => ap.City).WithMany(city => city.Airports);
+            HasRequired(ap => ap.City).WithMany(city => city.Airports);
         }
     }
 }

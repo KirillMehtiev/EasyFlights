@@ -1,8 +1,8 @@
+using System;
+using System.Data.Entity.Migrations;
+
 namespace EasyFlights.Data.Migrations
 {
-    using System;
-    using System.Data.Entity.Migrations;
-    
     public partial class Initial : DbMigration
     {
         public override void Up()
@@ -11,10 +11,10 @@ namespace EasyFlights.Data.Migrations
                 "dbo.IdentityRoles",
                 c => new
                     {
-                        Id = c.String(nullable: false, maxLength: 128),
+                        Id = c.String(false, 128),
                         Name = c.String(),
                         Description = c.String(),
-                        Discriminator = c.String(nullable: false, maxLength: 128),
+                        Discriminator = c.String(false, 128),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -22,8 +22,8 @@ namespace EasyFlights.Data.Migrations
                 "dbo.IdentityUserRoles",
                 c => new
                     {
-                        RoleId = c.String(nullable: false, maxLength: 128),
-                        UserId = c.String(nullable: false, maxLength: 128),
+                        RoleId = c.String(false, 128),
+                        UserId = c.String(false, 128),
                         IdentityRole_Id = c.String(maxLength: 128),
                         ApplicationUser_Id = c.String(maxLength: 128),
                     })
@@ -37,19 +37,19 @@ namespace EasyFlights.Data.Migrations
                 "dbo.ApplicationUsers",
                 c => new
                     {
-                        Id = c.String(nullable: false, maxLength: 128),
-                        FirstName = c.String(nullable: false),
-                        LastName = c.String(nullable: false),
+                        Id = c.String(false, 128),
+                        FirstName = c.String(false),
+                        LastName = c.String(false),
                         Email = c.String(),
-                        EmailConfirmed = c.Boolean(nullable: false),
+                        EmailConfirmed = c.Boolean(false),
                         PasswordHash = c.String(),
                         SecurityStamp = c.String(),
                         PhoneNumber = c.String(),
-                        PhoneNumberConfirmed = c.Boolean(nullable: false),
-                        TwoFactorEnabled = c.Boolean(nullable: false),
+                        PhoneNumberConfirmed = c.Boolean(false),
+                        TwoFactorEnabled = c.Boolean(false),
                         LockoutEndDateUtc = c.DateTime(),
-                        LockoutEnabled = c.Boolean(nullable: false),
-                        AccessFailedCount = c.Int(nullable: false),
+                        LockoutEnabled = c.Boolean(false),
+                        AccessFailedCount = c.Int(false),
                         UserName = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
@@ -58,7 +58,7 @@ namespace EasyFlights.Data.Migrations
                 "dbo.IdentityUserClaims",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
+                        Id = c.Int(false, true),
                         UserId = c.String(),
                         ClaimType = c.String(),
                         ClaimValue = c.String(),
@@ -72,7 +72,7 @@ namespace EasyFlights.Data.Migrations
                 "dbo.IdentityUserLogins",
                 c => new
                     {
-                        UserId = c.String(nullable: false, maxLength: 128),
+                        UserId = c.String(false, 128),
                         LoginProvider = c.String(),
                         ProviderKey = c.String(),
                         ApplicationUser_Id = c.String(maxLength: 128),
@@ -85,9 +85,9 @@ namespace EasyFlights.Data.Migrations
                 "dbo.Aircrafts",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
-                        Model = c.String(nullable: false),
-                        Capacity = c.Int(nullable: false),
+                        Id = c.Int(false, true),
+                        Model = c.String(false),
+                        Capacity = c.Int(false),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -95,12 +95,12 @@ namespace EasyFlights.Data.Migrations
                 "dbo.Airports",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
-                        City_Id = c.Int(nullable: false),
-                        Title = c.String(nullable: false),
-                        AirportCodeIata = c.String(nullable: false),
-                        AirportCodeIcao = c.String(nullable: false),
-                        TimeZoneOffset = c.Double(nullable: false),
+                        Id = c.Int(false, true),
+                        City_Id = c.Int(false),
+                        Title = c.String(false),
+                        AirportCodeIata = c.String(false),
+                        AirportCodeIcao = c.String(false),
+                        TimeZoneOffset = c.Double(false),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Cities", t => t.City_Id)
@@ -110,9 +110,9 @@ namespace EasyFlights.Data.Migrations
                 "dbo.Cities",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
-                        Country_Id = c.Int(nullable: false),
-                        Name = c.String(nullable: false),
+                        Id = c.Int(false, true),
+                        Country_Id = c.Int(false),
+                        Name = c.String(false),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Countries", t => t.Country_Id)
@@ -122,8 +122,8 @@ namespace EasyFlights.Data.Migrations
                 "dbo.Countries",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false),
+                        Id = c.Int(false, true),
+                        Name = c.String(false),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -131,12 +131,12 @@ namespace EasyFlights.Data.Migrations
                 "dbo.Flights",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
-                        Aircraft_Id = c.Int(nullable: false),
-                        DepartureAirport_Id = c.Int(nullable: false),
-                        DestinationAirport_Id = c.Int(nullable: false),
-                        ScheduledDepartureTime = c.DateTime(nullable: false),
-                        ScheduledArrivalTime = c.DateTime(nullable: false),
+                        Id = c.Int(false, true),
+                        Aircraft_Id = c.Int(false),
+                        DepartureAirport_Id = c.Int(false),
+                        DestinationAirport_Id = c.Int(false),
+                        ScheduledDepartureTime = c.DateTime(false),
+                        ScheduledArrivalTime = c.DateTime(false),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Aircrafts", t => t.Aircraft_Id)
@@ -150,25 +150,25 @@ namespace EasyFlights.Data.Migrations
                 "dbo.Orders",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
-                        User_Id = c.String(nullable: false, maxLength: 128),
-                        OrderDate = c.DateTime(nullable: false),
+                        Id = c.Int(false, true),
+                        User_Id = c.String(false, 128),
+                        OrderDate = c.DateTime(false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.ApplicationUsers", t => t.User_Id, cascadeDelete: true)
+                .ForeignKey("dbo.ApplicationUsers", t => t.User_Id, true)
                 .Index(t => t.User_Id);
             
             CreateTable(
                 "dbo.Passengers",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
-                        FirstName = c.String(nullable: false),
-                        LastName = c.String(nullable: false),
-                        BirthDate = c.DateTime(nullable: false),
-                        DocumentNumber = c.String(nullable: false),
-                        AgeCategory = c.Int(nullable: false),
-                        Sex = c.Int(nullable: false),
+                        Id = c.Int(false, true),
+                        FirstName = c.String(false),
+                        LastName = c.String(false),
+                        BirthDate = c.DateTime(false),
+                        DocumentNumber = c.String(false),
+                        AgeCategory = c.Int(false),
+                        Sex = c.Int(false),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -176,14 +176,14 @@ namespace EasyFlights.Data.Migrations
                 "dbo.Tickets",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
-                        Flight_Id = c.Int(nullable: false),
-                        Passenger_Id = c.Int(nullable: false),
-                        Order_Id = c.Int(nullable: false),
-                        Fare = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        Discount = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        Seat = c.Int(nullable: false),
-                        FlightClass = c.Int(nullable: false),
+                        Id = c.Int(false, true),
+                        Flight_Id = c.Int(false),
+                        Passenger_Id = c.Int(false),
+                        Order_Id = c.Int(false),
+                        Fare = c.Decimal(false, 18, 2),
+                        Discount = c.Decimal(false, 18, 2),
+                        Seat = c.Int(false),
+                        FlightClass = c.Int(false),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Flights", t => t.Flight_Id)

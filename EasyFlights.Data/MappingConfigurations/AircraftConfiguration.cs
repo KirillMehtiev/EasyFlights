@@ -1,8 +1,8 @@
-﻿namespace EasyFlights.Data.MappingConfigurations
-{
-    using System.Data.Entity.ModelConfiguration;
-    using EasyFlights.DomainModel.Entities;
+﻿using System.Data.Entity.ModelConfiguration;
+using EasyFlights.DomainModel.Entities;
 
+namespace EasyFlights.Data.MappingConfigurations
+{
     public class AircraftConfiguration : EntityTypeConfiguration<Aircraft>
     {
         public AircraftConfiguration()
