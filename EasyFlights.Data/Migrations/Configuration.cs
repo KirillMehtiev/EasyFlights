@@ -1,6 +1,7 @@
+using System.Data.Entity.Migrations;
+
 namespace EasyFlights.Data.Migrations
 {
-    using System.Data.Entity.Migrations;
 
     internal sealed class Configuration : DbMigrationsConfiguration<DataContexts.EasyFlightsDataContext>
     {
