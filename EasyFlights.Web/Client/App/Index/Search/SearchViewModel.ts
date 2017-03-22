@@ -1,17 +1,26 @@
 ﻿import ko = require("knockout");
-import { RadioItem } from "./RadioChooser/RadioChooserItem";
+import { RadioChooserItem } from "./RadioChooser/RadioChooserItem";
+
+class TicketType {
+    static oneWay = "OneWay";
+    static roundTrip = "RoundTrip";
+}
 
 class SearchViewModel {
-    private options: Array<RadioItem>;
-
+    private options: Array<RadioChooserItem>;
+    
     public selectedTicketType: KnockoutObservable<string>;
 
     constructor() {
         this.options = [
-            new RadioItem("One Way", "one-way"),
-            new RadioItem("Round trip", "round-trip")
+            new RadioChooserItem("One Way", TicketType.oneWay),
+            new RadioChooserItem("Round trip", TicketType.roundTrip)
         ];
-        this.selectedTicketType = ko.observable("one-way");
+        this.selectedTicketType = ko.observable(TicketType.oneWay);
+
+        this.selectedTicketType.subscribe(value => {
+            alert(value);
+        });
     }
 }
 

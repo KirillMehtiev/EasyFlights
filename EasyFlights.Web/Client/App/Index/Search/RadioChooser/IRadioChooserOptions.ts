@@ -1,6 +1,6 @@
-﻿import { RadioItem } from "./RadioChooserItem";
+﻿import { RadioChooserItem } from "./RadioChooserItem";
 
 export interface IRadioChooserOptions {
-    options: Array<RadioItem>;
+    options: Array<RadioChooserItem>;
     selectedOption: KnockoutObservable<string>;
 }
