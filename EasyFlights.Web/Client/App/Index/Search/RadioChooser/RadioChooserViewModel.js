@@ -1,8 +1,8 @@
 "use strict";
 var RadioChooserViewModel = (function () {
-    function RadioChooserViewModel() {
-        var preselected = "one-way";
-        this.selectedOption = ko.observable(preselected);
+    function RadioChooserViewModel(params) {
+        this.options = params.options;
+        this.selectedOption = params.selectedOption;
     }
     return RadioChooserViewModel;
 }());

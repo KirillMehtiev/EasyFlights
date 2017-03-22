@@ -12,7 +12,7 @@ namespace EasyFlights.WebApi.Tests.ApiControllers
     public class TypeaheadControllerTest
     {
         [TestMethod]
-        public void GetCitiesForTypeaheadCorrect()
+        public void GetCitiesForTypeahead()
         {
             var mock = new Mock<ITypeaheadProvider<City>>();
             mock.Setup(x => x.GetTypeahead("Nam")).Returns(new List<City>() { new City() { Name = "Name" } });
