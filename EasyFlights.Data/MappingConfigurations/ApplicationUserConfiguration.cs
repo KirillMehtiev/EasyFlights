@@ -1,20 +1,20 @@
-﻿namespace EasyFlights.Data.MappingConfigurations
-{
-    using System.Data.Entity.ModelConfiguration;
-    using EasyFlights.DomainModel.Entities.Identity;
+﻿using System.Data.Entity.ModelConfiguration;
+using EasyFlights.DomainModel.Entities.Identity;
 
+namespace EasyFlights.Data.MappingConfigurations
+{
     public class ApplicationUserConfiguration : EntityTypeConfiguration<ApplicationUser>
     {
         public ApplicationUserConfiguration()
         {
-            this.Map(m =>
+            Map(m =>
             {
                 m.MapInheritedProperties();
                 m.ToTable("ApplicationUsers");
             });
 
-            this.Property(u => u.FirstName).IsRequired();
-            this.Property(u => u.LastName).IsRequired();
+            Property(u => u.FirstName).IsRequired();
+            Property(u => u.LastName).IsRequired();
         }
     }
 }

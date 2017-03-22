@@ -1,14 +1,14 @@
-﻿namespace EasyFlights.Data.MappingConfigurations
-{
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.ModelConfiguration;
-    using EasyFlights.DomainModel.Entities;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.ModelConfiguration;
+using EasyFlights.DomainModel.Entities;
 
-    class BaseEntityConfiguration : EntityTypeConfiguration<BaseEntity>
+namespace EasyFlights.Data.MappingConfigurations
+{
+    public class BaseEntityConfiguration : EntityTypeConfiguration<BaseEntity>
     {
-        BaseEntityConfiguration()
+        public BaseEntityConfiguration()
         {
-            this.Property(be => be.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            Property(be => be.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
         }
     }
 }

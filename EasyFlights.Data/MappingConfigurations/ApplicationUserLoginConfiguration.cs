@@ -1,13 +1,13 @@
-﻿namespace EasyFlights.Data.Configurations
-{
-    using System.Data.Entity.ModelConfiguration;
-    using Microsoft.AspNet.Identity.EntityFramework;
+﻿using System.Data.Entity.ModelConfiguration;
+using Microsoft.AspNet.Identity.EntityFramework;
 
+namespace EasyFlights.Data.MappingConfigurations
+{
     public class ApplicationUserLoginConfiguration : EntityTypeConfiguration<IdentityUserLogin>
     {
         public ApplicationUserLoginConfiguration()
         {
-            HasKey<string>(l => l.UserId);
+            HasKey(l => l.UserId);
         }
     }
 }
