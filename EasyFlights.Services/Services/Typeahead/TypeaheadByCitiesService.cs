@@ -18,12 +18,20 @@ namespace EasyFlights.Services.Services.Typeahead
 
         public List<City> GetTypeahead(string partialName)
         {
-            if (partialName.Contains('\\'))
+            if (partialName.Length > 1)
             {
-                throw new ArgumentException(nameof(partialName) + " contains unacceptable characters");
+                if (partialName.Contains('\\'))
+                {
+                    throw new ArgumentException(nameof(partialName) + " contains unacceptable characters");
+                }
+                partialName = partialName.ToUpperInvariant().FirstOrDefault() +
+                              partialName.ToLowerInvariant().Substring(1);
+                return repository.GetAll().Where(x => x.Name.StartsWith(partialName)).ToList();
             }
-            partialName = partialName.ToUpperInvariant().FirstOrDefault() + partialName.ToLowerInvariant().Substring(1);
-            return repository.GetAll().Where(x => x.Name.StartsWith(partialName)).ToList(); 
+            else
+            {
+                return new List<City>();
+            }
         }
     }
 }
