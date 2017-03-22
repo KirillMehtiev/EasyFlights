@@ -91,6 +91,7 @@
     <Compile Include="Entities\Airport.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\City.cs" />
+    <Compile Include="Entities\Comparers\CitiesComparer.cs" />
     <Compile Include="Entities\Country.cs" />
     <Compile Include="Entities\Enums\AgeCategory.cs" />
     <Compile Include="Entities\Enums\FlightClass.cs" />

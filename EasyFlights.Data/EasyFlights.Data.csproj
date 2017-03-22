@@ -123,8 +123,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="App_LocalResources\airports.csv" />
     <None Include="packages.config" />
-    <None Include="Resources\airports.csv" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201703221413599_Initial.resx">
