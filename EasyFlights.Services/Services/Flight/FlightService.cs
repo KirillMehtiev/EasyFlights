@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using EasyFlights.DomainModel.Entities;
 using EasyFlights.Services.Interfaces;
 
-namespace EasyFlights.Services.Services.FlightProvider
+namespace EasyFlights.Services.Services.Flight
 {
-    using EasyFlights.DomainModel.Entities;
+    using Flight = EasyFlights.DomainModel.Entities.Flight;
 
     /// <summary>
     /// Concrete flight provider implementation
     /// </summary>
-    public class FlightProvider : IFlightProvider
+    public class FlightService : IFlightProvider
     {
         public IEnumerable<Flight> GetFlights(
             Airport departure,
