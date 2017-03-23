@@ -10,7 +10,7 @@ namespace EasyFlights.Web.NinjectModules
     {
         public override void Load()
         {
-            Bind<ITypeaheadProvider<City>>().To<TypeaheadByCitiesService>();
+            Bind<ITypeaheadProvider<City>>().To<TypeaheadService>();
         }
     }
 }

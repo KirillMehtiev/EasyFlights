@@ -7,13 +7,24 @@ namespace EasyFlights.Data.DataContexts
 {
     public class EasyFlightsDataContext : IdentityDbContext<ApplicationUser>, IDataContext
     {
-        public EasyFlightsDataContext() : base("DefaultConnection", throwIfV1Schema: false)
+        public EasyFlightsDataContext() : base("DefaultConnection", false)
         {
+        }
+
+        public bool AutoDetectChangesEnabled
+        {
+            get { return Configuration.AutoDetectChangesEnabled; }
+            set { Configuration.AutoDetectChangesEnabled = value; }
         }
 
         public static EasyFlightsDataContext Create()
         {
             return new EasyFlightsDataContext();
+        }
+
+        public void DetectChanges()
+        {
+            ChangeTracker.DetectChanges();
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

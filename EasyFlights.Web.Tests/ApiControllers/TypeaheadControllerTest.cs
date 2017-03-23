@@ -13,14 +13,47 @@ namespace EasyFlights.WebApi.Tests.ApiControllers
     public class TypeaheadControllerTest
     {
         [TestMethod]
-        public void GetCitiesForTypeahead()
+        public void GetTypeaheadByCityName()
         {
             var mock = new Mock<ITypeaheadProvider<City>>();
-            mock.Setup(x => x.GetTypeahead("Nam")).Returns(new List<City>() { new City() { Name = "Name" } });
+            var city = new City() { Name = "Name", Airports = new List<Airport>() };
+            var airport = new Airport() { Title = "Ttl" };
+            airport.City = city;
+            city.Airports.Add(airport);
+            mock.Setup(x => x.GetTypeahead("Nam")).Returns(new List<City>() { city });
             var controller = new TypeaheadController(mock.Object);
             var expected = "Name";
-            List<CityViewModel> result = controller.GetCitiesForTypeahead("Nam");
-            Assert.AreEqual(expected, result.FirstOrDefault()?.Name);
+            List<AirportViewModel> result = controller.GetAirportsForTypeahead("Nam");
+            Assert.AreEqual(expected, result.FirstOrDefault()?.City);
+        }
+
+        [TestMethod]
+        public void GetTypeaheadByAirportTitle()
+        {
+            var mock = new Mock<ITypeaheadProvider<City>>();
+            var city = new City() { Name = "Name", Airports = new List<Airport>() };
+            var airport = new Airport() { Title = "Ttl" };
+            airport.City = city;
+            city.Airports.Add(airport);
+            mock.Setup(x => x.GetTypeahead("Ttl")).Returns(new List<City>() { city });
+            var controller = new TypeaheadController(mock.Object);
+            var expected = "Name";
+            List<AirportViewModel> result = controller.GetAirportsForTypeahead("Ttl");
+            Assert.AreEqual(expected, result.FirstOrDefault()?.City);
+        }
+
+        [TestMethod]
+        public void GetTypeaheadWithWrongName()
+        {
+            var mock = new Mock<ITypeaheadProvider<City>>();
+            var city = new City() { Name = "Name", Airports = new List<Airport>() };
+            var airport = new Airport() { Title = "Ttl" };
+            airport.City = city;
+            city.Airports.Add(airport);
+            mock.Setup(x => x.GetTypeahead("Name")).Returns(new List<City>() { city });
+            var controller = new TypeaheadController(mock.Object);
+            List<AirportViewModel> result = controller.GetAirportsForTypeahead("Ttl");
+            Assert.IsTrue(result.Count == 0);
         }
     }
 }

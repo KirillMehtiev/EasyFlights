@@ -1,3 +1,5 @@
+using EasyFlights.Web.NinjectModules;
+
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(EasyFlights.Web.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethod(typeof(EasyFlights.Web.App_Start.NinjectWebCommon), "Stop")]
 
@@ -11,6 +13,8 @@ namespace EasyFlights.Web.App_Start
     using Ninject;
     using Ninject.Web.Common;
     using System.Reflection;
+    using System.Web.Http;
+    using WebApi.Util;
 
     public static class NinjectWebCommon 
     {
@@ -47,6 +51,7 @@ namespace EasyFlights.Web.App_Start
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
 
                 RegisterServices(kernel);
+                GlobalConfiguration.Configuration.DependencyResolver = new NinjectDependencyResolver(kernel);
                 return kernel;
             }
             catch(Exception e)

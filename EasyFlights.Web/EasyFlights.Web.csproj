@@ -181,23 +181,26 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Util\NinjectDependencyResolver.cs" />
+    <Compile Include="Util\NinjectDependencyScope.cs" />
     <Compile Include="NinjectModules\DataModule.cs" />
     <Compile Include="NinjectModules\EnginesModule.cs" />
     <Compile Include="NinjectModules\ServicesModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="ViewModels\CityViewModel.cs" />
+    <Compile Include="ViewModels\AirportViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Client\App\Index\IndexTemplate.html" />
     <Content Include="Client\App\Index\Search\Autocomplete\AutocompleteTemplate.html" />
     <Content Include="Client\App\Index\Search\SearchTemplate.html" />
-    <Content Include="Client\App\Index\Search\DatePicker\DatePickerTemplate.html" />
+    <Content Include="Client\App\CommonComponents\DatePicker\DatePickerTemplate.html" />
     <Content Include="Client\App\Index\Search\RadioChooser\RadioChooserTemplate.html" />
     <Content Include="Client\App\Layout\Footer\FooterTemplate.html" />
     <Content Include="Client\App\Layout\Header\HeaderTemplate.html" />
@@ -207,10 +210,8 @@
     <Content Include="Client\App\SearchResults\SearchHeader\SearchHeaderTemplate.html" />
     <Content Include="Client\App\SearchResults\SearchResultTemplate.html" />
     <Content Include="Client\App\SearchResults\Sorting\SortingTemplate.html" />
+    <Content Include="Client\Libs\bootstrap-datepicker.css" />
     <Content Include="Client\Libs\bootstrap.css" />
-    <Content Include="Client\Libs\bootstrap.js" />
-    <Content Include="Client\Libs\jquery.js" />
-    <Content Include="Client\Libs\knockout.js" />
     <Content Include="Client\Libs\pager.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -256,6 +257,8 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Client\App\App.ts" />
+    <TypeScriptCompile Include="Client\App\Bindings.ts" />
+    <TypeScriptCompile Include="Client\App\CommonComponents\IKnockoutBinding.ts" />
     <TypeScriptCompile Include="Client\App\Components.ts" />
     <TypeScriptCompile Include="Client\App\Index\IndexComponent.ts" />
     <TypeScriptCompile Include="Client\App\Index\IndexViewModel.ts" />
@@ -263,9 +266,10 @@
     <TypeScriptCompile Include="Client\App\Index\Search\Autocomplete\AutocompleteViewModel.ts" />
     <TypeScriptCompile Include="Client\App\Index\Search\Autocomplete\CityItem\CityItem.ts" />
     <TypeScriptCompile Include="Client\App\Index\Search\Autocomplete\IAutocompleteOptions.ts" />
-    <TypeScriptCompile Include="Client\App\Index\Search\DatePicker\DatePickerComponent.ts" />
-    <TypeScriptCompile Include="Client\App\Index\Search\DatePicker\DatePickerViewModel.ts" />
-    <TypeScriptCompile Include="Client\App\Index\Search\DatePicker\IDatePickerOptions.ts" />
+    <TypeScriptCompile Include="Client\App\CommonComponents\DatePicker\DatePickerBinding.ts" />
+    <TypeScriptCompile Include="Client\App\CommonComponents\DatePicker\DatePickerComponent.ts" />
+    <TypeScriptCompile Include="Client\App\CommonComponents\DatePicker\DatePickerViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\CommonComponents\DatePicker\IDatePickerOptions.ts" />
     <TypeScriptCompile Include="Client\App\Index\Search\SearchComponent.ts" />
     <TypeScriptCompile Include="Client\App\Index\Search\SearchViewModel.ts" />
     <TypeScriptCompile Include="Client\App\Index\Search\RadioChooser\RadioChooserComponent.ts" />
@@ -292,6 +296,9 @@
     <TypeScriptCompile Include="Client\App\SearchResults\SearchResultViewModel.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\Sorting\SortingComponent.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\Sorting\SortingViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\Validation\DateAfter.ts" />
+    <TypeScriptCompile Include="Client\App\Validation\IValidationRule.ts" />
+    <TypeScriptCompile Include="Client\App\ValidationRules.ts" />
     <TypeScriptCompile Include="Client\Libs\typings\knockout\knockout.d.ts" />
     <TypeScriptCompile Include="Client\Libs\typings\pager\pager.d.ts" />
     <TypeScriptCompile Include="Client\Libs\typings\require\require.d.ts" />
@@ -341,6 +348,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
+      <UserProperties package_1json__JSONSchema="" />
     </VisualStudio>
   </ProjectExtensions>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

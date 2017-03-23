@@ -5,7 +5,9 @@ class DatePickerViewModel {
     label: string;
 
     constructor(options: IDatePickerOptions) {
-        this.selectedDate = options.selectedDate;
+        this.selectedDate = options.selectedDate.extend({
+            date: true
+        });
         this.label = options.label;
     }
 }
