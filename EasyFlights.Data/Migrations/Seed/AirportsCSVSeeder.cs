@@ -27,36 +27,47 @@ namespace EasyFlights.Data.Migrations.Seed
                 return;
             }
             string[] airportsInfo = Resources.airports.Split('\n');
-            for (var i = 1; i < airportsInfo.Length; i++)
+            context.AutoDetectChangesEnabled = false;
+            try
             {
-                string[] info = airportsInfo[i].Split(';');
-                if (info.Length < AirportTimeZoneOffsetIndex + 1)
+                for (var i = 1; i < airportsInfo.Length; i++)
                 {
-                    continue;
+                    string[] info = airportsInfo[i].Split(';');
+                    if (info.Length < AirportTimeZoneOffsetIndex + 1)
+                    {
+                        continue;
+                    }
+                    string countryName = info[CountryNameIndex];
+                    Country country = context.Set<Country>().Local.FirstOrDefault(x => x.Name == countryName) ??
+                                      context.Set<Country>().FirstOrDefault(x => x.Name == countryName);
+                    if (country == null)
+                    {
+                        country = new Country() { Name = countryName };
+                        context.Set<Country>().Add(country);
+                    }
+                    string cityName = info[CityNameIndex];
+                    City city = context.Set<City>().Local.FirstOrDefault(x => x.Name == cityName) ??
+                                context.Set<City>().FirstOrDefault(x => x.Name == cityName);
+                    if (city == null)
+                    {
+                        city = new City() { Name = cityName, Country = country };
+                        context.Set<City>().Add(city);
+                    }
+                    var airport = new Airport
+                    {
+                        Title = info[AirportTitleIndex],
+                        City = city,
+                        AirportCodeIata = info[AirportIataIndex],
+                        AirportCodeIcao = info[AirportIcaoIndex],
+                        TimeZoneOffset = double.Parse(info[AirportTimeZoneOffsetIndex], CultureInfo.InvariantCulture)
+                    };
+                    context.Set<Airport>().Add(airport);
                 }
-                string countryName = info[CountryNameIndex];
-                Country country = context.Set<Country>().Local.FirstOrDefault(x => x.Name == countryName) ?? context.Set<Country>().FirstOrDefault(x => x.Name == countryName);
-                if (country == null)
-                {
-                    country = new Country() { Name = countryName };
-                    context.Set<Country>().Add(country);
-                }
-                string cityName = info[CityNameIndex];
-                City city = context.Set<City>().Local.FirstOrDefault(x => x.Name == cityName) ?? context.Set<City>().FirstOrDefault(x => x.Name == cityName);
-                if (city == null)
-                {
-                    city = new City() { Name = cityName, Country = country };
-                    context.Set<City>().Add(city);
-                }
-                var airport = new Airport
-                {
-                    Title = info[AirportTitleIndex],
-                    City = city,
-                    AirportCodeIata = info[AirportIataIndex],
-                    AirportCodeIcao = info[AirportIcaoIndex],
-                    TimeZoneOffset = double.Parse(info[AirportTimeZoneOffsetIndex], CultureInfo.InvariantCulture)
-                };
-                context.Set<Airport>().Add(airport);
+            }
+            finally
+            {
+                context.AutoDetectChangesEnabled = true;
+                context.DetectChanges();
             }
             context.SaveChanges();
         }
