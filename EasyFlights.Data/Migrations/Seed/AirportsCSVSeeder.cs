@@ -4,7 +4,6 @@ using System.Linq;
 using EasyFlights.Data.DataContexts;
 using EasyFlights.Data.Properties;
 using EasyFlights.DomainModel.Entities;
-using EasyFlights.DomainModel.Entities.Comparers;
 
 namespace EasyFlights.Data.Migrations.Seed
 {
