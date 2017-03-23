@@ -18,9 +18,6 @@ namespace EasyFlights.Web.NinjectModules
 
             // Repositories
             this.Bind<IRepository<BaseEntity>>().To<Repository<BaseEntity>>();
-
-
-            // Services
         }
     }
 }
