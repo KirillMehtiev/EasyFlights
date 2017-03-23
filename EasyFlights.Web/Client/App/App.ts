@@ -1,5 +1,7 @@
 ﻿import ko = require("knockout");
 import pager = require("pager");
+import knockstrap = require("knockstrap");
+import jquery = require("jquery");
 import "./Components";
 import './App.scss';
 
