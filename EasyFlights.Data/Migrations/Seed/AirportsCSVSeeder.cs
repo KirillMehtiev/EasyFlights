@@ -30,6 +30,10 @@ namespace EasyFlights.Data.Migrations.Seed
             for (var i = 1; i < airportsInfo.Length; i++)
             {
                 string[] info = airportsInfo[i].Split(';');
+                if (info.Length < AirportTimeZoneOffsetIndex + 1)
+                {
+                    continue;
+                }
                 string countryName = info[CountryNameIndex];
                 Country country = context.Set<Country>().Local.FirstOrDefault(x => x.Name == countryName) ?? context.Set<Country>().FirstOrDefault(x => x.Name == countryName);
                 if (country == null)
