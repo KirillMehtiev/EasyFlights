@@ -13,6 +13,8 @@
         <b>Departure Airport:</b> <span data-bind="text: item.departureAirport"></span>
         <b>Arrival Airport:</b><span data-bind="text: item.arrivalAirport"></span><br />
 
+        <b>total price:</b><span data-bind="text: item.totalCost"></span><br />
+        <b>total duration:</b><span data-bind="text: item.totalDuration"></span><br />
 
     <div data-bind="foreach: {data: item.tickets, as: 'ticketItem'}">
         <tickets params="item: ticketItem"></tickets>
