@@ -7,11 +7,11 @@ using EasyFlights.Services.Interfaces;
 
 namespace EasyFlights.Services.Services.Typeahead
 {
-    public class TypeaheadByCitiesService : ITypeaheadProvider<City>
+    public class TypeaheadService : ITypeaheadProvider<City>
     {
         private readonly IRepository<City> repository;
 
-        public TypeaheadByCitiesService(IRepository<City> repository)
+        public TypeaheadService(IRepository<City> repository)
         {
             this.repository = repository;
         }
@@ -28,7 +28,10 @@ namespace EasyFlights.Services.Services.Typeahead
             }
             partialName = partialName.ToUpperInvariant().FirstOrDefault() +
                           partialName.ToLowerInvariant().Substring(1);
-            return repository.GetAll().Where(x => x.Name.StartsWith(partialName)).ToList();
+            return
+                repository.GetAll()
+                    .Where(x => x.Name.StartsWith(partialName) || x.Airports.Any(y => y.Title.StartsWith(partialName)))
+                    .ToList();
         }
     }
 }

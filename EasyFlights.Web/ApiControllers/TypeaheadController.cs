@@ -16,12 +16,28 @@ namespace EasyFlights.WebApi.ApiControllers
         }
 
         [HttpPost]
-        public List<CityViewModel> GetCitiesForTypeahead(string name)
+        public List<AirportViewModel> GetAirportsForTypeahead(string name)
         {
-            var cities = new List<CityViewModel>();
-            provider.GetTypeahead(name)
-                .ForEach(x => cities.Add(new CityViewModel() { Id = x.Id, Name = x?.Name, Country = x?.Country?.Name}));
-            return cities;
+            var airports = new List<AirportViewModel>();
+            List<City> cities = provider.GetTypeahead(name);
+            if (cities == null || cities.Count == 0)
+            {
+                return new List<AirportViewModel>();
+            }
+            foreach (City city in cities)
+            {
+                foreach (Airport airport in city.Airports)
+                {
+                    airports.Add(new AirportViewModel()
+                    {
+                        Id = airport.Id,
+                        City = airport.City?.Name,
+                        Country = airport.City?.Country?.Name,
+                        Name = airport.Title
+                    });
+                }
+            }
+            return airports;
         }
     }
 }
