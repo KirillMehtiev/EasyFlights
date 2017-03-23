@@ -1,27 +1,22 @@
 ﻿<div class="container">
     <div class="row well">
-        <div class="col-md-12 well well-lg">
-            Ticket <span data-bind="text: item.number"></span>
-        </div>
-        <div class="col-md-3 well well-lg">
-            Flight: <span data-bind="text: item.flight"></span><br />
-            Country: <span data-bind="text: item.country"></span><br />
-            Flight type: <span data-bind="text: item.flightType"></span>
-        </div>
+        
+        <b>Flight</b> <span data-bind="text: item.number"></span>
+        
+        
+        <b>Departure Date:</b> <span data-bind="text: item.departureDate"></span><br />
+        <b>Arrival Date: </b> <span data-bind="text: item.arrivalDate"></span><br />
 
-        <div class="col-md-3 well well-lg">
-            Departure: <span data-bind="text: item.departure"></span><br />
-            City: <span data-bind="text: item.cityDeparture"></span>
-        </div>
 
-        <div class="col-md-3 well well-lg">
-            Duration: <span data-bind="text: item.duration"></span><br />
-            =============>
-        </div>
 
-        <div class="col-md-3 well well-lg">
-            Arrival: <span data-bind="text: item.arrival"></span><br />
-            City: <span data-bind="text: item.departure"></span>
-        </div>
+
+        <b>Departure Airport:</b> <span data-bind="text: item.departureAirport"></span>
+        <b>Arrival Airport:</b><span data-bind="text: item.arrivalAirport"></span><br />
+
+
+    <div data-bind="foreach: {data: item.tickets, as: 'ticketItem'}">
+        <tickets params="item: ticketItem"></tickets>
     </div>
+
+</div>
 </div>

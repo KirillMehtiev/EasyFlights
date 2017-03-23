@@ -203,6 +203,7 @@
     <Content Include="Client\App\Layout\Header\HeaderTemplate.html" />
     <Content Include="Client\App\Layout\LayoutTemplate.html" />
     <Content Include="Client\App\SearchResults\FlightResults\FlightResult.html" />
+    <Content Include="Client\App\SearchResults\FlightResults\Tickets\TicketTemplate.html" />
     <Content Include="Client\App\SearchResults\SearchHeader\SearchHeaderTemplate.html" />
     <Content Include="Client\App\SearchResults\SearchResultTemplate.html" />
     <Content Include="Client\App\SearchResults\Sorting\SortingTemplate.html" />
@@ -281,6 +282,10 @@
     <TypeScriptCompile Include="Client\App\SearchResults\FlightResults\FlightResultComponent.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\FlightResults\FlightResultViewModel.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\FlightResults\IFlightItemOptions.ts" />
+    <TypeScriptCompile Include="Client\App\SearchResults\FlightResults\Tickets\TicketComponent.ts" />
+    <TypeScriptCompile Include="Client\App\SearchResults\FlightResults\Tickets\TicketItem.ts" />
+    <TypeScriptCompile Include="Client\App\SearchResults\FlightResults\Tickets\ITicketOptions.ts" />
+    <TypeScriptCompile Include="Client\App\SearchResults\FlightResults\Tickets\TicketViewModel.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\SearchHeader\SearchHeaderComponent.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\SearchHeader\SearchHeaderViewModel.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\SearchResultComponent.ts" />
