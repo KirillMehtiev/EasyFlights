@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using EasyFlights.DomainModel.DTOs;
 using EasyFlights.DomainModel.Entities;
 using EasyFlights.Services.Interfaces;
 using EasyFlights.WebApi.ApiControllers;
+using EasyFlights.WebApi.ViewModels;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
@@ -15,11 +15,11 @@ namespace EasyFlights.WebApi.Tests.ApiControllers
         [TestMethod]
         public void GetCitiesForTypeahead()
         {
-            var mock = new Mock<ITypeaheadProvider<CityDto>>();
-            mock.Setup(x => x.GetTypeahead("Nam")).Returns(new List<CityDto>() { new CityDto() { Name = "Name" } });
+            var mock = new Mock<ITypeaheadProvider<City>>();
+            mock.Setup(x => x.GetTypeahead("Nam")).Returns(new List<City>() { new City() { Name = "Name" } });
             var controller = new TypeaheadController(mock.Object);
             var expected = "Name";
-            List<CityDto> result = controller.GetCitiesForTypeahead("Nam");
+            List<CityViewModel> result = controller.GetCitiesForTypeahead("Nam");
             Assert.AreEqual(expected, result.FirstOrDefault()?.Name);
         }
     }
