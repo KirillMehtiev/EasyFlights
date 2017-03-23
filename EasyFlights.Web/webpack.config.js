@@ -14,9 +14,7 @@ module.exports = {
     context: appDirectory,
     resolve: {
         alias: {
-            knockout: appDirectory + '/Libs/knockout',
-            pager: appDirectory + '/Libs/pager',
-            jquery: appDirectory + '/Libs/jquery'
+            pager: appDirectory + '/Libs/pager'
         },
         extensions: ['.ts', '.tsx', '.js']
     },

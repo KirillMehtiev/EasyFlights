@@ -209,9 +209,8 @@
     <Content Include="Client\App\SearchResults\SearchHeader\SearchHeaderTemplate.html" />
     <Content Include="Client\App\SearchResults\SearchResultTemplate.html" />
     <Content Include="Client\App\SearchResults\Sorting\SortingTemplate.html" />
+    <Content Include="Client\Libs\bootstrap-datepicker.css" />
     <Content Include="Client\Libs\bootstrap.css" />
-    <Content Include="Client\Libs\jquery.js" />
-    <Content Include="Client\Libs\knockout.js" />
     <Content Include="Client\Libs\pager.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
