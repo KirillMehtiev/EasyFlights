@@ -40,9 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IRouteBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RouteBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EasyFlights.Data\EasyFlights.Data.csproj">
+      <Project>{E5848801-9915-491A-913B-6C01FB9A818D}</Project>
+      <Name>EasyFlights.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EasyFlights.DomainModel\EasyFlights.DomainModel.csproj">
       <Project>{499631ca-1843-4d61-8ec8-b206a20236f7}</Project>
       <Name>EasyFlights.DomainModel</Name>

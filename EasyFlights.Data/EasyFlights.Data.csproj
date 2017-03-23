@@ -114,6 +114,8 @@
     </Compile>
     <Compile Include="Repositories\Base\IRepository.cs" />
     <Compile Include="Repositories\Base\Repository.cs" />
+    <Compile Include="Repositories\Flights\FlightsRepository.cs" />
+    <Compile Include="Repositories\Flights\IFlightsRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EasyFlights.DomainModel\EasyFlights.DomainModel.csproj">
