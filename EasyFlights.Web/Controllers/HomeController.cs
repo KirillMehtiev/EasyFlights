@@ -1,7 +1,4 @@
-﻿using System;
-using System.Web.Mvc;
-using EasyFlights.DomainModel.Entities;
-using EasyFlights.Services.Interfaces;
+﻿using System.Web.Mvc;
 
 namespace EasyFlights.Web.Controllers
 {    
