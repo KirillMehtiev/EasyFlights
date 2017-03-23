@@ -1,4 +1,5 @@
 ﻿import ko = require("knockout");
+import moment = require("moment");
 import { RadioChooserItem } from "./RadioChooser/RadioChooserItem";
 import Item = require("./Autocomplete/CityItem/CityItem");
 
@@ -19,6 +20,8 @@ class SearchViewModel {
     public searchCityTo: KnockoutObservable<string>;
 
     constructor() {
+        let self = this;
+
         this.options = [
             new RadioChooserItem("One Way", TicketType.oneWay),
             new RadioChooserItem("Round trip", TicketType.roundTrip)
@@ -26,8 +29,13 @@ class SearchViewModel {
         this.cityList = [new Item.CityItem("City 1", 1), new Item.CityItem("City 2", 2)];
 
         this.selectedTicketType = ko.observable(TicketType.oneWay);
-        this.selectedDepartureDate = ko.observable("");
-        this.selectedReturnDate = ko.observable("");
+
+        this.selectedDepartureDate = ko.observable("").extend({
+            dateAfter: moment()
+        });
+        this.selectedReturnDate = ko.observable("").extend({
+            dateAfter: moment(self.selectedDepartureDate()).add(4, "hour");
+        });
 
         this.searchCityFrom = ko.observable<string>();
         this.searchCityTo = ko.observable<string>();
@@ -35,6 +43,8 @@ class SearchViewModel {
         this.isRoundTripSelected = ko.observable(false);
 
         this.selectedTicketType.subscribe(this.onTicketTypeChanged);
+
+        this.selectedDepartureDate.subscribe((val) => { console.log("updated: " + val) })
     }
 
     public onTicketTypeChanged = (newValue: string) => {

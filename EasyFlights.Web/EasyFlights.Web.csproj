@@ -290,6 +290,8 @@
     <TypeScriptCompile Include="Client\App\SearchResults\SearchResultViewModel.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\Sorting\SortingComponent.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\Sorting\SortingViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\Validation\DateAfter.ts" />
+    <TypeScriptCompile Include="Client\App\Validation\ValidationRules.ts" />
     <TypeScriptCompile Include="Client\Libs\typings\knockout\knockout.d.ts" />
     <TypeScriptCompile Include="Client\Libs\typings\pager\pager.d.ts" />
     <TypeScriptCompile Include="Client\Libs\typings\require\require.d.ts" />

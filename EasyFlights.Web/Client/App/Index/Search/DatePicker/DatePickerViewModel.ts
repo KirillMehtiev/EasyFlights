@@ -1,11 +1,14 @@
 ﻿import { IDatePickerOptions } from "./IDatePickerOptions";
 
+
 class DatePickerViewModel {
     selectedDate: KnockoutObservable<string>;
     label: string;
 
     constructor(options: IDatePickerOptions) {
-        this.selectedDate = options.selectedDate;
+        this.selectedDate = options.selectedDate.extend({
+            date: true
+        });
         this.label = options.label;
     }
 }
