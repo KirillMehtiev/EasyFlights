@@ -1,6 +1,6 @@
-﻿namespace EasyFlights.DomainModel.DTOs
+﻿namespace EasyFlights.WebApi.ViewModels
 {
-    public class CityDto
+    public class CityViewModel
     {
         public string Name { get; set; }
 
