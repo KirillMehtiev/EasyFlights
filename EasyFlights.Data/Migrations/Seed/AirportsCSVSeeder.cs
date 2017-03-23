@@ -59,7 +59,7 @@ namespace EasyFlights.Data.Migrations.Seed
                         City = city,
                         AirportCodeIata = info[AirportIataIndex],
                         AirportCodeIcao = info[AirportIcaoIndex],
-                        TimeZoneOffset = double.Parse(info[AirportTimeZoneOffsetIndex], CultureInfo.InvariantCulture)
+                        TimeZoneOffset = decimal.Parse(info[AirportTimeZoneOffsetIndex], CultureInfo.InvariantCulture)
                     };
                     context.Set<Airport>().Add(airport);
                 }

@@ -1,13 +1,15 @@
 ﻿<div class="container">
-    <div class="row">
-        <h1 class="text-info">The results of your search</h1>
-        <hr />
-        <form>
-            <app-search-header></app-search-header>
-            <div data-bind="foreach: {data: pagedFlightItems, as: 'flightItem'}">
-                <flights params="item: flightItem"></flights>
-            </div>
-        </form>
-        <div class="pull-right" data-bind="pagination: { currentPage: pageNo, totalCount: total, pageSize: pageSize, maxPages: maxPages, directions: directions, boundary: boundary, text: text }, click: setPage"></div>
-    </div>
+   <div class="row">
+       <h1 class="text-info">The results of your search</h1>
+       <hr />
+       <form>
+           <app-search-header></app-search-header>
+           
+           <div data-bind="foreach: {data: flightItems, as: 'flightItem'}">
+               <flights params="item: flightItem"></flights>
+           </div>
+          
+    
+</form>
+   </div>
 </div>

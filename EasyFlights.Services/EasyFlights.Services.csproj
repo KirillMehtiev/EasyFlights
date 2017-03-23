@@ -104,7 +104,6 @@
     <Compile Include="Interfaces\ITypeaheadProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\FlightProvider\FlightProvider.cs" />
-    <Compile Include="Services\Typeahead\TypeaheadByCitiesService.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
   </ItemGroup>
