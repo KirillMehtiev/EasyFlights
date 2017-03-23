@@ -14,9 +14,6 @@ namespace EasyFlights.Data.MappingConfigurations
             });
 
             this.Property(ac => ac.Model).IsRequired();
-
-            // one to one
-            this.HasOptional(ac => ac.Flight).WithRequired(flight => flight.Aircraft);
         }
     }
 }

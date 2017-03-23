@@ -1,4 +1,5 @@
 using System.Data.Entity.Migrations;
+using EasyFlights.Data.Migrations.Seed;
 
 namespace EasyFlights.Data.Migrations
 {
@@ -12,8 +13,12 @@ namespace EasyFlights.Data.Migrations
 
         protected override void Seed(DataContexts.EasyFlightsDataContext context)
         {
-            var seeder = new Seed.AirportsCsvSeeder();
-            seeder.Seed(context);
+            var airportsSeeder = new AirportsCsvSeeder();
+            var aircraftsSeeder = new AircraftsCsvSeeder();
+            var flightsSeeder = new FlightsCsvSeeder();
+            airportsSeeder.Seed(context);
+            aircraftsSeeder.Seed(context);
+            flightsSeeder.Seed(context);
         }
     }
 }
