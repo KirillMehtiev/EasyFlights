@@ -61,19 +61,45 @@ namespace EasyFlights.Data.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to model;capacity;
+        ///Boeing-737-200;130;.
+        /// </summary>
+        internal static string aircrafts {
+            get {
+                return ResourceManager.GetString("aircrafts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to id;name_eng;city_eng;country_eng;IATA;ICAO;timeZone
-        ///1;Goroka Airport;Goroka;Papua New Guinea;GKA;AYGA;10
-        ///2;Madang Airport;Madang;Papua New Guinea;MAG;AYMD;10
-        ///3;Mount Hagen Kagamuga Airport;Mount Hagen;Papua New Guinea;HGU;AYMH;10
-        ///4;Nadzab Airport;Nadzab;Papua New Guinea;LAE;AYNZ;10
-        ///5;Port Moresby Jacksons International Airport;Port Moresby;Papua New Guinea;POM;AYPY;10
-        ///6;Wewak International Airport;Wewak;Papua New Guinea;WWK;AYWK;10
-        ///7;Narsarsuaq Airport;Narssarssuaq;Greenland;UAK;BGBW;-3
-        ///8;Godthaab / [rest of string was truncated]&quot;;.
+        ///1987;Nuku Hiva Airport;Nuku Hiva;French Polynesia;NHV;NTMD;-9.5
+        ///5890;Hiva Oa-Atuona Airport;Hiva-oa;French Polynesia;AUQ;NTMN;-9.5
+        ///5891;Ua Pou Airport;Ua Pou;French Polynesia;UAP;NTMP;-9.5
+        ///5892;Ua Huka Airport;Ua Huka;French Polynesia;UAH;NTMU;-9.5
+        ///24;St. Anthony Airport;St. Anthony;Canada;YAY;CYAY;-3.5
+        ///45;Deer Lake Airport;Deer Lake;Canada;YDF;CYDF;-3.5
+        ///77;Stephenville Airport;Stephenville;Canada;YJT;CYJT;-3.5
+        ///125;Gander International Airport;Gand [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string airports {
             get {
                 return ResourceManager.GetString("airports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to departure;departure_time;arrival;arrival_time;
+        ///Boryspil International Airport;02:00;Kharkiv International Airport;04:00
+        ///Boryspil International Airport;04:40;Lviv International Airport;7:40
+        ///Boryspil International Airport;05:50;Zaporizhzhia International Airport;10:30
+        ///Boryspil International Airport;09:15;Odessa International Airport;12:55
+        ///Boryspil International Airport;10:10;Donetsk International Airport;13:00
+        ///Donetsk International Airport;05:20;Odessa International Airport;09:30
+        ///Lviv International Air [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string flights {
+            get {
+                return ResourceManager.GetString("flights", resourceCulture);
             }
         }
     }
