@@ -1,6 +1,5 @@
 ﻿import { IDatePickerOptions } from "./IDatePickerOptions";
 
-
 class DatePickerViewModel {
     selectedDate: KnockoutObservable<string>;
     label: string;

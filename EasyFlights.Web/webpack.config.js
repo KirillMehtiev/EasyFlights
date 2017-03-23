@@ -54,6 +54,7 @@ module.exports = {
     plugins: [
         new webpack.ProvidePlugin({
             $: "jquery",
+            jQuery: "jquery",
             ko: "knockout"
         }),
         new webpack.optimize.CommonsChunkPlugin({

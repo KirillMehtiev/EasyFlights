@@ -4,7 +4,8 @@ import pager = require("pager");
 import knockstrap = require("knockstrap");
 import jquery = require("jquery");
 import "./Components";
-import "./Validation/ValidationRules"
+import "./ValidationRules";
+import "./Bindings";
 import './App.scss';
 
 class Application {

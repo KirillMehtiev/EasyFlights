@@ -20,8 +20,6 @@ class SearchViewModel {
     public searchCityTo: KnockoutObservable<string>;
 
     constructor() {
-        let self = this;
-
         this.options = [
             new RadioChooserItem("One Way", TicketType.oneWay),
             new RadioChooserItem("Round trip", TicketType.roundTrip)
@@ -31,10 +29,11 @@ class SearchViewModel {
         this.selectedTicketType = ko.observable(TicketType.oneWay);
 
         this.selectedDepartureDate = ko.observable("").extend({
-            dateAfter: moment()
+            dateAfter: moment().format("L")
         });
+
         this.selectedReturnDate = ko.observable("").extend({
-            dateAfter: moment(self.selectedDepartureDate()).add(4, "hour");
+            dateAfter: moment().add(1, "day").format("L")
         });
 
         this.searchCityFrom = ko.observable<string>();
@@ -43,8 +42,6 @@ class SearchViewModel {
         this.isRoundTripSelected = ko.observable(false);
 
         this.selectedTicketType.subscribe(this.onTicketTypeChanged);
-
-        this.selectedDepartureDate.subscribe((val) => { console.log("updated: " + val) })
     }
 
     public onTicketTypeChanged = (newValue: string) => {

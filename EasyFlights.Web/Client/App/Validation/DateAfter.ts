@@ -1,15 +1,17 @@
 ﻿import validation = require("knockout.validation");
 import moment = require("moment");
+import {IValidationRule} from "./IValidationRule";
 
-validation.rules["dateAfter"] = {
-    validator: function (inputValue, requiredValue) {
+class DateAfter implements IValidationRule {
+
+    public message: string = "Selected date has to be after {0}";
+
+    public validator(inputValue: any, requiredValue: any) : boolean {
         let userSelectedDate = moment(inputValue);
         let requiredDate = moment(requiredValue);
 
-        let d = userSelectedDate.isAfter(requiredDate);
-        console.log(d);
-
         return userSelectedDate.isAfter(requiredDate);
-    },
-    message: "Selected date has to be after {0}"
-};
+    };
+}
+
+export = DateAfter;
