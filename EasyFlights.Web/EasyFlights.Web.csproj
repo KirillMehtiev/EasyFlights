@@ -181,11 +181,14 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Util\NinjectDependencyResolver.cs" />
+    <Compile Include="Util\NinjectDependencyScope.cs" />
     <Compile Include="NinjectModules\DataModule.cs" />
     <Compile Include="NinjectModules\EnginesModule.cs" />
     <Compile Include="NinjectModules\ServicesModule.cs" />

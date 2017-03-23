@@ -1,7 +1,7 @@
 ﻿using System.Web.Http.Dependencies;
 using Ninject;
 
-namespace EasyFlights.WebApi.Utils
+namespace EasyFlights.WebApi.Util
 {
     public class NinjectDependencyResolver : NinjectDependencyScope, IDependencyResolver
     {

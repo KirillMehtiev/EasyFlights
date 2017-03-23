@@ -6,7 +6,7 @@ using Ninject.Activation;
 using Ninject.Parameters;
 using Ninject.Syntax;
 
-namespace EasyFlights.WebApi.Utils
+namespace EasyFlights.WebApi.Util
 {
     public class NinjectDependencyScope : IDependencyScope
     {
