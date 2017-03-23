@@ -1,6 +1,4 @@
-﻿using EasyFlights.Data.Repositories.Base;
-using EasyFlights.DomainModel.DTOs;
-using EasyFlights.DomainModel.Entities;
+﻿using EasyFlights.DomainModel.Entities;
 using EasyFlights.Services.Interfaces;
 using EasyFlights.Services.Services.Typeahead;
 
@@ -12,8 +10,7 @@ namespace EasyFlights.Web.NinjectModules
     {
         public override void Load()
         {
-            this.Bind<IRepository<BaseEntity>>().To<Repository<BaseEntity>>();
-            this.Bind<ITypeaheadProvider<CityDto>>().To<TypeaheadByCitiesService>();
+            Bind<ITypeaheadProvider<City>>().To<TypeaheadByCitiesService>();
         }
     }
 }
