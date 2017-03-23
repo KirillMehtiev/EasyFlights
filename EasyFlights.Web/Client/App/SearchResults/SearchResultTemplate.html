@@ -4,6 +4,10 @@
        <hr />
        <form>
            <app-search-header></app-search-header>
+           <div data-bind="foreach: {data: flightItems, as: 'flightItem'}">
+               <flights params="item: flightItem"></flights>
+           </div>
+          
     
 </form>
    </div>
