@@ -86,7 +86,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTOs\CityDTO.cs" />
-    <Compile Include="DTOs\UserDTO.cs" />
     <Compile Include="Entities\Aircraft.cs" />
     <Compile Include="Entities\Airport.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
@@ -97,9 +96,7 @@
     <Compile Include="Entities\Enums\Sex.cs" />
     <Compile Include="Entities\Flight.cs" />
     <Compile Include="Entities\Identity\ApplicationRole.cs" />
-    <Compile Include="Entities\Identity\ApplicationRoleManager.cs" />
     <Compile Include="Entities\Identity\ApplicationUser.cs" />
-    <Compile Include="Entities\Identity\ApplicationUserManager.cs" />
     <Compile Include="Entities\Order.cs" />
     <Compile Include="Entities\Passenger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

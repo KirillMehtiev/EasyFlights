@@ -18,7 +18,6 @@ namespace EasyFlights.Web.NinjectModules
 
 
             // Services
-            this.Bind<IUserService>().To<UserService>();
         }
     }
 }

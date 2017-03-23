@@ -182,7 +182,6 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -195,6 +194,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Client\App\Index\IndexTemplate.html" />
+    <Content Include="Client\App\Index\Search\Autocomplete\AutocompleteTemplate.html" />
     <Content Include="Client\App\Index\Search\SearchTemplate.html" />
     <Content Include="Client\App\Index\Search\DatePicker\DatePickerTemplate.html" />
     <Content Include="Client\App\Index\Search\RadioChooser\RadioChooserTemplate.html" />
@@ -256,6 +256,10 @@
     <TypeScriptCompile Include="Client\App\Components.ts" />
     <TypeScriptCompile Include="Client\App\Index\IndexComponent.ts" />
     <TypeScriptCompile Include="Client\App\Index\IndexViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\Index\Search\Autocomplete\AutocompleteComponent.ts" />
+    <TypeScriptCompile Include="Client\App\Index\Search\Autocomplete\AutocompleteViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\Index\Search\Autocomplete\CityItem\CityItem.ts" />
+    <TypeScriptCompile Include="Client\App\Index\Search\Autocomplete\IAutocompleteOptions.ts" />
     <TypeScriptCompile Include="Client\App\Index\Search\DatePicker\DatePickerComponent.ts" />
     <TypeScriptCompile Include="Client\App\Index\Search\DatePicker\DatePickerViewModel.ts" />
     <TypeScriptCompile Include="Client\App\Index\Search\DatePicker\IDatePickerOptions.ts" />
@@ -280,6 +284,8 @@
     <TypeScriptCompile Include="Client\Libs\typings\knockout\knockout.d.ts" />
     <TypeScriptCompile Include="Client\Libs\typings\pager\pager.d.ts" />
     <TypeScriptCompile Include="Client\Libs\typings\require\require.d.ts" />
+    <TypeScriptCompile Include="Client\Libs\typings\jquery\jquery.d.ts" />
+    <TypeScriptCompile Include="Client\Libs\typings\jqueryui\jqueryui.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Client\App\App.scss" />
@@ -292,6 +298,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
+    <Folder Include="Scripts\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Client\App\Index\Index.scss" />
