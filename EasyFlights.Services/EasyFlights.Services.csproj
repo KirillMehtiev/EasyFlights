@@ -98,11 +98,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Infrastracture\OperationDetails.cs" />
+    <Compile Include="Identity\ApplicationRoleManager.cs" />
+    <Compile Include="Identity\ApplicationUserManager.cs" />
     <Compile Include="Interfaces\ITypeaheadProvider.cs" />
-    <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\UserService.cs" />
     <Compile Include="Services\Typeahead\TypeaheadByCitiesService.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>

@@ -1,4 +1,6 @@
-﻿using EasyFlights.Services.Interfaces;
+﻿using EasyFlights.Data.Repositories.Base;
+using EasyFlights.DomainModel.Entities;
+using EasyFlights.Services.Interfaces;
 using EasyFlights.Services.Services;
 
 namespace EasyFlights.Web.NinjectModules
@@ -15,10 +17,10 @@ namespace EasyFlights.Web.NinjectModules
             this.Bind<IDataContext>().To<EasyFlightsDataContext>().InRequestScope();
 
             // Repositories
+            this.Bind<IRepository<BaseEntity>>().To<Repository<BaseEntity>>();
 
 
             // Services
-            this.Bind<IUserService>().To<UserService>();
         }
     }
 }

@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using EasyFlights.DomainModel.Entities.Identity;
+using Microsoft.AspNet.Identity;
 
-namespace EasyFlights.DomainModel.Entities.Identity
+namespace EasyFlights.Services.Identity
 {
     public class ApplicationRoleManager : RoleManager<ApplicationRole>
     {

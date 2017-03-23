@@ -6,4 +6,9 @@
         <date-picker class="col-md-6" params="label: 'Departure date:', selectedDate: selectedDepartureDate"></date-picker>
         <date-picker class="col-md-6" params="label: 'Return date:', selectedDate: selectedReturnDate" data-bind="visible: isRoundTripSelected"></date-picker>
     </div>
+    
+    <div class="row">
+        <autocomple params="searchCity: searchCityFrom"></autocomple>
+        <autocomple params="searchCity: searchCityTo"></autocomple>
+    </div>
 </form>

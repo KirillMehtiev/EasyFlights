@@ -85,22 +85,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DTOs\CityDTO.cs" />
-    <Compile Include="DTOs\UserDTO.cs" />
     <Compile Include="Entities\Aircraft.cs" />
     <Compile Include="Entities\Airport.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\City.cs" />
-    <Compile Include="Entities\Comparers\CitiesComparer.cs" />
     <Compile Include="Entities\Country.cs" />
     <Compile Include="Entities\Enums\AgeCategory.cs" />
     <Compile Include="Entities\Enums\FlightClass.cs" />
     <Compile Include="Entities\Enums\Sex.cs" />
     <Compile Include="Entities\Flight.cs" />
     <Compile Include="Entities\Identity\ApplicationRole.cs" />
-    <Compile Include="Entities\Identity\ApplicationRoleManager.cs" />
     <Compile Include="Entities\Identity\ApplicationUser.cs" />
-    <Compile Include="Entities\Identity\ApplicationUserManager.cs" />
     <Compile Include="Entities\Order.cs" />
     <Compile Include="Entities\Passenger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -110,7 +105,9 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="DTOs\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,8 +1,9 @@
 ﻿using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
+using EasyFlights.DomainModel.Entities.Identity;
 
-namespace EasyFlights.DomainModel.Entities.Identity
+namespace EasyFlights.Services.Identity
 {
     public class ApplicationUserManager : UserManager<ApplicationUser>
     {
