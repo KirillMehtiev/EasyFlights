@@ -41,10 +41,10 @@ class SearchViewModel {
 
         this.isRoundTripSelected = ko.observable(false);
 
-        this.selectedTicketType.subscribe(this.onTicketTypeChanged);
+        this.selectedTicketType.subscribe(this.onTicketTypeChanged, this);
     }
 
-    public onTicketTypeChanged = (newValue: string) => {
+    public onTicketTypeChanged(newValue: string) {
         this.isRoundTripSelected(newValue === TicketType.roundTrip);
 
         // clean a return date if don't need it'
