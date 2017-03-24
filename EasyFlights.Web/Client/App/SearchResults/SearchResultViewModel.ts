@@ -1,7 +1,9 @@
 ﻿import ko = require("knockout");
 import { FlightItem } from "./FlightResults/FlightItem";
+import Item = require("./FlightResults/Tickets/TicketItem");
+import TicketItem = Item.TicketItem;
 
-﻿class SearchResultViewModel {
+class SearchResultViewModel {
 
     public flightItems: KnockoutObservableArray<FlightItem>;
     public pagedFlightItems: KnockoutObservableArray<FlightItem>;
@@ -16,12 +18,15 @@ import { FlightItem } from "./FlightResults/FlightItem";
     public text: any;
 
     constructor() {
-        this.flightItems = ko.observableArray([new FlightItem(12, "Flight", "Country", "Economy", "13:30", "City", "2 h 20 min", "15:50")
-            , new FlightItem(13, "Flight", "Country", "Economy", "13:30", "City", "2 h 30 min", "16:50")
-            , new FlightItem(14, "Flight", "Country", "Economy", "13:30", "City", "2 h 40 min", "16:50")
-        ]);
+        this.flightItems = ko.observableArray(
+            [new FlightItem(12, "Flight", "Country", "Economy", "13:30", [new TicketItem(12, "Flight", "Country", "Economy", "rtt", "13:30", "City", "2 h 20 min", "15:50", "145")], 350, 100),
+                new FlightItem(12, "Flight", "Country", "Lux", "14:30", [new TicketItem(13, "Flight", "Country", "Lux", "rtt", "14:30", "City", "2 h 30 min", "15:50", "145")], 120, 400),
+                new FlightItem(12, "Flight", "Country", "Economy", "15:30", [new TicketItem(14, "Flight", "Country", "Economy", "rtt", "15:30", "City", "2 h 40 min", "15:50", "145")], 600, 200)],
+        );
+
         this.createDefaultOptions();
         this.setPage();
+        this.sortByPrice();
     }
 
     public setPage(): void {
@@ -35,6 +40,16 @@ import { FlightItem } from "./FlightResults/FlightItem";
             this.pagedFlightItems.push(pagedFlightItems[i]);
         }
     };
+
+    public sortByPrice(): void {
+        this.flightItems.sort((x, y) => x.totalCost - y.totalCost);
+        this.setPage();
+    }
+
+    public sortByDuration(): void {
+        this.flightItems.sort((x, y) => x.totalDuration - y.totalDuration);
+        this.setPage();
+    }
 
     private createDefaultOptions(): void {
         this.pagedFlightItems = ko.observableArray([]);

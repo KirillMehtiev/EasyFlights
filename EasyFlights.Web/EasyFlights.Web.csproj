@@ -14,8 +14,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EasyFlights.WebApi</RootNamespace>
-    <AssemblyName>EasyFlights.WebApi</AssemblyName>
+    <RootNamespace>EasyFlights.Web</RootNamespace>
+    <AssemblyName>EasyFlights.Web</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -200,64 +200,18 @@
     <Content Include="Client\App\Index\IndexTemplate.html" />
     <Content Include="Client\App\Index\Search\Autocomplete\AutocompleteTemplate.html" />
     <Content Include="Client\App\Index\Search\SearchTemplate.html" />
-    <Content Include="Client\App\Index\Search\DatePicker\DatePickerTemplate.html" />
+    <Content Include="Client\App\CommonComponents\DatePicker\DatePickerTemplate.html" />
     <Content Include="Client\App\Index\Search\RadioChooser\RadioChooserTemplate.html" />
     <Content Include="Client\App\Layout\Footer\FooterTemplate.html" />
     <Content Include="Client\App\Layout\Header\HeaderTemplate.html" />
     <Content Include="Client\App\Layout\LayoutTemplate.html" />
     <Content Include="Client\App\SearchResults\FlightResults\FlightResult.html" />
+    <Content Include="Client\App\SearchResults\FlightResults\Tickets\TicketTemplate.html" />
     <Content Include="Client\App\SearchResults\SearchHeader\SearchHeaderTemplate.html" />
     <Content Include="Client\App\SearchResults\SearchResultTemplate.html" />
-    <Content Include="Client\App\SearchResults\Sorting\SortingTemplate.html" />
+    <Content Include="Client\Libs\bootstrap-datepicker.css" />
     <Content Include="Client\Libs\bootstrap.css" />
-    <Content Include="Client\Libs\bootstrap.js" />
-    <Content Include="Client\Libs\jquery-ui-1.12.1.min.js" />
-    <Content Include="Client\Libs\jquery-ui.css" />
-    <Content Include="Client\Libs\jquery-ui.js" />
-    <Content Include="Client\Libs\jquery.js" />
-    <Content Include="Client\Libs\knockout.js" />
     <Content Include="Client\Libs\pager.js" />
-    <Content Include="Content\themes\base\accordion.css" />
-    <Content Include="Content\themes\base\all.css" />
-    <Content Include="Content\themes\base\autocomplete.css" />
-    <Content Include="Content\themes\base\base.css" />
-    <Content Include="Content\themes\base\button.css" />
-    <Content Include="Content\themes\base\core.css" />
-    <Content Include="Content\themes\base\datepicker.css" />
-    <Content Include="Content\themes\base\dialog.css" />
-    <Content Include="Content\themes\base\draggable.css" />
-    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
-    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
-    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_444444_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_555555_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_777620_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_777777_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_cc0000_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_ffffff_256x240.png" />
-    <Content Include="Content\themes\base\jquery-ui.css" />
-    <Content Include="Content\themes\base\jquery-ui.min.css" />
-    <Content Include="Content\themes\base\menu.css" />
-    <Content Include="Content\themes\base\progressbar.css" />
-    <Content Include="Content\themes\base\resizable.css" />
-    <Content Include="Content\themes\base\selectable.css" />
-    <Content Include="Content\themes\base\selectmenu.css" />
-    <Content Include="Content\themes\base\slider.css" />
-    <Content Include="Content\themes\base\sortable.css" />
-    <Content Include="Content\themes\base\spinner.css" />
-    <Content Include="Content\themes\base\tabs.css" />
-    <Content Include="Content\themes\base\theme.css" />
-    <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
@@ -302,6 +256,8 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Client\App\App.ts" />
+    <TypeScriptCompile Include="Client\App\Bindings.ts" />
+    <TypeScriptCompile Include="Client\App\CommonComponents\IKnockoutBinding.ts" />
     <TypeScriptCompile Include="Client\App\Components.ts" />
     <TypeScriptCompile Include="Client\App\Index\IndexComponent.ts" />
     <TypeScriptCompile Include="Client\App\Index\IndexViewModel.ts" />
@@ -309,9 +265,10 @@
     <TypeScriptCompile Include="Client\App\Index\Search\Autocomplete\AutocompleteViewModel.ts" />
     <TypeScriptCompile Include="Client\App\Index\Search\Autocomplete\CityItem\CityItem.ts" />
     <TypeScriptCompile Include="Client\App\Index\Search\Autocomplete\IAutocompleteOptions.ts" />
-    <TypeScriptCompile Include="Client\App\Index\Search\DatePicker\DatePickerComponent.ts" />
-    <TypeScriptCompile Include="Client\App\Index\Search\DatePicker\DatePickerViewModel.ts" />
-    <TypeScriptCompile Include="Client\App\Index\Search\DatePicker\IDatePickerOptions.ts" />
+    <TypeScriptCompile Include="Client\App\CommonComponents\DatePicker\DatePickerBinding.ts" />
+    <TypeScriptCompile Include="Client\App\CommonComponents\DatePicker\DatePickerComponent.ts" />
+    <TypeScriptCompile Include="Client\App\CommonComponents\DatePicker\DatePickerViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\CommonComponents\DatePicker\IDatePickerOptions.ts" />
     <TypeScriptCompile Include="Client\App\Index\Search\SearchComponent.ts" />
     <TypeScriptCompile Include="Client\App\Index\Search\SearchViewModel.ts" />
     <TypeScriptCompile Include="Client\App\Index\Search\RadioChooser\RadioChooserComponent.ts" />
@@ -328,12 +285,19 @@
     <TypeScriptCompile Include="Client\App\SearchResults\FlightResults\FlightResultComponent.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\FlightResults\FlightResultViewModel.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\FlightResults\IFlightItemOptions.ts" />
+    <TypeScriptCompile Include="Client\App\SearchResults\FlightResults\Tickets\TicketComponent.ts" />
+    <TypeScriptCompile Include="Client\App\SearchResults\FlightResults\Tickets\TicketItem.ts" />
+    <TypeScriptCompile Include="Client\App\SearchResults\FlightResults\Tickets\ITicketOptions.ts" />
+    <TypeScriptCompile Include="Client\App\SearchResults\FlightResults\Tickets\TicketViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\SearchResults\SearchHeader\ISearchHeaderOptions.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\SearchHeader\SearchHeaderComponent.ts" />
+    <TypeScriptCompile Include="Client\App\SearchResults\SearchHeader\SearchHeaderItem.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\SearchHeader\SearchHeaderViewModel.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\SearchResultComponent.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\SearchResultViewModel.ts" />
-    <TypeScriptCompile Include="Client\App\SearchResults\Sorting\SortingComponent.ts" />
-    <TypeScriptCompile Include="Client\App\SearchResults\Sorting\SortingViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\Validation\DateAfter.ts" />
+    <TypeScriptCompile Include="Client\App\Validation\IValidationRule.ts" />
+    <TypeScriptCompile Include="Client\App\ValidationRules.ts" />
     <TypeScriptCompile Include="Client\Libs\typings\knockout\knockout.d.ts" />
     <TypeScriptCompile Include="Client\Libs\typings\pager\pager.d.ts" />
     <TypeScriptCompile Include="Client\Libs\typings\require\require.d.ts" />

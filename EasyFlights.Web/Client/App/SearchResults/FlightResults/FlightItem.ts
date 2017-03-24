@@ -1,31 +1,25 @@
 ﻿import ko = require("knockout");
+import Item = require("./Tickets/TicketItem");
+import TicketItem = Item.TicketItem;
 
 export class FlightItem {
     public id: number;
-    public flight: KnockoutObservable<string>;
-    public country: KnockoutObservable<string>;
-    public flightType: KnockoutObservable<string>;
-    public departure: KnockoutObservable<string>;
-    public duration: KnockoutObservable<string>;
-    public arrival: KnockoutObservable<string>;
-    public cityArrival: KnockoutObservable<string>;
-    
+    public departureDate: string;
+    public arrivalDate: string;
+    public departureAirport: string;
+    public arrivalAirport: string;
+    public tickets: Array<TicketItem>;
+    public totalCost: number;
+    public totalDuration: number;
 
-    constructor(id: number, flight: string, country: string, flightType: string, departure: string, duration: string, arrival: string, cityArrival: string) {
+    constructor(id: number, departureDate: string, arrivalDate: string, departureAirport: string, arrivalAirport: string, tickets: Array<TicketItem>, totalCost: number, totalDuration: number) {
         this.id = id;
-        this.flight = ko.observable(flight);
-
-        this.country = ko.observable(country);
-        this.flightType = ko.observable(flightType);
-
-        this.departure = ko.observable(departure);
-        this.duration = ko.observable(duration);
-        
-        
-        this.arrival = ko.observable(arrival);
-        this.cityArrival = ko.observable(cityArrival);
-        
-  
-        
+        this.tickets = tickets;
+        this.arrivalAirport = arrivalAirport;
+        this.departureAirport = departureAirport;
+        this.arrivalDate = arrivalDate;
+        this.departureDate = departureDate;
+        this.totalCost = totalCost;
+        this.totalDuration = totalDuration;
     }
 }
