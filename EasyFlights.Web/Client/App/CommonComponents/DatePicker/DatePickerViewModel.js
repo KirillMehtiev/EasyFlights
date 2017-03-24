@@ -5,6 +5,7 @@ var DatePickerViewModel = (function () {
             date: true
         });
         this.label = options.label;
+        this.name = options.name;
     }
     return DatePickerViewModel;
 }());
