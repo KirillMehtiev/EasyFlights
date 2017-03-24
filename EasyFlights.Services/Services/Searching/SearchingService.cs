@@ -77,9 +77,11 @@ namespace EasyFlights.Services.Services.Searching
                        ScheduledArrivalTime = flight.ScheduledArrivalTime,
                        DepartureAirportTitle = flight.DepartureAirport.Title,
                        DestinationAirportTitle = flight.DestinationAirport.Title,
+                       Duration = flight.ScheduledDepartureTime - flight.ScheduledArrivalTime,
+                       DefaultFare = flight.DefaultFare,
 
                        // TODO: figure out what this dto should contain
-                       Aircraft = new AircraftDto()
+                        Aircraft = new AircraftDto()
                     }).ToList(),
                 TotalCost = totalCost,
                 TotalTime = totalTime
