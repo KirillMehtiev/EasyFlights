@@ -97,6 +97,10 @@
     <Compile Include="Migrations\201703241158284_Unknown.Designer.cs">
       <DependentUpon>201703241158284_Unknown.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703241319067_AdjustAirport.cs" />
+    <Compile Include="Migrations\201703241319067_AdjustAirport.Designer.cs">
+      <DependentUpon>201703241319067_AdjustAirport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Seed\AircraftsCSVSeeder.cs" />
     <Compile Include="Migrations\201703231630146_ChangeAiportTimeZoneOffsetType.cs" />
     <Compile Include="Migrations\201703231630146_ChangeAiportTimeZoneOffsetType.Designer.cs">
@@ -158,6 +162,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703241158284_Unknown.resx">
       <DependentUpon>201703241158284_Unknown.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703241319067_AdjustAirport.resx">
+      <DependentUpon>201703241319067_AdjustAirport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

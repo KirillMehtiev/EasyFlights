@@ -1,4 +1,5 @@
-﻿import { CityItem } from "./CityItem/CityItem";
+﻿import $ = require("jquery");
+import { CityItem } from "./CityItem/CityItem";
 import { IAutocompleteOptions } from "./IAutocompleteOptions";
 
 class AutocompleteViewModel {
@@ -14,8 +15,9 @@ class AutocompleteViewModel {
     }
 
     loadCities(): void {
-        $("#dir_From").autocomplete({
+       $("#dir_From").autocomplete({
             source(request, response) {
+                console.log("Hi");
                 var autocompleteUrl = '/api/Typeahead' + '?name=' + request.term;
                 $.ajax({
                     url: autocompleteUrl,
@@ -26,7 +28,7 @@ class AutocompleteViewModel {
                     }
                 });
             },  
-            minLength: 3
+            minLength: 1
         });
     }
 }

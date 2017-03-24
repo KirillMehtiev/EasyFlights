@@ -1,4 +1,5 @@
 "use strict";
+var $ = require("jquery");
 var AutocompleteViewModel = (function () {
     function AutocompleteViewModel(options) {
         this.searchCity = options.searchCity;
@@ -9,6 +10,7 @@ var AutocompleteViewModel = (function () {
     AutocompleteViewModel.prototype.loadCities = function () {
         $("#dir_From").autocomplete({
             source: function (request, response) {
+                console.log("Hi");
                 var autocompleteUrl = '/api/Typeahead' + '?name=' + request.term;
                 $.ajax({
                     url: autocompleteUrl,
@@ -19,7 +21,7 @@ var AutocompleteViewModel = (function () {
                     }
                 });
             },
-            minLength: 3
+            minLength: 1
         });
     };
     return AutocompleteViewModel;
