@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using EasyFlights.Data.Repositories.Base;
+using EasyFlights.Data.Repositories.Cities;
 using EasyFlights.DomainModel.Entities;
 using EasyFlights.Services.Interfaces;
 
@@ -9,9 +9,9 @@ namespace EasyFlights.Services.Services.Typeahead
 {
     public class TypeaheadService : ITypeaheadProvider<City>
     {
-        private readonly IRepository<City> repository;
+        private readonly ICitiesRepository repository;
 
-        public TypeaheadService(IRepository<City> repository)
+        public TypeaheadService(ICitiesRepository repository)
         {
             this.repository = repository;
         }
@@ -30,7 +30,7 @@ namespace EasyFlights.Services.Services.Typeahead
                           partialName.ToLowerInvariant().Substring(1);
             return
                 repository.GetAll()
-                    .Where(x => x.Name.StartsWith(partialName) || x.Airports.Any(y => y.Title.StartsWith(partialName)))
+                    .Where(x => (x.Name.StartsWith(partialName) || x.Airports.Any(y => y.Title.StartsWith(partialName))))
                     .ToList();
         }
     }
