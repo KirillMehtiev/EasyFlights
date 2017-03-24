@@ -3,26 +3,25 @@ var AutocompleteViewModel = (function () {
     function AutocompleteViewModel(options) {
         this.searchCity = options.searchCity;
         this.label = options.label;
-        this.loadCities.bind(this);
+        this.direction = options.direction;
+        this.loadCities();
     }
-    AutocompleteViewModel.prototype.loadCities = function (obj, event) {
-        $("#query").autocomplete({
+    AutocompleteViewModel.prototype.loadCities = function () {
+        $("#dir_From").autocomplete({
             source: function (request, response) {
+                var autocompleteUrl = '/api/Typeahead' + '?name=' + request.term;
                 $.ajax({
-                    url: "/Typehead/GetCitiesForTypeahead",
-                    type: "POST",
+                    url: autocompleteUrl,
+                    type: "GET",
                     dataType: "json",
-                    data: { Prefix: request.term },
                     success: function (data) {
-                        response($.map(data, function (item) { return ({ label: item.Name, value: item.Name }); }));
+                        response($.map(data, function (item) { return ({ label: item.City + ", " + item.Name, value: item.Name }); }));
+                        this.searchCity = response;
                     }
                 });
             },
-            minLength: 3,
-            select: this.onCityCheck
+            minLength: 3
         });
-    };
-    AutocompleteViewModel.prototype.onCityCheck = function (event, ui) {
     };
     return AutocompleteViewModel;
 }());

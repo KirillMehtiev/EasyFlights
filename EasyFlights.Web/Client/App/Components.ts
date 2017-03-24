@@ -7,5 +7,6 @@ import "./SearchResults/Sorting/SortingComponent";
 import "./SearchResults/SearchHeader/SearchHeaderComponent";
 import "./Index/Search/DatePicker/DatePickerComponent";
 import "./Index/Search/SearchComponent";
+import "./Index/Search/Autocomplete/AutocompleteComponent";
 import "./Index/Search/RadioChooser/RadioChooserComponent";
-import  "./SearchResults/FlightResults/FlightResultComponent"
+import "./SearchResults/FlightResults/FlightResultComponent";

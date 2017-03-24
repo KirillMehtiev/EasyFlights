@@ -2,6 +2,7 @@
 exports.__esModule = true;
 var ko = require("knockout");
 var pager = require("pager");
+require('jquery-ui');
 require("./Components");
 require("./App.scss");
 var Application = (function () {

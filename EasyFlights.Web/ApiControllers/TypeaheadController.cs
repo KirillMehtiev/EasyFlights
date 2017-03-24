@@ -1,11 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
+using EasyFlights.Data.Repositories.Base;
 using EasyFlights.DomainModel.Entities;
 using EasyFlights.Services.Interfaces;
 using EasyFlights.WebApi.ViewModels;
 
+
 namespace EasyFlights.WebApi.ApiControllers
 {
+    [System.Web.Http.RoutePrefix("api/typeahead")]
     public class TypeaheadController : ApiController
     {
         private readonly ITypeaheadProvider<City> provider;
@@ -15,29 +18,34 @@ namespace EasyFlights.WebApi.ApiControllers
             this.provider = provider;
         }
 
-        [HttpPost]
+        [HttpGet]
+        [Route]
         public List<AirportViewModel> GetAirportsForTypeahead(string name)
         {
-            var airports = new List<AirportViewModel>();
-            List<City> cities = provider.GetTypeahead(name);
-            if (cities == null || cities.Count == 0)
-            {
-                return new List<AirportViewModel>();
-            }
-            foreach (City city in cities)
-            {
-                foreach (Airport airport in city.Airports)
+            
+                var airports = new List<AirportViewModel>();
+                List<City> cities = provider.GetTypeahead(name);
+                if (cities == null || cities.Count == 0)
                 {
-                    airports.Add(new AirportViewModel()
-                    {
-                        Id = airport.Id,
-                        City = airport.City?.Name,
-                        Country = airport.City?.Country?.Name,
-                        Name = airport.Title
-                    });
+                    return new List<AirportViewModel>();
                 }
-            }
-            return airports;
+                foreach (City city in cities)
+                {
+                    foreach (Airport airport in city.Airports)
+                    {
+                        airports.Add(new AirportViewModel()
+                        {
+                            Id = airport.Id,
+                            City = airport.City?.Name,
+                            Country = airport.City?.Country?.Name,
+                            Name = airport.Title
+                        });
+                    }
+                }
+
+                return airports;
+            
         }
     }
 }
+

@@ -17,7 +17,7 @@ namespace EasyFlights.Web.NinjectModules
             this.Bind<IDataContext>().To<EasyFlightsDataContext>().InRequestScope();
 
             // Repositories
-            this.Bind<IRepository<BaseEntity>>().To<Repository<BaseEntity>>();
+            this.Bind(typeof(IRepository<>)).To(typeof(Repository<>));
         }
     }
 }
