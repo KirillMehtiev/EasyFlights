@@ -3,6 +3,7 @@ exports.__esModule = true;
 var ko = require("knockout");
 var validation = require("knockout.validation");
 var pager = require("pager");
+require('jquery-ui');
 require("./Components");
 require("./ValidationRules");
 require("./Bindings");

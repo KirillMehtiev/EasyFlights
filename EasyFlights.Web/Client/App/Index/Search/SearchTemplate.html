@@ -1,16 +1,16 @@
 ﻿<form>
     <!-- params is IRadioChooserOption if change signarute reflect it here -->
     <radio-chooser params="options: options, selectedOption:selectedTicketType"></radio-chooser>
+    
+    <div class="row">
+        <autocomplete params="searchCity: searchCityFrom, label: 'Place of departure:', direction: 'From'"></autocomplete>
+    </div>
 
     <div class="row">
         <date-picker class="col-md-6" params="label: 'Departure date:', selectedDate: selectedDepartureDate, name: departureDateName"></date-picker>
         <date-picker class="col-md-6" params="label: 'Return date:', selectedDate: selectedReturnDate, name: returnDateName" data-bind="visible: isRoundTripSelected"></date-picker>
     </div>
     
-    <div class="row">
-        <autocomple params="searchCity: searchCityFrom"></autocomple>
-        <autocomple params="searchCity: searchCityTo"></autocomple>
-    </div>
     <div class="row">
         <input type="submit" class="btn btn-default" onclick="location.href='#results'"/>
     </div>
