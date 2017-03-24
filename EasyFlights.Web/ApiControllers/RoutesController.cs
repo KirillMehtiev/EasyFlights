@@ -5,12 +5,14 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using EasyFlights.Services.Interfaces;
+using System.Threading.Tasks;
+using EasyFlights.Web.Util;
+using EasyFlights.Web.Util.Mappers;
+using EasyFlights.Web.Util.Mappers.Interfaces;
+using EasyFlights.Web.ViewModels;
 
 namespace EasyFlights.Web.ApiControllers
 {
-    using System.Threading.Tasks;
-    using EasyFlights.Web.Util;
-
     public class RoutesController : ApiController
     {
         private readonly ISearchingService searchingService;
@@ -21,11 +23,11 @@ namespace EasyFlights.Web.ApiControllers
         }
 
         // GET api/<controller>
-        public async Task<IEnumerable<string>> Get(int departureAirportId, int destinationAirportId, DateTime departureTime)
+        public async Task<IEnumerable<RouteViewModel>> Get(int departureAirportId, int destinationAirportId, DateTime departureTime)
         {
             DateTime? returnDate = null;
             var numberOfPeople = 1;
-            
+
             var routes = await this.searchingService.FindRoutesBetweenAirportsAsync(
                 departureAirportId,
                 destinationAirportId,
@@ -33,10 +35,9 @@ namespace EasyFlights.Web.ApiControllers
                 departureTime,
                 returnDate);
 
-            var result = routes.Select(Mapper.MapToRouteViewModel);
+            var result = routes.Select(new RouteMapper().MapToRouteViewModel);
 
-            return null;
+            return result;
         }
-
     }
 }

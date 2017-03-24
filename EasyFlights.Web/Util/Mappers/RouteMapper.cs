@@ -4,16 +4,16 @@ using System.Linq;
 using System.Web;
 using EasyFlights.DomainModel.DTOs;
 using EasyFlights.Web.ViewModels;
+using EasyFlights.Web.Util.Mappers.Interfaces;
 
-namespace EasyFlights.Web.Util
+namespace EasyFlights.Web.Util.Mappers
 {
-
-    public class Mapper
+    public class RouteMapper : IRouteMapper
     {
         private const string DataFormat = "D";
         private const string DurationFormat = @"dd\.hh\:mm";
 
-        public static RouteViewModel MapToRouteViewModel(RouteDto route)
+        public RouteViewModel MapToRouteViewModel(RouteDto route)
         {
             var routeViewModel = new RouteViewModel();
             var firstFlight = route.Flights.FirstOrDefault();
@@ -21,7 +21,7 @@ namespace EasyFlights.Web.Util
 
             routeViewModel.TotalCoast = route.TotalCost;
             routeViewModel.TotalTime = route.TotalTime.ToString(DurationFormat);
-            routeViewModel.Flights = route.Flights.Select(Mapper.MapToFlightViewModel);
+            routeViewModel.Flights = route.Flights.Select(MapToFlightViewModel);
 
             if (firstFlight != null)
             {
@@ -37,7 +37,7 @@ namespace EasyFlights.Web.Util
             return routeViewModel;
         }
 
-        private static FlightViewModel MapToFlightViewModel(FlightDto flight)
+        public FlightViewModel MapToFlightViewModel(FlightDto flight)
         {
             return new FlightViewModel
             {
