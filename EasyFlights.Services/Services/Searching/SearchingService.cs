@@ -22,7 +22,7 @@ namespace EasyFlights.Services.Services.Searching
             this.routeBuilder = routeBuilder;
         }
         
-        public async Task<IEnumerable<RouteDto>> FindRoutesBetweenAirportsAsync(int departureAirportId, int destinationAirportId, int numberOfPassengers, DateTime departureTime, DateTime? returnTime)
+        public async Task<IEnumerable<RouteDto>> FindRoutesBetweenAirportsAsync(int departureAirportId, int destinationAirportId, int numberOfPassengers, DateTime departureTime, DateTime? returnTime = null)
         {
             // TODO: move error messages to resources
             Guard.ArgumentValid(departureAirportId > 0, "Given parameter has to be greater then 0", nameof(departureAirportId));
