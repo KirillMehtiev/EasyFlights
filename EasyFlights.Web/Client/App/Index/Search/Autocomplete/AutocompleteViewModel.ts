@@ -15,7 +15,9 @@ class AutocompleteViewModel {
     }
 
     loadCities(): void {
-       $("#dir_From").autocomplete({
+        var name = "#" + this.direction;
+        let element = $(name).find("input");
+        $(element).autocomplete({
             source(request, response) {
                 console.log("Hi");
                 var autocompleteUrl = '/api/Typeahead' + '?name=' + request.term;

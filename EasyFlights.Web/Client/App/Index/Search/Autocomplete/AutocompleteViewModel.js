@@ -8,7 +8,9 @@ var AutocompleteViewModel = (function () {
         this.loadCities();
     }
     AutocompleteViewModel.prototype.loadCities = function () {
-        $("#dir_From").autocomplete({
+        var name = "#" + this.direction;
+        var element = $(name).find("input");
+        $(element).autocomplete({
             source: function (request, response) {
                 console.log("Hi");
                 var autocompleteUrl = '/api/Typeahead' + '?name=' + request.term;
