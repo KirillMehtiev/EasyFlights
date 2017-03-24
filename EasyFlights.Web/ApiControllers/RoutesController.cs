@@ -8,6 +8,7 @@ using EasyFlights.Services.Interfaces;
 
 namespace EasyFlights.Web.ApiControllers
 {
+    using System.Threading.Tasks;
     using EasyFlights.Web.Util;
 
     public class RoutesController : ApiController
@@ -20,19 +21,19 @@ namespace EasyFlights.Web.ApiControllers
         }
 
         // GET api/<controller>
-        public IEnumerable<string> Get(int departureAirportId, int destinationAirportId, DateTime departureTime)
+        public async Task<IEnumerable<string>> Get(int departureAirportId, int destinationAirportId, DateTime departureTime)
         {
             DateTime? returnDate = null;
             var numberOfPeople = 1;
             
-            var routes = this.searchingService.FindRoutesBetweenAirportsAsync(
+            var routes = await this.searchingService.FindRoutesBetweenAirportsAsync(
                 departureAirportId,
                 destinationAirportId,
                 numberOfPeople,
                 departureTime,
                 returnDate);
 
-            var result = routes.Result.Select(Mapper.MapToRouteViewModel);
+            var result = routes.Select(Mapper.MapToRouteViewModel);
 
             return null;
         }

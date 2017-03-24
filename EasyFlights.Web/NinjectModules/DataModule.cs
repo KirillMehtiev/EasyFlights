@@ -7,6 +7,7 @@ namespace EasyFlights.Web.NinjectModules
 {
     using Data.DataContexts;
 
+    using EasyFlights.Data.Repositories.Cities;
     using EasyFlights.Data.Repositories.Flights;
 
     using Ninject.Modules;
@@ -22,6 +23,7 @@ namespace EasyFlights.Web.NinjectModules
             // Repositories
             this.Bind<IFlightsRepository>().To<FlightsRepository>().InRequestScope();
             this.Bind<IRepository<City>>().To<Repository<City>>();
+            this.Bind<IAirportsRepository>().To<AirportsRepository>();
         }
     }
 }
