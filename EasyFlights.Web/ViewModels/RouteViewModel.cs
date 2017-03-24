@@ -11,6 +11,9 @@ namespace EasyFlights.Web.ViewModels
         [JsonProperty("departurePlace")]
         public string DeparturePlace { get; set; }
 
+        [JsonProperty("destinationPlace")]
+        public string DestinationPlace { get; set; }
+
         [JsonProperty("arrivalPlace")]
         public string ArrivalPlace { get; set; }
 
@@ -19,5 +22,11 @@ namespace EasyFlights.Web.ViewModels
 
         [JsonProperty("flights")]
         public IEnumerable<FlightViewModel> Flights { get; set; }
+
+        [JsonProperty("totalCoast")]
+        public decimal TotalCoast { get; set; }
+
+        [JsonProperty("totalTime")]
+        public string TotalTime { get; set; }
     }
 }

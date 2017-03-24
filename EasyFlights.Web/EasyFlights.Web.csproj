@@ -188,6 +188,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Util\Mapper.cs" />
     <Compile Include="Util\NinjectDependencyResolver.cs" />
     <Compile Include="Util\NinjectDependencyScope.cs" />
     <Compile Include="NinjectModules\DataModule.cs" />
