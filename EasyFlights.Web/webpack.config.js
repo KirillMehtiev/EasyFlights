@@ -14,9 +14,7 @@ module.exports = {
     context: appDirectory,
     resolve: {
         alias: {
-            knockout: appDirectory + '/Libs/knockout',
-            pager: appDirectory + '/Libs/pager',
-            jquery: appDirectory + '/Libs/jquery',
+            pager: appDirectory + '/Libs/pager'
             'jquery-ui': appDirectory + '/Libs/jquery-ui'
         },
         extensions: ['.ts', '.tsx', '.js']
@@ -55,9 +53,8 @@ module.exports = {
     plugins: [
         new webpack.ProvidePlugin({
             $: "jquery",
-            ko: "knockout",
-            'jQuery': 'jquery',
-            'global.jQuery': 'jquery'
+            jQuery: "jquery",
+            ko: "knockout"
         }),
         new webpack.optimize.CommonsChunkPlugin({
             names: ['libs', 'manifest']
