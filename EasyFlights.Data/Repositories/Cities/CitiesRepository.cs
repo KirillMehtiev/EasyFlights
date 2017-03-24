@@ -4,9 +4,9 @@ using EasyFlights.DomainModel.Entities;
 
 namespace EasyFlights.Data.Repositories.Cities
 {
-    public class AirportsRepository : Repository<Airport>, IAirportsRepository
+    public class CitiesRepository : Repository<City>, ICitiesRepository
     {
-        public AirportsRepository(IDataContext dataContext) : base(dataContext)
+        public CitiesRepository(IDataContext dataContext) : base(dataContext)
         {
         }
     }

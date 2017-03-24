@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using EasyFlights.Data.Repositories.Cities;
+using EasyFlights.Data.Repositories.Airports;
 using EasyFlights.DomainModel.DTOs;
 using EasyFlights.DomainModel.Entities;
 using EasyFlights.Engines.RouteBuilding;
