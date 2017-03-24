@@ -209,7 +209,6 @@
     <Content Include="Client\App\SearchResults\FlightResults\Tickets\TicketTemplate.html" />
     <Content Include="Client\App\SearchResults\SearchHeader\SearchHeaderTemplate.html" />
     <Content Include="Client\App\SearchResults\SearchResultTemplate.html" />
-    <Content Include="Client\App\SearchResults\Sorting\SortingTemplate.html" />
     <Content Include="Client\Libs\bootstrap-datepicker.css" />
     <Content Include="Client\Libs\bootstrap.css" />
     <Content Include="Client\Libs\pager.js" />
@@ -290,12 +289,12 @@
     <TypeScriptCompile Include="Client\App\SearchResults\FlightResults\Tickets\TicketItem.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\FlightResults\Tickets\ITicketOptions.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\FlightResults\Tickets\TicketViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\SearchResults\SearchHeader\ISearchHeaderOptions.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\SearchHeader\SearchHeaderComponent.ts" />
+    <TypeScriptCompile Include="Client\App\SearchResults\SearchHeader\SearchHeaderItem.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\SearchHeader\SearchHeaderViewModel.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\SearchResultComponent.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\SearchResultViewModel.ts" />
-    <TypeScriptCompile Include="Client\App\SearchResults\Sorting\SortingComponent.ts" />
-    <TypeScriptCompile Include="Client\App\SearchResults\Sorting\SortingViewModel.ts" />
     <TypeScriptCompile Include="Client\App\Validation\DateAfter.ts" />
     <TypeScriptCompile Include="Client\App\Validation\IValidationRule.ts" />
     <TypeScriptCompile Include="Client\App\ValidationRules.ts" />

@@ -4,10 +4,8 @@ import { IFlightItemOptions } from "./IFlightItemOptions";
 import { TicketItem } from "./Tickets/TicketItem";
 
 class FlightResultViewModel {
-    
-   
+  
     public item: FlightItem;
-    
 
     constructor(options: IFlightItemOptions) {
       
