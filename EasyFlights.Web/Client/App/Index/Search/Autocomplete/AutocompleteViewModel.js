@@ -23,7 +23,7 @@ var AutocompleteViewModel = (function () {
                     }
                 });
             },
-            minLength: 1
+            minLength: 2
         });
     };
     return AutocompleteViewModel;

@@ -30,7 +30,7 @@ class AutocompleteViewModel {
                     }
                 });
             },  
-            minLength: 1
+            minLength: 2
         });
     }
 }
