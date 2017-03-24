@@ -12,6 +12,10 @@ namespace EasyFlights.DomainModel.DTOs
 
         public string DestinationAirportTitle { get; set; }
 
+        public TimeSpan Duration { get; set; }
+
+        public decimal DefaultFare { get; set; }
+
         public AircraftDto Aircraft { get; set; }
     }
 }
