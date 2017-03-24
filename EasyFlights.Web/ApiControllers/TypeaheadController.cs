@@ -1,14 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
-using EasyFlights.Data.Repositories.Base;
 using EasyFlights.DomainModel.Entities;
 using EasyFlights.Services.Interfaces;
 using EasyFlights.WebApi.ViewModels;
 
-
-namespace EasyFlights.WebApi.ApiControllers
+namespace EasyFlights.Web.ApiControllers
 {
-    [System.Web.Http.RoutePrefix("api/typeahead")]
+    [RoutePrefix("api/Typeahead")]
     public class TypeaheadController : ApiController
     {
         private readonly ITypeaheadProvider<City> provider;
@@ -21,10 +19,9 @@ namespace EasyFlights.WebApi.ApiControllers
         [HttpGet]
         [Route]
         public List<AirportViewModel> GetAirportsForTypeahead(string name)
-        {
-            
+        {     
                 var airports = new List<AirportViewModel>();
-                List<City> cities = provider.GetTypeahead(name);
+                List<City> cities = this.provider.GetTypeahead(name);
                 if (cities == null || cities.Count == 0)
                 {
                     return new List<AirportViewModel>();
@@ -42,10 +39,7 @@ namespace EasyFlights.WebApi.ApiControllers
                         });
                     }
                 }
-
-                return airports;
-            
+                return airports;       
         }
     }
 }
-

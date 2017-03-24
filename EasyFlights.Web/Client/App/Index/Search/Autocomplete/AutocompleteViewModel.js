@@ -16,7 +16,6 @@ var AutocompleteViewModel = (function () {
                     dataType: "json",
                     success: function (data) {
                         response($.map(data, function (item) { return ({ label: item.City + ", " + item.Name, value: item.Name }); }));
-                        this.searchCity = response;
                     }
                 });
             },

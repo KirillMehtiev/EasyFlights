@@ -23,7 +23,6 @@ class AutocompleteViewModel {
                     dataType: "json",
                     success(data) {
                         response($.map(data, item => ({ label: item.City + ", "+item.Name, value: item.Name })));
-                        this.searchCity = response;
                     }
                 });
             },  
