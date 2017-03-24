@@ -4,32 +4,30 @@ import { IAutocompleteOptions } from "./IAutocompleteOptions";
 class AutocompleteViewModel {
     searchCity: KnockoutObservable<string>;
     label: string;
+    direction: string;
 
     constructor(options: IAutocompleteOptions) {
         this.searchCity = options.searchCity;
         this.label = options.label;
-        this.loadCities.bind(this);
+        this.direction = options.direction;
+        this.loadCities();
     }
 
-    loadCities(obj, event): void {
-        $("#query").autocomplete({
+    loadCities(): void {
+        $("#dir_From").autocomplete({
             source(request, response) {
+                var autocompleteUrl = '/api/Typeahead' + '?name=' + request.term;
                 $.ajax({
-                    url: "/Typehead/GetCitiesForTypeahead",
-                    type: "POST",
+                    url: autocompleteUrl,
+                    type: "GET",
                     dataType: "json",
-                    data: { Prefix: request.term },
                     success(data) {
-                        response($.map(data, item => ({ label: item.Name, value: item.Name })));
+                        response($.map(data, item => ({ label: item.City + ", "+item.Name, value: item.Name })));
                     }
                 });
             },  
-            minLength: 3,
-            select: this.onCityCheck
+            minLength: 3
         });
-    }
-
-    onCityCheck(event: Event, ui : JQueryUI.AutocompleteUIParams) : void {       
     }
 }
 

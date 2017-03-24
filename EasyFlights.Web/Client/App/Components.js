@@ -9,6 +9,7 @@ require("./SearchResults/Sorting/SortingComponent");
 require("./SearchResults/SearchHeader/SearchHeaderComponent");
 require("./CommonComponents/DatePicker/DatePickerComponent");
 require("./Index/Search/SearchComponent");
+require("./Index/Search/Autocomplete/AutocompleteComponent");
 require("./Index/Search/RadioChooser/RadioChooserComponent");
 require("./SearchResults/FlightResults/FlightResultComponent");
 require("./SearchResults/FlightResults/Tickets/TicketComponent");

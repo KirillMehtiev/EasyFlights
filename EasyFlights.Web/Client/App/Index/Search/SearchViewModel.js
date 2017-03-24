@@ -10,6 +10,13 @@ var TicketType = (function () {
 }());
 TicketType.oneWay = "OneWay";
 TicketType.roundTrip = "RoundTrip";
+var DatePickerType = (function () {
+    function DatePickerType() {
+    }
+    return DatePickerType;
+}());
+DatePickerType.departureDate = "departureDate";
+DatePickerType.returnDate = "returnDate";
 var SearchViewModel = (function () {
     function SearchViewModel() {
         this.options = [
@@ -17,6 +24,8 @@ var SearchViewModel = (function () {
             new RadioChooserItem_1.RadioChooserItem("Round trip", TicketType.roundTrip)
         ];
         this.cityList = [new Item.CityItem("City 1", 1), new Item.CityItem("City 2", 2)];
+        this.departureDateName = ko.observable(DatePickerType.departureDate);
+        this.returnDateName = ko.observable(DatePickerType.returnDate);
         this.selectedTicketType = ko.observable(TicketType.oneWay);
         this.selectedDepartureDate = ko.observable("").extend({
             dateAfter: moment().format("L")

@@ -2,7 +2,7 @@
 using System.Linq;
 using EasyFlights.DomainModel.Entities;
 using EasyFlights.Services.Interfaces;
-using EasyFlights.WebApi.ApiControllers;
+using EasyFlights.Web.ApiControllers;
 using EasyFlights.WebApi.ViewModels;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;

@@ -93,6 +93,10 @@
     <Compile Include="Migrations\201703231723574_one-to-one-removed.Designer.cs">
       <DependentUpon>201703231723574_one-to-one-removed.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703241158284_Unknown.cs" />
+    <Compile Include="Migrations\201703241158284_Unknown.Designer.cs">
+      <DependentUpon>201703241158284_Unknown.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Seed\AircraftsCSVSeeder.cs" />
     <Compile Include="Migrations\201703231630146_ChangeAiportTimeZoneOffsetType.cs" />
     <Compile Include="Migrations\201703231630146_ChangeAiportTimeZoneOffsetType.Designer.cs">
@@ -124,6 +128,8 @@
     </Compile>
     <Compile Include="Repositories\Base\IRepository.cs" />
     <Compile Include="Repositories\Base\Repository.cs" />
+    <Compile Include="Repositories\Cities\AirportsRepository.cs" />
+    <Compile Include="Repositories\Cities\IAirportsRepository.cs" />
     <Compile Include="Repositories\Flights\FlightsRepository.cs" />
     <Compile Include="Repositories\Flights\IFlightsRepository.cs" />
   </ItemGroup>
@@ -149,6 +155,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703231723574_one-to-one-removed.resx">
       <DependentUpon>201703231723574_one-to-one-removed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703241158284_Unknown.resx">
+      <DependentUpon>201703241158284_Unknown.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

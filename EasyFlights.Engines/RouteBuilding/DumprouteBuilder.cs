@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using EasyFlights.DomainModel.DTOs;
 using EasyFlights.DomainModel.Entities;
 
@@ -6,9 +8,10 @@ namespace EasyFlights.Engines.RouteBuilding
 {
     public class DumpRouteBuilder : IRouteBuilder
     {
-        Route IRouteBuilder.Build(Airport departure, Airport destination, DateTime departureDate)
+        public async Task<IEnumerable<Route>> BuildAsync(Airport departure, Airport destination, DateTime departureDate, int numberOfPassengers)
         {
-            throw new NotImplementedException();
+            // fake
+            return new List<Route>();
         }
     }
 }

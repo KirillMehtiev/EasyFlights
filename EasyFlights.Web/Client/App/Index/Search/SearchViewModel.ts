@@ -7,17 +7,22 @@ class TicketType {
     static oneWay = "OneWay";
     static roundTrip = "RoundTrip";
 }
-
+class DatePickerType {
+    static departureDate = "departureDate";
+    static returnDate = "returnDate";
+}
 class SearchViewModel {
     private options: Array<RadioChooserItem>;
     public cityList: Array<Item.CityItem>;
-        
+
     public selectedTicketType: KnockoutObservable<string>;
     public selectedDepartureDate: KnockoutObservable<string>;
     public selectedReturnDate: KnockoutObservable<string>;
     public isRoundTripSelected: KnockoutObservable<boolean>;
     public searchCityFrom: KnockoutObservable<string>;
     public searchCityTo: KnockoutObservable<string>;
+    public departureDateName: KnockoutObservable<string>
+    public returnDateName: KnockoutObservable<string>
 
     constructor() {
         this.options = [
@@ -25,6 +30,9 @@ class SearchViewModel {
             new RadioChooserItem("Round trip", TicketType.roundTrip)
         ];
         this.cityList = [new Item.CityItem("City 1", 1), new Item.CityItem("City 2", 2)];
+
+        this.departureDateName = ko.observable(DatePickerType.departureDate);
+        this.returnDateName = ko.observable(DatePickerType.returnDate);
 
         this.selectedTicketType = ko.observable(TicketType.oneWay);
 

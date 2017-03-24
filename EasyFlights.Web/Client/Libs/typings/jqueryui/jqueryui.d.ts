@@ -5,7 +5,6 @@
 
 
 /// <reference path="../jquery/jquery.d.ts"/>
-
 declare namespace JQueryUI {
     // Accordion //////////////////////////////////////////////////
 

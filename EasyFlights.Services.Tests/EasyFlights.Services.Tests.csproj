@@ -57,6 +57,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Searching\SearchingServiceTests.cs" />
+    <Compile Include="Services\Typeahead\TypeaheadByCitiesServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EasyFlights.Data\EasyFlights.Data.csproj">
@@ -66,6 +68,10 @@
     <ProjectReference Include="..\EasyFlights.DomainModel\EasyFlights.DomainModel.csproj">
       <Project>{499631ca-1843-4d61-8ec8-b206a20236f7}</Project>
       <Name>EasyFlights.DomainModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EasyFlights.Engines\EasyFlights.Engines.csproj">
+      <Project>{d1fbccbc-2a9a-4395-9ab7-911548974692}</Project>
+      <Name>EasyFlights.Engines</Name>
     </ProjectReference>
     <ProjectReference Include="..\EasyFlights.Services\EasyFlights.Services.csproj">
       <Project>{dd2b32cb-28f0-4fb7-ae5f-9dbd59bb66be}</Project>

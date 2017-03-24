@@ -14,7 +14,8 @@ module.exports = {
     context: appDirectory,
     resolve: {
         alias: {
-            pager: appDirectory + '/Libs/pager'
+            pager: appDirectory + '/Libs/pager',
+            'jquery-ui': appDirectory + '/Libs/jquery-ui'
         },
         extensions: ['.ts', '.tsx', '.js']
     },
