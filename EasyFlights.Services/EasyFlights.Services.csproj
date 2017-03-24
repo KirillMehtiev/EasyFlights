@@ -98,12 +98,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\Guard.cs" />
     <Compile Include="Identity\ApplicationRoleManager.cs" />
     <Compile Include="Identity\ApplicationUserManager.cs" />
-    <Compile Include="Interfaces\IFlightProvider.cs" />
+    <Compile Include="Interfaces\ISearchingService.cs" />
     <Compile Include="Interfaces\ITypeaheadProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\Flight\FlightService.cs" />
+    <Compile Include="Services\Searching\SearchingService.cs" />
     <Compile Include="Services\Typeahead\TypeaheadService.cs" />
   </ItemGroup>
   <ItemGroup>

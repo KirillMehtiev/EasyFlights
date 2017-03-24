@@ -85,6 +85,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTOs\AircraftDto.cs" />
+    <Compile Include="DTOs\FlightDto.cs" />
+    <Compile Include="DTOs\Route.cs" />
+    <Compile Include="DTOs\RouteDto.cs" />
     <Compile Include="Entities\Aircraft.cs" />
     <Compile Include="Entities\Airport.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
@@ -105,9 +109,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DTOs\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

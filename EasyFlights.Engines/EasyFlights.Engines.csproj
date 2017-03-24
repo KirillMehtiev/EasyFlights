@@ -40,9 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IRouteBuilder.cs" />
+    <Compile Include="RouteBuilding\DumpRouteBuilder.cs" />
+    <Compile Include="RouteBuilding\IRouteBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RouteBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EasyFlights.Data\EasyFlights.Data.csproj">
