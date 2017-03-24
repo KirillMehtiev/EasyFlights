@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using EasyFlights.Data.Repositories.Base;
 using EasyFlights.DomainModel.DTOs;
+using EasyFlights.DomainModel.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 

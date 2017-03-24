@@ -128,6 +128,8 @@
     </Compile>
     <Compile Include="Repositories\Base\IRepository.cs" />
     <Compile Include="Repositories\Base\Repository.cs" />
+    <Compile Include="Repositories\Cities\AirportsRepository.cs" />
+    <Compile Include="Repositories\Cities\IAirportsRepository.cs" />
     <Compile Include="Repositories\Flights\FlightsRepository.cs" />
     <Compile Include="Repositories\Flights\IFlightsRepository.cs" />
   </ItemGroup>

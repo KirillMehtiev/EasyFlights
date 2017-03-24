@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.Data.Entity;
+using System.Linq;
+using System.Threading.Tasks;
 using EasyFlights.Data.DataContexts;
 using EasyFlights.DomainModel.Entities;
 
@@ -21,6 +23,11 @@ namespace EasyFlights.Data.Repositories.Base
         public void Delete(T entity)
         {
             this.dataContext.Set<T>().Remove(entity);
+        }
+
+        public async Task<T> FindByIdAsync(int id)
+        {
+            return await this.GetAll().FirstOrDefaultAsync(entity => entity.Id == id);
         }
 
         public IQueryable<T> GetAll()

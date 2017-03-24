@@ -10,6 +10,6 @@ namespace EasyFlights.Services.Interfaces
     /// </summary>
     public interface ISearchingService
     {
-        Task<IEnumerable<RouteDto>> FindRoutesBetweenCitiesAsync(int deaprtureCityId, int destinationCityId, int numberOfPassengers, DateTime departureTime, DateTime? returnTime);
+        Task<IEnumerable<RouteDto>> FindRoutesBetweenAirportsAsync(int departureCityId, int destinationCityId, int numberOfPassengers, DateTime departureTime, DateTime? returnTime);
     }
 }

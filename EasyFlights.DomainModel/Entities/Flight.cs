@@ -9,6 +9,8 @@ namespace EasyFlights.DomainModel.Entities
 
         public DateTime ScheduledArrivalTime { get; set; }
 
+        public decimal DefaultFare { get; set; }
+
         public virtual Aircraft Aircraft { get; set; }
 
         public virtual Airport DepartureAirport { get; set; }
