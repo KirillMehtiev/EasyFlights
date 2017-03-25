@@ -1,12 +1,14 @@
-﻿using EasyFlights.Data.DataContexts;
+using EasyFlights.Data.DataContexts;
+using EasyFlights.Data.Repositories.Airports;
+using EasyFlights.Data.Repositories.Base;
 using EasyFlights.Data.Repositories.Cities;
 using EasyFlights.Data.Repositories.Flights;
+using EasyFlights.DomainModel.Entities;
 using Ninject.Modules;
 using Ninject.Web.Common;
 
 namespace EasyFlights.Web.NinjectModules
 {
-
     public class DataModule : NinjectModule
     {
         public override void Load()
@@ -17,6 +19,8 @@ namespace EasyFlights.Web.NinjectModules
             // Repositories
             this.Bind<IFlightsRepository>().To<FlightsRepository>().InRequestScope();
             this.Bind<ICitiesRepository>().To<CitiesRepository>();
+            this.Bind<IAirportsRepository>().To<AirportsRepository>().InRequestScope();
+            this.Bind<IRepository<City>>().To<Repository<City>>();
         }
     }
 }

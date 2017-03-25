@@ -202,6 +202,8 @@
     <Compile Include="ViewModels\RouteViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Client\App\Common\Services\data.service.js" />
+    <Content Include="Client\App\Common\Services\searchResult.service.js" />
     <Content Include="Client\App\Index\IndexTemplate.html" />
     <Content Include="Client\App\Index\Search\Autocomplete\AutocompleteTemplate.html" />
     <Content Include="Client\App\Index\Search\SearchTemplate.html" />
@@ -221,6 +223,8 @@
     <Content Include="Client\Libs\jquery-ui.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Client\App\Common\Services\data.service.js.map" />
+    <Content Include="Client\App\Common\Services\searchResult.service.js.map" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
@@ -272,6 +276,9 @@
     <TypeScriptCompile Include="Client\App\App.ts" />
     <TypeScriptCompile Include="Client\App\Bindings.ts" />
     <TypeScriptCompile Include="Client\App\CommonComponents\IKnockoutBinding.ts" />
+    <TypeScriptCompile Include="Client\App\Common\Models\country.ts" />
+    <TypeScriptCompile Include="Client\App\Common\Services\dataService.ts" />
+    <TypeScriptCompile Include="Client\App\Common\Services\searchResultService.ts" />
     <TypeScriptCompile Include="Client\App\Components.ts" />
     <TypeScriptCompile Include="Client\App\Index\IndexComponent.ts" />
     <TypeScriptCompile Include="Client\App\Index\IndexViewModel.ts" />
