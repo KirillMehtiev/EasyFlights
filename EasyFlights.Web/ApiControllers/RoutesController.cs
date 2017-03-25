@@ -10,6 +10,7 @@ using EasyFlights.Web.Util;
 using EasyFlights.Web.Util.Mappers;
 using EasyFlights.Web.Util.Mappers.Interfaces;
 using EasyFlights.Web.ViewModels;
+using EasyFlights.DomainModel.Entities;
 
 namespace EasyFlights.Web.ApiControllers
 {
@@ -28,7 +29,7 @@ namespace EasyFlights.Web.ApiControllers
             DateTime? returnDate = null;
             var numberOfPeople = 1;
 
-            var routes = await this.searchingService.FindRoutesBetweenAirportsAsync(
+            var routes = await searchingService.FindRoutesBetweenAirportsAsync(
                 departureAirportId,
                 destinationAirportId,
                 numberOfPeople,
@@ -38,6 +39,18 @@ namespace EasyFlights.Web.ApiControllers
             var result = routes.Select(new RouteMapper().MapToRouteViewModel);
 
             return result;
+        }
+
+        [HttpGet]
+        public Country GetCountry()
+        {
+            return new Country { Id = 4, Name = "Kharkiv" };
+        }
+
+        [HttpPost]
+        public Country TakeCountry([FromBody] Country country)
+        {
+            return new Country { Id = 5, Name = "Kharkiv2" };
         }
     }
 }
