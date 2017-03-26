@@ -1,23 +1,16 @@
-﻿using System.Data.Entity.ModelConfiguration;
-using EasyFlights.DomainModel.Entities;
+﻿using EasyFlights.DomainModel.Entities;
 
 namespace EasyFlights.Data.MappingConfigurations
 {
-    public class FlightConfiguration : EntityTypeConfiguration<Flight>
+    public class FlightConfiguration : BaseEntityConfiguration<Flight>
     {
         public FlightConfiguration()
         {
-            Map(m =>
-            {
-                m.MapInheritedProperties();
-                m.ToTable("Flights");
-            });
+            HasRequired(flight => flight.DepartureAirport).WithMany(ap => ap.Flights).WillCascadeOnDelete(false);
 
-            HasRequired(flight => flight.DepartureAirport).WithMany(ap => ap.Flights);
+            HasRequired(flight => flight.DestinationAirport).WithMany().WillCascadeOnDelete(false);
 
-            HasRequired(flight => flight.DestinationAirport);
-
-            HasMany(flight => flight.Tickets).WithRequired(ticket => ticket.Flight);
+            HasMany(flight => flight.Tickets).WithRequired(ticket => ticket.Flight).WillCascadeOnDelete(false);
         }
     }
 }

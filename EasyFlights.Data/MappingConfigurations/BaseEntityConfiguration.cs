@@ -4,9 +4,10 @@ using EasyFlights.DomainModel.Entities;
 
 namespace EasyFlights.Data.MappingConfigurations
 {
-    public class BaseEntityConfiguration : EntityTypeConfiguration<BaseEntity>
+    public abstract class BaseEntityConfiguration<TEntityType> : EntityTypeConfiguration<TEntityType>
+        where TEntityType: BaseEntity
     {
-        public BaseEntityConfiguration()
+        protected BaseEntityConfiguration()
         {
             Property(be => be.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
         }

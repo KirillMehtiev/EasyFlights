@@ -1,18 +1,12 @@
-﻿using System.Data.Entity.ModelConfiguration;
-using EasyFlights.DomainModel.Entities;
+﻿using EasyFlights.DomainModel.Entities;
 
 namespace EasyFlights.Data.MappingConfigurations
 {
-    public class OrderConfiguration : EntityTypeConfiguration<Order>
+    public class OrderConfiguration : BaseEntityConfiguration<Order>
     {
         public OrderConfiguration()
         {
-            Map(m =>
-            {
-                m.MapInheritedProperties();
-                m.ToTable("Orders");
-            });
-            HasMany(order => order.Tickets).WithRequired(ticket => ticket.Order);
+            HasMany(order => order.Tickets).WithRequired(ticket => ticket.Order).WillCascadeOnDelete(false);
             HasRequired(order => order.User).WithMany(user => user.Orders);
         }
     }

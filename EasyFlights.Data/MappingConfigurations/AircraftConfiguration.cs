@@ -1,19 +1,13 @@
-﻿using System.Data.Entity.ModelConfiguration;
-using EasyFlights.DomainModel.Entities;
+﻿using EasyFlights.DomainModel.Entities;
 
 namespace EasyFlights.Data.MappingConfigurations
 {
-    public class AircraftConfiguration : EntityTypeConfiguration<Aircraft>
+    public class AircraftConfiguration : BaseEntityConfiguration<Aircraft>
     {
         public AircraftConfiguration()
         {
-            this.Map(m =>
-            {
-                m.MapInheritedProperties();
-                m.ToTable("Aircrafts");
-            });
-
-            this.Property(ac => ac.Model).IsRequired();
+            ToTable(nameof(Aircraft) + "s");
+            Property(ac => ac.Model).IsRequired();
         }
     }
 }
