@@ -25,9 +25,9 @@ class SearchResultViewModel {
 
     constructor() {
         this.routeItems = ko.observableArray(
-            [new RouteItem(12, "Flight", "Country", "Economy", "13:30", [new FlightItem(12, "Borispol", "Kharkiv Airport", "14:00" ,"13:30", "2 h 20 min", "145")], 350, 100),
-                new RouteItem(12, "Flight", "Country", "Lux", "14:30", [new FlightItem(12, "Borispol", "Kharkiv Airport", "14:00", "13:30", "2 h 20 min", "145")], 120, 400),
-                new RouteItem(12, "Flight", "Country", "Economy", "15:30", [new FlightItem(12, "Borispol", "Kharkiv Airport", "14:00", "13:30", "2 h 20 min", "145")], 600, 200)],
+            [new RouteItem(12, "Flight", "Country", "Economy", "13:30", [new FlightItem(12, "Borispol", "Kharkiv Airport", "14:00", "13:30", "2 h 20 min", "145"), new FlightItem(13, "Borispol", "Kharkiv Airport", "14:00", "13:30", "2 h 20 min", "145")], 350, 100),
+                new RouteItem(12, "Flight", "Country", "Lux", "14:30", [new FlightItem(14, "Borispol", "Kharkiv Airport", "14:00", "13:30", "2 h 20 min", "145")], 120, 400)]
+                
         );
 
         this.createDefaultOptions();
