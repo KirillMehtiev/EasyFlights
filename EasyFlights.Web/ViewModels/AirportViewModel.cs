@@ -1,4 +1,4 @@
-﻿namespace EasyFlights.WebApi.ViewModels
+﻿namespace EasyFlights.Web.ViewModels
 {
     public class AirportViewModel
     {
