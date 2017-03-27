@@ -23,6 +23,7 @@ class SearchViewModel {
     public searchCityTo: KnockoutObservable<string>;
     public departureDateName: KnockoutObservable<string>;
     public returnDateName: KnockoutObservable<string>;
+    public numberOfPeople: KnockoutObservable<number>;
 
     constructor() {
         this.options = [
@@ -50,6 +51,7 @@ class SearchViewModel {
         this.isRoundTripSelected = ko.observable(false);
 
         this.selectedTicketType.subscribe(this.onTicketTypeChanged, this);
+        this.numberOfPeople = ko.observable(1);
     }
 
     public onTicketTypeChanged(newValue: string) {
