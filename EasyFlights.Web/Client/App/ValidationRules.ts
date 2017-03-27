@@ -1,4 +1,4 @@
 ﻿import validation = require("knockout.validation");
-import DateAfter = require("./Validation/DateAfter");
+import DateAfterValidationRule = require("./Validation/DateAfterValidationRule");
 
-validation.rules["dateAfter"] = new DateAfter();
+validation.rules["dateAfter"] = new DateAfterValidationRule();

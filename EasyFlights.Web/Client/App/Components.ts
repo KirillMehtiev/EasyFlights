@@ -4,9 +4,9 @@ import "./Layout/Header/HeaderComponent";
 import "./Index/IndexComponent";
 import "./SearchResults/SearchResultComponent";
 import "./SearchResults/SearchHeader/SearchHeaderComponent";
-import "./CommonComponents/DatePicker/DatePickerComponent";
+import "./Common/Components/DatePicker/DatePickerComponent";
 import "./Index/Search/SearchComponent";
 import "./Index/Search/Autocomplete/AutocompleteComponent";
-import "./CommonComponents/RadioChooser/RadioChooserComponent";
+import "./Common/Components/RadioChooser/RadioChooserComponent";
 import "./SearchResults/FlightResults/RouteResultComponent"
 import "./SearchResults/FlightResults/Tickets/FlightComponent"

@@ -2,12 +2,14 @@
     <div class="row">
         <h1 class="text-info">The results of your search</h1>
         <hr />
+        <div class="btn-group pull-right" role="group" aria-label="...">
+            <button data-bind="click: sortByPrice" type="button" class="btn btn-default">by Price</button>
+            <button data-bind="click: sortByDuration" type="button" class="btn btn-default">by Duration</button>
+        </div>
+        &nbsp;
         <form>
-            <app-search-header></app-search-header>
-            <div class="btn-group pull-right" role="group" aria-label="...">
-                <button data-bind="click: sortByPrice" type="button" class="btn btn-default">by Price</button>
-                <button data-bind="click: sortByDuration" type="button" class="btn btn-default">by Duration</button>
-            </div>
+            <hr />
+
             <div data-bind="foreach: {data: pagedRouteItems, as: 'routeItem'}">
                 <routes params="item: routeItem"></routes>
             </div>

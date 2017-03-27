@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace EasyFlights.DomainModel.Entities.Enums
+﻿namespace EasyFlights.DomainModel.Entities.Enums
 {
     /// <summary>
     /// Types of flight classes.

@@ -40,17 +40,5 @@ namespace EasyFlights.Web.ApiControllers
 
             return result;
         }
-
-        [HttpGet]
-        public Country GetCountry()
-        {
-            return new Country { Id = 4, Name = "Kharkiv" };
-        }
-
-        [HttpPost]
-        public Country TakeCountry([FromBody] Country country)
-        {
-            return new Country { Id = 5, Name = "Kharkiv2" };
-        }
     }
 }

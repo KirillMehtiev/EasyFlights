@@ -1,8 +1,8 @@
-departure;departure_time;arrival;arrival_time
-Boryspil International Airport;02:00;Kharkiv International Airport;04:00
-Boryspil International Airport;04:40;Lviv International Airport;07:40
-Boryspil International Airport;05:50;Zaporizhzhia International Airport;10:30
-Boryspil International Airport;09:15;Odessa International Airport;12:55
-Boryspil International Airport;10:10;Donetsk International Airport;13:00
-Donetsk International Airport;05:20;Odessa International Airport;09:30
-Lviv International Airport;11:50;Kharkiv International Airport;17:40
+id;departure;departure_time;arrival;arrival_time
+1;Boryspil International Airport;02:00;Kharkiv International Airport;04:00
+2;Boryspil International Airport;04:40;Lviv International Airport;07:40
+3;Boryspil International Airport;05:50;Zaporizhzhia International Airport;10:30
+4;Boryspil International Airport;09:15;Odessa International Airport;12:55
+5;Boryspil International Airport;10:10;Donetsk International Airport;13:00
+6;Donetsk International Airport;05:20;Odessa International Airport;09:30
+7;Lviv International Airport;11:50;Kharkiv International Airport;17:40
