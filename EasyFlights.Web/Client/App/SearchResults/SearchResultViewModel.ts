@@ -1,6 +1,6 @@
 ﻿import ko = require("knockout");
 import { RouteItem } from "./FlightResults/RouteItem";
-import { SearchResultService } from "..//Common/Services/searchResultService"
+import { RoutesService } from "..//Common/Services/RoutesService"
 import Item = require("./FlightResults/Tickets/FlightItem");
 import FlightItem = Item.FlightItem;
 
@@ -21,7 +21,7 @@ class SearchResultViewModel {
     public boundary: boolean;
     public text: any;
 
-    private searchResultService: SearchResultService = new SearchResultService();
+    private routesService: RoutesService = new RoutesService();
 
     constructor() {
         this.routeItems = ko.observableArray(
@@ -33,11 +33,6 @@ class SearchResultViewModel {
         this.createDefaultOptions();
         this.setPage();
         this.sortByPrice();
-    }
-
-    private template(): void {
-        var country = this.searchResultService.getCountry();
-        var country2 = this.searchResultService.takeCountry(country);
     }
 
     public setPage(): void {
@@ -60,8 +55,6 @@ class SearchResultViewModel {
     public sortByDuration(): void {
         this.routeItems.sort((x, y) => x.totalTime - y.totalTime);
         this.setPage();
-
-        this.template();
     }
 
     private createDefaultOptions(): void {
