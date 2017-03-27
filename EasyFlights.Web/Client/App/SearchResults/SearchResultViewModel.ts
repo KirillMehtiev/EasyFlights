@@ -9,9 +9,6 @@ class SearchResultViewModel {
     public routeItems: KnockoutObservableArray<RouteItem>;
     public pagedRouteItems: KnockoutObservableArray<RouteItem>;
 
-    private apiBasePath = "api/Routes";
-    public testString: string;
-
     public pageSize: number;
     public pageNo: KnockoutObservable<number>;
     public pageIndex: any;
@@ -26,8 +23,8 @@ class SearchResultViewModel {
     constructor() {
         this.routeItems = ko.observableArray(
             [new RouteItem(12, "Flight", "Country", "Economy", "13:30", [new FlightItem(12, "Borispol", "Kharkiv Airport", "14:00", "13:30", "2 h 20 min", "145"), new FlightItem(13, "Borispol", "Kharkiv Airport", "14:00", "13:30", "2 h 20 min", "145")], 350, 100),
-                new RouteItem(12, "Flight", "Country", "Lux", "14:30", [new FlightItem(14, "Borispol", "Kharkiv Airport", "14:00", "13:30", "2 h 20 min", "145")], 120, 400)]
-                
+            new RouteItem(12, "Flight", "Country", "Lux", "14:30", [new FlightItem(14, "Borispol", "Kharkiv Airport", "14:00", "13:30", "2 h 20 min", "145")], 120, 400)]
+
         );
 
         this.createDefaultOptions();
@@ -40,11 +37,9 @@ class SearchResultViewModel {
         var startIndex = (this.pageNo() - 1) * this.pageSize;
         var endIndex = this.pageNo() * this.pageSize;
 
-        var pagedFlightItems = this.routeItems.slice(startIndex, endIndex)
+        var pagedFlightItems = this.routeItems.slice(startIndex, endIndex);
 
-        for (var i = 0; i < pagedFlightItems.length; i++) {
-            this.pagedRouteItems.push(pagedFlightItems[i]);
-        }
+        this.pagedRouteItems.push.apply(this.pagedRouteItems, pagedFlightItems);
     };
 
     public sortByPrice(): void {
