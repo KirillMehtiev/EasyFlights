@@ -208,7 +208,7 @@
     <Content Include="Client\App\Index\Search\Autocomplete\AutocompleteTemplate.html" />
     <Content Include="Client\App\Index\Search\SearchTemplate.html" />
     <Content Include="Client\App\CommonComponents\DatePicker\DatePickerTemplate.html" />
-    <Content Include="Client\App\Index\Search\RadioChooser\RadioChooserTemplate.html" />
+    <Content Include="Client\App\CommonComponents\RadioChooser\RadioChooserTemplate.html" />
     <Content Include="Client\App\Layout\Footer\FooterTemplate.html" />
     <Content Include="Client\App\Layout\Header\HeaderTemplate.html" />
     <Content Include="Client\App\Layout\LayoutTemplate.html" />
@@ -292,10 +292,10 @@
     <TypeScriptCompile Include="Client\App\CommonComponents\DatePicker\IDatePickerOptions.ts" />
     <TypeScriptCompile Include="Client\App\Index\Search\SearchComponent.ts" />
     <TypeScriptCompile Include="Client\App\Index\Search\SearchViewModel.ts" />
-    <TypeScriptCompile Include="Client\App\Index\Search\RadioChooser\RadioChooserComponent.ts" />
-    <TypeScriptCompile Include="Client\App\Index\Search\RadioChooser\RadioChooserViewModel.ts" />
-    <TypeScriptCompile Include="Client\App\Index\Search\RadioChooser\RadioChooserItem.ts" />
-    <TypeScriptCompile Include="Client\App\Index\Search\RadioChooser\IRadioChooserOptions.ts" />
+    <TypeScriptCompile Include="Client\App\CommonComponents\RadioChooser\RadioChooserComponent.ts" />
+    <TypeScriptCompile Include="Client\App\CommonComponents\RadioChooser\RadioChooserViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\CommonComponents\RadioChooser\RadioChooserItem.ts" />
+    <TypeScriptCompile Include="Client\App\CommonComponents\RadioChooser\IRadioChooserOptions.ts" />
     <TypeScriptCompile Include="Client\App\Layout\Footer\FooterComponent.ts" />
     <TypeScriptCompile Include="Client\App\Layout\Footer\FooterViewModel.ts" />
     <TypeScriptCompile Include="Client\App\Layout\Header\HeaderComponent.ts" />

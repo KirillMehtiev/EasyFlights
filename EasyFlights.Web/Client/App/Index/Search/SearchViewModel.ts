@@ -1,6 +1,6 @@
 ﻿import ko = require("knockout");
 import moment = require("moment");
-import { RadioChooserItem } from "./RadioChooser/RadioChooserItem";
+import { RadioChooserItem } from "../../CommonComponents/RadioChooser/RadioChooserItem";
 import Item = require("./Autocomplete/CityItem/CityItem");
 
 class TicketType {
@@ -21,8 +21,8 @@ class SearchViewModel {
     public isRoundTripSelected: KnockoutObservable<boolean>;
     public searchCityFrom: KnockoutObservable<string>;
     public searchCityTo: KnockoutObservable<string>;
-    public departureDateName: KnockoutObservable<string>
-    public returnDateName: KnockoutObservable<string>
+    public departureDateName: KnockoutObservable<string>;
+    public returnDateName: KnockoutObservable<string>;
 
     constructor() {
         this.options = [
