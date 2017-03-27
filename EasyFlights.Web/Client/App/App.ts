@@ -8,6 +8,9 @@ import "./Components";
 import "./ValidationRules";
 import "./Bindings";
 import './App.scss';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap-datepicker/dist/css/bootstrap-datepicker.css';
+
 import KnockoutValidationOptions = require("./Validation/KnockoutValidationOptions");
 
 class Application {
