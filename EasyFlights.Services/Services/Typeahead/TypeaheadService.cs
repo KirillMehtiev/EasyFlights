@@ -31,7 +31,15 @@ namespace EasyFlights.Services.Services.Typeahead
                           partialName.ToLowerInvariant().Substring(1);
             return
                 repository.GetAll()
-                    .Where(x => x.Name.StartsWith(partialName) || x.Airports.Any(y => y.Title.StartsWith(partialName))).Take(10)
+                    .Where(x => x.Name.StartsWith(partialName)
+                                || x.Name.Contains(" " + partialName)
+                                || x.Airports.Any(y => y.Title.StartsWith(partialName))
+                                || x.Airports.Any(y => y.Title.Contains(" " + partialName))
+                                || x.Airports.Any(y => y.AirportCodeIata.StartsWith(partialName))
+                                || x.Airports.Any(y => y.AirportCodeIcao.StartsWith(partialName))
+                                || x.Country.Name.StartsWith(partialName) 
+                                || x.Country.Name.Contains(" " + partialName))
+                    .Take(MaxNumber)
                     .ToList();
         }
     }
