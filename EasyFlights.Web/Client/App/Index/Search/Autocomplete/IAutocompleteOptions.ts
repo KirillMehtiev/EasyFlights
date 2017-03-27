@@ -2,4 +2,5 @@
     label: string;
     searchCity: KnockoutObservable<string>;
     direction: string;
+    placeholder: string;
 }

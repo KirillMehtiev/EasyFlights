@@ -12,6 +12,7 @@ class DatePickerType {
     static returnDate = "returnDate";
 }
 class SearchViewModel {
+    private placeholderAutocomplete: string = "Search by country, city or airport";
     private options: Array<RadioChooserItem>;
     public cityList: Array<Item.CityItem>;
 

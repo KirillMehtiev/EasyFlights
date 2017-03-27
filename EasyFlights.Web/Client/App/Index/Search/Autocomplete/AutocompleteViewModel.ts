@@ -6,11 +6,13 @@ class AutocompleteViewModel {
     searchCity: KnockoutObservable<string>;
     label: string;
     direction: string;
+    placeholder: string;
 
     constructor(options: IAutocompleteOptions) {
         this.searchCity = options.searchCity;
         this.label = options.label;
         this.direction = options.direction;
+        this.placeholder = options.placeholder;
         this.loadCities();
     }
 
