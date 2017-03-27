@@ -44,7 +44,6 @@ namespace EasyFlights.Web.ApiControllers
         }
 
         [HttpGet]
-        [Route]
         public async Task<List<AirportViewModel>> GetAirportsForTypeaheadAsync(string name)
         {
             var airports = new List<AirportViewModel>();
