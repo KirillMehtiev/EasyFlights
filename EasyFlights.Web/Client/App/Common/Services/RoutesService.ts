@@ -1,4 +1,4 @@
-﻿import { DataService } from './DataService';
+﻿import { DataService } from './dataService';
 
 export class RoutesService {
     private apiBasePath = "api/Routes";

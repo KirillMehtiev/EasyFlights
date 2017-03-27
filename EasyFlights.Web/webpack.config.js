@@ -14,8 +14,8 @@ module.exports = {
     context: appDirectory,
     resolve: {
         alias: {
-            pager: appDirectory + '/Libs/pager',
-            'jquery-ui': appDirectory + '/Libs/jquery-ui'
+            pager: appDirectory + '/Libs/js/pager',
+            'jquery-ui': appDirectory + '/Libs/js/jquery-ui'
         },
         extensions: ['.ts', '.tsx', '.js']
     },
@@ -46,6 +46,17 @@ module.exports = {
                         loader: "sass-loader"
                     }]
                 })
+            },
+            {
+                test: /\.css$/,
+                use: extractSass.extract({
+                    fallback: "style-loader",
+                    use: "css-loader"
+                })
+            },
+            {
+                test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+                loader: 'file-loader',
             }
         ]
     },
