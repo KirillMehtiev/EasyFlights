@@ -3,21 +3,20 @@
     private getData: any;
     public postData: any;
 
-    public get<T>(url: string): T {
-        $.getJSON(url, (data) => {
-            this.getData = data;
-        });
-        return <T>this.getData;
+    public get<T>(url: string): JQueryPromise<T> {
+        return $.getJSON(url)
+            .then((data) => {
+                return <T>data;
+            })
+            .fail((error) => console.log(error));
     }
 
-    public post(url: string, data?: any) {
-        return $.post(url, JSON.stringify(data));
-    }
-
-    public postWithCallback<T>(url: string, data?: any): T {
-        $.post(url, JSON.stringify(data), (data) => {
-            this.postData = data;
-        });
-        return <T>this.postData;
+    public post<T>(url: string, data?: any): JQueryPromise<T> {
+        return $.post(url, JSON.stringify(data))
+            .then((data) => {
+                if (data)
+                    return <T>data
+            })
+            .fail((error) => console.log(error));;
     }
 }
