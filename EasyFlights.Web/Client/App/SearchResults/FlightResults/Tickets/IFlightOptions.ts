@@ -1,6 +1,6 @@
 ﻿import { FlightItem } from "./FlightItem";
 
-export interface IFlightItemOptions {
+export interface IFlightOptions {
     item: FlightItem;
-    
+
 }

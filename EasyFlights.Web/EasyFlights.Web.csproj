@@ -202,8 +202,7 @@
     <Compile Include="ViewModels\RouteViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Client\App\Common\Services\data.service.js" />
-    <Content Include="Client\App\Common\Services\searchResult.service.js" />
+    <Content Include="Client\.gitignore" />
     <Content Include="Client\App\Index\IndexTemplate.html" />
     <Content Include="Client\App\Index\Search\Autocomplete\AutocompleteTemplate.html" />
     <Content Include="Client\App\Index\Search\SearchTemplate.html" />
@@ -212,8 +211,8 @@
     <Content Include="Client\App\Layout\Footer\FooterTemplate.html" />
     <Content Include="Client\App\Layout\Header\HeaderTemplate.html" />
     <Content Include="Client\App\Layout\LayoutTemplate.html" />
-    <Content Include="Client\App\SearchResults\FlightResults\FlightResult.html" />
-    <Content Include="Client\App\SearchResults\FlightResults\Tickets\TicketTemplate.html" />
+    <Content Include="Client\App\SearchResults\FlightResults\RouteResult.html" />
+    <Content Include="Client\App\SearchResults\FlightResults\Tickets\FlightTemplate.html" />
     <Content Include="Client\App\SearchResults\SearchHeader\SearchHeaderTemplate.html" />
     <Content Include="Client\App\SearchResults\SearchResultTemplate.html" />
     <Content Include="Client\Libs\bootstrap-datepicker.css" />
@@ -223,15 +222,6 @@
     <Content Include="Client\Libs\jquery-ui.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Client\App\Common\Services\data.service.js.map" />
-    <Content Include="Client\App\Common\Services\searchResult.service.js.map" />
-    <None Include="Scripts\jquery-3.1.1.intellisense.js" />
-    <Content Include="Scripts\jquery-3.1.1.js" />
-    <Content Include="Scripts\jquery-3.1.1.min.js" />
-    <Content Include="Scripts\jquery-3.1.1.slim.js" />
-    <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
-    <Content Include="Scripts\jquery-ui-1.12.0.js" />
-    <Content Include="Scripts\jquery-ui-1.12.0.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -302,14 +292,14 @@
     <TypeScriptCompile Include="Client\App\Layout\Header\HeaderViewModel.ts" />
     <TypeScriptCompile Include="Client\App\Layout\LayoutComponent.ts" />
     <TypeScriptCompile Include="Client\App\Layout\LayoutViewModel.ts" />
-    <TypeScriptCompile Include="Client\App\SearchResults\FlightResults\FlightItem.ts" />
-    <TypeScriptCompile Include="Client\App\SearchResults\FlightResults\FlightResultComponent.ts" />
-    <TypeScriptCompile Include="Client\App\SearchResults\FlightResults\FlightResultViewModel.ts" />
-    <TypeScriptCompile Include="Client\App\SearchResults\FlightResults\IFlightItemOptions.ts" />
-    <TypeScriptCompile Include="Client\App\SearchResults\FlightResults\Tickets\TicketComponent.ts" />
-    <TypeScriptCompile Include="Client\App\SearchResults\FlightResults\Tickets\TicketItem.ts" />
-    <TypeScriptCompile Include="Client\App\SearchResults\FlightResults\Tickets\ITicketOptions.ts" />
-    <TypeScriptCompile Include="Client\App\SearchResults\FlightResults\Tickets\TicketViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\SearchResults\FlightResults\RouteItem.ts" />
+    <TypeScriptCompile Include="Client\App\SearchResults\FlightResults\RouteResultComponent.ts" />
+    <TypeScriptCompile Include="Client\App\SearchResults\FlightResults\RouteResultViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\SearchResults\FlightResults\IRouteItemOptions.ts" />
+    <TypeScriptCompile Include="Client\App\SearchResults\FlightResults\Tickets\FlightComponent.ts" />
+    <TypeScriptCompile Include="Client\App\SearchResults\FlightResults\Tickets\FlightItem.ts" />
+    <TypeScriptCompile Include="Client\App\SearchResults\FlightResults\Tickets\IFlightOptions.ts" />
+    <TypeScriptCompile Include="Client\App\SearchResults\FlightResults\Tickets\FlightViewModel.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\SearchHeader\ISearchHeaderOptions.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\SearchHeader\SearchHeaderComponent.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\SearchHeader\SearchHeaderItem.ts" />
@@ -334,17 +324,9 @@
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Client\App\Index\Index.scss" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Scripts\jquery-3.1.1.min.map" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

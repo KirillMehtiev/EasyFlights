@@ -1,13 +1,13 @@
 ﻿import ko = require("knockout");
-import { FlightItem } from "./FlightResults/FlightItem";
+import { RouteItem } from "./FlightResults/RouteItem";
 import { SearchResultService } from "..//Common/Services/searchResultService"
-import Item = require("./FlightResults/Tickets/TicketItem");
-import TicketItem = Item.TicketItem;
+import Item = require("./FlightResults/Tickets/FlightItem");
+import FlightItem = Item.FlightItem;
 
 class SearchResultViewModel {
 
-    public flightItems: KnockoutObservableArray<FlightItem>;
-    public pagedFlightItems: KnockoutObservableArray<FlightItem>;
+    public routeItems: KnockoutObservableArray<RouteItem>;
+    public pagedRouteItems: KnockoutObservableArray<RouteItem>;
 
     private apiBasePath = "api/Routes";
     public testString: string;
@@ -24,10 +24,10 @@ class SearchResultViewModel {
     private searchResultService: SearchResultService = new SearchResultService();
 
     constructor() {
-        this.flightItems = ko.observableArray(
-            [new FlightItem(12, "Flight", "Country", "Economy", "13:30", [new TicketItem(12, "Flight", "Country", "Economy", "rtt", "13:30", "City", "2 h 20 min", "15:50", "145")], 350, 100),
-            new FlightItem(12, "Flight", "Country", "Lux", "14:30", [new TicketItem(13, "Flight", "Country", "Lux", "rtt", "14:30", "City", "2 h 30 min", "15:50", "145")], 120, 400),
-            new FlightItem(12, "Flight", "Country", "Economy", "15:30", [new TicketItem(14, "Flight", "Country", "Economy", "rtt", "15:30", "City", "2 h 40 min", "15:50", "145")], 600, 200)],
+        this.routeItems = ko.observableArray(
+            [new RouteItem(12, "Flight", "Country", "Economy", "13:30", [new FlightItem(12, "Borispol", "Kharkiv Airport", "14:00" ,"13:30", "2 h 20 min", "145")], 350, 100),
+                new RouteItem(12, "Flight", "Country", "Lux", "14:30", [new FlightItem(12, "Borispol", "Kharkiv Airport", "14:00", "13:30", "2 h 20 min", "145")], 120, 400),
+                new RouteItem(12, "Flight", "Country", "Economy", "15:30", [new FlightItem(12, "Borispol", "Kharkiv Airport", "14:00", "13:30", "2 h 20 min", "145")], 600, 200)],
         );
 
         this.createDefaultOptions();
@@ -41,34 +41,34 @@ class SearchResultViewModel {
     }
 
     public setPage(): void {
-        this.pagedFlightItems.removeAll();
+        this.pagedRouteItems.removeAll();
         var startIndex = (this.pageNo() - 1) * this.pageSize;
         var endIndex = this.pageNo() * this.pageSize;
 
-        var pagedFlightItems = this.flightItems.slice(startIndex, endIndex)
+        var pagedFlightItems = this.routeItems.slice(startIndex, endIndex)
 
         for (var i = 0; i < pagedFlightItems.length; i++) {
-            this.pagedFlightItems.push(pagedFlightItems[i]);
+            this.pagedRouteItems.push(pagedFlightItems[i]);
         }
     };
 
     public sortByPrice(): void {
-        this.flightItems.sort((x, y) => x.totalCost - y.totalCost);
+        this.routeItems.sort((x, y) => x.totalCost - y.totalCost);
         this.setPage();
     }
 
     public sortByDuration(): void {
-        this.flightItems.sort((x, y) => x.totalDuration - y.totalDuration);
+        this.routeItems.sort((x, y) => x.totalTime - y.totalTime);
         this.setPage();
 
         this.template();
     }
 
     private createDefaultOptions(): void {
-        this.pagedFlightItems = ko.observableArray([]);
+        this.pagedRouteItems = ko.observableArray([]);
         this.pageNo = ko.observable(1);
         this.pageSize = 2;
-        this.total = this.flightItems().length;
+        this.total = this.routeItems().length;
         this.maxPages = 5;
         this.directions = true;
         this.boundary = true;
