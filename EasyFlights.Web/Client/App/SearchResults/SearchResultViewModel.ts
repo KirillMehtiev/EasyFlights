@@ -39,7 +39,7 @@ class SearchResultViewModel {
 
         var pagedFlightItems = this.routeItems.slice(startIndex, endIndex);
 
-        this.pagedRouteItems.push.apply(this.pagedRouteItems, pagedFlightItems);
+        ko.utils.arrayPushAll<RouteItem>(this.pagedRouteItems, pagedFlightItems);
     };
 
     public sortByPrice(): void {

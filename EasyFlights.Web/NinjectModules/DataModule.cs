@@ -18,9 +18,9 @@ namespace EasyFlights.Web.NinjectModules
 
             // Repositories
             this.Bind<IFlightsRepository>().To<FlightsRepository>().InRequestScope();
-            this.Bind<ICitiesRepository>().To<CitiesRepository>();
+            this.Bind<ICitiesRepository>().To<CitiesRepository>().InRequestScope();
             this.Bind<IAirportsRepository>().To<AirportsRepository>().InRequestScope();
-            this.Bind<IRepository<City>>().To<Repository<City>>();
+            this.Bind<IRepository<City>>().To<Repository<City>>().InRequestScope();
         }
     }
 }
