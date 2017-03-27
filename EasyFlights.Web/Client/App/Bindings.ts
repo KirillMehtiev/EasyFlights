@@ -1,3 +1,3 @@
-﻿import DatePickerBinding = require("./CommonComponents/DatePicker/DatePickerBinding");
+﻿import DatePickerBinding = require("./Common/Components/DatePicker/DatePickerBinding");
 
 ko.bindingHandlers["datepicker"] = new DatePickerBinding();

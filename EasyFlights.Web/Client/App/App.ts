@@ -8,11 +8,13 @@ import "./Components";
 import "./ValidationRules";
 import "./Bindings";
 import './App.scss';
+import KnockoutValidationOptions = require("./Validation/KnockoutValidationOptions");
 
 class Application {
     public run(): void {
         pager.extendWithPage(this);
         ko.applyBindings(this);
+        validation.init(new KnockoutValidationOptions(), true);
         validation.registerExtenders();
         pager.start();
     }

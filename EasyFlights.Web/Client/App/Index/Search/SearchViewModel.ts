@@ -1,6 +1,6 @@
 ﻿import ko = require("knockout");
 import moment = require("moment");
-import { RadioChooserItem } from "../../CommonComponents/RadioChooser/RadioChooserItem";
+import { RadioChooserItem } from "../../Common/Components/RadioChooser/RadioChooserItem";
 import Item = require("./Autocomplete/CityItem/CityItem");
 
 class TicketType {
@@ -42,8 +42,9 @@ class SearchViewModel {
             dateAfter: moment().format("L")
         });
 
+        let self = this;
         this.selectedReturnDate = ko.observable("").extend({
-            dateAfter: moment().add(1, "day").format("L")
+            dateAfter: self.selectedDepartureDate
         });
 
         this.searchCityFrom = ko.observable<string>();

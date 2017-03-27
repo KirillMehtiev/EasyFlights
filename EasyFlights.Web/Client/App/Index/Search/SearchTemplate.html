@@ -22,8 +22,14 @@
         <autocomplete class="col-md-6" params="searchCity: searchCityTo, label: 'Place of arrival:', direction: 'To', placeholder: placeholderAutocomplete" id="To"></autocomplete>
     </div>
     <div class="row">
-        <date-picker class="col-md-6" params="label: 'Departure date:', selectedDate: selectedDepartureDate, name: departureDateName"></date-picker>
-        <date-picker class="col-md-6" params="label: 'Return date:', selectedDate: selectedReturnDate, name: returnDateName" data-bind="visible: isRoundTripSelected"></date-picker>
+        <div class="col-md-6">
+            <label class="control-label" for="departure-date-picker">Departure date:</label>
+            <date-picker id="departure-date-picker"  params="selectedDate: selectedDepartureDate, name: departureDateName"></date-picker>
+        </div>
+        <div class="col-md-6" data-bind="visible: isRoundTripSelected">
+            <label class="control-label" for="return-date-picker">Return date:</label>
+            <date-picker id="return-date-picker"  params="selectedDate: selectedReturnDate, name: returnDateName"></date-picker>
+        </div>
     </div>
     <div class="col-md-12 text-center">
         <input type="submit" class="btn btn-primary big-text" onclick="location.href='#results'" />
