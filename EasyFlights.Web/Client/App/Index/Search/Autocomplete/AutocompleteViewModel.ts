@@ -13,6 +13,7 @@ class AutocompleteViewModel {
         this.label = options.label;
         this.direction = options.direction;
         this.placeholder = options.placeholder;
+
         this.loadCities();
     }
 

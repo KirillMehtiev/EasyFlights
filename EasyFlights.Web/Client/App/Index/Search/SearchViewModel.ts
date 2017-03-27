@@ -41,19 +41,38 @@ class SearchViewModel {
         this.selectedDepartureDate = ko.observable("").extend({
             dateAfter: moment().format("L")
         });
-
         let self = this;
         this.selectedReturnDate = ko.observable("").extend({
             dateAfter: self.selectedDepartureDate
         });
 
-        this.searchCityFrom = ko.observable<string>();
-        this.searchCityTo = ko.observable<string>();
+        this.searchCityFrom = ko.observable<string>().extend({
+            required: {
+                params: true,
+                message: 'This field is required.'
+            }
+        });
+        this.searchCityTo = ko.observable<string>().extend({
+            required: {
+                params: true,
+                message: 'This field is required.'
+            }
+        });
+
+        this.numberOfPeople = ko.observable(1).extend({
+            min: {
+                params: 1,
+                message: "This value has to be greater then {0}"
+            },
+            max: {
+                params: 10,
+                message: "This value has to be less then {0}"
+            }
+        });
 
         this.isRoundTripSelected = ko.observable(false);
 
         this.selectedTicketType.subscribe(this.onTicketTypeChanged, this);
-        this.numberOfPeople = ko.observable(1);
     }
 
     public onTicketTypeChanged(newValue: string) {
