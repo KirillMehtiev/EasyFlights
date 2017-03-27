@@ -1,18 +1,31 @@
-﻿<form>
-    <!-- params is IRadioChooserOption if change signarute reflect it here -->
-    <radio-chooser params="options: options, selectedOption:selectedTicketType" class="center"></radio-chooser>
-    <br />
+﻿<div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Ticket type:</label>
+                <!-- params is IRadioChooserOption if change signarute reflect it here -->
+                <radio-chooser params="options: options, selectedOption:selectedTicketType"></radio-chooser>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="">
+                <div class="form-group">
+                    <label>Number of people:</label>
+                    <input type="number" step="1" min="1" class="form-control" data-bind="value:numberOfPeople" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr />
     <div class="row">
         <autocomplete class="col-md-6" params="searchCity: searchCityFrom, label: 'Place of departure:', direction: 'From'" id="From"></autocomplete>
         <autocomplete class="col-md-6" params="searchCity: searchCityTo, label: 'Place of arrival:', direction: 'To'" id="To"></autocomplete>
     </div>
-    <br />
     <div class="row">
         <date-picker class="col-md-6" params="label: 'Departure date:', selectedDate: selectedDepartureDate, name: departureDateName"></date-picker>
         <date-picker class="col-md-6" params="label: 'Return date:', selectedDate: selectedReturnDate, name: returnDateName" data-bind="visible: isRoundTripSelected"></date-picker>
     </div>
-    
     <div class="col-md-12 text-center">
-        <input type="submit" class="btn btn-primary big-text" onclick="location.href='#results'"/>
-    </div>   
-</form>
+        <input type="submit" class="btn btn-primary big-text" onclick="location.href='#results'" />
+    </div>
+</div>
