@@ -33,13 +33,13 @@ var SearchViewModel = (function () {
         this.selectedReturnDate = ko.observable("").extend({
             dateAfter: self.selectedDepartureDate
         });
-        this.searchCityFrom = ko.observable().extend({
+        this.searchAirportFrom = ko.observable().extend({
             required: {
                 params: true,
                 message: 'This field is required.'
             }
         });
-        this.searchCityTo = ko.observable().extend({
+        this.searchAirportTo = ko.observable().extend({
             required: {
                 params: true,
                 message: 'This field is required.'

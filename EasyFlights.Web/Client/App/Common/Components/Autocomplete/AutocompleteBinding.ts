@@ -7,13 +7,25 @@ class AutocompleteBinding implements KnockoutBindingHandler {
         let settings = valueAccessor();
         let service = new dataService.DataService();
 
+        let updateElementValueWithLabel = (event, ui) => {
+            event.preventDefault();
+            $(element).val(ui.item.value);
+
+            if (typeof ui.item !== "undefined") {
+                settings.selected(ui.item);
+            }
+        };
+
         $(element).autocomplete({
             source(request, response) {
                 var autocompleteUrl = settings.sourceUrl + request.term;
                 service.ajaxGet(autocompleteUrl).then(data => response($
-                    .map(data, item => ({ label: item.name, value: item.name }))));
+                    .map(data, item => ({ label: item.label, value: item.value, id: item.id}))));
             },
-            minLength: 2
+            minLength: 2,
+            select(event, ui) {
+                updateElementValueWithLabel(event, ui);
+            }
         });
 
         ko.utils.domNodeDisposal.addDisposeCallback(element, () => {

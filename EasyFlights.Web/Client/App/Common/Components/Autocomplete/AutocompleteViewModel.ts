@@ -1,7 +1,8 @@
 ﻿import { IAutocompleteOptions } from "./IAutocompleteOptions";
+import Item = require("./AutocompleteItem");
 
 class AutocompleteViewModel {
-    public searchItem: KnockoutObservable<string>;
+    public searchItem: KnockoutObservable<Item.AutocompleteItem>;
     public direction: string;
     public placeholder: string;
     public sourceUrl: string;

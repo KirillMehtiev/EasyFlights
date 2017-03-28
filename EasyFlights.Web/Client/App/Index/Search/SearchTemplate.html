@@ -18,9 +18,16 @@
     </div>
     <hr />
     <div class="row">
-        <auto-complete class="col-md-6" params="searchItem: searchCityFrom, label: 'Place of departure:', direction: 'From', placeholder: placeholderAutocomplete, sourceUrl: '/api/Typeahead/?name='" id="From"></auto-complete>
-        <auto-complete class="col-md-6" params="searchItem: searchCityTo, label: 'Place of arrival:', direction: 'To', placeholder: placeholderAutocomplete, sourceUrl: '/api/Typeahead/?name='" id="To"></auto-complete>
+        <div class="col-md-6">
+            <label class="control-label" for="departure-autocomplete">Place of departure:</label>
+            <auto-complete params="searchItem: searchAirportFrom, direction: 'From', placeholder: placeholderAutocomplete, sourceUrl: '/api/Typeahead/?name='" id="departure-autocomplete"></auto-complete>
+        </div>
+        <div class="col-md-6">
+            <label class="control-label" for="arrive-autocomplete">Place of arrival:</label>
+            <auto-complete params="searchItem: searchAirportTo, direction: 'To', placeholder: placeholderAutocomplete, sourceUrl: '/api/Typeahead/?name='" id="arrive-autocomplete"></auto-complete>
+        </div>
     </div>
+    <br/>
     <div class="row">
         <div class="col-md-6">
             <label class="control-label" for="departure-date-picker">Departure date:</label>

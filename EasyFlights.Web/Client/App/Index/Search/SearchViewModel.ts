@@ -1,6 +1,7 @@
 ﻿import ko = require("knockout");
 import moment = require("moment");
 import { RadioChooserItem } from "../../Common/Components/RadioChooser/RadioChooserItem";
+import Item = require("../../Common/Components/Autocomplete/AutocompleteItem");
 
 class TicketType {
     static oneWay = "OneWay";
@@ -14,12 +15,13 @@ class SearchViewModel {
     private placeholderAutocomplete: string = "Search by country, city or airport";
     private options: Array<RadioChooserItem>;
 
+    public searchAirportFrom: KnockoutObservable<Item.AutocompleteItem>;
+    public searchAirportTo: KnockoutObservable<Item.AutocompleteItem>;
+
     public selectedTicketType: KnockoutObservable<string>;
     public selectedDepartureDate: KnockoutObservable<string>;
     public selectedReturnDate: KnockoutObservable<string>;
     public isRoundTripSelected: KnockoutObservable<boolean>;
-    public searchCityFrom: KnockoutObservable<string>;
-    public searchCityTo: KnockoutObservable<string>;
     public departureDateName: KnockoutObservable<string>;
     public returnDateName: KnockoutObservable<string>;
     public numberOfPeople: KnockoutObservable<number>;
@@ -43,13 +45,13 @@ class SearchViewModel {
             dateAfter: self.selectedDepartureDate
         });
 
-        this.searchCityFrom = ko.observable<string>().extend({
+        this.searchAirportFrom = ko.observable<Item.AutocompleteItem>().extend({
             required: {
                 params: true,
                 message: 'This field is required.'
             }
         });
-        this.searchCityTo = ko.observable<string>().extend({
+        this.searchAirportTo = ko.observable<Item.AutocompleteItem>().extend({
             required: {
                 params: true,
                 message: 'This field is required.'
@@ -74,7 +76,6 @@ class SearchViewModel {
 
     public onTicketTypeChanged(newValue: string) {
         this.isRoundTripSelected(newValue === TicketType.roundTrip);
-
         // clean a return date if don't need it'
         if (!this.isRoundTripSelected()) {
             this.selectedReturnDate("");
