@@ -8,6 +8,11 @@ namespace EasyFlights.DomainModel.DTOs
     /// </summary>
     public class Route
     {
+        public Route()
+        {
+            this.Flights = new List<Flight>();
+        }
+
         public ICollection<Flight> Flights { get; set; }
     }
 }

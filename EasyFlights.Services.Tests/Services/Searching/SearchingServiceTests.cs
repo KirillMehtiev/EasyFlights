@@ -17,7 +17,6 @@ namespace EasyFlights.Services.Tests.Services.Searching
     {
         #region FindRoutesBetweenAirportsAsync Tests
 
-
         [TestMethod]
         public async Task FindRoutesBetweenAirportsAsync_WhenReceivesValidParams_CallsIRouteBuilderBuildAsyncMethod()
         {
