@@ -213,13 +213,10 @@
     <Content Include="Client\App\SearchResults\FlightResults\Tickets\FlightTemplate.html" />
     <Content Include="Client\App\SearchResults\SearchHeader\SearchHeaderTemplate.html" />
     <Content Include="Client\App\SearchResults\SearchResultTemplate.html" />
-    <Content Include="Client\Libs\bootstrap-datepicker.css" />
-    <Content Include="Client\Libs\bootstrap.css" />
-    <Content Include="Client\Libs\bootstrap\bootstrap.css" />
+    <Content Include="Client\Libs\css\jquery-ui.min.css" />
     <Content Include="Client\Libs\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Client\Libs\jquery-ui.min.css" />
-    <Content Include="Client\Libs\pager.js" />
-    <Content Include="Client\Libs\jquery-ui.js" />
+    <Content Include="Client\Libs\js\jquery-ui.js" />
+    <Content Include="Client\Libs\js\pager.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
