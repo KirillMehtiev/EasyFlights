@@ -39,6 +39,6 @@
         </div>
     </div>
     <div class="col-md-12 text-center">
-        <input type="submit" class="btn btn-primary big-text" onclick="location.href='#results'" />
+        <a class="btn btn-info" data-bind="page-href: {path: 'results', params: {departurePlace: $data.searchCityFrom, arrivalPlace: $data.searchCityTo, departureDate: $data.selectedDepartureDate, returnDate: $data.selectedReturnDate, number: $data.numberOfPeople,}}">Search</a>
     </div>
 </div>
