@@ -197,6 +197,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AirportViewModel.cs" />
     <Compile Include="ViewModels\FlightViewModel.cs" />
+    <Compile Include="ViewModels\RouteSearchViewModel.cs" />
     <Compile Include="ViewModels\RouteViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -209,6 +210,7 @@
     <Content Include="Client\App\Layout\Footer\FooterTemplate.html" />
     <Content Include="Client\App\Layout\Header\HeaderTemplate.html" />
     <Content Include="Client\App\Layout\LayoutTemplate.html" />
+    <Content Include="Client\App\PassengerInfo\PassengerInfoTemplate.html" />
     <Content Include="Client\App\SearchResults\FlightResults\RouteResult.html" />
     <Content Include="Client\App\SearchResults\FlightResults\Tickets\FlightTemplate.html" />
     <Content Include="Client\App\SearchResults\SearchHeader\SearchHeaderTemplate.html" />
@@ -291,6 +293,9 @@
     <TypeScriptCompile Include="Client\App\Layout\Header\HeaderViewModel.ts" />
     <TypeScriptCompile Include="Client\App\Layout\LayoutComponent.ts" />
     <TypeScriptCompile Include="Client\App\Layout\LayoutViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\PassengerInfo\PassengerInfoComponent.ts" />
+    <TypeScriptCompile Include="Client\App\PassengerInfo\PassengerInfoItem.ts" />
+    <TypeScriptCompile Include="Client\App\PassengerInfo\PassengerInfoViewModel.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\FlightResults\RouteItem.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\FlightResults\RouteResultComponent.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\FlightResults\RouteResultViewModel.ts" />
