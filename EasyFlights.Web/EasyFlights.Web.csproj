@@ -263,9 +263,7 @@
     <TypeScriptCompile Include="Client\App\App.ts" />
     <TypeScriptCompile Include="Client\App\Bindings.ts" />
     <TypeScriptCompile Include="Client\App\Common\Components\Autocomplete\AutocompleteBinding.ts" />
-    <TypeScriptCompile Include="Client\App\Common\Models\country.ts" />
     <TypeScriptCompile Include="Client\App\Common\Services\dataService.ts" />
-    <TypeScriptCompile Include="Client\App\Common\Services\searchResultService.ts" />
     <TypeScriptCompile Include="Client\App\Components.ts" />
     <TypeScriptCompile Include="Client\App\Index\IndexComponent.ts" />
     <TypeScriptCompile Include="Client\App\Index\IndexViewModel.ts" />
@@ -302,6 +300,7 @@
     <TypeScriptCompile Include="Client\App\SearchResults\SearchHeader\SearchHeaderViewModel.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\SearchResultComponent.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\SearchResultViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\SearchResults\Services\RoutesService.ts" />
     <TypeScriptCompile Include="Client\App\Validation\DateAfterValidationRule.ts" />
     <TypeScriptCompile Include="Client\App\Validation\ISingleValueValidationRule.ts" />
     <TypeScriptCompile Include="Client\App\ValidationRules.ts" />
