@@ -24,7 +24,7 @@ namespace EasyFlights.Services.Services.Searching
         
         public async Task<IEnumerable<RouteDto>> FindRoutesBetweenAirportsAsync(int departureAirportId, int destinationAirportId, int numberOfPassengers, DateTime departureTime, DateTime? returnTime = null)
         {
-            // TODO: move error messages to resources
+            // Ensure that all params are valid.
             Guard.ArgumentValid(departureAirportId > 0, "Given parameter has to be greater then 0", nameof(departureAirportId));
             Guard.ArgumentValid(destinationAirportId > 0, "Given parameter has to be greater then 0", nameof(destinationAirportId));
             Guard.ArgumentValid(numberOfPassengers > 0, "Given parameter has to be greater then 0", nameof(numberOfPassengers));
@@ -35,12 +35,20 @@ namespace EasyFlights.Services.Services.Searching
             Guard.ArgumentValid(departureAirport != null, "Airport with given id does not exist", nameof(departureAirportId));
             Guard.ArgumentValid(destinationAirport != null, "Airport with given id does not exist", nameof(destinationAirportId));
 
-            IEnumerable<RouteDto> routes = await this.FindRoutesBetweenCitiesAsync(departureAirport, destinationAirport, numberOfPassengers, departureTime);
+            if (returnTime.HasValue)
+            {
+                Guard.ArgumentValid(returnTime.Value.Date > departureTime.Date, "The return date has to be after the departure date.", nameof(returnTime));
+            }
 
-            // TODO: add a rule for the date validation
+            // Try to build routes.
+            IEnumerable<RouteDto> routes = await this.FindRoutesBetweenCitiesAsync(departureAirport, destinationAirport, numberOfPassengers, departureTime);
+            Guard.OperationValid(routes.Any(), "Impossible to find a route between given cities for the specified time of departure.");
+
             if (returnTime.HasValue)
             {
                 IEnumerable<RouteDto> reverseRoutes = await this.FindRoutesBetweenCitiesAsync(destinationAirport, departureAirport, numberOfPassengers, returnTime.Value);
+                Guard.OperationValid(reverseRoutes.Any(), "Impossible to find a route between given cities for the specified time of return.");
+
                 routes = routes.Concat(reverseRoutes);
             }
 
@@ -54,8 +62,16 @@ namespace EasyFlights.Services.Services.Searching
             var result = new List<RouteDto>();
             foreach (Route route in routes)
             {
+                if (route.Flights == null || !route.Flights.Any())
+                {
+                    // route does not contain any flight
+                    // so, skip it
+                    continue;
+                }
+
                 decimal totalCost = route.Flights.Sum(flight => flight.DefaultFare);
-                TimeSpan totalTime = new TimeSpan(route.Flights.Sum(flight =>
+
+                var totalTime = new TimeSpan(route.Flights.Sum(flight =>
                 {
                     return (flight.ScheduledDepartureTime - flight.ScheduledArrivalTime).Ticks;
                 }));
