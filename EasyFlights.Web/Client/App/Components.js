@@ -12,4 +12,6 @@ require("./Common/Components/Autocomplete/AutocompleteComponent");
 require("./Common/Components/RadioChooser/RadioChooserComponent");
 require("./SearchResults/FlightResults/RouteResultComponent");
 require("./SearchResults/FlightResults/Tickets/FlightComponent");
+require("./SelectFlow/PassengerInfo/PassengerInfoComponent");
+require("./SelectFlow/TicketInfo/TicketInfoComponent");
 //# sourceMappingURL=Components.js.map

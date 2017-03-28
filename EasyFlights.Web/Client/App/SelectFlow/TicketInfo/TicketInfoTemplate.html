@@ -1,3 +1,87 @@
-﻿<div>
-    <p>Hello from TICKET info</p>
+﻿<!--
+WHILE TESTING!!!    
+-->
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+</head>
+<div class="container" id="ticket-info" data-bind="foreach: {data: flightsResult as 'flightItem'}">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <p>
+                <h2>Tickets for flight <span data-bind="text: flightItem.id"></span></h2>
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <table class="table table-bordered">
+                <tr>
+                    <td>
+                        Flight: <span data-bind="text: flightItem"></span><br/>
+                        Aircraft: <br />
+                        Country: <br />
+                    </td>
+                    <td>
+                        Departure time: <span data-bind="text: flightItem.departureTime"></span><br/>
+                        Departure airport: <span data-bind="text: flightItem.departureAirport"></span><br />
+                    </td>
+                    <td>
+                        Duration: <span data-bind="text: flightItem.duration"></span><br/>
+                    </td>
+                    <td>
+                        Arrival time: <span data-bind="text: flightItem.arrivalTime"></span><br/>
+                        Arrival airport: <span data-bind="text: flightItem.destinationAirport"></span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <p>
+                <h3>Tickets Information </h3>
+            </p>
+        </div>
+    </div>
+    <div id="flight" data-bind="foreach:{flightItem: tickets as 'ticket'}">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <table class="table table-bordered">
+                    <tr>
+                        <td>
+                            Ticket №: <span data-bind="text: ticket.ticketNumber"></span><br />
+                            Name: <span data-bind="text: ticket.passenger.firstName"></span> <span data-bind="text: ticket.passenger.lastName"></span><br />
+                        </td>
+                        <td>
+                            Seat: <span data-bind="text: ticket.seat"></span><br />
+                        </td>
+                        <td>
+                            Class: <span data-bind="text: ticket.ticketClass"></span><br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Price for ticket: <span data-bind="text: ticket.price"></span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-md-offset-3">
+            <h4>Total price:</h4> 
+        </div>
+        <div class="col-md-2">
+            <button class="btn btn-default">
+                Choose seats
+            </button>
+        </div>
+    </div>
 </div>
+<!--
+WHILE TESTING!!!
+-->
+<script type="text/javascript" src="https:-//ajax.aspnetcdn.com/ajax/knockout/knockout-3.4.0.js"></script>
