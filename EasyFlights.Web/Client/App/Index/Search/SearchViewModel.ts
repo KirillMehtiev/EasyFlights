@@ -1,7 +1,6 @@
 ﻿import ko = require("knockout");
 import moment = require("moment");
 import { RadioChooserItem } from "../../Common/Components/RadioChooser/RadioChooserItem";
-import Item = require("./Autocomplete/CityItem/CityItem");
 
 class TicketType {
     static oneWay = "OneWay";
@@ -14,7 +13,6 @@ class DatePickerType {
 class SearchViewModel {
     private placeholderAutocomplete: string = "Search by country, city or airport";
     private options: Array<RadioChooserItem>;
-    public cityList: Array<Item.CityItem>;
 
     public selectedTicketType: KnockoutObservable<string>;
     public selectedDepartureDate: KnockoutObservable<string>;
@@ -31,7 +29,6 @@ class SearchViewModel {
             new RadioChooserItem("One Way", TicketType.oneWay),
             new RadioChooserItem("Round trip", TicketType.roundTrip)
         ];
-        this.cityList = [new Item.CityItem("City 1", 1), new Item.CityItem("City 2", 2)];
 
         this.departureDateName = ko.observable(DatePickerType.departureDate);
         this.returnDateName = ko.observable(DatePickerType.returnDate);

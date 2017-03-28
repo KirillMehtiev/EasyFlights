@@ -18,8 +18,8 @@
     </div>
     <hr />
     <div class="row">
-        <autocomplete class="col-md-6" params="searchCity: searchCityFrom, label: 'Place of departure:', direction: 'From', placeholder: placeholderAutocomplete" id="From"></autocomplete>
-        <autocomplete class="col-md-6" params="searchCity: searchCityTo, label: 'Place of arrival:', direction: 'To', placeholder: placeholderAutocomplete" id="To"></autocomplete>
+        <auto-complete class="col-md-6" params="searchItem: searchCityFrom, label: 'Place of departure:', direction: 'From', placeholder: placeholderAutocomplete, sourceUrl: '/api/Typeahead/?name='" id="From"></auto-complete>
+        <auto-complete class="col-md-6" params="searchItem: searchCityTo, label: 'Place of arrival:', direction: 'To', placeholder: placeholderAutocomplete, sourceUrl: '/api/Typeahead/?name='" id="To"></auto-complete>
     </div>
     <div class="row">
         <div class="col-md-6">
