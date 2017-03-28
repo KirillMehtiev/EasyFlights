@@ -24,14 +24,14 @@ class SearchViewModel {
     public isRoundTripSelected: KnockoutObservable<boolean>;
     public departureDateName: KnockoutObservable<string>;
     public returnDateName: KnockoutObservable<string>;
-    public numberOfPeople: KnockoutObservable<number>;
+    public numberOfPeople: KnockoutObservableArray<number>;
 
     constructor() {
         this.options = [
             new RadioChooserItem("One Way", TicketType.oneWay),
             new RadioChooserItem("Round trip", TicketType.roundTrip)
         ];
-
+        this.createDefaultOptions();
         this.departureDateName = ko.observable(DatePickerType.departureDate);
         this.returnDateName = ko.observable(DatePickerType.returnDate);
 
@@ -58,17 +58,6 @@ class SearchViewModel {
             }
         });
 
-        this.numberOfPeople = ko.observable(1).extend({
-            min: {
-                params: 1,
-                message: "This value has to be greater then {0}"
-            },
-            max: {
-                params: 10,
-                message: "This value has to be less then {0}"
-            }
-        });
-
         this.isRoundTripSelected = ko.observable(false);
 
         this.selectedTicketType.subscribe(this.onTicketTypeChanged, this);
@@ -79,6 +68,13 @@ class SearchViewModel {
         // clean a return date if don't need it'
         if (!this.isRoundTripSelected()) {
             this.selectedReturnDate("");
+        }
+    }
+
+    private createDefaultOptions() {
+        this.numberOfPeople = ko.observableArray<number>();
+        for (let i = 1; i < 10; i++) {
+            this.numberOfPeople.push(i);
         }
     }
 }

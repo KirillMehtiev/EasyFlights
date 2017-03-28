@@ -11,7 +11,7 @@
             <div class="">
                 <div class="form-group">
                     <label>Number of people:</label>
-                    <input type="number" step="1" min="1" class="form-control" data-bind="value:numberOfPeople" />
+                    <select class="form-control" data-bind="options: numberOfPeople"></select>
                 </div>
             </div>
         </div>
@@ -29,15 +29,15 @@
           
         </div>
     </div>
-    <br/>
+    <br />
     <div class="row">
         <div class="col-md-6">
             <label class="control-label" for="departure-date-picker">Departure date:</label>
-            <date-picker id="departure-date-picker"  params="selectedDate: selectedDepartureDate, name: departureDateName"></date-picker>
+            <date-picker id="departure-date-picker" params="selectedDate: selectedDepartureDate, name: departureDateName"></date-picker>
         </div>
         <div class="col-md-6" data-bind="visible: isRoundTripSelected">
             <label class="control-label" for="return-date-picker">Return date:</label>
-            <date-picker id="return-date-picker"  params="selectedDate: selectedReturnDate, name: returnDateName"></date-picker>
+            <date-picker id="return-date-picker" params="selectedDate: selectedReturnDate, name: returnDateName"></date-picker>
         </div>
     </div>
     <div class="col-md-12 text-center">
