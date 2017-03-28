@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using EasyFlights.Data.Repositories.Airports;
-using EasyFlights.Data.Repositories.Cities;
 using EasyFlights.DomainModel.DTOs;
 using EasyFlights.DomainModel.Entities;
 using EasyFlights.Engines.RouteBuilding;
@@ -15,90 +13,23 @@ using Moq;
 namespace EasyFlights.Services.Tests.Services.Searching
 {
     [TestClass]
-    public class SearchingServiceTests
+    public partial class SearchingServiceTests
     {
         #region FindRoutesBetweenAirportsAsync Tests
-
-        #region FindRoutesBetweenAirportsAsync Ensure Valid Parameters
-
-        [TestMethod]
-        public async Task FindRoutesBetweenAirportsAsync_WhenReceivesWrongDepartureAirportId_ThrowsArgumentException()
-        {
-            // Arrange
-            SearchingService service = this.CreateTestObject();
-
-            // Act
-            Func<Task> act = async () => await service.FindRoutesBetweenAirportsAsync(-1, 1, 1, DateTime.Now);
-
-            // Assert
-            await Assert.ThrowsExceptionAsync<ArgumentException>(act);
-        }
-
-        [TestMethod]
-        public async Task FindRoutesBetweenAirportsAsync_WhenReceivesWrongDestinationAirportId_ThrowsArgumentException()
-        {
-            // Arrange
-            SearchingService service = this.CreateTestObject();
-
-            // Act
-            Func<Task> act = async () => await service.FindRoutesBetweenAirportsAsync(1, -1, 1, DateTime.Now);
-
-            // Assert
-            await Assert.ThrowsExceptionAsync<ArgumentException>(act);
-        }
-
-        [TestMethod]
-        public async Task FindRoutesBetweenAirportsAsync_WhenReceivesWrongNumberOfPeople_ThrowsArgumentException()
-        {
-            // Arrange
-            SearchingService service = this.CreateTestObject();
-
-            // Act
-            Func<Task> act = async () => await service.FindRoutesBetweenAirportsAsync(1, 1, -1, DateTime.Now);
-
-            // Assert
-            await Assert.ThrowsExceptionAsync<ArgumentException>(act);
-        }
-
-        [TestMethod]
-        public async Task FindRoutesBetweenAirportsAsync_WhenAirportDoesNotExist_ThrowsArgumentException()
-        {
-            // Arrange
-            Airport airport = null;
-            var mockRepository = new Mock<IAirportsRepository>();
-            mockRepository.Setup(mock => mock.FindByIdAsync(It.IsAny<int>())).ReturnsAsync(airport);
-
-            SearchingService service = this.CreateTestObject(mockRepository);
-
-            // Act
-            Func<Task> act = async () => await service.FindRoutesBetweenAirportsAsync(1, 1, 1, DateTime.Now);
-
-            // Assert
-            await Assert.ThrowsExceptionAsync<ArgumentException>(act);
-        }
-
-        #endregion
 
         [TestMethod]
         public async Task FindRoutesBetweenAirportsAsync_WhenReceivesValidParams_CallsIRouteBuilderBuildAsyncMethod()
         {
             // Arrange
+            var departureAirport = new Airport();
+            var destinationAiport = new Airport();
             int departureAirportId = 1;
             int destinationAirportId = 2;
             int numberOfPeople = 1;
-            var departureAirport = new Airport();
-            var destinationAiport = new Airport();
-            var dateTime = DateTime.Now;
+            DateTime dateTime = DateTime.Now;
 
-            var mockRepository = new Mock<IAirportsRepository>();
-            mockRepository
-                .Setup(mock => mock.FindByIdAsync(It.Is<int>(p => p == departureAirportId)))
-                .ReturnsAsync(departureAirport);
-            mockRepository
-                .Setup(mock => mock.FindByIdAsync(It.Is<int>(p => p == destinationAirportId)))
-                .ReturnsAsync(destinationAiport);
-
-            var mockRouteBuilder = new Mock<IRouteBuilder>();
+            Mock<IAirportsRepository> mockRepository = this.CreateMockRepository(departureAirportId, destinationAirportId, departureAirport, destinationAiport);
+            var mockRouteBuilder = this.CreateMockRouteBuilder();
 
             SearchingService service = this.CreateTestObject(mockRepository, mockRouteBuilder);
 
@@ -109,14 +40,87 @@ namespace EasyFlights.Services.Tests.Services.Searching
             mockRouteBuilder.Verify(mock => mock.BuildAsync(departureAirport, destinationAiport, dateTime, numberOfPeople), Times.Once());
         }
 
-        #endregion
-
-
-        #region Helper Methods
-
-        private SearchingService CreateTestObject(Mock<IAirportsRepository> mockRepository = null, Mock<IRouteBuilder> mockRouteBuilder = null)
+        [TestMethod]
+        public async Task FindRoutesBetweenAirportsAsync_WhenReceivesValidReturnDate_CallsIRouteBuilderBuildAsyncMethodTwiceAndUniteRoutes()
         {
-            return new SearchingService(mockRepository?.Object, mockRouteBuilder?.Object);
+            // Arrange
+            var departureAirport = new Airport();
+            var destinationAiport = new Airport();
+            int departureAirportId = 1;
+            int destinationAirportId = 2;
+            int numberOfPeople = 1;
+            DateTime departureDateTime = DateTime.Now;
+            DateTime returnDateTime = departureDateTime.AddDays(1);
+
+            int countOfFakeRoutes = 2;
+            var fakeRoutes = this.CreateFakeRoutes(countOfFakeRoutes);
+
+            Mock<IAirportsRepository> mockRepository = this.CreateMockRepository(departureAirportId, destinationAirportId, departureAirport, destinationAiport);
+
+            var mockRouteBuilder = this.CreateMockRouteBuilder(fakeRoutes);
+
+            SearchingService service = this.CreateTestObject(mockRepository, mockRouteBuilder);
+
+            // Act
+            IEnumerable<RouteDto> result = await service.FindRoutesBetweenAirportsAsync(departureAirportId, destinationAirportId, numberOfPeople, departureDateTime, returnDateTime);
+
+            // Assert
+            mockRouteBuilder.Verify(mock => mock.BuildAsync(departureAirport, destinationAiport, departureDateTime, numberOfPeople), Times.Once());
+            mockRouteBuilder.Verify(mock => mock.BuildAsync(destinationAiport, departureAirport, returnDateTime, numberOfPeople), Times.Once());
+
+            Assert.AreEqual(countOfFakeRoutes * 2, result.Count());
+        }
+
+        [TestMethod]
+        public async Task FindRoutesBetweenAirportsAsync_WhenIRouteBuilderCannotBuildDirectRoute_ThrowsInvalidOperationException()
+        {
+            // Arrange
+            int departureAirportId = 1;
+            int destinationAirportId = 2;
+            int numberOfPeople = 1;
+            DateTime departureDateTime = DateTime.Now;
+            DateTime returnDateTime = departureDateTime.AddDays(1);
+
+            int countOfFakeRoutes = 0;
+            var fakeRoutes = this.CreateFakeRoutes(countOfFakeRoutes);
+
+            Mock<IRouteBuilder> mockRouteBuilder = this.CreateMockRouteBuilder(fakeRoutes);
+            Mock<IAirportsRepository> mockRepository = this.CreateMockRepository();
+
+            SearchingService service = this.CreateTestObject(mockRepository, mockRouteBuilder);
+
+            // Act
+            Func<Task> act = async () => await service.FindRoutesBetweenAirportsAsync(departureAirportId, destinationAirportId, numberOfPeople, departureDateTime, returnDateTime);
+
+            // Assert
+            await Assert.ThrowsExceptionAsync<InvalidOperationException>(act);
+        }
+
+        [TestMethod]
+        public async Task FindRoutesBetweenAirportsAsync_WhenIRouteBuilderCannotBuildReverseRoute_ThrowsInvalidOperationException()
+        {
+            // Arrange
+            int departureAirportId = 1;
+            int destinationAirportId = 2;
+            int numberOfPeople = 1;
+            DateTime departureDateTime = DateTime.Now;
+            DateTime returnDateTime = departureDateTime.AddDays(1);
+
+            var mockRouteBuilder = new Mock<IRouteBuilder>();
+            mockRouteBuilder
+                .SetupSequence(mock => mock.BuildAsync(It.IsAny<Airport>(), It.IsAny<Airport>(), It.IsAny<DateTime>(), It.IsAny<int>()))
+                .ReturnsAsync(this.CreateFakeRoutes(2))
+                .ReturnsAsync(this.CreateFakeRoutes(0));
+
+            Mock<IAirportsRepository> mockRepository = this.CreateMockRepository();
+
+            SearchingService service = this.CreateTestObject(mockRepository, mockRouteBuilder);
+
+            // Act
+            Func<Task> act = async () => await service.FindRoutesBetweenAirportsAsync(departureAirportId, destinationAirportId, numberOfPeople, departureDateTime, returnDateTime);
+
+            // Assert
+            await Assert.ThrowsExceptionAsync<InvalidOperationException>(act);
         }
 
         #endregion
