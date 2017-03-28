@@ -1,6 +1,6 @@
 ﻿export interface IAutocompleteOptions {
-    label: string;
-    searchCity: KnockoutObservable<string>;
+    searchItem: KnockoutObservable<string>;
+    sourceUrl: string; 
     direction: string;
     placeholder: string;
 }
