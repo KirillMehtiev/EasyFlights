@@ -1,0 +1,4 @@
+﻿class OrderSummaryViewModel {
+}
+
+export = OrderSummaryViewModel;
