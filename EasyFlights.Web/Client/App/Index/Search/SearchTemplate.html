@@ -24,7 +24,9 @@
         </div>
         <div class="col-md-6">
             <label class="control-label" for="arrive-autocomplete">Place of arrival:</label>
+            
             <auto-complete params="searchItem: searchAirportTo, direction: 'To', placeholder: placeholderAutocomplete, sourceUrl: '/api/Typeahead/?name='" id="arrive-autocomplete"></auto-complete>
+          
         </div>
     </div>
     <br/>
@@ -39,6 +41,6 @@
         </div>
     </div>
     <div class="col-md-12 text-center">
-        <a class="btn btn-info" data-bind="page-href: {path: 'results', params: {departurePlace: $data.searchCityFrom, arrivalPlace: $data.searchCityTo, departureDate: $data.selectedDepartureDate, returnDate: $data.selectedReturnDate, number: $data.numberOfPeople,}}">Search</a>
+        <a class="btn btn-info" data-bind="page-href: {path: 'results', params: { departurePlace: $data.searchAirportFrom() ? $data.searchAirportFrom().value : '', arrivalPlace: $data.searchAirportTo() ? $data.searchAirportTo().value : '', departureDate: $data.selectedDepartureDate, returnDate: $data.selectedReturnDate, number: $data.numberOfPeople, type: $data.selectedTicketType}}">Search</a>
     </div>
 </div>
