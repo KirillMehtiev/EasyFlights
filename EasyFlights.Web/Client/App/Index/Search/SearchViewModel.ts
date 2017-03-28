@@ -24,6 +24,7 @@ class SearchViewModel {
     public isRoundTripSelected: KnockoutObservable<boolean>;
     public departureDateName: KnockoutObservable<string>;
     public returnDateName: KnockoutObservable<string>;
+    public count: KnockoutObservable<number>;
     public numberOfPeople: KnockoutObservableArray<number>;
 
     constructor() {
@@ -72,6 +73,7 @@ class SearchViewModel {
     }
 
     private createDefaultOptions() {
+        this.count = ko.observable(1);
         this.numberOfPeople = ko.observableArray<number>();
         for (let i = 1; i < 10; i++) {
             this.numberOfPeople.push(i);

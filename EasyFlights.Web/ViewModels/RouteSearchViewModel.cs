@@ -10,7 +10,7 @@ namespace EasyFlights.Web.ViewModels
     public class RouteSearchViewModel
     {
         [Required]
-        public int DepartureAirpotId { get; set; }
+        public int DepartureAirportId { get; set; }
 
         [Required]
         public int DestinationAirportId { get; set; }

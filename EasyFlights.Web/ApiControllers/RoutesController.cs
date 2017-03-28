@@ -25,7 +25,7 @@ namespace EasyFlights.Web.ApiControllers
         public async Task<IEnumerable<RouteViewModel>> GetAsync([FromUri] RouteSearchViewModel search)
         {
             var routes = await searchingService.FindRoutesBetweenAirportsAsync(
-                search.DepartureAirpotId,
+                search.DepartureAirportId,
                 search.DestinationAirportId,
                 search.NumberOfPeople,
                 search.DepartureTime,
