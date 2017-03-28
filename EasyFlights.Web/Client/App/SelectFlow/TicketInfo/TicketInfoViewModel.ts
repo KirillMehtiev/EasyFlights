@@ -1,0 +1,4 @@
+﻿class TicketInfoViewModel {
+}
+
+export = TicketInfoViewModel;

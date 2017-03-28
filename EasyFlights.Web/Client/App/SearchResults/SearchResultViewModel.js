@@ -1,7 +1,7 @@
 "use strict";
 var ko = require("knockout");
 var RouteItem_1 = require("./FlightResults/RouteItem");
-var RoutesService_1 = require("..//Common/Services/RoutesService");
+var RoutesService_1 = require("./Services/RoutesService");
 var Item = require("./FlightResults/Tickets/FlightItem");
 var FlightItem = Item.FlightItem;
 var SearchResultViewModel = (function () {

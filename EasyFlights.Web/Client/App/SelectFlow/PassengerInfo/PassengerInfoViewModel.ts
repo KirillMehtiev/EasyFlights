@@ -1,0 +1,4 @@
+﻿class PassengerInfoViewModel {
+}
+
+export = PassengerInfoViewModel;

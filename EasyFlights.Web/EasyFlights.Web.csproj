@@ -197,6 +197,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AirportViewModel.cs" />
     <Compile Include="ViewModels\FlightViewModel.cs" />
+    <Compile Include="ViewModels\RouteSearchViewModel.cs" />
     <Compile Include="ViewModels\RouteViewModel.cs" />
     <Compile Include="ViewModels\TypeaheadViewModel.cs" />
   </ItemGroup>
@@ -210,10 +211,12 @@
     <Content Include="Client\App\Layout\Footer\FooterTemplate.html" />
     <Content Include="Client\App\Layout\Header\HeaderTemplate.html" />
     <Content Include="Client\App\Layout\LayoutTemplate.html" />
+    <Content Include="Client\App\SelectFlow\PassengerInfo\PassengerInfoTemplate.html" />
     <Content Include="Client\App\SearchResults\FlightResults\RouteResult.html" />
     <Content Include="Client\App\SearchResults\FlightResults\Tickets\FlightTemplate.html" />
     <Content Include="Client\App\SearchResults\SearchHeader\SearchHeaderTemplate.html" />
     <Content Include="Client\App\SearchResults\SearchResultTemplate.html" />
+	<Content Include="Client\App\SelectFlow\TicketInfo\TicketInfoTemplate.html" />
     <Content Include="Client\Libs\css\jquery-ui.min.css" />
     <Content Include="Client\Libs\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Client\Libs\js\jquery-ui.js" />
@@ -288,6 +291,9 @@
     <TypeScriptCompile Include="Client\App\Layout\Header\HeaderViewModel.ts" />
     <TypeScriptCompile Include="Client\App\Layout\LayoutComponent.ts" />
     <TypeScriptCompile Include="Client\App\Layout\LayoutViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\SelectFlow\PassengerInfo\PassengerInfoComponent.ts" />
+    <TypeScriptCompile Include="Client\App\SelectFlow\PassengerInfo\PassengerInfoItem.ts" />
+    <TypeScriptCompile Include="Client\App\SelectFlow\PassengerInfo\PassengerInfoViewModel.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\FlightResults\RouteItem.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\FlightResults\RouteResultComponent.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\FlightResults\RouteResultViewModel.ts" />
@@ -302,7 +308,8 @@
     <TypeScriptCompile Include="Client\App\SearchResults\SearchHeader\SearchHeaderViewModel.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\SearchResultComponent.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\SearchResultViewModel.ts" />
-    <TypeScriptCompile Include="Client\App\SearchResults\Services\RoutesService.ts" />
+    <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\TicketInfoComponent.ts" />
+    <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\TicketInfoViewModel.ts" />
     <TypeScriptCompile Include="Client\App\Validation\DateAfterValidationRule.ts" />
     <TypeScriptCompile Include="Client\App\Validation\ISingleValueValidationRule.ts" />
     <TypeScriptCompile Include="Client\App\ValidationRules.ts" />

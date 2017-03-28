@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using EasyFlights.Data.Repositories.Cities;
 using EasyFlights.DomainModel.Entities;
+using EasyFlights.Services.Common;
 using EasyFlights.Services.Interfaces;
 
 namespace EasyFlights.Services.Services.Typeahead
@@ -21,14 +21,8 @@ namespace EasyFlights.Services.Services.Typeahead
 
         public async Task<List<City>> GetTypeaheadAsync(string partialName)
         {
-            if (partialName.Length <= 1)
-            {
-                return new List<City>();
-            }
-            if (partialName.Contains('\\'))
-            {
-                throw new ArgumentException(nameof(partialName) + " contains unacceptable characters");
-            }
+            Guard.ArgumentNotNullOrEmpty(partialName, nameof(partialName));
+            Guard.ArgumentInRange(partialName.Length > 1, "length must be > 1", nameof(partialName));
             partialName = partialName.ToUpperInvariant().FirstOrDefault() +
                           partialName.ToLowerInvariant().Substring(1);
             return await 
@@ -41,32 +35,8 @@ namespace EasyFlights.Services.Services.Typeahead
                                 || x.Airports.Any(y => y.AirportCodeIcao.StartsWith(partialName))
                                 || x.Country.Name.StartsWith(partialName)
                                 || x.Country.Name.Contains(" " + partialName))
+                    .Take(MaxNumber)
                     .ToListAsync();
-        }
-
-        public List<City> GetTypeahead(string partialName)
-        {
-            if (partialName.Length <= 1)
-            {
-                return new List<City>();
-            }
-            if (partialName.Contains('\\'))
-            {
-                throw new ArgumentException(nameof(partialName) + " contains unacceptable characters");
-            }
-            partialName = partialName.ToUpperInvariant().FirstOrDefault() +
-                          partialName.ToLowerInvariant().Substring(1);
-            return
-                repository.GetAll()
-                    .Where(x => x.Name.StartsWith(partialName)
-                                || x.Name.Contains(" " + partialName)
-                                || x.Airports.Any(y => y.Title.StartsWith(partialName))
-                                || x.Airports.Any(y => y.Title.Contains(" " + partialName))
-                                || x.Airports.Any(y => y.AirportCodeIata.StartsWith(partialName))
-                                || x.Airports.Any(y => y.AirportCodeIcao.StartsWith(partialName))
-                                || x.Country.Name.StartsWith(partialName)
-                                || x.Country.Name.Contains(" " + partialName))
-                    .ToList();
         }
     }
 }

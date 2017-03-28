@@ -10,3 +10,5 @@ import "./Common/Components/Autocomplete/AutocompleteComponent";
 import "./Common/Components/RadioChooser/RadioChooserComponent";
 import "./SearchResults/FlightResults/RouteResultComponent"
 import "./SearchResults/FlightResults/Tickets/FlightComponent"
+import "./SelectFlow/PassengerInfo/PassengerInfoComponent";
+import "./SelectFlow/TicketInfo/TicketInfoComponent";

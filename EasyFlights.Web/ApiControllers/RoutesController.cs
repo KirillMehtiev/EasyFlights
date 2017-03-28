@@ -22,23 +22,14 @@ namespace EasyFlights.Web.ApiControllers
         }
 
         // GET api/<controller>
-        public async Task<IEnumerable<RouteViewModel>> Get(int departureAirportId, int destinationAirportId, int numberOfPeople, DateTime departureTime, DateTime? returnTime = null)
+        public async Task<IEnumerable<RouteViewModel>> GetAsync([FromUri] RouteSearchViewModel search)
         {
-            if (departureTime == null)
-            {
-                throw new AggregateException(nameof(departureTime));
-            }
-            if (numberOfPeople <= 0)
-            {
-                throw new ArgumentException(nameof(numberOfPeople));
-            }
-
             var routes = await searchingService.FindRoutesBetweenAirportsAsync(
-                departureAirportId,
-                destinationAirportId,
-                numberOfPeople,
-                departureTime,
-                returnTime);
+                search.DepartureAirpotId,
+                search.DestinationAirportId,
+                search.NumberOfPeople,
+                search.DepartureTime,
+                search.ReturnTime);
 
             var result = routes.Select(MapToRouteViewModel);
 
