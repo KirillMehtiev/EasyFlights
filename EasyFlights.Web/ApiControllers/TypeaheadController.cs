@@ -19,49 +19,23 @@ namespace EasyFlights.Web.ApiControllers
 
         [HttpGet]
         [Route]
-        public List<AirportViewModel> GetAirportsForTypeahead(string name)
-        {     
-                var airports = new List<AirportViewModel>();
-                List<City> cities = provider.GetTypeahead(name);
-                if (cities == null || cities.Count == 0)
-                {
-                    return new List<AirportViewModel>();
-                }
-                foreach (City city in cities)
-                {
-                    foreach (Airport airport in city.Airports)
-                    {
-                        airports.Add(new AirportViewModel()
-                        {
-                            Id = airport.Id,
-                            City = airport.City?.Name,
-                            Country = airport.City?.Country?.Name,
-                            Name = airport.Title
-                        });
-                    }
-                }
-                return airports;       
-        }
-
-        [HttpGet]
-        public async Task<List<AirportViewModel>> GetAirportsForTypeaheadAsync(string name)
+        public async Task<List<TypeaheadViewModel>> GetAirportsForTypeaheadAsync(string name)
         {
-            var airports = new List<AirportViewModel>();
+            var airports = new List<TypeaheadViewModel>();
             List<City> cities = await provider.GetTypeaheadAsync(name);
             if (cities == null || cities.Count == 0)
             {
-                return new List<AirportViewModel>();
+                return new List<TypeaheadViewModel>();
             }
             foreach (City city in cities)
             {
                 foreach (Airport airport in city.Airports)
                 {
-                    airports.Add(new AirportViewModel()
+                    airports.Add(new TypeaheadViewModel
                     {
                         Id = airport.Id,
-                        City = airport.City?.Name,
-                        Country = airport.City?.Country?.Name,
-                        Name = airport.Title
+                        Label = $"{airport.City?.Country?.Name}, {airport.City?.Name}, {airport.Title}",
+                        Value = airport.Title
                     });
                 }
             }

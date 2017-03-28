@@ -1,6 +1,6 @@
 ﻿import ko = require("knockout");
 import { RouteItem } from "./FlightResults/RouteItem";
-import { RoutesService } from "..//Common/Services/RoutesService"
+import { RoutesService } from "./Services/RoutesService"
 import Item = require("./FlightResults/Tickets/FlightItem");
 import FlightItem = Item.FlightItem;
 
