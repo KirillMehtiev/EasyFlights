@@ -10,7 +10,6 @@ var DataService = (function () {
         })
             .fail(console.log);
     };
-    ;
     DataService.prototype.ajaxGet = function (url) {
         return $.ajax({
             url: url,
@@ -20,7 +19,6 @@ var DataService = (function () {
             return data;
         }).fail(console.log);
     };
-    ;
     DataService.prototype.post = function (url, data) {
         return $.post(url, JSON.stringify(data))
             .then(function (data) {
@@ -30,7 +28,6 @@ var DataService = (function () {
         })
             .fail(console.log);
     };
-    ;
     return DataService;
 }());
 exports.DataService = DataService;
