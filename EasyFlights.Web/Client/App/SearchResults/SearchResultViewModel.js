@@ -5,10 +5,15 @@ var RoutesService_1 = require("./Services/RoutesService");
 var Item = require("./FlightResults/Tickets/FlightItem");
 var FlightItem = Item.FlightItem;
 var SearchResultViewModel = (function () {
-    function SearchResultViewModel() {
+    function SearchResultViewModel(params) {
         this.routesService = new RoutesService_1.RoutesService();
         this.routeItems = ko.observableArray([new RouteItem_1.RouteItem(12, "Flight", "Country", "Economy", "13:30", [new FlightItem(12, "Borispol", "Kharkiv Airport", "14:00", "13:30", "2 h 20 min", "145"), new FlightItem(13, "Borispol", "Kharkiv Airport", "14:00", "13:30", "2 h 20 min", "145")], 350, 100),
             new RouteItem_1.RouteItem(12, "Flight", "Country", "Lux", "14:30", [new FlightItem(14, "Borispol", "Kharkiv Airport", "14:00", "13:30", "2 h 20 min", "145")], 120, 400)]);
+        this.departureDate = params.departureDate;
+        this.arrivalPlace = params.arrivalPlace;
+        this.departurePlace = params.departurePlace;
+        this.returnDate = params.returnDate;
+        this.countOf = params.countOf;
         this.createDefaultOptions();
         this.setPage();
         this.sortByPrice();

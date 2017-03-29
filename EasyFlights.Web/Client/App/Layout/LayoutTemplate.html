@@ -6,9 +6,11 @@
 
     </div>
 
-    <div data-bind="page: {id: 'results', params: ['departurePlace','arrivalPlace','departureDate','returnDate', 'number', 'type']}">
-        <app-results></app-results>
+    <div data-bind="page: {id: 'results', params: ['departurePlace','arrivalPlace','departureDate','returnDate', 'countOf', 'type']}">
+
+        <app-results params="departurePlace: departurePlace, arrivalPlace: arrivalPlace, departureDate: departureDate, returnDate: returnDate, countOf: countOf "></app-results>
     </div>
+
 
     <div data-bind="page: {id: 'selected-route', params: ['routeId', 'numberOfPassenger']}">
         <selected-route params="routeId: routeId, numberOfPassenger: numberOfPassenger">
