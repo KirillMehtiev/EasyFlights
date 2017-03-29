@@ -7,7 +7,8 @@ class SelectFlowViewModel {
     public passengerInfoList: KnockoutObservableArray<PassengerInfoItem>;
 
     constructor(params) {
-        // TODO: CHANGE 1 TO REAL NUMBER OF PEOPLE
+        this.routeId = params.routeId;
+        this.numberOfPassenger = params.numberOfPassenger;
         this.passengerInfoList = ko.observableArray(this.initPassengerInfoList(1));
     }
 

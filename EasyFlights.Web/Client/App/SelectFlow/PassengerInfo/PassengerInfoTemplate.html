@@ -8,10 +8,31 @@
             </div>
             <div class="panel-body">
                 <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Age:</label>
+                            <!-- params is IRadioChooserOption if change signarute reflect it here -->
+                            <radio-chooser params="options: $data.ageOptions, selectedOption:passengerInfo.ageType"></radio-chooser>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label>FirstName:</label>
-                            <input type="text" class="form-control" placeholder="Ivan" data-bind="value: passengerInfo.firstName" />
+                            <label>First Name:</label>
+                            <input type="text" class="form-control" placeholder="Ivan" data-bind="value: passengerInfo.firstName"/>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Last Name:</label>
+                            <input type="text" class="form-control" placeholder="Ivanov" data-bind="value: passengerInfo.lastName"/>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Document number:</label>
+                            <input type="text" class="form-control" placeholder="ET290490" data-bind="value: passengerInfo.firstName"/>
                         </div>
                     </div>
                 </div>
