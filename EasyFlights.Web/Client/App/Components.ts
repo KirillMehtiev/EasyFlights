@@ -3,7 +3,6 @@ import "./Layout/Footer/FooterComponent";
 import "./Layout/Header/HeaderComponent";
 import "./Index/IndexComponent";
 import "./SearchResults/SearchResultComponent";
-import "./SearchResults/SearchHeader/SearchHeaderComponent";
 import "./Common/Components/DatePicker/DatePickerComponent";
 import "./Index/Search/SearchComponent";
 import "./Common/Components/Autocomplete/AutocompleteComponent";
@@ -13,4 +12,4 @@ import "./SearchResults/FlightResults/Tickets/FlightComponent"
 import "./SelectFlow/SelectFlowComponent";
 import "./SelectFlow/PassengerInfo/PassengerInfoComponent";
 import "./SelectFlow/TicketInfo/TicketInfoComponent";
-import "./SelectFlow/TicketInfo/OrderSummaryComponent";
+import "./SelectFlow/OrderSummary/OrderSummaryComponent";

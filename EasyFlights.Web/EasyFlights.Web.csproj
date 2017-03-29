@@ -215,7 +215,6 @@
     <Content Include="Client\App\SelectFlow\PassengerInfo\PassengerInfoTemplate.html" />
     <Content Include="Client\App\SearchResults\FlightResults\RouteResult.html" />
     <Content Include="Client\App\SearchResults\FlightResults\Tickets\FlightTemplate.html" />
-    <Content Include="Client\App\SearchResults\SearchHeader\SearchHeaderTemplate.html" />
     <Content Include="Client\App\SearchResults\SearchResultTemplate.html" />
     <Content Include="Client\App\SelectFlow\OrderSummary\OrderSummaryTemplate.html" />
     <Content Include="Client\App\SelectFlow\TicketInfo\TicketInfoTemplate.html" />
@@ -293,6 +292,7 @@
     <TypeScriptCompile Include="Client\App\Layout\Header\HeaderViewModel.ts" />
     <TypeScriptCompile Include="Client\App\Layout\LayoutComponent.ts" />
     <TypeScriptCompile Include="Client\App\Layout\LayoutViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\SearchResults\Services\RoutesService.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\SelectFlowComponent.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\SelectFlowViewModel.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\PassengerInfo\PassengerInfoComponent.ts" />
@@ -306,10 +306,6 @@
     <TypeScriptCompile Include="Client\App\SearchResults\FlightResults\Tickets\FlightItem.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\FlightResults\Tickets\IFlightOptions.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\FlightResults\Tickets\FlightViewModel.ts" />
-    <TypeScriptCompile Include="Client\App\SearchResults\SearchHeader\ISearchHeaderOptions.ts" />
-    <TypeScriptCompile Include="Client\App\SearchResults\SearchHeader\SearchHeaderComponent.ts" />
-    <TypeScriptCompile Include="Client\App\SearchResults\SearchHeader\SearchHeaderItem.ts" />
-    <TypeScriptCompile Include="Client\App\SearchResults\SearchHeader\SearchHeaderViewModel.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\SearchResultComponent.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\SearchResultViewModel.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\ITicketInfoItemOptions.ts" />

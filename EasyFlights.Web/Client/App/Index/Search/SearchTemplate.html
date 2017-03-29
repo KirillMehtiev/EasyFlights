@@ -39,6 +39,6 @@
         </div>
     </div>
     <div class="col-md-12 text-center">
-        <a class="btn btn-info" data-bind="page-href: {path: 'results', params: { departurePlace: $data.searchAirportFrom() ? $data.searchAirportFrom().value : '', arrivalPlace: $data.searchAirportTo() ? $data.searchAirportTo().value : '', departureDate: $data.selectedDepartureDate, returnDate: $data.selectedReturnDate, number: $data.count, type: $data.selectedTicketType}}">Search</a>
+        <a class="btn btn-info" data-bind="page-href: {path: 'results', params: { departurePlace: $data.searchAirportFrom() ? $data.searchAirportFrom().id : '', arrivalPlace: $data.searchAirportTo() ? $data.searchAirportTo().id : '', departureDate: $data.selectedDepartureDate, returnDate: $data.selectedReturnDate, countOf: $data.count, type: $data.selectedTicketType}}">Search</a>
     </div>
 </div>
