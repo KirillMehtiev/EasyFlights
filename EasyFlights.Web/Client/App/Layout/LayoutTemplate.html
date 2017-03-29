@@ -11,12 +11,12 @@
     </div>
 
     <div data-bind="page: {id: 'selected-route', params: ['routeId', 'numberOfPassenger']}">
-        <selected-route>
+        <selected-route params="routeId: routeId, numberOfPassenger: numberOfPassenger">
+            <div data-bind="page: {id: 'passenger-info', role: 'start'}">
+                <passenger-info></passenger-info>
+            </div>
             <div data-bind="page: {id: 'ticket-info'}">
                 <ticket-info></ticket-info>
-            </div>
-            <div data-bind="page: {id: 'passenger-info'}">
-                <passenger-info></passenger-info>
             </div>
             <div data-bind="page: {id: 'order-summary'}">
                 <order-summary></order-summary>
