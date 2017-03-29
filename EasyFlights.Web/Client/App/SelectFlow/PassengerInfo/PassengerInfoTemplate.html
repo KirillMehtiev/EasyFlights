@@ -1,4 +1,23 @@
-﻿<div>
-    <p>Hello from passenger info</p>
+﻿<div class="row">
+    <h1 class="text-info">Enter information about passanger(s)</h1>
+    <hr />
+    <div class="panel-group">
+        <div class="panel panel-default" data-bind="foreach: {data: passengerInfoList, as: 'passengerInfo'}">
+            <div class="panel-heading">
+                <p>Passenger #<span data-bind="text: $index"></span></p>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>FirstName:</label>
+                            <input type="text" class="form-control" placeholder="Ivan" data-bind="value: passengerInfo.firstName" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr />
     <a class="btn btn-default" data-bind="page-href: '../ticket-info'">Next (go to ticket information)</a>
 </div>

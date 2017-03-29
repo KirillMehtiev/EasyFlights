@@ -1,7 +1,7 @@
-﻿import PassengerInfoItem = require("../PassengerInfo/PassengerInfoItem");
+﻿import { PassengerInfoItem } from "../PassengerInfo/PassengerInfoItem";
 
 export interface ITicketInfoItemOptions {
-    passenger: PassengerInfoItem;
+    passengers: Array<PassengerInfoItem>;
     ticketClass: string;
     ticketNumber: number;
     seat: number;

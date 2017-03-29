@@ -4,7 +4,7 @@ import { ITicketInfoItemOptions } from "./ITicketInfoItemOptions";
 class TicketInfoViewModel {
     public item: TicketInfoItem;
     constructor(options: ITicketInfoItemOptions) {
-        this.item = options;
+        //this.item = options;
     }    
 }
 export = TicketInfoViewModel;
