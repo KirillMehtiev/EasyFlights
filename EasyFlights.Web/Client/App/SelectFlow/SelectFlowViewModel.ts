@@ -1,11 +1,12 @@
-﻿class OrderSummaryViewModel {
-    public routeId: string;
-    public numberOfPassenger: number;
+﻿import ko = require("knockout");
+
+class SelectFlowViewModel {
+    public routeId: KnockoutObservable<string>;
+    public numberOfPassenger: KnockoutObservable<string>;
 
     constructor(params) {
-        this.routeId = params.routeId;
-        this.numberOfPassenger = params.numberOfPassenger;
+        
     }
 }
 
-export = OrderSummaryViewModel;
+export = SelectFlowViewModel;
