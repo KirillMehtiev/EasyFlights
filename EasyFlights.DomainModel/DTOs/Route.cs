@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using EasyFlights.DomainModel.Entities;
 
 namespace EasyFlights.DomainModel.DTOs
@@ -14,5 +15,19 @@ namespace EasyFlights.DomainModel.DTOs
         }
 
         public ICollection<Flight> Flights { get; set; }
+
+        public override string ToString()
+        {
+            string result = "|";
+
+            foreach (Flight flight in this.Flights.Reverse())
+            {
+                result += $"{flight.DestinationAirport.Title}({flight.ScheduledDepartureTime})  -->  ";
+            }
+
+            result += "|";
+
+            return result;
+        }
     }
 }
