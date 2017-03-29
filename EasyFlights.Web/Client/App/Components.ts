@@ -13,4 +13,4 @@ import "./SearchResults/FlightResults/Tickets/FlightComponent"
 import "./SelectFlow/SelectFlowComponent";
 import "./SelectFlow/PassengerInfo/PassengerInfoComponent";
 import "./SelectFlow/TicketInfo/TicketInfoComponent";
-import "./SelectFlow/TicketInfo/OrderSummaryComponent";
+import "./SelectFlow/OrderSummary/OrderSummaryComponent";
