@@ -2,7 +2,7 @@
 import { IPassengerInfoOptions } from "./IPassengerInfoOptions";
 
 class PassengerInfoViewModel {
-    private passengerInfoList: Array<PassengerInfoItem>;
+    private passengerInfoList: KnockoutObservableArray<PassengerInfoItem>;
 
     constructor(options: IPassengerInfoOptions) {
         this.passengerInfoList = options.passangerInfoList;
