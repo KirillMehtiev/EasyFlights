@@ -8,6 +8,11 @@ class SearchResultViewModel {
 
     public routeItems: KnockoutObservableArray<RouteItem>;
     public pagedRouteItems: KnockoutObservableArray<RouteItem>;
+    public departureDate: KnockoutObservable<string>;
+    public arrivalPlace: KnockoutObservable<string>;
+    public departurePlace: KnockoutObservable<string>;
+    public returnDate: KnockoutObservable<string>;
+    public countOf: KnockoutObservable<number>;
 
     public pageSize: number;
     public pageNo: KnockoutObservable<number>;
@@ -20,12 +25,17 @@ class SearchResultViewModel {
 
     private routesService: RoutesService = new RoutesService();
 
-    constructor() {
+    constructor(params) {
         this.routeItems = ko.observableArray(
             [new RouteItem(12, "Flight", "Country", "Economy", "13:30", [new FlightItem(12, "Borispol", "Kharkiv Airport", "14:00", "13:30", "2 h 20 min", "145"), new FlightItem(13, "Borispol", "Kharkiv Airport", "14:00", "13:30", "2 h 20 min", "145")], 350, 100),
             new RouteItem(12, "Flight", "Country", "Lux", "14:30", [new FlightItem(14, "Borispol", "Kharkiv Airport", "14:00", "13:30", "2 h 20 min", "145")], 120, 400)]
 
         );
+        this.departureDate = params.departureDate;
+        this.arrivalPlace = params.arrivalPlace;
+        this.departurePlace = params.departurePlace;
+        this.returnDate = params.returnDate;
+        this.countOf = params.countOf;
 
         this.createDefaultOptions();
         this.setPage();

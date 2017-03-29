@@ -23,6 +23,7 @@ var SearchViewModel = (function () {
             new RadioChooserItem_1.RadioChooserItem("One Way", TicketType.oneWay),
             new RadioChooserItem_1.RadioChooserItem("Round trip", TicketType.roundTrip)
         ];
+        this.createDefaultOptions();
         this.departureDateName = ko.observable(DatePickerType.departureDate);
         this.returnDateName = ko.observable(DatePickerType.returnDate);
         this.selectedTicketType = ko.observable(TicketType.oneWay);
@@ -45,16 +46,6 @@ var SearchViewModel = (function () {
                 message: 'This field is required.'
             }
         });
-        this.numberOfPeople = ko.observable(1).extend({
-            min: {
-                params: 1,
-                message: "This value has to be greater then {0}"
-            },
-            max: {
-                params: 10,
-                message: "This value has to be less then {0}"
-            }
-        });
         this.isRoundTripSelected = ko.observable(false);
         this.selectedTicketType.subscribe(this.onTicketTypeChanged, this);
     }
@@ -62,6 +53,13 @@ var SearchViewModel = (function () {
         this.isRoundTripSelected(newValue === TicketType.roundTrip);
         if (!this.isRoundTripSelected()) {
             this.selectedReturnDate("");
+        }
+    };
+    SearchViewModel.prototype.createDefaultOptions = function () {
+        this.count = ko.observable(1);
+        this.numberOfPeople = ko.observableArray();
+        for (var i = 1; i < 10; i++) {
+            this.numberOfPeople.push(i);
         }
     };
     return SearchViewModel;
