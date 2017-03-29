@@ -293,6 +293,7 @@
     <TypeScriptCompile Include="Client\App\Layout\LayoutComponent.ts" />
     <TypeScriptCompile Include="Client\App\Layout\LayoutViewModel.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\Services\RoutesService.ts" />
+    <TypeScriptCompile Include="Client\App\SelectFlow\PassengerInfo\IPassengerInfoOptions.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\SelectFlowComponent.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\SelectFlowViewModel.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\PassengerInfo\PassengerInfoComponent.ts" />
