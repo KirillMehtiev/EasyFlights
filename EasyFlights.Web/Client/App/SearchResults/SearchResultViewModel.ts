@@ -28,6 +28,8 @@ class SearchResultViewModel {
     public boundary: boolean;
     public text: any;
 
+    public isDataLoaded: boolean = false;
+
     private routesService: RoutesService = new RoutesService();
     private dataService: Service.DataService = new DataService();
 
@@ -39,17 +41,18 @@ class SearchResultViewModel {
         this.returnDate = params.returnDate;
         this.countOf = params.countOf;
         this.type = params.type;
-        
-        //console.log(this.departurePlace());
-        this.dataService.get<Array<RouteItem>>("api/Routes/GetAsync?departureAirportId=4062&destinationAirportId=4068&numberOfPeople=1&departureTime=2017-03-24T13:05:17Z")
-            .then((data) => this.routeItems(data));
-        
-
 
         this.createDefaultOptions();
         this.setPage();
         this.sortByPrice();
-        
+
+        console.log("Search results");
+
+        //this.dataService.get<Array<RouteItem>>("api/Routes/GetAsync?departureAirportId=4062&destinationAirportId=4068&numberOfPeople=1&departureTime=2017-03-24T13:05:17Z")
+        //    .then((data) => this.routeItems(data));
+    }
+
+    public onShow(): void {
     }
 
     public setPage(): void {

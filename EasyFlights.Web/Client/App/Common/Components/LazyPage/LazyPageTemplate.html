@@ -1,0 +1,5 @@
+﻿<div data-bind="if: isLoaded">
+    <div data-bind="page: {id: 'results', params: ['departurePlace','arrivalPlace','departureDate','returnDate', 'countOf', 'type']}">
+        <app-results params="departurePlace: departurePlace, arrivalPlace: arrivalPlace, departureDate: departureDate, returnDate: returnDate, countOf: countOf , type: type"></app-results>
+    </div>
+</div>

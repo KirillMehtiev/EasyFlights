@@ -71,9 +71,9 @@ namespace EasyFlights.Services.Services.Searching
 
                 decimal totalCost = route.Flights.Sum(flight => flight.DefaultFare);
 
-                var totalTime = new TimeSpan(route.Flights.Sum(flight =>
+                var totalTime = TimeSpan.FromMinutes(route.Flights.Sum(flight =>
                 {
-                    return (flight.ScheduledDepartureTime - flight.ScheduledArrivalTime).Ticks;
+                    return (flight.ScheduledArrivalTime - flight.ScheduledDepartureTime).TotalMinutes;
                 }));
 
                 result.Add(this.MapRouteToRouteDto(route, totalCost, totalTime));
@@ -95,6 +95,7 @@ namespace EasyFlights.Services.Services.Searching
                        DestinationAirportTitle = flight.DestinationAirport.Title,
                        Duration = flight.ScheduledDepartureTime - flight.ScheduledArrivalTime,
                        DefaultFare = flight.DefaultFare,
+                       Id = flight.Id,
 
                        // TODO: figure out what this dto should contain
                         Aircraft = new AircraftDto()

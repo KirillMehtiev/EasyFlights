@@ -10,29 +10,35 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
+                            <label>Sex:</label>
+                            <radio-chooser params="options: $parent.sexOptions, selectedOption:passengerInfo.sex"></radio-chooser>
+                        </div>
+                    </div>
+                    <div class="col-md-6 form-inline">
+                        <div class="form-group">
                             <label>Age:</label>
-                            <!-- params is IRadioChooserOption if change signarute reflect it here -->
-                            <radio-chooser params="options: $data.ageOptions, selectedOption:passengerInfo.ageType"></radio-chooser>
+                            <radio-chooser params="options: $parent.ageOptions, selectedOption:passengerInfo.ageType"></radio-chooser>
                         </div>
                     </div>
                 </div>
+                <hr />
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>First Name:</label>
-                            <input type="text" class="form-control" placeholder="Ivan" data-bind="value: passengerInfo.firstName"/>
+                            <input type="text" class="form-control" placeholder="Ivan" data-bind="value: passengerInfo.firstName" />
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>Last Name:</label>
-                            <input type="text" class="form-control" placeholder="Ivanov" data-bind="value: passengerInfo.lastName"/>
+                            <input type="text" class="form-control" placeholder="Ivanov" data-bind="value: passengerInfo.lastName" />
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>Document number:</label>
-                            <input type="text" class="form-control" placeholder="ET290490" data-bind="value: passengerInfo.firstName"/>
+                            <input type="text" class="form-control" placeholder="ET290490" data-bind="value: passengerInfo.documentNumber" />
                         </div>
                     </div>
                 </div>

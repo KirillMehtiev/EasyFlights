@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,74 +10,81 @@ namespace EasyFlights.Engines.RouteBuilding
 {
     public class RouteBuilder : IRouteBuilder
     {
-        public RouteBuilder()
-        {
-        }
+        private double minAmountOfHoursToWait = 0.5;
+        private double maxAmountOfHoursToWait = 24.0;
+
+        private BlockingCollection<Route> allRoutes;
 
         public async Task<IEnumerable<Route>> BuildAsync(Airport departure, Airport destination, DateTime departureDate, int numberOfPassengers)
         {
-            var currentDepartureDate = departureDate;
+            this.allRoutes = new BlockingCollection<Route>();
 
-            var allRoutes = new List<Route>();
+            List<Flight> startPointFlights = departure.Flights
+                                                .Where(flight => this.FligthIsAvailable(flight, departureDate, numberOfPassengers))
+                                                .ToList();
 
-            var visitedAiports = new List<Airport>();
-            var currentPath = new Queue<Airport>();
-
-            var currentRoute = new List<Flight>();
-
-            visitedAiports.Add(departure);
-            currentPath.Enqueue(departure);
-
-            while (currentPath.Any())
+            var tasks = new List<Task>();
+            foreach (Flight startPointFlight in startPointFlights)
             {
-                var currentAiport = currentPath.Dequeue();
-
-                if (currentAiport == destination)
+                tasks.Add(Task.Factory.StartNew(() =>
                 {
-                    // save path
-                    allRoutes.Add(new Route()
-                    {
-                        Flights = new List<Flight>(currentRoute)
-                    });
+                    var currentRoute = new Stack<Flight>();
+                    currentRoute.Push(startPointFlight);
 
-                    currentRoute.RemoveAt(currentRoute.Count - 1);
-                }
-                else
+                    this.FindAllRoutes(currentRoute, startPointFlight, destination, numberOfPassengers);
+                }));
+            }
+            await Task.WhenAll(tasks);
+
+            var result  = new List<Route>(this.allRoutes);
+
+            // avoid a lack of memory
+            this.allRoutes = null;
+
+            return result;
+        }
+
+        private void FindAllRoutes(Stack<Flight> currentRoute, Flight flight, Airport destination, int numberOfPassengers)
+        {
+            if (flight.DestinationAirport == destination)
+            {
+                this.allRoutes.Add(new Route()
                 {
-                    var airportsConnectedToCurrent = currentAiport.Flights
-                                                                    .Where(flight => this.FligthIsAvailable(flight, currentDepartureDate, numberOfPassengers))
-                                                                    .Select(flight =>
-                                                                        new
-                                                                        {
-                                                                            flight = flight,
-                                                                            airport = flight.DestinationAirport
-                                                                        });
+                    Flights = new List<Flight>(currentRoute.Reverse())
+                });
+            }
+            else
+            {
+                IEnumerable<Airport> visitedAirports = currentRoute
+                                                        .Select(f => f.DepartureAirport)
+                                                        .ToList();
 
-                    foreach (var pair in airportsConnectedToCurrent)
+                if (!visitedAirports.Contains(flight.DestinationAirport))
+                {
+                    List<Flight> availableFlights = flight.DestinationAirport.Flights
+                                                                        .Where(f => this.FligthIsAvailable(f, flight.ScheduledArrivalTime, numberOfPassengers))
+                                                                        .ToList();
+
+                    foreach (Flight availableFlight in availableFlights)
                     {
-                        if (!visitedAiports.Contains(pair.airport))
-                        {
-                            visitedAiports.Add(pair.airport);
-                            currentPath.Enqueue(pair.airport);
-
-                            currentRoute.Add(pair.flight);
-
-                            currentDepartureDate = pair.flight.ScheduledArrivalTime;
-                        }
+                        currentRoute.Push(availableFlight);
+                        FindAllRoutes(currentRoute, availableFlight, destination, numberOfPassengers);
+                        currentRoute.Pop();
                     }
                 }
             }
-
-            return allRoutes;
         }
-
 
         private bool FligthIsAvailable(Flight flight, DateTime departureDate, int numberOfRequestedSeats)
         {
-            var delay = TimeSpan.FromHours(15);
+            TimeSpan maxDelay = TimeSpan.FromHours(this.maxAmountOfHoursToWait);
+            TimeSpan minDelay = TimeSpan.FromHours(this.minAmountOfHoursToWait);
+
+            TimeSpan timeDifference = flight.ScheduledDepartureTime.Subtract(departureDate);
 
             return
-                flight.ScheduledDepartureTime.Subtract(departureDate) <= delay &&
+                timeDifference >= minDelay &&
+                timeDifference <= maxDelay &&
                 flight.Aircraft.Capacity - flight.Tickets.Count >= numberOfRequestedSeats;
         }
     }

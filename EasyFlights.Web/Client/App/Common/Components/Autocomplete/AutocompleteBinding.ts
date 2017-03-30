@@ -11,7 +11,7 @@ class AutocompleteBinding implements KnockoutBindingHandler {
             event.preventDefault();
             $(element).val(ui.item.value);
 
-            if (typeof ui.item !== "undefined") {
+            if(Boolean(ui.item)) {
                 settings.selected(ui.item);
             }
         };
