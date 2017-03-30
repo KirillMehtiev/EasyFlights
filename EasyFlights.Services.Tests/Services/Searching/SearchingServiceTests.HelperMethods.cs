@@ -78,9 +78,9 @@ namespace EasyFlights.Services.Tests.Services.Searching
             {
                 result.Add(new Route()
                 {
-                    Flights = new List<Flight>()
+                    Flights = new List<DomainModel.Entities.Flight>()
                     {
-                        new Flight()
+                        new DomainModel.Entities.Flight()
                         {
                             DepartureAirport = new Airport(),
                             DestinationAirport = new Airport()

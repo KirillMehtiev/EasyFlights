@@ -23,7 +23,9 @@ namespace EasyFlights.Engines.RouteBuilding
         {
             this.allRoutes = new List<Route>();
 
-            var startPointFlights = departure.Flights.Where(flight => this.FligthIsAvailable(flight, departureDate, numberOfPassengers));
+            var startPointFlights = departure.Flights
+                                                .Where(flight => this.FligthIsAvailable(flight, departureDate, numberOfPassengers))
+                                                .ToList();
 
             foreach (Flight startPointFlight in startPointFlights)
             {
@@ -57,7 +59,9 @@ namespace EasyFlights.Engines.RouteBuilding
 
                 if (!visitedAirports.Contains(flight.DestinationAirport))
                 {
-                    var availableFlights = flight.DestinationAirport.Flights.Where(f => this.FligthIsAvailable(f, flight.ScheduledArrivalTime, numberOfPassengers));
+                    var availableFlights = flight.DestinationAirport.Flights
+                                                                        .Where(f => this.FligthIsAvailable(f, flight.ScheduledArrivalTime, numberOfPassengers))
+                                                                        .ToList();
 
                     foreach (Flight availableFlight in availableFlights)
                     {
