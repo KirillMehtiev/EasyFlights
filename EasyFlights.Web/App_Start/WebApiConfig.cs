@@ -15,6 +15,7 @@
             config.SuppressDefaultHostAuthentication();
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
             config.Services.Replace(typeof(IExceptionHandler), new GlobalExceptionHandler());
+            config.Filters.Add(new ModelStateValidatorAttribute());
             // Web API routes
             config.MapHttpAttributeRoutes();
 

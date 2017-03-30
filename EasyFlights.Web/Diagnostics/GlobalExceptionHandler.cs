@@ -14,6 +14,7 @@ namespace EasyFlights.Web.Diagnostics
         {
             context.Result = new InternalServerErrorResult(context.Request);
         }
+
         [SuppressMessage("StyleCop.CSharp.AsyncRules",
             "AR0002:MethodEndingWithAsyncMustHaveAsyncModifier",
             Justification = "External interface method")]
