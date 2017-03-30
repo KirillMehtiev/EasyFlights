@@ -5,11 +5,7 @@ import {RadioChooserItem} from "../../Common/Components/RadioChooser/RadioChoose
 
 class TicketInfoViewModel {
     public item: TicketInfoItem;
-    public passengers: KnockoutObservableArray<PassengerInfoItem>;
-
-    constructor(options: ITicketInfoItemOptions) {
-        this.passengers = options.passengers;
-        
+    constructor(options: ITicketInfoItemOptions) {        
     }    
 }
 export = TicketInfoViewModel;

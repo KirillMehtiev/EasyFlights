@@ -1,7 +1,7 @@
 ﻿import { PassengerInfoItem } from "../PassengerInfo/PassengerInfoItem";
 
 export interface ITicketInfoItemOptions {
-    passengers: KnockoutObservableArray<PassengerInfoItem>;
+    passenger: PassengerInfoItem;
     ticketClass: string;
     ticketNumber: number;
     seat: number;
