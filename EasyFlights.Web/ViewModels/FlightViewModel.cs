@@ -19,5 +19,7 @@ namespace EasyFlights.Web.ViewModels
         public string Duration { get; set; }
 
         public decimal Fare { get; set; }
+
+        public List<TicketVIewModel> Tickets { get; set; }
     }
 }

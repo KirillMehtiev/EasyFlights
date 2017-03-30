@@ -200,6 +200,7 @@
     <Compile Include="ViewModels\FlightViewModel.cs" />
     <Compile Include="ViewModels\RouteSearchViewModel.cs" />
     <Compile Include="ViewModels\RouteViewModel.cs" />
+    <Compile Include="ViewModels\TicketVIewModel.cs" />
     <Compile Include="ViewModels\TypeaheadViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
