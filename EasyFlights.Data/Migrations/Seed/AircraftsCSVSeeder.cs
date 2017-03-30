@@ -8,9 +8,10 @@ namespace EasyFlights.Data.Migrations.Seed
 {
     public class AircraftsCsvSeeder
     {
-        public const int ModelIndex = 0;
-        public const int CapacityIndex = 1;
-        public const int RowIndex = 2;
+        public const int Id = 0;
+        public const int ModelIndex = 1;
+        public const int CapacityIndex = 2;
+        public const int RowIndex = 3;
 
         public void Seed(IDataContext context)
         {
