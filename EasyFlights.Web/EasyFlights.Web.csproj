@@ -186,7 +186,9 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Diagnostics\AsyncActionFilterAttribute.cs" />
     <Compile Include="Diagnostics\GlobalExceptionHandler.cs" />
+    <Compile Include="Diagnostics\ModelStateValidatorAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
