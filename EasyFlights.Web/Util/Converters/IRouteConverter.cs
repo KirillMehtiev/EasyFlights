@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using EasyFlights.DomainModel.DTOs;
 
 namespace EasyFlights.Web.Util.Converters
@@ -16,9 +12,9 @@ namespace EasyFlights.Web.Util.Converters
         /// Based on flights create RouteId
         /// RouteId contains a set of flights ids connected by hyphen '-'
         /// </summary>
-        /// <param name="flights">All flights from route</param>
+        /// <param name="route">A route from which routeId will be created.</param>
         /// <returns>RouteId which is create based on flights</returns>
-        string ConvertFlightsToRoutId(IEnumerable<FlightDto> flights);
+        string ConvertRouteToRouteId(RouteDto route);
 
         /// <summary>
         /// Based on string return flights which belongs to route
@@ -27,6 +23,6 @@ namespace EasyFlights.Web.Util.Converters
         /// Contains a set of flights ids connected by hyphen '-' the sequence of ids is important
         /// </param>
         /// <returns>Flights which belongs to route</returns>
-        IEnumerable<FlightDto> ConvertRouteIdToFlights(string routeId);
+        Task<RouteDto> RestoreRouteFromRouteIdAsync(string routeId);
     }
 }

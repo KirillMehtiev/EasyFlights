@@ -1,4 +1,5 @@
 ﻿using EasyFlights.DomainModel.Entities;
+using EasyFlights.Services.DtoMappers;
 using EasyFlights.Services.Interfaces;
 using EasyFlights.Services.Services.Flight;
 using EasyFlights.Services.Services.Searching;
@@ -14,6 +15,10 @@ namespace EasyFlights.Web.NinjectModules
             this.Bind<ITypeaheadProvider<City>>().To<TypeaheadService>();
             this.Bind<ISearchingService>().To<SearchingService>();
             this.Bind<IFlightService>().To<FlightService>();
+
+            // Dto mappers
+            this.Bind<IFlightDtoMapper>().To<FlightDtoMapper>();
+            this.Bind<IRouteDtoMapper>().To<RouteDtoMapper>();
         }
     }
 }
