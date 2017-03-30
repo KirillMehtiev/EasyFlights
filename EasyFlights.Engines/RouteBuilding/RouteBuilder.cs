@@ -9,106 +9,77 @@ namespace EasyFlights.Engines.RouteBuilding
 {
     public class RouteBuilder : IRouteBuilder
     {
+        private double minAmountOfHoursToWait = 0.5;
+        private double maxAmountOfHoursToWait = 24.0;
+
+        private Stack<Flight> currentRoute;
+        private List<Route> allRoutes;
+
         public RouteBuilder()
         {
         }
 
-        class flight
-        {
-            public Flight actual;
-            public Flight parent;
-        }
-
         public async Task<IEnumerable<Route>> BuildAsync(Airport departure, Airport destination, DateTime departureDate, int numberOfPassengers)
         {
-            var allPossibleRoutes = new List<Route>();
+            this.allRoutes = new List<Route>();
 
-            var queue = new Queue<flight>();
-            var usedFligths = new List<Flight>();
+            var startPointFlights = departure.Flights.Where(flight => this.FligthIsAvailable(flight, departureDate, numberOfPassengers));
 
-            var currentDepartureDate = departureDate;
-
-            var firstFlights = departure.Flights.Where(flight => this.FligthIsAvailable(flight, currentDepartureDate, numberOfPassengers));
-
-            foreach (Flight flight in firstFlights)
+            foreach (Flight startPointFlight in startPointFlights)
             {
-                queue.Enqueue(new flight()
-                {
-                    actual = flight
-                });
-                usedFligths.Add(flight);
+                this.currentRoute = new Stack<Flight>();
+                this.currentRoute.Push(startPointFlight);
+
+                this.FindAllRoutes(startPointFlight, destination, startPointFlight.ScheduledArrivalTime, numberOfPassengers);
             }
 
-            flight res = null;
-            var all = new List<flight>();
+            var result  = new List<Route>(this.allRoutes);
 
-            while (queue.Any())
+            // avoid a lack of memory
+            this.allRoutes = null;
+            this.currentRoute = null;
+
+            return result;
+        }
+
+        private void FindAllRoutes(Flight flight, Airport destination, DateTime departureDate, int numberOfPassengers)
+        {
+            if (flight.DestinationAirport == destination)
             {
-                var currentFlight = queue.Dequeue();
-
-                all.Add(currentFlight);
-
-                if (currentFlight.actual.DestinationAirport == destination)
+                this.allRoutes.Add(new Route()
                 {
-                    //save
-                    res = currentFlight;
+                    Flights = new List<Flight>(this.currentRoute.Reverse())
+                });
+            }
+            else
+            {
+                var visitedAirports = this.currentRoute.Select(f => f.DepartureAirport);
 
-                    allPossibleRoutes.Add(this.MakeRoute(currentFlight, all));
-                }
-                else
+                if (!visitedAirports.Contains(flight.DestinationAirport))
                 {
-                    var availableFlights = currentFlight.actual.DestinationAirport.Flights.Where(flight => this.FligthIsAvailable(flight, currentDepartureDate, numberOfPassengers)).ToList();
+                    var availableFlights = flight.DestinationAirport.Flights.Where(f => this.FligthIsAvailable(f, flight.ScheduledArrivalTime, numberOfPassengers));
 
                     foreach (Flight availableFlight in availableFlights)
                     {
-                        if (!usedFligths.Contains(availableFlight))
-                        {
-                            usedFligths.Add(availableFlight);
-
-                            queue.Enqueue(new flight()
-                            {
-                                actual = availableFlight,
-                                parent = currentFlight.actual
-                            });
-
-                            currentDepartureDate = availableFlight.ScheduledArrivalTime;
-                        }
+                        this.currentRoute.Push(availableFlight);
+                        FindAllRoutes(availableFlight, destination, departureDate, numberOfPassengers);
+                        this.currentRoute.Pop();
                     }
                 }
             }
-
-            var routes = allPossibleRoutes.Select(route => route.ToString()).ToArray();
-
-            return allPossibleRoutes;
         }
 
         private bool FligthIsAvailable(Flight flight, DateTime departureDate, int numberOfRequestedSeats)
         {
-            TimeSpan maxDelay = TimeSpan.FromHours(15);
-            TimeSpan minDelay = TimeSpan.FromHours(1);
+            TimeSpan maxDelay = TimeSpan.FromHours(this.maxAmountOfHoursToWait);
+            TimeSpan minDelay = TimeSpan.FromHours(this.minAmountOfHoursToWait);
 
             TimeSpan timeDifference = flight.ScheduledDepartureTime.Subtract(departureDate);
 
             return
-                timeDifference.TotalMinutes > 0 &&
                 timeDifference >= minDelay &&
                 timeDifference <= maxDelay &&
                 flight.Aircraft.Capacity - flight.Tickets.Count >= numberOfRequestedSeats;
-        }
-
-        private Route MakeRoute(flight f, List<flight> all)
-        {
-            var route = new Route();
-            route.Flights.Add(f.actual);
-
-            while (f.parent != null)
-            {
-                route.Flights.Add(f.parent);
-
-                f = all.FirstOrDefault(h => h.actual == f.parent);
-            }
-
-            return route;
         }
     }
 }
