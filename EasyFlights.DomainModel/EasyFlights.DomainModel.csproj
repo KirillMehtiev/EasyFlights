@@ -86,9 +86,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTOs\AircraftDto.cs" />
+    <Compile Include="DTOs\CabinDto.cs" />
     <Compile Include="DTOs\FlightDto.cs" />
     <Compile Include="DTOs\Route.cs" />
     <Compile Include="DTOs\RouteDto.cs" />
+    <Compile Include="DTOs\SeatDto.cs" />
     <Compile Include="Entities\Aircraft.cs" />
     <Compile Include="Entities\Airport.cs" />
     <Compile Include="Entities\BaseEntity.cs" />

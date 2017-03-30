@@ -1,0 +1,14 @@
+﻿<div class="wrapper">
+    <div class="main">
+        <h2>title</h2>
+        <section id="body">
+            <table>
+                <tbody data-bind="foreach: rows">
+                    <tr data-bind="foreach: $data.seats">
+                        <td data-bind="click: $data.bookSeat, css: {booked: $data.booked()}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+</div>
