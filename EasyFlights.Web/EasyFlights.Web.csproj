@@ -188,6 +188,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Util\Converters\IRouteConverter.cs" />
+    <Compile Include="Util\Converters\RouteConverter.cs" />
     <Compile Include="Util\NinjectDependencyResolver.cs" />
     <Compile Include="Util\NinjectDependencyScope.cs" />
     <Compile Include="NinjectModules\DataModule.cs" />

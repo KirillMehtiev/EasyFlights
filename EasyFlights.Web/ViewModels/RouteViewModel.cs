@@ -21,5 +21,7 @@ namespace EasyFlights.Web.ViewModels
         public decimal TotalCoast { get; set; }
 
         public string TotalTime { get; set; }
+
+        public string Id { get; set; }
     }
 }

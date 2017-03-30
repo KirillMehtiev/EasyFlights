@@ -17,5 +17,7 @@ namespace EasyFlights.DomainModel.DTOs
         public decimal DefaultFare { get; set; }
 
         public AircraftDto Aircraft { get; set; }
+
+        public int Id { get; set; }
     }
 }

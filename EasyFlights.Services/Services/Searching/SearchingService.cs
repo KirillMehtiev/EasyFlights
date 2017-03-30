@@ -95,6 +95,7 @@ namespace EasyFlights.Services.Services.Searching
                        DestinationAirportTitle = flight.DestinationAirport.Title,
                        Duration = flight.ScheduledDepartureTime - flight.ScheduledArrivalTime,
                        DefaultFare = flight.DefaultFare,
+                       Id = flight.Id,
 
                        // TODO: figure out what this dto should contain
                         Aircraft = new AircraftDto()
