@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Http;
 using EasyFlights.DomainModel.DTOs;
 using EasyFlights.Web.Util.Converters;
@@ -20,11 +20,11 @@ namespace EasyFlights.Web.ApiControllers
 
         [HttpGet]
         [Route("get")]
-        public List<FlightViewModel> GetFlights(string routeId)
+        public async Task<List<FlightViewModel>> GetFlights(string routeId)
         {
-            List<FlightDto> flights = converter.ConvertRouteIdToFlights(routeId).ToList();
+            RouteDto routeDto = await converter.RestoreRouteFromRouteIdAsync(routeId);
             var result = new List<FlightViewModel>();
-            foreach (FlightDto flight in flights)
+            foreach (FlightDto flight in routeDto.Flights)
             {
                 var element = new FlightViewModel()
                 {
