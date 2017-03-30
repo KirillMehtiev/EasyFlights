@@ -8,10 +8,10 @@ class SelectFlowViewModel {
     public numberOfPassenger: KnockoutObservable<number>;
     public passengerInfoList: KnockoutObservableArray<PassengerInfoItem>;
     public flights: KnockoutObservableArray<FlightItem>;
-    private dataService: DataService;
+    private dataService: DataService = new DataService();
 
     // Internal routing
-    public  isShowPassengerInfo: KnockoutObservable<boolean>;
+    public isShowPassengerInfo: KnockoutObservable<boolean>;
     public isShowTicketInfo: KnockoutObservable<boolean>;
     public isShowOrderSummary: KnockoutObservable<boolean>;
 
@@ -36,9 +36,27 @@ class SelectFlowViewModel {
 
         return result;
     }
+
+    public showTicketInfo(parent) {
+        this.isShowPassengerInfo(false);
+        this.isShowTicketInfo(true);
+        this.isShowOrderSummary(false);
+    }
+
+    public showPassengerInfo(parent) {
+        this.isShowPassengerInfo(true);
+        this.isShowTicketInfo(false);
+        this.isShowOrderSummary(false);
+    }
+
+    public showOrderSummary(parent) {
+        this.isShowTicketInfo(false);
+        this.isShowOrderSummary(true);
+    }
+
     private fillFlightsList(routeId: string): void {
              this.dataService.get<Array<FlightItem>>("api/Flights/Get/".concat(routeId))
-            .then((data) => this.flights(data));       
+            .then((data) => this.flights(data));
     }
 }
 
