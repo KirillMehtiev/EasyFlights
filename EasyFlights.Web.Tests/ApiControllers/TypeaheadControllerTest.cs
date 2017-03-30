@@ -12,8 +12,7 @@ namespace EasyFlights.WebApi.Tests.ApiControllers
     [TestClass]
     public class TypeaheadControllerTest
     {
-        [TestMethod]
-        public void GetTypeaheadByCityNameAsync()
+        public List<TypeaheadViewModel> GetTypeadResult(string testString)
         {
             var mock = new Mock<ITypeaheadProvider<City>>();
             var city = new City() { Name = "Name", Airports = new List<Airport>() };
@@ -22,38 +21,29 @@ namespace EasyFlights.WebApi.Tests.ApiControllers
             city.Airports.Add(airport);
             mock.Setup(x => x.GetTypeaheadAsync("Nam")).ReturnsAsync(new List<City>() { city });
             var controller = new TypeaheadController(mock.Object);
+            return controller.GetAirportsForTypeaheadAsync(testString).Result;
+        }
+        [TestMethod]
+        public void GetTypeaheadByCityNameAsync()
+        {
+            var testString = "nam";
             var expected = "Ttl";
-            List<TypeaheadViewModel> result = controller.GetAirportsForTypeaheadAsync("Nam").Result;
-            Assert.AreEqual(expected, result.FirstOrDefault()?.Value);
+            Assert.AreEqual(expected, GetTypeadResult(testString).FirstOrDefault()?.Value);
         }
 
         [TestMethod]
         public void GetTypeaheadByAirportTitleAsync()
         {
-            var mock = new Mock<ITypeaheadProvider<City>>();
-            var city = new City() { Name = "Name", Airports = new List<Airport>() };
-            var airport = new Airport() { Title = "Ttl" };
-            airport.City = city;
-            city.Airports.Add(airport);
-            mock.Setup(x => x.GetTypeaheadAsync("Ttl")).ReturnsAsync(new List<City>() { city });
-            var controller = new TypeaheadController(mock.Object);
+            var testString = "Ttl";
             var expected = "Ttl";
-            List<TypeaheadViewModel> result = controller.GetAirportsForTypeaheadAsync("Ttl").Result;
-            Assert.AreEqual(expected, result.FirstOrDefault()?.Value);
+            Assert.AreEqual(expected, GetTypeadResult(testString).FirstOrDefault()?.Value);
         }
 
         [TestMethod]
         public void GetTypeaheadWithWrongNameAsync()
         {
-            var mock = new Mock<ITypeaheadProvider<City>>();
-            var city = new City() { Name = "Name", Airports = new List<Airport>() };
-            var airport = new Airport() { Title = "Ttl" };
-            airport.City = city;
-            city.Airports.Add(airport);
-            mock.Setup(x => x.GetTypeaheadAsync("Name")).ReturnsAsync(new List<City>() { city });
-            var controller = new TypeaheadController(mock.Object);
-            List<TypeaheadViewModel> result = controller.GetAirportsForTypeaheadAsync("Ttl").Result;
-            Assert.IsTrue(result.Count == 0);
+            var testString = "wrong";
+            Assert.IsTrue(GetTypeadResult(testString).Count == 0);
         }
     }
 }

@@ -1,31 +1,19 @@
 ﻿<app-header></app-header>
 <div class="app-content">
-
-    <div data-bind="page: {role: 'start'}">
-        <index></index>
-
-    </div>
+    <div class="container">
+        <div data-bind="page: {role: 'start'}">
+            <index></index>
+        </div>
 
     <div data-bind="page: {id: 'results', params: ['departurePlace','arrivalPlace','departureDate','returnDate', 'countOf', 'type']}">
 
-        <app-results params="departurePlace: departurePlace, arrivalPlace: arrivalPlace, departureDate: departureDate, returnDate: returnDate, countOf: countOf "></app-results>
+        <app-results params="departurePlace: departurePlace, arrivalPlace: arrivalPlace, departureDate: departureDate, returnDate: returnDate, countOf: countOf , type: type"></app-results>
     </div>
 
-
-    <div data-bind="page: {id: 'selected-route', params: ['routeId', 'numberOfPassenger']}">
-        <selected-route>
-            <div data-bind="page: {id: 'ticket-info'}">
-                <ticket-info></ticket-info>
-            </div>
-            <div data-bind="page: {id: 'passenger-info'}">
-                <passenger-info></passenger-info>
-            </div>
-            <div data-bind="page: {id: 'order-summary'}">
-                <order-summary></order-summary>
-            </div>
-        </selected-route>
+        <div data-bind="page: {id: 'selected-route', params: ['routeId', 'numberOfPassenger']}">
+            <select-flow params="routeId: routeId, numberOfPassenger: numberOfPassenger"></select-flow>
+        </div>
     </div>
-
 
 </div>
 <app-footer></app-footer>

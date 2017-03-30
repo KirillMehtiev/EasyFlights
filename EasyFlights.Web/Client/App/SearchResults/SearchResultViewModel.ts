@@ -3,16 +3,21 @@ import { RouteItem } from "./FlightResults/RouteItem";
 import { RoutesService } from "./Services/RoutesService"
 import Item = require("./FlightResults/Tickets/FlightItem");
 import FlightItem = Item.FlightItem;
+import Service = require("../Common/Services/dataService");
+import DataService = Service.DataService;
+import moment = require("moment");
 
 class SearchResultViewModel {
 
+   
     public routeItems: KnockoutObservableArray<RouteItem>;
     public pagedRouteItems: KnockoutObservableArray<RouteItem>;
-    public departureDate: KnockoutObservable<string>;
-    public arrivalPlace: KnockoutObservable<string>;
-    public departurePlace: KnockoutObservable<string>;
+    public departureDate: KnockoutObservable<Date>;
+    public arrivalPlace: KnockoutObservable<number>;
+    public departurePlace: KnockoutObservable<number>;
     public returnDate: KnockoutObservable<string>;
     public countOf: KnockoutObservable<number>;
+    public type: KnockoutObservable<string>;
 
     public pageSize: number;
     public pageNo: KnockoutObservable<number>;
@@ -24,22 +29,27 @@ class SearchResultViewModel {
     public text: any;
 
     private routesService: RoutesService = new RoutesService();
+    private dataService: Service.DataService = new DataService();
 
     constructor(params) {
-        this.routeItems = ko.observableArray(
-            [new RouteItem(12, "Flight", "Country", "Economy", "13:30", [new FlightItem(12, "Borispol", "Kharkiv Airport", "14:00", "13:30", "2 h 20 min", "145"), new FlightItem(13, "Borispol", "Kharkiv Airport", "14:00", "13:30", "2 h 20 min", "145")], 350, 100),
-            new RouteItem(12, "Flight", "Country", "Lux", "14:30", [new FlightItem(14, "Borispol", "Kharkiv Airport", "14:00", "13:30", "2 h 20 min", "145")], 120, 400)]
-
-        );
+        this.routeItems = ko.observableArray([]);
         this.departureDate = params.departureDate;
         this.arrivalPlace = params.arrivalPlace;
         this.departurePlace = params.departurePlace;
         this.returnDate = params.returnDate;
         this.countOf = params.countOf;
+        this.type = params.type;
+        
+        //console.log(this.departurePlace());
+        this.dataService.get<Array<RouteItem>>("api/Routes/GetAsync?departureAirportId=4062&destinationAirportId=4068&numberOfPeople=1&departureTime=2017-03-24T13:05:17Z")
+            .then((data) => this.routeItems(data));
+        
+
 
         this.createDefaultOptions();
         this.setPage();
         this.sortByPrice();
+        
     }
 
     public setPage(): void {
@@ -53,7 +63,7 @@ class SearchResultViewModel {
     };
 
     public sortByPrice(): void {
-        this.routeItems.sort((x, y) => x.totalCost - y.totalCost);
+        this.routeItems.sort((x, y) => x.totalCoast - y.totalCoast);
         this.setPage();
     }
 
@@ -61,7 +71,6 @@ class SearchResultViewModel {
         this.routeItems.sort((x, y) => x.totalTime - y.totalTime);
         this.setPage();
     }
-
     private createDefaultOptions(): void {
         this.pagedRouteItems = ko.observableArray([]);
         this.pageNo = ko.observable(1);
@@ -78,5 +87,4 @@ class SearchResultViewModel {
         };
     }
 }
-
 export = SearchResultViewModel;

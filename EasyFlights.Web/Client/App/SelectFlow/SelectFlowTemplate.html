@@ -1,3 +1,12 @@
 ﻿<div>
-    <p>Hello from SelectFlow info</p>
+    <div data-bind="page: {id: 'passenger-info', role: 'start'}">
+        <passenger-info params="passangerInfoList:passengerInfoList"></passenger-info>
+    </div>
+    <div data-bind="page: {id: 'ticket-info'}">
+        <ticket-info params="passengers:passengerInfoList"></ticket-info>
+    </div>
+    <div data-bind="page: {id: 'order-summary'}">
+        <order-summary></order-summary> 
+    </div>
 </div>
+

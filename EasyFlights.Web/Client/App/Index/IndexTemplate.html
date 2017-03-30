@@ -1,8 +1,11 @@
-﻿<div class="container app-index">
+﻿<div class="app-index">
     <div class="jumbotron">
         <h1 class="text-center">Your journey starts HERE!</h1>
         <hr />
         <search></search>
-        
+
+        <hr />
+        <!--This ref can be deleted if SELECT btn at searchResult is implemented-->
+        <a class="btn btn-default" data-bind="page-href: { path: 'selected-route', params:{routeId:'20-30-40', numberOfPassenger:'2'}}">Select flow</a>
     </div>
 </div>

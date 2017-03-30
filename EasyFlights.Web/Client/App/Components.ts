@@ -3,12 +3,13 @@ import "./Layout/Footer/FooterComponent";
 import "./Layout/Header/HeaderComponent";
 import "./Index/IndexComponent";
 import "./SearchResults/SearchResultComponent";
-import "./SearchResults/SearchHeader/SearchHeaderComponent";
 import "./Common/Components/DatePicker/DatePickerComponent";
 import "./Index/Search/SearchComponent";
 import "./Common/Components/Autocomplete/AutocompleteComponent";
 import "./Common/Components/RadioChooser/RadioChooserComponent";
 import "./SearchResults/FlightResults/RouteResultComponent"
 import "./SearchResults/FlightResults/Tickets/FlightComponent"
+import "./SelectFlow/SelectFlowComponent";
 import "./SelectFlow/PassengerInfo/PassengerInfoComponent";
 import "./SelectFlow/TicketInfo/TicketInfoComponent";
+import "./SelectFlow/OrderSummary/OrderSummaryComponent";
