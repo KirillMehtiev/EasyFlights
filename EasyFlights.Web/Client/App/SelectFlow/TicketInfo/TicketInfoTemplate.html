@@ -1,4 +1,4 @@
-﻿<div class="container" id="ticket-info" data-bind="foreach: {data: flights as 'flightItem'}">
+﻿<div class="container" id="ticket-info"> <!--data-bind="foreach: {data: flights as 'flightItem'}">-->
     <div class="row">
         <div class="col-md-4">
             <p>
@@ -11,20 +11,20 @@
             <table class="table table-bordered">
                 <tr>
                     <td>
-                        Flight: <br/>
-                        Aircraft: <span data-bind="text: flightItem.departureTime"></span><br />
-                        Country: <span data-bind="text: flightItem.departureTime"></span><br />
+                        Flight: <br />
+                        Aircraft: <span data-bind="text: "></span><br />
+                        Country: <span data-bind="text: "></span><br />
                     </td>
                     <td>
-                        Departure time: <span data-bind="text: flightItem.departureTime"></span><br/>
-                        Departure airport: <span data-bind="text: flightItem.departureAirport"></span><br />
+                        Departure time: <span data-bind="text: "></span><br />
+                        Departure airport: <span data-bind="text: "></span><br />
                     </td>
                     <td>
-                        Duration: <span data-bind="text: flightItem.duration"></span><br/>
+                        Duration: <span data-bind="text: "></span><br />
                     </td>
                     <td>
-                        Arrival time: <span data-bind="text: flightItem.arrivalTime"></span><br/>
-                        Arrival airport: <span data-bind="text: flightItem.destinationAirport"></span>
+                        Arrival time: <span data-bind="text: "></span><br />
+                        Arrival airport: <span data-bind="text:"></span>
                     </td>
                 </tr>
             </table>
@@ -37,26 +37,26 @@
             </p>
         </div>
     </div>
-    <div id="flight" data-bind="foreach:{flightItem: tickets as 'ticket'}">
+    <div id="flight"> <!--data-bind="foreach:{flightItem: tickets as 'ticket'}">-->
         <div class="row">
             <div class="col-md-6">
                 <table class="table table-bordered">
                     <tr>
                         <td>
-                            Ticket №: <span data-bind="text: ticket.ticketNumber"></span><br />
-                            Name: <span data-bind="text: ticket.passenger.firstName"></span> <span data-bind="text: ticket.passenger.lastName"></span><br />
+                            Ticket №: <span data-bind="text: "></span><br />
+                            Name: <span data-bind="text: "></span> <span data-bind="text: "></span><br />
                         </td>
                         <td>
-                            Seat: <span data-bind="text: ticket.seat"></span><br />
+                            Seat: <span data-bind="text: "></span><br />
                         </td>
                         <td>
-                            Class: <span data-bind="text: ticket.ticketClass"></span><br />
-                            <radio-chooser params="options: flight.classTypes, selectedOption:ticket.ticketClass"></radio-chooser>
+                            Class: <span data-bind="text: "></span><br />
+                            <radio-chooser params="options: "></radio-chooser>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            Price for ticket: <span data-bind="text: ticket.price"></span>
+                            Price for ticket: <span data-bind="text: "></span>
                         </td>
                     </tr>
                 </table>
@@ -73,8 +73,14 @@
             </button>
         </div>
     </div>
-
-
 </div>
-<a class="btn btn-default" data-bind="page-href: '../passenger-info'">Back to passenger information</a>
-<hr />
+<div class="row">
+    <div class="pull-left">
+        <a class="btn btn-default" data-bind="click: $parent.showPassengerInfo.bind($parent)"><= Back</a>
+        <hr />
+    </div>
+    <div class="pull-right">
+        <a class="btn btn-default" data-bind="click: $parent.showOrderSummary.bind($parent)">Go to order summary</a>
+        <hr />
+    </div>
+</div>

@@ -1,3 +1,45 @@
-﻿<div>
-    <p>Hello from Order summary info</p>
+﻿<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <p>
+                <h2>Summary information</h2>
+            </p>
+        </div>
+    </div>
+    <div>
+        <div class="row well">
+            <div class="row">
+                <div class="col-md-4 pull-left">
+                    <h1><b>Ticket #</b>&nbsp;<span data-bind="text: "></span></h1>
+                    <h4><b>Name:</b>&nbsp;<span data-bind="text: "></span></h4>
+                    <h4><b>Surname:</b>&nbsp;<span data-bind="text: "></span></h4>
+                    <h4><b>Type:</b>&nbsp;<span data-bind="text: "></span></h4>
+                    <h4><b>Sex:</b>&nbsp;<span data-bind="text: "></span></h4>
+                    <h4><b>Passport no:</b>&nbsp;<span data-bind="text: "></span></h4>
+                </div>
+                <div class="col-md-4 pull-right">
+                    <h4><b>Place of departure:</b>&nbsp;<span data-bind="text: "></span></h4>
+                    <h4><b>Place of arrival:</b>&nbsp;<span data-bind="text: "></span></h4>
+                    <h4><b>Duration:</b>&nbsp;<span data-bind="text:"></span></h4>
+                    <h4><b>Departure date:</b>&nbsp;<span data-bind="text: "></span></h4>
+                    <h4><b>Type:</b>&nbsp;<span data-bind="text: "></span></h4>
+                    <h4><b>Lagguage:</b>&nbsp;<span data-bind="text: "></span></h4>
+                    <h4><b>Seat:</b>&nbsp;<span data-bind="text: "></span></h4>
+                    <h4><b>Price:</b>&nbsp;<span data-bind="text: "></span></h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="pull-right" style="margin-top:1%">
+            <button type="button" class="btn btn-default">Book</button>
+            <button type="button" class="btn btn-default">Buy</button>
+        </div>
+        <div class="pull-left">
+            <h1><b>Total price</b></h1>
+        </div>
+        <div class="pull-right" style="margin-top:1%; margin-right:10%;">
+            <a class="btn btn-default" data-bind="click: $parent.showTicketInfo.bind($parent)"><= Back</a>
+        </div>
+    </div>
 </div>

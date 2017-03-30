@@ -46,5 +46,7 @@
         </div>
     </div>
     <hr />
-    <a class="btn btn-default" data-bind="page-href: '../ticket-info'">Next (go to ticket information)</a>
+    <div class="pull-right">
+        <a class="btn btn-default" data-bind="click: $parent.showTicketInfo.bind($parent)">Go to ticket information)</a>
+    </div>
 </div>
