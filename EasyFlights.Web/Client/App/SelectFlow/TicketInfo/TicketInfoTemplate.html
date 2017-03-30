@@ -1,21 +1,13 @@
-﻿<!--
-WHILE TESTING!!!
--->
-<head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-</head>
-<!--<div class="container" id="ticket-info" data-bind="foreach: {data: flightsResult as 'flightItem'}">
+﻿<div class="container" id="ticket-info" data-bind="foreach: {data: flightsResult as 'flightItem'}">
     <div class="row">
-        <div class="col-md-4 col-md-offset-4">
+        <div class="col-md-4">
             <p>
                 <h2>Tickets for flight <span data-bind="text: flightItem.id"></span></h2>
             </p>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-8">
             <table class="table table-bordered">
                 <tr>
                     <td>
@@ -39,7 +31,7 @@ WHILE TESTING!!!
         </div>
     </div>
     <div class="row">
-        <div class="col-md-4 col-md-offset-4">
+        <div class="col-md-4">
             <p>
                 <h3>Tickets Information </h3>
             </p>
@@ -47,7 +39,7 @@ WHILE TESTING!!!
     </div>
     <div id="flight" data-bind="foreach:{flightItem: tickets as 'ticket'}">
         <div class="row">
-            <div class="col-md-6 col-md-offset-3">
+            <div class="col-md-6">
                 <table class="table table-bordered">
                     <tr>
                         <td>
@@ -59,6 +51,7 @@ WHILE TESTING!!!
                         </td>
                         <td>
                             Class: <span data-bind="text: ticket.ticketClass"></span><br />
+                            <radio-chooser params="options: $data.classTypes, selectedOption:ticket.ticketClass"></radio-chooser>
                         </td>
                     </tr>
                     <tr>
@@ -71,7 +64,7 @@ WHILE TESTING!!!
         </div>
     </div>
     <div class="row">
-        <div class="col-md-4 col-md-offset-3">
+        <div class="col-md-4">
             <h4>Total price:</h4>
         </div>
         <div class="col-md-2">
@@ -82,11 +75,6 @@ WHILE TESTING!!!
     </div>
 
 
-</div>-->
-
+</div>
 <a class="btn btn-default" data-bind="page-href: '../passenger-info'">Back to passenger information</a>
 <hr />
-<!--
-WHILE TESTING!!!
--->
-<script type="text/javascript" src="https:-//ajax.aspnetcdn.com/ajax/knockout/knockout-3.4.0.js"></script>
