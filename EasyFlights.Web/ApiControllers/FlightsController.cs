@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Http;
-using EasyFlights.DomainModel.Entities;
+using EasyFlights.DomainModel.DTOs;
+using EasyFlights.Web.Util.Converters;
 using EasyFlights.Web.ViewModels;
 
 namespace EasyFlights.Web.ApiControllers
@@ -9,38 +11,32 @@ namespace EasyFlights.Web.ApiControllers
     [RoutePrefix("api/flights")]
     public class FlightsController : ApiController
     {
+        private IRouteConverter converter;
 
-        public FlightsController()
+        public FlightsController(IRouteConverter converter)
         {
+            this.converter = converter;
         }
 
         [HttpGet]
         [Route("get")]
-        public List<FlightViewModel> GetFlights(int routeId)
+        public List<FlightViewModel> GetFlights(string routeId)
         {
-            List<Flight> flights = new List<Flight>();//this.GetFlightsByRouteId(routeId);
+            List<FlightDto> flights = converter.ConvertRouteIdToFlights(routeId).ToList();
             var result = new List<FlightViewModel>();
-            foreach (Flight flight in flights)
+            foreach (FlightDto flight in flights)
             {
                 var element = new FlightViewModel()
                 {
                     ArrivalTime = flight.ScheduledArrivalTime.ToLongTimeString(),
-                    DepartureAirport = flight.DepartureAirport.Title,
+                    DepartureAirport = flight.DepartureAirportTitle,
                     DepartureTime = flight.ScheduledDepartureTime.ToLongTimeString(),
-                    DestinationAirport = flight.DestinationAirport.Title,
+                    DestinationAirport = flight.DestinationAirportTitle,
                     Duration = DateTime.FromFileTimeUtc(
                         flight.ScheduledArrivalTime.ToFileTimeUtc() - flight.ScheduledDepartureTime.ToFileTimeUtc()).ToShortTimeString(),
                     Fare = flight.DefaultFare,                   
                 };
-                foreach (Ticket ticket in flight.Tickets)
-                {
-                    element.Tickets.Add(new TicketVIewModel()
-                    {
-                        Discount = ticket.Discount,
-                        Fare = ticket.Fare,
-                        Seat = ticket.Seat
-                    });
-                }
+                result.Add(element);
             }
             return result;
         }

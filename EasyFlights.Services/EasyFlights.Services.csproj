@@ -102,7 +102,6 @@
     <Compile Include="Identity\ApplicationRoleManager.cs" />
     <Compile Include="Identity\ApplicationUserManager.cs" />
     <Compile Include="Interfaces\IFlightService.cs" />
-    <Compile Include="Interfaces\IRouteService.cs" />
     <Compile Include="Interfaces\ISearchingService.cs" />
     <Compile Include="Interfaces\ITypeaheadProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
