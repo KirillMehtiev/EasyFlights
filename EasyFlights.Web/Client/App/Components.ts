@@ -7,6 +7,7 @@ import "./Common/Components/DatePicker/DatePickerComponent";
 import "./Index/Search/SearchComponent";
 import "./Common/Components/Autocomplete/AutocompleteComponent";
 import "./Common/Components/RadioChooser/RadioChooserComponent";
+import "./Common/Components/LazyPage/LazyPageComponent";
 import "./SearchResults/FlightResults/RouteResultComponent"
 import "./SearchResults/FlightResults/Tickets/FlightComponent"
 import "./SelectFlow/SelectFlowComponent";

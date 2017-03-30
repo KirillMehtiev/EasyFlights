@@ -5,10 +5,7 @@
             <index></index>
         </div>
 
-    <div data-bind="page: {id: 'results', params: ['departurePlace','arrivalPlace','departureDate','returnDate', 'countOf', 'type']}">
-
-        <app-results params="departurePlace: departurePlace, arrivalPlace: arrivalPlace, departureDate: departureDate, returnDate: returnDate, countOf: countOf , type: type"></app-results>
-    </div>
+        <lazy-page></lazy-page>
 
         <div data-bind="page: {id: 'selected-route', params: ['routeId', 'numberOfPassenger']}">
             <select-flow params="routeId: routeId, numberOfPassenger: numberOfPassenger"></select-flow>
