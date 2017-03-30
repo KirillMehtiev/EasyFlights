@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-4">
             <p>
-                <h2>Tickets for flight <span data-bind="text: flightItem.id"></span></h2>
+                <h2>Tickets for flight </h2>
             </p>
         </div>
     </div>
@@ -11,9 +11,9 @@
             <table class="table table-bordered">
                 <tr>
                     <td>
-                        Flight: <span data-bind="text: flightItem"></span><br/>
-                        Aircraft: <br />
-                        Country: <br />
+                        Flight: <br/>
+                        Aircraft: <span data-bind="text: flightItem.departureTime"></span><br />
+                        Country: <span data-bind="text: flightItem.departureTime"></span><br />
                     </td>
                     <td>
                         Departure time: <span data-bind="text: flightItem.departureTime"></span><br/>
