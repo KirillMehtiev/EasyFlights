@@ -177,6 +177,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiControllers\CabinController.cs" />
     <Compile Include="ApiControllers\RoutesController.cs" />
     <Compile Include="ApiControllers\TypeaheadController.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -185,6 +186,9 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Diagnostics\AsyncActionFilterAttribute.cs" />
+    <Compile Include="Diagnostics\GlobalExceptionHandler.cs" />
+    <Compile Include="Diagnostics\ModelStateValidatorAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -220,6 +224,7 @@
     <Content Include="Client\App\SearchResults\FlightResults\Tickets\FlightTemplate.html" />
     <Content Include="Client\App\SearchResults\SearchResultTemplate.html" />
     <Content Include="Client\App\SelectFlow\OrderSummary\OrderSummaryTemplate.html" />
+    <Content Include="Client\App\SelectFlow\TicketInfo\SeatPicker\SeatPicker.html" />
     <Content Include="Client\App\SelectFlow\TicketInfo\TicketInfoTemplate.html" />
     <Content Include="Client\Libs\css\jquery-ui.min.css" />
     <Content Include="Client\Libs\fonts\glyphicons-halflings-regular.svg" />
@@ -314,9 +319,15 @@
     <TypeScriptCompile Include="Client\App\SearchResults\FlightResults\Tickets\FlightViewModel.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\SearchResultComponent.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\SearchResultViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\SeatPicker\CabinViewModel.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\ITicketInfoItemOptions.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\OrderSummary\OrderSummaryComponent.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\OrderSummary\OrderSummaryViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\SeatPicker\IRowOptions.ts" />
+    <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\SeatPicker\ICabinOptions.ts" />
+    <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\SeatPicker\RowItem.ts" />
+    <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\SeatPicker\SeatItem.ts" />
+    <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\SeatPicker\SeatPickerViewModel.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\TicketInfoComponent.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\TicketInfoItem.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\TicketInfoViewModel.ts" />

@@ -40,7 +40,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="RouteBuilding\DumpRouteBuilder.cs" />
     <Compile Include="RouteBuilding\IRouteBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RouteBuilding\RouteBuilder.cs" />

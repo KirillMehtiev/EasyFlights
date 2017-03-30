@@ -8,11 +8,11 @@ namespace EasyFlights.Data.Migrations.Seed
 {
     public class FlightsCsvSeeder
     {
-        public const int DepartureIndex = 0;
-        public const int DepartureTimeIndex = 1;
-        public const int ArrivalIndex = 2;
-        public const int ArrivalTimeIndex = 3;
-        public const string TimeFormat = "HH:mm";
+        private const int DepartureIndex = 1;
+        private const int DepartureTimeIndex = 2;
+        private const int ArrivalIndex = 3;
+        private const int ArrivalTimeIndex = 4;
+        private const string TimeFormat = "HH:mm";
 
         public void Seed(IDataContext context)
         {

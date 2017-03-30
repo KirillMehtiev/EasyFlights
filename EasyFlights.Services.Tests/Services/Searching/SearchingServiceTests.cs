@@ -123,6 +123,53 @@ namespace EasyFlights.Services.Tests.Services.Searching
             await Assert.ThrowsExceptionAsync<InvalidOperationException>(act);
         }
 
+        [TestMethod]
+        public async Task FindRoutesBetweenAirportsAsync_WhenRoutesAreFound_CalculatesTotalCostAndTotalTimeOfJourney()
+        {
+            // Arrange
+            var fakeRoutes = new List<Route>()
+            {
+                new Route()
+                {
+                    Flights = new List<DomainModel.Entities.Flight>()
+                        {
+                            new DomainModel.Entities.Flight()
+                            {
+                                DepartureAirport = new Airport(),
+                                DestinationAirport = new Airport(),
+                                DefaultFare = 10,
+                                ScheduledDepartureTime = DateTime.Now,
+                                ScheduledArrivalTime = DateTime.Now.AddHours(12)
+                            },
+                            new DomainModel.Entities.Flight()
+                            {
+                                DepartureAirport = new Airport(),
+                                DestinationAirport = new Airport(),
+                                DefaultFare = 15,
+                                ScheduledDepartureTime = DateTime.Now.AddHours(13),
+                                ScheduledArrivalTime = DateTime.Now.AddHours(15)
+                            }
+                        }
+                }
+            };
+
+            decimal expectedTotalCost = 10 + 15;
+            TimeSpan expectedTotalTime = TimeSpan.FromHours((15 - 13) + 12);
+
+            Mock<IRouteBuilder> mockRouteBuilder = this.CreateMockRouteBuilder(fakeRoutes);
+            Mock<IAirportsRepository> mockRepository = this.CreateMockRepository();
+
+            SearchingService service = this.CreateTestObject(mockRepository, mockRouteBuilder);
+
+            // Act
+            IEnumerable<RouteDto> result = await service.FindRoutesBetweenAirportsAsync(1, 1, 1, DateTime.Now);
+
+            // Assert
+            bool calculatedTotalTimeIsApproximatelyTheSameAsExpected = Math.Abs((expectedTotalTime - result.First().TotalTime).Minutes) < 0.001;
+            Assert.IsTrue(calculatedTotalTimeIsApproximatelyTheSameAsExpected);
+            Assert.AreEqual(expectedTotalCost, result.First().TotalCost);
+        }
+
         #endregion
     }
 }

@@ -8,8 +8,10 @@ namespace EasyFlights.Data.Migrations.Seed
 {
     public class AircraftsCsvSeeder
     {
-        public const int ModelIndex = 0;
-        public const int CapacityIndex = 1;
+        public const int Id = 0;
+        public const int ModelIndex = 1;
+        public const int CapacityIndex = 2;
+        public const int RowIndex = 3;
 
         public void Seed(IDataContext context)
         {
@@ -29,7 +31,7 @@ namespace EasyFlights.Data.Migrations.Seed
                         continue;
                     }                    
                     Aircraft aircraft;                 
-                    aircraft = new Aircraft { Model = info[ModelIndex], Capacity = int.Parse(info[CapacityIndex]) };
+                    aircraft = new Aircraft { Model = info[ModelIndex], Capacity = int.Parse(info[CapacityIndex]), Row = int.Parse(info[RowIndex]) };
                     context.Set<Aircraft>().Add(aircraft);
                 }
             }
