@@ -42,7 +42,9 @@
   <ItemGroup>
     <Compile Include="RouteBuilding\IRouteBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RouteBuilding\IRouteGeneralInfoCalculator.cs" />
     <Compile Include="RouteBuilding\RouteBuilder.cs" />
+    <Compile Include="RouteBuilding\RouteGeneralInfoCalculator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EasyFlights.Data\EasyFlights.Data.csproj">

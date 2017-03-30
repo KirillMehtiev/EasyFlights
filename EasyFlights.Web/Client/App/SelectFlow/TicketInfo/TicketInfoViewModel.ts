@@ -1,14 +1,11 @@
 ﻿import {TicketInfoItem} from "./TicketInfoItem";
 import { ITicketInfoItemOptions } from "./ITicketInfoItemOptions";
 import { PassengerInfoItem } from "../PassengerInfo/PassengerInfoItem";
+import {RadioChooserItem} from "../../Common/Components/RadioChooser/RadioChooserItem";
 
 class TicketInfoViewModel {
     public item: TicketInfoItem;
-    public passengers: KnockoutObservableArray<PassengerInfoItem>;
-    public test: KnockoutObservable<string>;
-
-    constructor(options: ITicketInfoItemOptions) {
-        this.passengers = options.passengers;
+    constructor(options: ITicketInfoItemOptions) {        
     }    
 }
 export = TicketInfoViewModel;

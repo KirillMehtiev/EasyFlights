@@ -8,6 +8,7 @@ namespace EasyFlights.Web.NinjectModules
         public override void Load()
         {
             this.Bind<IRouteBuilder>().To<RouteBuilder>();
+            this.Bind<IRouteGeneralInfoCalculator>().To<RouteGeneralInfoCalculator>();
         }
     }
 }

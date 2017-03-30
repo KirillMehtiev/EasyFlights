@@ -4,6 +4,7 @@ using EasyFlights.Data.Repositories.Airports;
 using EasyFlights.DomainModel.DTOs;
 using EasyFlights.DomainModel.Entities;
 using EasyFlights.Engines.RouteBuilding;
+using EasyFlights.Services.DtoMappers;
 using EasyFlights.Services.Services.Searching;
 using Moq;
 
@@ -11,7 +12,11 @@ namespace EasyFlights.Services.Tests.Services.Searching
 {
     public partial class SearchingServiceTests
     {
-        private SearchingService CreateTestObject(Mock<IAirportsRepository> mockRepository = null, Mock<IRouteBuilder> mockRouteBuilder = null)
+        private SearchingService CreateTestObject(
+                                                  Mock<IAirportsRepository> mockRepository = null,
+                                                  Mock<IRouteBuilder> mockRouteBuilder = null,
+                                                  Mock<IRouteGeneralInfoCalculator> mockRouteGeneralInfoCalculator = null,
+                                                  Mock<IRouteDtoMapper> mockRouteDtoMapper = null)
         {
             if (mockRepository == null)
             {
@@ -21,8 +26,16 @@ namespace EasyFlights.Services.Tests.Services.Searching
             {
                 mockRouteBuilder = this.CreateMockRouteBuilder();
             }
+            if (mockRouteGeneralInfoCalculator == null)
+            {
+                mockRouteGeneralInfoCalculator = this.CreateMockRouteGeneralInfoCalculator();
+            }
+            if (mockRouteDtoMapper == null)
+            {
+                mockRouteDtoMapper = new Mock<IRouteDtoMapper>();
+            }
 
-            return new SearchingService(mockRepository.Object, mockRouteBuilder.Object);
+            return new SearchingService(mockRepository.Object, mockRouteBuilder.Object, mockRouteGeneralInfoCalculator.Object, mockRouteDtoMapper.Object);
         }
 
         private Mock<IAirportsRepository> CreateMockRepository(int? departureAirportId = null, int? destinationAirportId = null, Airport departureAirport = null, Airport destinationAiport = null)
@@ -68,6 +81,13 @@ namespace EasyFlights.Services.Tests.Services.Searching
                 .ReturnsAsync(fakeRoutes);
 
             return mockRouteBuilder;
+        }
+
+        private Mock<IRouteGeneralInfoCalculator> CreateMockRouteGeneralInfoCalculator()
+        {
+            var mockRouteGeneralInfoCalculator = new Mock<IRouteGeneralInfoCalculator>();
+
+            return mockRouteGeneralInfoCalculator;
         }
 
         private IEnumerable<Route> CreateFakeRoutes(int count)

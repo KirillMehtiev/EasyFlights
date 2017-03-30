@@ -178,6 +178,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiControllers\CabinController.cs" />
+    <Compile Include="ApiControllers\FlightsController.cs" />
     <Compile Include="ApiControllers\RoutesController.cs" />
     <Compile Include="ApiControllers\TypeaheadController.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -205,6 +206,7 @@
     <Compile Include="ViewModels\FlightViewModel.cs" />
     <Compile Include="ViewModels\RouteSearchViewModel.cs" />
     <Compile Include="ViewModels\RouteViewModel.cs" />
+    <Compile Include="ViewModels\TicketVIewModel.cs" />
     <Compile Include="ViewModels\TypeaheadViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -7,6 +7,7 @@ using EasyFlights.DomainModel.DTOs;
 using EasyFlights.DomainModel.Entities;
 using EasyFlights.Engines.RouteBuilding;
 using EasyFlights.Services.Common;
+using EasyFlights.Services.DtoMappers;
 using EasyFlights.Services.Interfaces;
 
 namespace EasyFlights.Services.Services.Searching
@@ -15,11 +16,17 @@ namespace EasyFlights.Services.Services.Searching
     {
         private readonly IAirportsRepository citiesRepository;
         private readonly IRouteBuilder routeBuilder;
+        private readonly IRouteGeneralInfoCalculator routeGeneralInfoCalculator;
 
-        public SearchingService(IAirportsRepository citiesRepository, IRouteBuilder routeBuilder)
+        private readonly IRouteDtoMapper routeDtoMapper;
+
+        public SearchingService(IAirportsRepository citiesRepository, IRouteBuilder routeBuilder, IRouteGeneralInfoCalculator routeGeneralInfoCalculator, IRouteDtoMapper routeDtoMapper)
         {
             this.citiesRepository = citiesRepository;
             this.routeBuilder = routeBuilder;
+            this.routeGeneralInfoCalculator = routeGeneralInfoCalculator;
+
+            this.routeDtoMapper = routeDtoMapper;
         }
         
         public async Task<IEnumerable<RouteDto>> FindRoutesBetweenAirportsAsync(int departureAirportId, int destinationAirportId, int numberOfPassengers, DateTime departureTime, DateTime? returnTime = null)
@@ -69,40 +76,13 @@ namespace EasyFlights.Services.Services.Searching
                     continue;
                 }
 
-                decimal totalCost = route.Flights.Sum(flight => flight.DefaultFare);
+                decimal totalCost = this.routeGeneralInfoCalculator.GetTotalCost(route);
+                var totalTime = this.routeGeneralInfoCalculator.GetTotalTime(route);
 
-                var totalTime = TimeSpan.FromMinutes(route.Flights.Sum(flight =>
-                {
-                    return (flight.ScheduledArrivalTime - flight.ScheduledDepartureTime).TotalMinutes;
-                }));
-
-                result.Add(this.MapRouteToRouteDto(route, totalCost, totalTime));
+                result.Add(this.routeDtoMapper.Map(route, totalCost, totalTime));
             }
 
             return result;
-        }
-
-        private RouteDto MapRouteToRouteDto(Route route, decimal totalCost, TimeSpan totalTime)
-        {
-            return new RouteDto()
-            {
-                Flights = route.Flights
-                    .Select(flight => new FlightDto()
-                    {
-                       ScheduledDepartureTime = flight.ScheduledDepartureTime,
-                       ScheduledArrivalTime = flight.ScheduledArrivalTime,
-                       DepartureAirportTitle = flight.DepartureAirport.Title,
-                       DestinationAirportTitle = flight.DestinationAirport.Title,
-                       Duration = flight.ScheduledDepartureTime - flight.ScheduledArrivalTime,
-                       DefaultFare = flight.DefaultFare,
-                       Id = flight.Id,
-
-                       // TODO: figure out what this dto should contain
-                        Aircraft = new AircraftDto()
-                    }).ToList(),
-                TotalCost = totalCost,
-                TotalTime = totalTime
-            };
         }
     }
 }
