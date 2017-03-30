@@ -20,7 +20,7 @@ namespace EasyFlights.Engines.Tests.RouteBuilding
             // Arrange
             List<Airport> airports = this.CreateFakeGraph();
 
-            List<Route> expectedRoutes = new List<Route>()
+            var expectedRoutes = new List<Route>()
             {
                 new Route()
                 {
@@ -47,6 +47,8 @@ namespace EasyFlights.Engines.Tests.RouteBuilding
 
             // Assert
             Assert.AreEqual(expectedRoutes.Count, routes.Count());
+            Assert.IsTrue(routes.Any(route => route.Flights.SequenceEqual(expectedRoutes[0].Flights)));
+            Assert.IsTrue(routes.Any(route => route.Flights.SequenceEqual(expectedRoutes[1].Flights)));
         }
 
         #endregion

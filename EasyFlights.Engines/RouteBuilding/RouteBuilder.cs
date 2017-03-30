@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,30 +13,28 @@ namespace EasyFlights.Engines.RouteBuilding
         private double minAmountOfHoursToWait = 0.5;
         private double maxAmountOfHoursToWait = 24.0;
 
-        private List<Route> allRoutes;
-
-        public RouteBuilder()
-        {
-        }
+        private BlockingCollection<Route> allRoutes;
 
         public async Task<IEnumerable<Route>> BuildAsync(Airport departure, Airport destination, DateTime departureDate, int numberOfPassengers)
         {
-            this.allRoutes = new List<Route>();
+            this.allRoutes = new BlockingCollection<Route>();
 
             List<Flight> startPointFlights = departure.Flights
                                                 .Where(flight => this.FligthIsAvailable(flight, departureDate, numberOfPassengers))
                                                 .ToList();
 
+            var tasks = new List<Task>();
             foreach (Flight startPointFlight in startPointFlights)
             {
-                await Task.Factory.StartNew(() =>
+                tasks.Add(Task.Factory.StartNew(() =>
                 {
                     var currentRoute = new Stack<Flight>();
                     currentRoute.Push(startPointFlight);
 
                     this.FindAllRoutes(currentRoute, startPointFlight, destination, numberOfPassengers);
-                });
+                }));
             }
+            await Task.WhenAll(tasks);
 
             var result  = new List<Route>(this.allRoutes);
 
