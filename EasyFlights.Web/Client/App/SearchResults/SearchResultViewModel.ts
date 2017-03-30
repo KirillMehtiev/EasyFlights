@@ -48,8 +48,8 @@ class SearchResultViewModel {
 
         console.log("Search results");
 
-        //this.dataService.get<Array<RouteItem>>("api/Routes/GetAsync?departureAirportId=4062&destinationAirportId=4068&numberOfPeople=1&departureTime=2017-03-24T13:05:17Z")
-        //    .then((data) => this.routeItems(data));
+        this.dataService.get<Array<RouteItem>>("api/Routes/GetAsync?departureAirportId=4062&destinationAirportId=4068&numberOfPeople=1&departureTime=2017-03-24T13:05:17Z")
+            .then((data) => this.routeItems(data));
     }
 
     public onShow(): void {
