@@ -52,7 +52,7 @@ class SearchResultViewModel {
         this.isError = ko.observable(false);
 
         let url: string = this.createGetRoutesUrl();
-
+        console.log(url);
         this.routesService.getRoutes(url)
             .then((data) => {
                 this.routeItems(data);
@@ -98,13 +98,19 @@ class SearchResultViewModel {
             forward: '»'
         };
     }
-
+   
     private createGetRoutesUrl(): string {
-        let resultUrl: string = "GetAsync?departureAirportId=4062&destinationAirportId=4068&numberOfPeople=1&departureTime=2017-03-24T13:05:17Z";
 
-        //resultUrl = "GetAsync?departureAirportId" + this.departurePlace
-        
-        return resultUrl;
+        var result: string;
+       
+        if (this.returnDate != null) {
+             result = "GetAsync?departureAirportId=" + this.departurePlaceId() + "&destinationAirportId=" + this.arrivalPlaceId() + "&numberOfPeople=" + this.countOf() + "&departureTime=" + moment(this.departureDate()).toISOString() + "&returnTime=" + moment(this.returnDate()).toISOString();
+     
+        } 
+
+        result = "GetAsync?departureAirportId=" + this.departurePlaceId() + "&destinationAirportId=" + this.arrivalPlaceId() + "&numberOfPeople=" + this.countOf() + "&departureTime=" + moment(this.departureDate()).toISOString(); 
+
+       return result;
     }
 }
 export = SearchResultViewModel;
