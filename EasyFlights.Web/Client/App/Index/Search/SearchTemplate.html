@@ -38,7 +38,10 @@
             <date-picker id="return-date-picker" params="selectedDate: selectedReturnDate, name: returnDateName"></date-picker>
         </div>
     </div>
-    <div class="col-md-12 text-center">
-        <a class="btn btn-info" data-bind="page-href: {path: 'results', params: { departurePlace: $data.searchAirportFrom() ? $data.searchAirportFrom().value : '', arrivalPlace: $data.searchAirportTo() ? $data.searchAirportTo().value : '', departureDate: $data.selectedDepartureDate, returnDate: $data.selectedReturnDate, countOf: $data.number, type: $data.selectedTicketType}}">Search</a>
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <a class="btn btn-primary btn-lg btn-block" data-bind="page-href: {path: 'results', params: { departurePlace: $data.searchAirportFrom() ? $data.searchAirportFrom().value : '', arrivalPlace: $data.searchAirportTo() ? $data.searchAirportTo().value : '', departureDate: $data.selectedDepartureDate, returnDate: $data.selectedReturnDate, countOf: $data.number, type: $data.selectedTicketType}}"><span class="glyphicon glyphicon-search"></span> Search</a>
+        </div>
     </div>
 </div>
