@@ -2,5 +2,6 @@
 
 export interface IRouteItemOptions {
     item: RouteItem;
+    quantity: KnockoutObservable<number>; 
     
 }

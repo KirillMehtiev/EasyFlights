@@ -6,12 +6,13 @@ import { FlightItem } from "./Tickets/FlightItem";
 class RouteResultViewModel {
   
     public item: RouteItem;
-    //public countOf: KnockoutObservable<number>;
+    public quantity: KnockoutObservable<number>; 
+
 
     constructor(options: IRouteItemOptions) {
       
         this.item = options.item;
-        //this.countOf = params.countOf;
+        this.quantity = options.quantity;
 
     }
 
