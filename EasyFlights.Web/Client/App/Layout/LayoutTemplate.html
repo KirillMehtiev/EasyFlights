@@ -5,8 +5,8 @@
             <index></index>
         </div>
 
-        <lazy-page params="id: 'results', params: ['departurePlace','arrivalPlace','departureDate','returnDate', 'countOf', 'type']">
-            <app-results params="departurePlace: departurePlace, arrivalPlace: arrivalPlace, departureDate: departureDate, returnDate: returnDate, countOf: countOf , type: type"></app-results>
+        <lazy-page params="id: 'results', params: ['departurePlace','departurePlaceId','arrivalPlace','arrivalPlaceId','departureDate','returnDate', 'countOf', 'type']">
+            <app-results params="departurePlace: departurePlace, departurePlaceId:departurePlaceId,arrivalPlace: arrivalPlace, arrivalPlaceId:arrivalPlaceId, departureDate: departureDate, returnDate: returnDate, countOf: countOf , type: type"></app-results>
         </lazy-page>
         
         <lazy-page params="id: 'selected-route', params: ['routeId', 'numberOfPassenger']">

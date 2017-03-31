@@ -11,8 +11,10 @@ class SearchResultViewModel {
     public routeItems: KnockoutObservableArray<RouteItem>;
     public pagedRouteItems: KnockoutObservableArray<RouteItem>;
     public departureDate: KnockoutObservable<Date>;
-    public arrivalPlace: KnockoutObservable<number>;
-    public departurePlace: KnockoutObservable<number>;
+    public arrivalPlace: KnockoutObservable<string>;
+    public arrivalPlaceId: KnockoutObservable<number>;
+    public departurePlace: KnockoutObservable<string>;
+    public departurePlaceId: KnockoutObservable<number>;
     public returnDate: KnockoutObservable<string>;
     public countOf: KnockoutObservable<number>;
     public type: KnockoutObservable<string>;
@@ -35,6 +37,8 @@ class SearchResultViewModel {
         this.routeItems = ko.observableArray([]);
         this.departureDate = params.departureDate;
         this.arrivalPlace = params.arrivalPlace;
+        this.arrivalPlaceId = params.arrivalPlaceId;
+        this.departurePlaceId = params.departurePlaceId;
         this.departurePlace = params.departurePlace;
         this.returnDate = params.returnDate;
         this.countOf = params.countOf;
