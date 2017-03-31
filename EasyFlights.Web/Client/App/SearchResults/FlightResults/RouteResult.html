@@ -5,11 +5,12 @@
         <p><b>Arrival Time:</b> <span data-bind="text: item.arrivalTime"></span>&nbsp;<b>Departure Time:</b><span data-bind="text: item.departureTime"></span></p>
         <p><b>Total price:</b><span data-bind="text: item.totalCost"></span></p>
         <p><b>Total duration:</b><span data-bind="text: item.totalTime"></span></p>
-        <!--<p><b>Number Of:</b><span data-bind="text: $parent.$parent.countOf"></span></p>-->
+        <!--<p><b>Number Of:</b><span data-bind="text: quantity"></span>-->
         <div data-bind="foreach: {data: item.flights, as: 'flightItem'}">
             <flights params="item: flightItem"></flights>
         </div>
-        <a class="btn btn-info" data-bind="page-href: {path: '../selected-route', params: { routeId: $data.item.id, numberOfPassenger: $data.countOf }}">Select</a>
+        <a class="btn btn-info" data-bind="page-href: {path: '../selected-route', params: { routeId: $data.item.id, countOf: $data.quantity }}">Select</a>
+
 
     </div>
 </div>
