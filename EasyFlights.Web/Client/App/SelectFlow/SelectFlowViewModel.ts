@@ -18,8 +18,8 @@ class SelectFlowViewModel {
     constructor(params) {
         this.routeId = params.routeId;
         this.numberOfPassenger = params.numberOfPassenger;
-        this.passengerInfoList = ko.observableArray(this.initPassengerInfoList(1));
-        //this.fillFlightsList(params.routeId);
+        this.passengerInfoList = ko.observableArray(this.initPassengerInfoList(this.numberOfPassenger()));
+        this.fillFlightsList(this.routeId());
 
         // Flow routing
         this.isShowPassengerInfo = ko.observable(true);

@@ -1,8 +1,8 @@
 ﻿<div class="row">
     <h1 class="text-info">Enter information about passanger(s)</h1>
     <hr />
-    <div class="panel-group">
-        <div class="panel panel-default" data-bind="foreach: {data: passengerInfoList, as: 'passengerInfo'}">
+    <div data-bind="foreach: {data: passengerInfoList, as: 'passengerInfo'}">
+        <div class="panel panel-default" >
             <div class="panel-heading">
                 <p>Passenger #<span data-bind="text: $index"></span></p>
             </div>
@@ -47,6 +47,6 @@
     </div>
     <hr />
     <div class="pull-right">
-        <a class="btn btn-default" data-bind="click: $parent.showTicketInfo.bind($parent)">Go to ticket information)</a>
+        <a class="btn btn-default" data-bind="click: $parent.showTicketInfo.bind($parent)">Go to ticket information</a>
     </div>
 </div>
