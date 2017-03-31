@@ -4,6 +4,7 @@ using EasyFlights.Services.Interfaces;
 using EasyFlights.Services.Services.Flight;
 using EasyFlights.Services.Services.Searching;
 using EasyFlights.Services.Services.Typeahead;
+using EasyFlights.Web.Util.Converters;
 using Ninject.Modules;
 
 namespace EasyFlights.Web.NinjectModules
@@ -19,6 +20,7 @@ namespace EasyFlights.Web.NinjectModules
             // Dto mappers
             this.Bind<IFlightDtoMapper>().To<FlightDtoMapper>();
             this.Bind<IRouteDtoMapper>().To<RouteDtoMapper>();
+            this.Bind<IRouteConverter>().To<RouteConverter>();
         }
     }
 }

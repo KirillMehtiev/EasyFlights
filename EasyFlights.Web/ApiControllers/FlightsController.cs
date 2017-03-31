@@ -8,7 +8,7 @@ using EasyFlights.Web.ViewModels;
 
 namespace EasyFlights.Web.ApiControllers
 {
-    [RoutePrefix("api/flights")]
+    [RoutePrefix("api/Flights")]
     public class FlightsController : ApiController
     {
         private IRouteConverter converter;
@@ -19,8 +19,8 @@ namespace EasyFlights.Web.ApiControllers
         }
 
         [HttpGet]
-        [Route("get")]
-        public async Task<List<FlightViewModel>> GetFlights(string routeId)
+        [Route("Get")]
+        public async Task<List<FlightViewModel>> GetFlights([FromUri]string routeId)
         {
             RouteDto routeDto = await converter.RestoreRouteFromRouteIdAsync(routeId);
             var result = new List<FlightViewModel>();

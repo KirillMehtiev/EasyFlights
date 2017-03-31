@@ -25,11 +25,11 @@ class SelectFlowViewModel {
     constructor(params) {
         this.routeId = params.routeId;
         this.countOf = params.countOf;
-        //this.departurePlace = params.departurePlace;
-        //this.destinationPlace = params.destinationPlace;
-        //this.departureDate = params.departurePlace;
-        //this.arrivalDate = params.arrivalDate;
         this.passengerInfoList = ko.observableArray(this.initPassengerInfoList(this.countOf()));
+        this.flights = ko.observableArray([]);
+        
+
+        
         this.fillFlightsList(this.routeId());
 
         // Flow routing
@@ -66,7 +66,7 @@ class SelectFlowViewModel {
     }
 
     private fillFlightsList(routeId: string): void {
-             this.dataService.get<Array<FlightItem>>("api/Flights/Get/".concat(routeId))
+        this.dataService.get<Array<FlightItem>>("api/Flights/Get?routeId=".concat(routeId))
             .then((data) => this.flights(data));
     }
 }

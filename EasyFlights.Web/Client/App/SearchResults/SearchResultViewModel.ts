@@ -59,6 +59,7 @@ class SearchResultViewModel {
                 console.log("data loaded");
                 this.isLoading(false);
                 this.isError(false);
+                this.setPage();
             }).fail((error) => {
                 this.isLoading(false);
                 this.isError(true);
