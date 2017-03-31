@@ -4,11 +4,9 @@ import { RoutesService } from "./Services/RoutesService"
 import Item = require("./FlightResults/Tickets/FlightItem");
 import FlightItem = Item.FlightItem;
 import Service = require("../Common/Services/dataService");
-import DataService = Service.DataService;
 import moment = require("moment");
 
 class SearchResultViewModel {
-
    
     public routeItems: KnockoutObservableArray<RouteItem>;
     public pagedRouteItems: KnockoutObservableArray<RouteItem>;
@@ -32,7 +30,6 @@ class SearchResultViewModel {
     public isError: KnockoutObservable<boolean>;
 
     private routesService: RoutesService = new RoutesService();
-    private dataService: Service.DataService = new DataService();
 
     constructor(params) {
         this.routeItems = ko.observableArray([]);
@@ -50,9 +47,9 @@ class SearchResultViewModel {
         this.isLoading = ko.observable(true);
         this.isError = ko.observable(false);
 
-        console.log("Search results");
+        let url: string = this.createGetRoutesUrl();
 
-        this.dataService.get<Array<RouteItem>>("api/Routes/GetAsync?departureAirportId=4062&destinationAirportId=4068&numberOfPeople=1&departureTime=2017-03-24T13:05:17Z")
+        this.routesService.getRoutes(url)
             .then((data) => {
                 this.routeItems(data);
                 this.isLoading(false);
@@ -61,9 +58,6 @@ class SearchResultViewModel {
                 this.isLoading(false);
                 this.isError(true);
             });
-    }
-
-    public onShow(): void {
     }
 
     public setPage(): void {
@@ -99,6 +93,14 @@ class SearchResultViewModel {
             back: '«',
             forward: '»'
         };
+    }
+
+    private createGetRoutesUrl(): string {
+        let resultUrl: string = "GetAsync?departureAirportId=4062&destinationAirportId=4068&numberOfPeople=1&departureTime=2017-03-24T13:05:17Z";
+
+        //resultUrl = "GetAsync?departureAirportId" + this.departurePlace
+        
+        return resultUrl;
     }
 }
 export = SearchResultViewModel;
