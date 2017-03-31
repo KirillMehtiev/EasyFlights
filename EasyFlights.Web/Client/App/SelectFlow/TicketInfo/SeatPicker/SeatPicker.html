@@ -1,14 +1,13 @@
-﻿<div class="wrapper">
-    <div class="main">
-        <h2>title</h2>
-        <section id="body">
-            <table>
-                <tbody data-bind="foreach: rows">
-                    <tr data-bind="foreach: $data.seats">
-                        <td data-bind="click: $data.bookSeat, css: {booked: $data.booked()}"></td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-    </div>
-</div>
+﻿<button class="btn btn-primary" data-bind="click: show">Choose seat</button>
+
+<div data-bind="modal: {
+    visible: modalVisible,
+    dialogCss: modalSize,
+    header: { data: { label: 'Choose a seat'} },
+    body: { name: bodyTemplate, data: bodyData },
+    footer: { data: {closeLabel: 'Select' } }
+}"></div>
+
+<script type="text/html" id="modalTemplate">
+    <cabin params="rows: rows() ? rows : null, rowsCount: rows() ? rowsCount() : 0, selectNumber: 2"></cabin>
+</script>

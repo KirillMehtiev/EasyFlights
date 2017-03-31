@@ -3,7 +3,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using EasyFlights.Data.Repositories.Flights;
 using EasyFlights.DomainModel.DTOs;
-using EasyFlights.DomainModel.Entities;
 using EasyFlights.Services.Interfaces;
 
 namespace EasyFlights.Services.Services.Flight
@@ -20,25 +19,14 @@ namespace EasyFlights.Services.Services.Flight
         public async Task<CabinDto> GetCabinForFlight(int flightId)
         {
             DomainModel.Entities.Flight flight = await this.repository.FindByIdAsync(flightId);
-            List<Ticket> bookedTickets = flight.Tickets.ToList();
-
-            var seats = new List<SeatDto>();
-            for (var i = 1; i <= flight.Aircraft.Capacity; i++)
-            {
-                bool isBooked = bookedTickets.Exists(x => x.Seat == i);
-                var seat = new SeatDto
-                {
-                    Number = i,
-                    IsBooked = isBooked
-                };
-
-                seats.Add(seat);
-            }
+            ICollection<int> bookedSeats = flight.Tickets.Select(x => x.Seat).ToList();
+            int seatsPerRow = flight.Aircraft.Capacity / flight.Aircraft.Row;
 
             var cabin = new CabinDto
             {
-                RowCount = flight.Aircraft.Row,
-                Seats = seats
+                RowsCount = flight.Aircraft.Row,
+                BoookedSeats = bookedSeats,
+                SeatsPerRow = seatsPerRow
             };
 
             return cabin;

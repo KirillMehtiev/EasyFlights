@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 
-namespace EasyFlights.DomainModel.DTOs
+namespace EasyFlights.Web.ViewModels
 {
-    public class CabinDto
+    public class CabinViewModel
     {
         public int RowsCount { get; set; }
 
         public int SeatsPerRow { get; set; }
 
-        public ICollection<int> BoookedSeats { get; set; }
+        public int[] BoookedSeats { get; set; }
     }
 }

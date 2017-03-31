@@ -4,3 +4,49 @@
 .validation-message{
    color: #b94a48;
 }
+
+#place td:hover
+{
+background-color:yellow; 
+} 
+
+#body tr td {
+background:url("/Client/App/SelectFlow/TicketInfo/SeatPicker/Images/available_seat_img.gif") no-repeat scroll 0 0 transparent;
+height:33px;
+width:33px;
+vertical-align: top;
+text-align: left;
+font-size: 10px;
+}
+
+#body tr td.chosen {
+ background:url("/Client/App/SelectFlow/TicketInfo/SeatPicker/Images/selected_seat_img.gif") no-repeat scroll 0 0 transparent;
+}
+
+#body tr td.booked {
+ background:url("/Client/App/SelectFlow/TicketInfo/SeatPicker/Images/booked_seat_img.gif") no-repeat scroll 0 0 transparent;
+}
+
+#seatDescription li{
+vertical-align: bottom; 
+list-style: none outside none;
+padding-bottom: 0px;
+padding-left:35px;
+height:35px;
+}
+
+#seatDescription li.available{
+  background:url("/Client/App/SelectFlow/TicketInfo/SeatPicker/Images/available_seat_img.gif") no-repeat scroll 0 0 transparent;
+}
+
+#seatDescription li.selected{
+  background:url("/Client/App/SelectFlow/TicketInfo/SeatPicker/Images/selected_seat_img.gif") no-repeat scroll 0 0 transparent;
+}
+
+#seatDescription li.booked{
+  background:url("/Client/App/SelectFlow/TicketInfo/SeatPicker/Images/booked_seat_img.gif") no-repeat scroll 0 0 transparent;
+}
+
+#body tr.space td{
+   height: 50px;
+}

@@ -1,7 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Http;
 using EasyFlights.DomainModel.DTOs;
 using EasyFlights.Services.Interfaces;
+using EasyFlights.Web.ViewModels;
 
 namespace EasyFlights.Web.ApiControllers
 {
