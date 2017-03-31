@@ -1,4 +1,4 @@
-﻿<div class="container" id="ticket-info"> <!--data-bind="foreach: {data: flights as 'flightItem'}">-->
+﻿<div data-bind="foreach: {data: flights, as: 'flight'}">
     <div class="row">
         <div class="col-md-4">
             <p>
@@ -12,19 +12,19 @@
                 <tr>
                     <td>
                         Flight: <br />
-                        Aircraft: <span data-bind="text: "></span><br />
-                        Country: <span data-bind="text: "></span><br />
+                        Aircraft: <span data-bind="text:flight.aircraft "></span><br />
+                        Country: <span data-bind="text:flight.country "></span><br />
                     </td>
                     <td>
-                        Departure time: <span data-bind="text: "></span><br />
-                        Departure airport: <span data-bind="text: "></span><br />
+                        Departure time: <span data-bind="text:flight.departureTime "></span><br />
+                        Departure airport: <span data-bind="text:flight.departureAirport "></span><br />
                     </td>
                     <td>
-                        Duration: <span data-bind="text: "></span><br />
+                        Duration: <span data-bind="text:flight.duration "></span><br />
                     </td>
                     <td>
-                        Arrival time: <span data-bind="text: "></span><br />
-                        Arrival airport: <span data-bind="text:"></span>
+                        Arrival time: <span data-bind="text:flight.arrivalTime "></span><br />
+                        Arrival airport: <span data-bind="text: flight.destinationAirport"></span>
                     </td>
                 </tr>
             </table>
@@ -43,20 +43,20 @@
                 <table class="table table-bordered">
                     <tr>
                         <td>
-                            Ticket №: <span data-bind="text: "></span><br />
-                            Name: <span data-bind="text: "></span> <span data-bind="text: "></span><br />
+                            Ticket №: <span data-bind="text:ticket.ticketNumber "></span><br />
+                            Name: <span data-bind="text: ticket.passenger.firstName "></span> <span data-bind="text: ticket.passenger.lastName"></span><br />
                         </td>
                         <td>
-                            Seat: <span data-bind="text: "></span><br />
+                            Seat: <span data-bind="text:ticket.seat "></span><br />
                         </td>
                         <td>
-                            Class: <span data-bind="text: "></span><br />
-                            <radio-chooser params="options: "></radio-chooser>
+                            Class: <span data-bind="text: ticket.ticketClass"></span><br />
+                            <radio-chooser params="options: flight.classTypes, selectedOption:ticket.ticketClass"></radio-chooser>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            Price for ticket: <span data-bind="text: "></span>
+                            Price for ticket: <span data-bind="text: ticket.price"></span>
                         </td>
                     </tr>
                 </table>

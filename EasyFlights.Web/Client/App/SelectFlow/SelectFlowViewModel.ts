@@ -62,7 +62,7 @@ class SelectFlowViewModel {
     }
 
     private fillFlightsList(routeId: string): void {
-             this.dataService.get<Array<FlightItem>>("api/Flights/Get/".concat(routeId))
+        this.dataService.get<Array<FlightItem>>("api/Flights/Get?routeId=".concat(routeId))
             .then((data) => this.flights(data));
     }
 }
