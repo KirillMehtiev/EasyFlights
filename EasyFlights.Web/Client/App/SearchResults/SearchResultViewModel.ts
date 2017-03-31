@@ -28,7 +28,8 @@ class SearchResultViewModel {
     public boundary: boolean;
     public text: any;
 
-    public isDataLoaded: boolean = false;
+    public isLoading: KnockoutObservable<boolean>;
+    public isError: KnockoutObservable<boolean>;
 
     private routesService: RoutesService = new RoutesService();
     private dataService: Service.DataService = new DataService();
@@ -46,10 +47,20 @@ class SearchResultViewModel {
         this.setPage();
         this.sortByPrice();
 
+        this.isLoading = ko.observable(true);
+        this.isError = ko.observable(false);
+
         console.log("Search results");
 
         this.dataService.get<Array<RouteItem>>("api/Routes/GetAsync?departureAirportId=4062&destinationAirportId=4068&numberOfPeople=1&departureTime=2017-03-24T13:05:17Z")
-            .then((data) => this.routeItems(data));
+            .then((data) => {
+                this.routeItems(data);
+                this.isLoading(false);
+                this.isError(false);
+            }).fail((error) => {
+                this.isLoading(false);
+                this.isError(true);
+            });
     }
 
     public onShow(): void {

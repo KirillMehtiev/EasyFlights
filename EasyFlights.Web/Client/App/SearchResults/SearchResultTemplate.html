@@ -6,21 +6,30 @@
         <p><b>Arrival Place:</b>&nbsp;<span data-bind="text: arrivalPlace"></span></p>
         <p><b>Departure Date:</b>&nbsp;<span data-bind="text: departureDate"></span></p>
         <p><b>Quantity of people:</b>&nbsp;<span data-bind="text: countOf"></span></p>
-        <p><b>Quantity of Flight:</b>&nbsp;<span class="badge" data-bind="text: total"></span></p>
-
+        <!--<p><b>Quantity of Flight:</b>&nbsp;<span class="badge" data-bind="text: total"></span></p>-->
         <hr />
-        <div class="btn-group pull-right" role="group" aria-label="...">
-            <button data-bind="click: sortByPrice" type="button" class="btn btn-default">by Price</button>
-            <button data-bind="click: sortByDuration" type="button" class="btn btn-default">by Duration</button>
+        
+        <div data-bind="if: isLoading && !isError()">
+            <h3>Searching...</h3>
         </div>
-        &nbsp;
-        <form>
-            <hr />
+        
+        <div class="text-center" data-bind="if: !isLoading() && isError">
+            <h3>Requested information not found.</h3>
+            <h4>Try to change search parameters.</h4>
+            <a class="btn btn-info" data-bind="page-href: '../'">Back to search form</a>
+        </div>
 
+        <div data-bind="if: !isLoading && !isError">
+            <div class="btn-group pull-right" role="group" aria-label="...">
+                <button data-bind="click: sortByPrice" type="button" class="btn btn-default">by Price</button>
+                <button data-bind="click: sortByDuration" type="button" class="btn btn-default">by Duration</button>
+            </div>
+            &nbsp;
+            <hr />
             <div data-bind="foreach: {data: pagedRouteItems, as: 'routeItem'}">
                 <routes params="item: routeItem"></routes>
             </div>
-        </form>
-        <div class="pull-right" data-bind="pagination: { currentPage: pageNo, totalCount: total, pageSize: pageSize, maxPages: maxPages, directions: directions, boundary: boundary, text: text }, click: setPage"></div>
+            <div class="pull-right" data-bind="pagination: { currentPage: pageNo, totalCount: total, pageSize: pageSize, maxPages: maxPages, directions: directions, boundary: boundary, text: text }, click: setPage"></div>
+        </div>
     </div>
 </div>
