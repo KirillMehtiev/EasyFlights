@@ -1,0 +1,23 @@
+﻿<div class="wrapper">
+    <div class="main">
+        <div>
+            <ul id="seatDescription">
+                <li class="available">Available Seat</li>
+                <li class="booked">Booked Seat</li>
+                <li class="selected">Selected Seat</li>
+            </ul>
+            <h2></h2>
+        </div>
+        <hr/>
+        <section id="body">
+            <h2>You have to select <span data-bind="text: selectNumber"></span> seats</h2> 
+            <table>
+                <tbody data-bind="foreach: rows">
+                <tr data-bind="foreach: $data.seats, css: {space: $data.rowNumber == 3}" id="place">
+                    <td data-bind="click: ($component.isBlockSelect())? null : function(){$data.updateSeat();}, css: {chosen: $data.isChosen(), booked: $data.isBooked()}, text: $data.seat"></td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+</div>

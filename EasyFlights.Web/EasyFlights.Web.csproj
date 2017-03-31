@@ -203,6 +203,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AirportViewModel.cs" />
+    <Compile Include="ViewModels\CabinViewModel.cs" />
     <Compile Include="ViewModels\FlightViewModel.cs" />
     <Compile Include="ViewModels\RouteSearchViewModel.cs" />
     <Compile Include="ViewModels\RouteViewModel.cs" />
@@ -326,6 +327,7 @@
     <TypeScriptCompile Include="Client\App\SearchResults\FlightResults\Tickets\FlightViewModel.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\SearchResultComponent.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\SearchResultViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\SeatPicker\CabinInfoItem.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\SeatPicker\CabinViewModel.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\ITicketInfoItemOptions.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\OrderSummary\OrderSummaryComponent.ts" />
@@ -334,6 +336,7 @@
     <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\SeatPicker\ICabinOptions.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\SeatPicker\RowItem.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\SeatPicker\SeatItem.ts" />
+    <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\SeatPicker\SeatPickerComponent.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\SeatPicker\SeatPickerViewModel.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\TicketInfoComponent.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\TicketInfoItem.ts" />
@@ -366,7 +369,10 @@
     <Content Include="Client\Libs\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Client\Libs\fonts\glyphicons-halflings-regular.woff2" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Client\App\SelectFlow\TicketInfo\SeatPicker\Cabin\" />
+    <Folder Include="Client\App\SelectFlow\TicketInfo\SeatPicker\Images\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
