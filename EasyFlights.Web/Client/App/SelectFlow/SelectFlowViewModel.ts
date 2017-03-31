@@ -4,8 +4,15 @@ import {FlightItem} from "../SearchResults/FlightResults/Tickets/FlightItem";
 import {DataService} from "../Common/Services/dataService";
 
 class SelectFlowViewModel {
+    // Params
     public routeId: KnockoutObservable<string>;
     public numberOfPassenger: KnockoutObservable<number>;
+    //public departurePlace: KnockoutObservable<string>;
+    //public destinationPlace: KnockoutObservable<string>;
+    //public departureDate: KnockoutObservable<string>;
+    //public returnDate: KnockoutObservable<string>;
+
+    // Shared data
     public passengerInfoList: KnockoutObservableArray<PassengerInfoItem>;
     public flights: KnockoutObservableArray<FlightItem>;
     private dataService: DataService = new DataService();

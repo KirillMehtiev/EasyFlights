@@ -212,6 +212,7 @@
   <ItemGroup>
     <Content Include="Client\.gitignore" />
     <Content Include="Client\App\Common\Components\LazyPage\LazyPageTemplate.html" />
+    <Content Include="Client\App\Common\Components\RouteHeader\RouteHeaderTemplate.html" />
     <Content Include="Client\App\Index\IndexTemplate.html" />
     <Content Include="Client\App\Common\Components\Autocomplete\AutocompleteTemplate.html" />
     <Content Include="Client\App\Index\Search\SearchTemplate.html" />
@@ -281,6 +282,9 @@
     <TypeScriptCompile Include="Client\App\Common\Components\Autocomplete\AutocompleteBinding.ts" />
     <TypeScriptCompile Include="Client\App\Common\Components\LazyPage\LazyPageComponent.ts" />
     <TypeScriptCompile Include="Client\App\Common\Components\LazyPage\LazyPageViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\Common\Components\RouteHeader\IRouteHeaderOptions.ts" />
+    <TypeScriptCompile Include="Client\App\Common\Components\RouteHeader\RouteHeaderComponent.ts" />
+    <TypeScriptCompile Include="Client\App\Common\Components\RouteHeader\RouteHeaderViewModel.ts" />
     <TypeScriptCompile Include="Client\App\Common\Services\dataService.ts" />
     <TypeScriptCompile Include="Client\App\Components.ts" />
     <TypeScriptCompile Include="Client\App\Index\IndexComponent.ts" />

@@ -8,6 +8,7 @@ import "./Index/Search/SearchComponent";
 import "./Common/Components/Autocomplete/AutocompleteComponent";
 import "./Common/Components/RadioChooser/RadioChooserComponent";
 import "./Common/Components/LazyPage/LazyPageComponent";
+import "./Common/Components/RouteHeader/RouteHeaderComponent"
 import "./SearchResults/FlightResults/RouteResultComponent"
 import "./SearchResults/FlightResults/Tickets/FlightComponent"
 import "./SelectFlow/SelectFlowComponent";
