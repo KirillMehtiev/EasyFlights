@@ -104,9 +104,9 @@ class SearchResultViewModel {
         var result: string;
         result = "GetAsync?departureAirportId=" + this.departurePlaceId() + "&destinationAirportId=" + this.arrivalPlaceId() + "&numberOfPeople=" + this.countOf() + "&departureTime=" + moment(this.departureDate()).toISOString();
 
-        console.log(this.returnDate);
+        
         if (this.returnDate) {
-            console.log(this.returnDate);
+            
             result += "&returnTime=" + moment(this.returnDate()).toISOString();
 
         }
