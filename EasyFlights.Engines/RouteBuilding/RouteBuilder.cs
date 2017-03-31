@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,63 +12,62 @@ namespace EasyFlights.Engines.RouteBuilding
         private double minAmountOfHoursToWait = 0.5;
         private double maxAmountOfHoursToWait = 24.0;
 
-        private BlockingCollection<Route> allRoutes;
+        private Stack<Flight> currentRoute;
+        private List<Route> allRoutes;
+
+        public RouteBuilder()
+        {
+        }
 
         public async Task<IEnumerable<Route>> BuildAsync(Airport departure, Airport destination, DateTime departureDate, int numberOfPassengers)
         {
-            this.allRoutes = new BlockingCollection<Route>();
+            this.allRoutes = new List<Route>();
 
-            List<Flight> startPointFlights = departure.Flights
+            var startPointFlights = departure.Flights
                                                 .Where(flight => this.FligthIsAvailable(flight, departureDate, numberOfPassengers))
                                                 .ToList();
 
-            var tasks = new List<Task>();
             foreach (Flight startPointFlight in startPointFlights)
             {
-                tasks.Add(Task.Factory.StartNew(() =>
-                {
-                    var currentRoute = new Stack<Flight>();
-                    currentRoute.Push(startPointFlight);
+                this.currentRoute = new Stack<Flight>();
+                this.currentRoute.Push(startPointFlight);
 
-                    this.FindAllRoutes(currentRoute, startPointFlight, destination, numberOfPassengers);
-                }));
+                this.FindAllRoutes(startPointFlight, destination, startPointFlight.ScheduledArrivalTime, numberOfPassengers);
             }
-            await Task.WhenAll(tasks);
 
-            var result  = new List<Route>(this.allRoutes);
+            var result = new List<Route>(this.allRoutes);
 
             // avoid a lack of memory
             this.allRoutes = null;
+            this.currentRoute = null;
 
             return result;
         }
 
-        private void FindAllRoutes(Stack<Flight> currentRoute, Flight flight, Airport destination, int numberOfPassengers)
+        private void FindAllRoutes(Flight flight, Airport destination, DateTime departureDate, int numberOfPassengers)
         {
             if (flight.DestinationAirport == destination)
             {
                 this.allRoutes.Add(new Route()
                 {
-                    Flights = new List<Flight>(currentRoute.Reverse())
+                    Flights = new List<Flight>(this.currentRoute.Reverse())
                 });
             }
             else
             {
-                IEnumerable<Airport> visitedAirports = currentRoute
-                                                        .Select(f => f.DepartureAirport)
-                                                        .ToList();
+                var visitedAirports = this.currentRoute.Select(f => f.DepartureAirport);
 
                 if (!visitedAirports.Contains(flight.DestinationAirport))
                 {
-                    List<Flight> availableFlights = flight.DestinationAirport.Flights
+                    var availableFlights = flight.DestinationAirport.Flights
                                                                         .Where(f => this.FligthIsAvailable(f, flight.ScheduledArrivalTime, numberOfPassengers))
                                                                         .ToList();
 
                     foreach (Flight availableFlight in availableFlights)
                     {
-                        currentRoute.Push(availableFlight);
-                        FindAllRoutes(currentRoute, availableFlight, destination, numberOfPassengers);
-                        currentRoute.Pop();
+                        this.currentRoute.Push(availableFlight);
+                        FindAllRoutes(availableFlight, destination, departureDate, numberOfPassengers);
+                        this.currentRoute.Pop();
                     }
                 }
             }

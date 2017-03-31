@@ -7,17 +7,17 @@
         <!--<p><b>Quantity of Flight:</b>&nbsp;<span class="badge" data-bind="text: total"></span></p>-->
         <hr />
         
-        <div data-bind="if: isLoading && !isError()">
+        <div data-bind="if: isLoading() && !isError()">
             <h3>Searching...</h3>
         </div>
         
-        <div class="text-center" data-bind="if: !isLoading() && isError">
+        <div class="text-center" data-bind="if: !isLoading() && isError()">
             <h3>Requested information not found.</h3>
             <h4>Try to change search parameters.</h4>
             <a class="btn btn-info" data-bind="page-href: '../'">Back to search form</a>
         </div>
 
-        <div data-bind="if: !isLoading && !isError">
+        <div data-bind="if: !isLoading() && !isError()">
             <div class="btn-group pull-right" role="group" aria-label="...">
                 <button data-bind="click: sortByPrice" type="button" class="btn btn-default">by Price</button>
                 <button data-bind="click: sortByDuration" type="button" class="btn btn-default">by Duration</button>

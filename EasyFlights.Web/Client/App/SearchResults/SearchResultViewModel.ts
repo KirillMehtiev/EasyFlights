@@ -56,6 +56,7 @@ class SearchResultViewModel {
         this.routesService.getRoutes(url)
             .then((data) => {
                 this.routeItems(data);
+                console.log("data loaded");
                 this.isLoading(false);
                 this.isError(false);
             }).fail((error) => {
@@ -105,7 +106,7 @@ class SearchResultViewModel {
         result = "GetAsync?departureAirportId=" + this.departurePlaceId() + "&destinationAirportId=" + this.arrivalPlaceId() + "&numberOfPeople=" + this.countOf() + "&departureTime=" + moment(this.departureDate()).toISOString();
 
         
-        if (this.returnDate) {
+        if (moment(this.returnDate()).toISOString() != null) {
             
             result += "&returnTime=" + moment(this.returnDate()).toISOString();
 
