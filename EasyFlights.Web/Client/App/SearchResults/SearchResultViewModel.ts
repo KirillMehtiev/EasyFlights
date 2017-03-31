@@ -7,7 +7,7 @@ import Service = require("../Common/Services/dataService");
 import moment = require("moment");
 
 class SearchResultViewModel {
-   
+
     public routeItems: KnockoutObservableArray<RouteItem>;
     public pagedRouteItems: KnockoutObservableArray<RouteItem>;
     public departureDate: KnockoutObservable<Date>;
@@ -98,19 +98,21 @@ class SearchResultViewModel {
             forward: '»'
         };
     }
-   
+
     private createGetRoutesUrl(): string {
 
         var result: string;
-       
-        if (this.returnDate != null) {
-             result = "GetAsync?departureAirportId=" + this.departurePlaceId() + "&destinationAirportId=" + this.arrivalPlaceId() + "&numberOfPeople=" + this.countOf() + "&departureTime=" + moment(this.departureDate()).toISOString() + "&returnTime=" + moment(this.returnDate()).toISOString();
-     
-        } 
+        result = "GetAsync?departureAirportId=" + this.departurePlaceId() + "&destinationAirportId=" + this.arrivalPlaceId() + "&numberOfPeople=" + this.countOf() + "&departureTime=" + moment(this.departureDate()).toISOString();
 
-        result = "GetAsync?departureAirportId=" + this.departurePlaceId() + "&destinationAirportId=" + this.arrivalPlaceId() + "&numberOfPeople=" + this.countOf() + "&departureTime=" + moment(this.departureDate()).toISOString(); 
+        console.log(this.returnDate);
+        if (this.returnDate) {
+            console.log(this.returnDate);
+            result += "&returnTime=" + moment(this.returnDate()).toISOString();
 
-       return result;
+        }
+        
+
+        return result;
     }
 }
 export = SearchResultViewModel;
