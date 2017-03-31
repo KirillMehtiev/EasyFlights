@@ -6,19 +6,24 @@ using System.Web.Http;
 using EasyFlights.DomainModel.DTOs;
 using EasyFlights.Services.Interfaces;
 using EasyFlights.Web.ViewModels;
+using EasyFlights.Web.Util.Converters;
 
 namespace EasyFlights.Web.ApiControllers
 {
+
+
     public class RoutesController : ApiController
     {
         private const string DataFormat = "D";
         private const string DurationFormat = @"dd\.hh\:mm";
 
         private readonly ISearchingService searchingService;
+        private readonly IRouteConverter routeConverter;
 
-        public RoutesController(ISearchingService searchingService)
+        public RoutesController(ISearchingService searchingService, IRouteConverter routeConverter)
         {
             this.searchingService = searchingService;
+            this.routeConverter = routeConverter;
         }
 
         // GET api/<controller>
@@ -45,6 +50,7 @@ namespace EasyFlights.Web.ApiControllers
             routeViewModel.TotalCoast = route.TotalCost;
             routeViewModel.TotalTime = route.TotalTime.ToString(DurationFormat);
             routeViewModel.Flights = route.Flights.Select(MapToFlightViewModel);
+            routeViewModel.Id = routeConverter.ConvertRouteToRouteId(route);
 
             if (firstFlight != null)
             {
