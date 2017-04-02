@@ -1,7 +1,9 @@
 ﻿import { PassengerInfoItem } from "../PassengerInfo/PassengerInfoItem";
+import { RouteItem } from "../../SearchResults/FlightResults/RouteItem"
 
 export interface ITicketInfoItemOptions {
-    passenger: PassengerInfoItem;
+    passengers: KnockoutObservableArray<PassengerInfoItem>;
+    flights: KnockoutObservableArray<RouteItem>;
     ticketClass: string;
     ticketNumber: number;
     seat: number;

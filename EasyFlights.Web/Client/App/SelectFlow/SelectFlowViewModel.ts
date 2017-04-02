@@ -1,7 +1,7 @@
 ﻿import ko = require("knockout");
 import { PassengerInfoItem } from "./PassengerInfo/PassengerInfoItem"
 import {FlightItem} from "../SearchResults/FlightResults/Tickets/FlightItem";
-import {DataService} from "../Common/Services/dataService";
+import { DataService } from "../Common/Services/dataService";
 
 class SelectFlowViewModel {
     // Params
@@ -67,7 +67,9 @@ class SelectFlowViewModel {
 
     private fillFlightsList(routeId: string): void {
         this.dataService.get<Array<FlightItem>>("api/Flights/Get?routeId=".concat(routeId))
-            .then((data) => this.flights(data));
+            .then((data) => {
+                this.flights(data);
+            });
     }
 }
 

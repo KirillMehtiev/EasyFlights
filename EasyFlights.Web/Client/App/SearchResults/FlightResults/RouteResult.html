@@ -1,6 +1,6 @@
 ﻿<div class="container">
     <div class="row well">
-        <p></span><b>F L I G H T</b>&nbsp;<span class="glyphicon glyphicon-plane" aria-hidden="true"></span></p> 
+        <p><b>F L I G H T</b>&nbsp;<span class="glyphicon glyphicon-plane" aria-hidden="true"></span></p> 
         <p><b>Departure Place:</b> <span data-bind="text: item.departurePlace"></span>&nbsp;<b>Destination Place:</b><span data-bind="text: item.destinationPlace"></span></p>
         <p><b>Arrival Time:</b> <span data-bind="text: item.arrivalTime"></span>&nbsp;<b>Departure Time:</b><span data-bind="text: item.departureTime"></span></p>
         <p><b>Total price:</b><span data-bind="text: item.totalCost"></span></p>
@@ -10,7 +10,5 @@
             <flights params="item: flightItem"></flights>
         </div>
         <a class="btn btn-info" data-bind="page-href: {path: '../selected-route', params: { routeId: $data.item.id, countOf: $data.quantity }}">Select</a>
-
-
     </div>
 </div>
