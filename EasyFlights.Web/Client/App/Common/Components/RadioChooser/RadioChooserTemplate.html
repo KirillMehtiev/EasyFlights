@@ -1,8 +1,7 @@
 ﻿<div data-bind="foreach: options">
     <label>
         <input type="radio"
-               name="optionsGroup"
-               data-bind="checkedValue: value, checked: $parent.selectedOption" />
+               data-bind="checkedValue: value, checked: $parent.selectedOption, attr:{ name: $parent.groupName }" />
         <span data-bind="text: label"></span>
     </label>
 </div>

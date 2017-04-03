@@ -3,4 +3,5 @@
 export interface IRadioChooserOptions {
     options: Array<RadioChooserItem>;
     selectedOption: KnockoutObservable<string>;
+    groupName: string;
 }
