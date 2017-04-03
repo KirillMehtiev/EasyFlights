@@ -233,6 +233,7 @@
     <Content Include="Client\App\SelectFlow\TicketInfo\SeatPicker\SeatPicker.html" />
     <Content Include="Client\App\SelectFlow\TicketInfo\TicketInfoTemplate.html" />
     <Content Include="Client\App\UserCabinet\Account\AccountTemplate.html" />
+    <Content Include="Client\App\UserCabinet\ManageOrders\ManageOrdersTemplate.html" />
     <Content Include="Client\App\UserCabinet\ProfileInfo\ProfileInfoTemplate.html" />
     <Content Include="Client\App\UserCabinet\UserCabinetTemplate.html" />
     <Content Include="Client\Libs\css\jquery-ui.min.css" />
@@ -352,6 +353,8 @@
     <TypeScriptCompile Include="Client\App\UserCabinet\Account\AccountComponent.ts" />
     <TypeScriptCompile Include="Client\App\UserCabinet\Account\AccountViewModel.ts" />
     <TypeScriptCompile Include="Client\App\UserCabinet\Account\ChangePasswordModel.ts" />
+    <TypeScriptCompile Include="Client\App\UserCabinet\ManageOrders\ManageOrdersComponent.ts" />
+    <TypeScriptCompile Include="Client\App\UserCabinet\ManageOrders\ManageOrdersViewModel.ts" />
     <TypeScriptCompile Include="Client\App\UserCabinet\ProfileInfo\ProfileInfoComponent.ts" />
     <TypeScriptCompile Include="Client\App\UserCabinet\ProfileInfo\ProfileInfoViewModel.ts" />
     <TypeScriptCompile Include="Client\App\UserCabinet\UserCabinetComponent.ts" />
@@ -389,6 +392,7 @@
     <Folder Include="Client\App\SelectFlow\TicketInfo\SeatPicker\Cabin\" />
     <Folder Include="Client\App\SelectFlow\TicketInfo\SeatPicker\Images\" />
     <Folder Include="Client\App\UserCabinet\ManageOrders\" />
+    <Folder Include="Client\App\UserCabinet\Account\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

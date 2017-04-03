@@ -22,3 +22,4 @@ import "./UserCabinet/ProfileInfo/ProfileInfoComponent";
 import "./UserCabinet/Account/AccountComponent";
 import "./UserCabinet/ProfileInfo/ProfileInfoComponent";
 import "./Login/LoginComponent";
+import "./UserCabinet/ManageOrders/ManageOrdersComponent";
