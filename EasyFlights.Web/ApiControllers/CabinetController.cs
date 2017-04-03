@@ -18,7 +18,8 @@ namespace EasyFlights.Web.ApiControllers
         public bool ChangePassword(string oldPassword, string newPassword, string newPasswordConfirm)
         {
             // not implemented yet
-            return newPassword != oldPassword && newPassword == newPasswordConfirm;
+            // return newPassword != oldPassword && newPassword == newPasswordConfirm;
+            return true;
         }
     }
 }
