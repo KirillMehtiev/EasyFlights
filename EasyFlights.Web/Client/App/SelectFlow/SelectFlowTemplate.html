@@ -3,7 +3,7 @@
         <passenger-info params="passangerInfoList:passengerInfoList"></passenger-info>
     </div>
     <div data-bind="if: isShowTicketInfo">
-        <ticket-info params="passengers:passengerInfoList, flights: flights"></ticket-info>
+        <ticket-info params="flights: flights"></ticket-info>
     </div>
     <div data-bind="if: isShowOrderSummary">
         <order-summary params="passengers:passengerInfoList, flights: flights"></order-summary> 

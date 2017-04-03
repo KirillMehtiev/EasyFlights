@@ -2,6 +2,7 @@
 import { PassengerInfoItem } from "./PassengerInfo/PassengerInfoItem"
 import {FlightItem} from "../SearchResults/FlightResults/Tickets/FlightItem";
 import { DataService } from "../Common/Services/dataService";
+import {TicketInfoItem} from "./TicketInfo/TicketInfoItem";
 
 class SelectFlowViewModel {
     // Params
@@ -26,10 +27,7 @@ class SelectFlowViewModel {
         this.routeId = params.routeId;
         this.countOf = params.countOf;
         this.passengerInfoList = ko.observableArray(this.initPassengerInfoList(this.countOf()));
-        this.flights = ko.observableArray([]);
-        
-
-        
+        this.flights = ko.observableArray([]);        
         this.fillFlightsList(this.routeId());
 
         // Flow routing
@@ -70,6 +68,11 @@ class SelectFlowViewModel {
             .then((data) => {
                 this.flights(data);
             });
+        for (let i = 0; i < this.passengerInfoList.length; i++) {
+            for (let j = 0; j < this.flights.length; j++) {
+                this.flights()[j].tickets.push(new TicketInfoItem(this.passengerInfoList()[i],0,"Economy",0,100));
+            }
+        }
     }
 }
 
