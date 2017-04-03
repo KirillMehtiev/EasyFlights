@@ -1,5 +1,7 @@
-﻿using EasyFlights.Engines.RouteBuilding;
+﻿using EasyFlights.Engines.Infrastructure;
+using EasyFlights.Engines.RouteBuilding;
 using Ninject.Modules;
+using Ninject.Web.Common;
 
 namespace EasyFlights.Web.NinjectModules
 {
@@ -7,8 +9,10 @@ namespace EasyFlights.Web.NinjectModules
     {
         public override void Load()
         {
-            this.Bind<IRouteBuilder>().To<RouteBuilder>();
-            this.Bind<IRouteGeneralInfoCalculator>().To<RouteGeneralInfoCalculator>();
+            this.Bind<IRouteBuilder>().To<RouteBuilder>().InRequestScope();
+            this.Bind<IRouteGeneralInfoCalculator>().To<RouteGeneralInfoCalculator>().InRequestScope();
+
+            this.Bind<IAppSettings>().To<AppSettings>().InRequestScope();
         }
     }
 }

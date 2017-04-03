@@ -77,8 +77,8 @@ namespace EasyFlights.Services.Tests.Services.Searching
 
             var mockRouteBuilder = new Mock<IRouteBuilder>();
             mockRouteBuilder
-                .Setup(mock => mock.BuildAsync(It.IsAny<Airport>(), It.IsAny<Airport>(), It.IsAny<DateTime>(), It.IsAny<int>()))
-                .ReturnsAsync(fakeRoutes);
+                .Setup(mock => mock.Build(It.IsAny<Airport>(), It.IsAny<Airport>(), It.IsAny<DateTime>(), It.IsAny<int>()))
+                .Returns(fakeRoutes);
 
             return mockRouteBuilder;
         }

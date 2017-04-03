@@ -36,7 +36,7 @@ namespace EasyFlights.Services.Tests.Services.Searching
             await service.FindRoutesBetweenAirportsAsync(departureAirportId, destinationAirportId, numberOfPeople, dateTime);
 
             // Assert
-            mockRouteBuilder.Verify(mock => mock.BuildAsync(departureAirport, destinationAiport, dateTime, numberOfPeople), Times.Once());
+            mockRouteBuilder.Verify(mock => mock.Build(departureAirport, destinationAiport, dateTime, numberOfPeople), Times.Once());
         }
 
         [TestMethod]
@@ -64,8 +64,8 @@ namespace EasyFlights.Services.Tests.Services.Searching
             IEnumerable<RouteDto> result = await service.FindRoutesBetweenAirportsAsync(departureAirportId, destinationAirportId, numberOfPeople, departureDateTime, returnDateTime);
 
             // Assert
-            mockRouteBuilder.Verify(mock => mock.BuildAsync(departureAirport, destinationAiport, departureDateTime, numberOfPeople), Times.Once());
-            mockRouteBuilder.Verify(mock => mock.BuildAsync(destinationAiport, departureAirport, returnDateTime, numberOfPeople), Times.Once());
+            mockRouteBuilder.Verify(mock => mock.Build(departureAirport, destinationAiport, departureDateTime, numberOfPeople), Times.Once());
+            mockRouteBuilder.Verify(mock => mock.Build(destinationAiport, departureAirport, returnDateTime, numberOfPeople), Times.Once());
 
             Assert.AreEqual(countOfFakeRoutes * 2, result.Count());
         }
@@ -104,9 +104,9 @@ namespace EasyFlights.Services.Tests.Services.Searching
 
             var mockRouteBuilder = new Mock<IRouteBuilder>();
             mockRouteBuilder
-                .SetupSequence(mock => mock.BuildAsync(It.IsAny<Airport>(), It.IsAny<Airport>(), It.IsAny<DateTime>(), It.IsAny<int>()))
-                .ReturnsAsync(this.CreateFakeRoutes(2))
-                .ReturnsAsync(this.CreateFakeRoutes(0));
+                .SetupSequence(mock => mock.Build(It.IsAny<Airport>(), It.IsAny<Airport>(), It.IsAny<DateTime>(), It.IsAny<int>()))
+                .Returns(this.CreateFakeRoutes(2))
+                .Returns(this.CreateFakeRoutes(0));
 
             Mock<IAirportsRepository> mockRepository = this.CreateMockRepository();
 

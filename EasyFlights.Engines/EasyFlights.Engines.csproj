@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Infrastructure\AppSettings.cs" />
+    <Compile Include="Infrastructure\IAppSettings.cs" />
     <Compile Include="RouteBuilding\IRouteBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RouteBuilding\IRouteGeneralInfoCalculator.cs" />
