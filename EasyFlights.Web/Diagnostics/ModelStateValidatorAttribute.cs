@@ -11,9 +11,6 @@ namespace EasyFlights.Web.Diagnostics
 {
     public class ModelStateValidatorAttribute : AsyncActionFilterAttribute
     {
-        [SuppressMessage("StyleCop.CSharp.AsyncRules",
-                    "AR0002:MethodEndingWithAsyncMustHaveAsyncModifier",
-                    Justification = "External interface method")]
         public override Task OnActionExecutingAsync(HttpActionContext actionContext, CancellationToken cancellationToken)
         {
             if (!actionContext.ModelState.IsValid)
