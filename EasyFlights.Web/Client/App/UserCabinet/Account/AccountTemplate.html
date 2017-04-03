@@ -5,7 +5,7 @@
             <input type="email" placeholder="your_email@mailprovider.domain"/>
         </div>
         <div class="col-md-1 col-md-offset-4" data-bind="visible:isPasswordChanging == false">
-            <button class="btn btn-default">Change password</button>
+            <button class="btn btn-default" data-bind="click: turnPasswordChanging() }">Change password</button>
         </div>
     </div>
     <div id="ChangingPassword" data-bind="visible:isPasswordChanging == true && isEmailValid == true">
@@ -23,7 +23,7 @@
         </div>
         <div class="row">
             <div class="col-md-offset-11 col-md-1">
-                <button class="btn btn-default">
+                <button class="btn btn-default" data-bind="click:changePassword">
                     Save
                 </button>
             </div>
