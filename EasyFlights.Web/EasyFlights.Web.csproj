@@ -352,6 +352,7 @@
     <TypeScriptCompile Include="Client\App\ValidationRules.ts" />
     <TypeScriptCompile Include="Client\App\Validation\KnockoutValidationOptions.ts" />
     <TypeScriptCompile Include="Client\Libs\typings\knockout\knockout.d.ts" />
+    <TypeScriptCompile Include="Client\Libs\typings\knockout\knockout.validation.d.ts" />
     <TypeScriptCompile Include="Client\Libs\typings\pager\pager.d.ts" />
     <TypeScriptCompile Include="Client\Libs\typings\require\require.d.ts" />
     <TypeScriptCompile Include="Client\Libs\typings\jquery\jquery.d.ts" />

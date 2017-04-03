@@ -1,9 +1,8 @@
 ﻿import ko = require("knockout");
 import validation = require("knockout.validation");
 import pager = require("pager");
-import knockstrap = require("knockstrap");
-import jqueryui = require("jquery-ui");
-require('jquery-ui'); 
+require("knockstrap");
+require("jquery-ui");
 import "./Components";
 import "./ValidationRules";
 import "./Bindings";
