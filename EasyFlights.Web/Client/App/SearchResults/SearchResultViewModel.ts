@@ -51,11 +51,11 @@ class SearchResultViewModel {
         this.isError = ko.observable(false);
 
         let url: string = this.createGetRoutesUrl();
-        console.log(url);
+      
         this.routesService.getRoutes(url)
             .then((data) => {
                 this.routeItems(data);
-                console.log("data loaded");
+
                 this.isLoading(false);
                 this.isError(false);
                 this.setPage();
@@ -102,7 +102,7 @@ class SearchResultViewModel {
 
     private createGetRoutesUrl(): string {
 
-        var result: string;
+        let result: string;
         result = "GetAsync?departureAirportId=" + this.departurePlaceId() + "&destinationAirportId=" + this.arrivalPlaceId() + "&numberOfPeople=" + this.countOf() + "&departureTime=" + moment(this.departureDate()).toISOString();
        
         if (moment(this.returnDate()).toISOString() != null) {
