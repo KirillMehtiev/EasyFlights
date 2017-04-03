@@ -1,6 +1,7 @@
 ﻿import { PassengerInfoItem } from "./PassengerInfoItem";
 import { IPassengerInfoOptions } from "./IPassengerInfoOptions";
 import { RadioChooserItem } from "../../Common/Components/RadioChooser/RadioChooserItem";
+import { StepFlow } from "../../Common/Enum/StepFlow";
 
 class AgeType {
     static adult = "Adult";
@@ -16,6 +17,7 @@ class PassengerInfoViewModel {
     private passengerInfoList: KnockoutObservableArray<PassengerInfoItem>;
     private ageOptions: Array<RadioChooserItem>;
     private sexOptions: Array<RadioChooserItem>;
+    private onNextStep: KnockoutSubscribable<number>;
 
     constructor(options: IPassengerInfoOptions) {
         this.passengerInfoList = options.passangerInfoList;
@@ -27,6 +29,12 @@ class PassengerInfoViewModel {
             new RadioChooserItem(SexType.male, SexType.male),
             new RadioChooserItem(SexType.female, SexType.female)
         ];
+        this.onNextStep = options.onNextStep;
+        this.nextStep.bind(this);
+    }
+
+    public nextStep() {
+        this.onNextStep.notifySubscribers(StepFlow.PassengerInformation);
     }
 }
 

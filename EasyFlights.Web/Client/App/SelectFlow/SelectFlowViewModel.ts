@@ -1,17 +1,14 @@
 ﻿import ko = require("knockout");
 import { PassengerInfoItem } from "./PassengerInfo/PassengerInfoItem"
-import {FlightItem} from "../SearchResults/FlightResults/Tickets/FlightItem";
+import { FlightItem } from "../SearchResults/FlightResults/Tickets/FlightItem";
 import { DataService } from "../Common/Services/dataService";
-import {TicketInfoItem} from "./TicketInfo/TicketInfoItem";
+import { TicketInfoItem } from "./TicketInfo/TicketInfoItem";
+import { StepFlow } from "../Common/Enum/StepFlow"
 
 class SelectFlowViewModel {
     // Params
     public routeId: KnockoutObservable<string>;
     public numberOfPassenger: KnockoutObservable<number>;
-    //public departurePlace: KnockoutObservable<string>;
-    //public destinationPlace: KnockoutObservable<string>;
-    //public departureDate: KnockoutObservable<string>;
-    //public arrivalDate: KnockoutObservable<string>;
 
     // Shared data
     public passengerInfoList: KnockoutObservableArray<PassengerInfoItem>;
@@ -19,6 +16,9 @@ class SelectFlowViewModel {
     private dataService: DataService = new DataService();
 
     // Internal routing
+    public onNextStep: KnockoutSubscribable<number>;
+    public onPreviousStep: KnockoutSubscribable<number>;
+
     public isShowPassengerInfo: KnockoutObservable<boolean>;
     public isShowTicketInfo: KnockoutObservable<boolean>;
     public isShowOrderSummary: KnockoutObservable<boolean>;
@@ -27,38 +27,61 @@ class SelectFlowViewModel {
         this.routeId = params.routeId;
         this.numberOfPassenger = params.numberOfPassenger;
         this.passengerInfoList = ko.observableArray(this.initPassengerInfoList(this.numberOfPassenger()));
-        this.flights = ko.observableArray([]);        
+        this.flights = ko.observableArray([]);
         this.fillFlightsList(this.routeId());
 
         // Flow routing
+        this.onNextStep = new ko.subscribable();
+        this.onPreviousStep = new ko.subscribable();
+
+        this.onNextStep.subscribe(this.nextStep, this);
+        this.onPreviousStep.subscribe(this.previousStep, this);
+
         this.isShowPassengerInfo = ko.observable(true);
         this.isShowTicketInfo = ko.observable(false);
         this.isShowOrderSummary = ko.observable(false);
     }
 
-    private initPassengerInfoList(numberOfPassenger: number): Array<PassengerInfoItem> {
-        let result = [];
-
-        for (var i = 0; i < numberOfPassenger; i++) {
-            result.push(new PassengerInfoItem());
+    public nextStep(caller: number) {
+        switch (caller) {
+            case StepFlow.PassengerInformation:
+                this.showTicketInfo();
+                break;
+            case StepFlow.TicketInformation:
+                this.showOrderSummary();
+                break;
+            default:
+                this.showPassengerInfo();
         }
-
-        return result;
     }
 
-    public showTicketInfo(parent) {
+    public previousStep(caller: number) {
+        console.log(caller);
+        switch (caller) {
+            case StepFlow.OrderSummary:
+                this.showTicketInfo();
+                break;
+            case StepFlow.TicketInformation:
+                this.showPassengerInfo();
+                break;
+            default:
+                this.showPassengerInfo();
+        }
+    }
+
+    private showTicketInfo() {
         this.isShowPassengerInfo(false);
         this.isShowTicketInfo(true);
         this.isShowOrderSummary(false);
     }
 
-    public showPassengerInfo(parent) {
+    private showPassengerInfo() {
         this.isShowPassengerInfo(true);
         this.isShowTicketInfo(false);
         this.isShowOrderSummary(false);
     }
 
-    public showOrderSummary(parent) {
+    private showOrderSummary() {
         this.isShowTicketInfo(false);
         this.isShowOrderSummary(true);
     }
@@ -70,9 +93,19 @@ class SelectFlowViewModel {
             });
         for (let i = 0; i < this.passengerInfoList.length; i++) {
             for (let j = 0; j < this.flights.length; j++) {
-                this.flights()[j].tickets.push(new TicketInfoItem(this.passengerInfoList()[i],0,"Economy",0,100));
+                this.flights()[j].tickets.push(new TicketInfoItem(this.passengerInfoList()[i], 0, "Economy", 0, 100));
             }
         }
+    }
+
+    private initPassengerInfoList(numberOfPassenger: number): Array<PassengerInfoItem> {
+        let result = [];
+
+        for (var i = 0; i < numberOfPassenger; i++) {
+            result.push(new PassengerInfoItem());
+        }
+
+        return result;
     }
 }
 

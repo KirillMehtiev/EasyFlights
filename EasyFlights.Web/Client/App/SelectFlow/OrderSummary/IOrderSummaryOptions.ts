@@ -2,4 +2,5 @@
 
 export interface IOrderSummaryOptions {
     items: KnockoutObservableArray<TicketInfoItem>;
+    onPreviousStep: KnockoutSubscribable<number>;
 }
