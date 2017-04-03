@@ -9,6 +9,7 @@ import "./Bindings";
 import './App.scss';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-datepicker/dist/css/bootstrap-datepicker.css';
+import 'toastr/build/toastr.css';
 
 import KnockoutValidationOptions = require("./Validation/KnockoutValidationOptions");
 

@@ -1,11 +1,15 @@
-﻿export class DataService {
+﻿import toastr = require('toastr');
+
+export class DataService {
 
     public get<T>(url: string): JQueryPromise<T> {
         return $.getJSON(url)
             .then((data) => {
                 return <T>data;
             })
-            .fail(console.log);
+            .fail((error) => {
+                toastr.error("Error occurred while getting data");
+            });
     }
 
     public ajaxGet<T>(url: string): JQueryPromise<T> {
@@ -25,6 +29,8 @@
                     return <T>data;
                 }
             })
-            .fail(console.log);
+            .fail(() => {
+                toastr.error("Error occurred while posting data");
+            });
     }
 }

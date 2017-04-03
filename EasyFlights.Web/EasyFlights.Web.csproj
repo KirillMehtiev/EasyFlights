@@ -369,6 +369,7 @@
     <TypeScriptCompile Include="Client\Libs\typings\require\require.d.ts" />
     <TypeScriptCompile Include="Client\Libs\typings\jquery\jquery.d.ts" />
     <TypeScriptCompile Include="Client\Libs\typings\jqueryui\jqueryui.d.ts" />
+    <TypeScriptCompile Include="Client\Libs\typings\toastr\toastr.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Client\App\App.scss" />
@@ -391,8 +392,6 @@
   <ItemGroup>
     <Folder Include="Client\App\SelectFlow\TicketInfo\SeatPicker\Cabin\" />
     <Folder Include="Client\App\SelectFlow\TicketInfo\SeatPicker\Images\" />
-    <Folder Include="Client\App\UserCabinet\ManageOrders\" />
-    <Folder Include="Client\App\UserCabinet\Account\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
