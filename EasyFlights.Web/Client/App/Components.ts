@@ -19,4 +19,5 @@ import "./SelectFlow/TicketInfo/SeatPicker/Cabin/CabinComponent";
 import "./SelectFlow/TicketInfo/SeatPicker/SeatPickerComponent";
 import "./UserCabinet/UserCabinetComponent";
 import "./UserCabinet/ProfileInfo/ProfileInfoComponent";
+import "./UserCabinet/ManageOrders/ManageOrdersComponent";
 import "./Login/LoginComponent";
