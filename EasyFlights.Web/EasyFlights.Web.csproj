@@ -178,6 +178,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiControllers\CabinController.cs" />
+    <Compile Include="ApiControllers\CabinetController.cs" />
     <Compile Include="ApiControllers\FlightsController.cs" />
     <Compile Include="ApiControllers\RoutesController.cs" />
     <Compile Include="ApiControllers\TypeaheadController.cs" />
