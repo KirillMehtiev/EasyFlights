@@ -8,7 +8,7 @@ namespace EasyFlights.Web.ApiControllers
     {
         [Route("register")]
         [HttpPost]
-        public IHttpActionResult Register(RegisterViewModel model)
+        public IHttpActionResult Register([FromBody]RegisterViewModel model)
         {
             return this.Ok();
         }

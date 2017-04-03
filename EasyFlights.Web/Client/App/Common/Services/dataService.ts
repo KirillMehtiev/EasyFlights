@@ -8,23 +8,12 @@
             .fail(console.log);
     }
 
-    public ajaxGet<T>(url: string): JQueryPromise<T> {
+    public post<T>(url: string, data?: any): JQueryPromise<T> {
         return $.ajax({
             url: url,
-            type: "GET",
-            dataType: "json"
-        }).then((data) => {
-            return <T>data;
+            type: "POST",
+            data: JSON.stringify(data),
+            contentType: "application/json; charset=utf-8"
         }).fail(console.log);
-    }
-
-    public post<T>(url: string, data?: any): JQueryPromise<T> {
-        return $.post(url, JSON.stringify(data))
-            .then((data) => {
-                if (data) {
-                    return <T>data;
-                }
-            })
-            .fail(console.log);
     }
 }

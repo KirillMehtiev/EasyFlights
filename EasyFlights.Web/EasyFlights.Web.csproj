@@ -245,7 +245,9 @@
     <Content Include="Client\Libs\js\pager.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -368,6 +370,7 @@
     <TypeScriptCompile Include="Client\Libs\typings\require\require.d.ts" />
     <TypeScriptCompile Include="Client\Libs\typings\jquery\jquery.d.ts" />
     <TypeScriptCompile Include="Client\Libs\typings\jqueryui\jqueryui.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\knockout\knockout.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Client\App\App.scss" />

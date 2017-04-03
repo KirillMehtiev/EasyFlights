@@ -1,7 +1,11 @@
 ﻿import ko = require("knockout");
 require("knockout.validation");
 
+import { DataService } from "../Common/Services/DataService";
+
 class SignUpViewModel {
+
+    private dataService: DataService;
 
     public userName: KnockoutObservable<string>;
     public userSurname: KnockoutObservable<string>;
@@ -12,12 +16,10 @@ class SignUpViewModel {
 
     constructor() {
         this.userName = ko.observable("").extend({
-            required: true,
-            min: 2
+            required: true
         });
         this.userSurname = ko.observable("").extend({
-            required: true,
-            min: 2
+            required: true
         });
         this.userPhone = ko.observable("").extend({
             required: true,
@@ -40,21 +42,31 @@ class SignUpViewModel {
             }
         });
 
+        this.dataService = new DataService();
+
         this.onSubmit.bind(this);
     }
 
     public onSubmit(): void {
-        let viewModel = ko.validatedObservable(this);
-
+        let viewModel = <KnockoutValidationGroup> ko.validatedObservable(this);
         if (viewModel.isValid()) {
-
-            // TODO: send request to the server
-
-            console.log("valid");
+            this.dataService.post("/api/account/register", {
+                userName: this.userName(),
+                userSurname: this.userSurname(),
+                userPhone: this.userPhone(),
+                userEmail: this.userEmail(),
+                userPassword: this.userPassword()
+            }).then(this.handleServiceResponse);
         }
         else {
             viewModel.errors.showAllMessages();
         }
+    }
+
+    private handleServiceResponse(response) {
+
+        console.log("Register: response");
+        console.log(response);
     }
 }
 
