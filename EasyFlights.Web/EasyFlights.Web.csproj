@@ -230,6 +230,7 @@
     <Content Include="Client\App\SelectFlow\OrderSummary\OrderSummaryTemplate.html" />
     <Content Include="Client\App\SelectFlow\TicketInfo\SeatPicker\SeatPicker.html" />
     <Content Include="Client\App\SelectFlow\TicketInfo\TicketInfoTemplate.html" />
+    <Content Include="Client\App\UserCabinet\UserCabinetTemplate.html" />
     <Content Include="Client\Libs\css\jquery-ui.min.css" />
     <Content Include="Client\Libs\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Client\Libs\js\jquery-ui.js" />
@@ -341,6 +342,8 @@
     <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\TicketInfoComponent.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\TicketInfoItem.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\TicketInfoViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\UserCabinet\UserCabinetComponent.ts" />
+    <TypeScriptCompile Include="Client\App\UserCabinet\UserCabinetViewModel.ts" />
     <TypeScriptCompile Include="Client\App\Validation\DateAfterValidationRule.ts" />
     <TypeScriptCompile Include="Client\App\Validation\ISingleValueValidationRule.ts" />
     <TypeScriptCompile Include="Client\App\ValidationRules.ts" />
@@ -372,6 +375,9 @@
   <ItemGroup>
     <Folder Include="Client\App\SelectFlow\TicketInfo\SeatPicker\Cabin\" />
     <Folder Include="Client\App\SelectFlow\TicketInfo\SeatPicker\Images\" />
+    <Folder Include="Client\App\UserCabinet\Account\" />
+    <Folder Include="Client\App\UserCabinet\ManageOrders\" />
+    <Folder Include="Client\App\UserCabinet\ProfileInfo\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
