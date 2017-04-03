@@ -50,3 +50,64 @@ height:35px;
 #body tr.space td{
    height: 50px;
 }
+@media (min-width: 768px) {
+        .login_row-sm-offset-3 div:first-child[class*="col-"] {
+            margin-left: 25%;
+        }
+    }
+
+    .social_media_login .social_media_login_title {
+        text-align: center;
+        padding-bottom: 0;
+    }
+
+    .social_media_login .social_media_login_description {
+        text-align: center;
+    }
+
+    .social_media_login .login_socialButtons a {
+        color: white;
+        opacity: 0.9;
+    }
+
+        .social_media_login .login_socialButtons a:hover {
+            color: white;
+            opacity: 1;
+        }
+
+    .social_media_login .login_socialButtons .login_btn-facebook {
+        background: #3b5998;
+    }
+
+    .social_media_login .login_socialButtons .login_btn-google {
+        background: #c32f10;
+    }
+
+    .login {
+        margin-top: 50px;
+    }
+
+        .login .login_border {
+            margin-top: 50px;
+        }
+
+    .login_form .email_input {
+        margin-bottom: 25px;
+    }
+
+    .login_form .password_input {
+        margin-bottom: 25px;
+    }
+
+    .login_form .forgot_your_password_checkbox {
+        float: right;
+        font-size: 80%;
+        position: relative;
+        top: -10px;
+    }
+
+    .login_form .not_registered_yet {
+        border-top: 1px solid#888;
+        padding-top: 15px;
+        font-size: 85%;
+    }
