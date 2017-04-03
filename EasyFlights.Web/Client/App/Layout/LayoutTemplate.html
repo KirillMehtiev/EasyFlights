@@ -4,9 +4,10 @@
         <div data-bind="page: {role: 'start'}">
             <index></index>
         </div>
-        <div data-bind="page:{id: 'userCabinet'}">
+
+        <lazy-page params="id: 'userCabinet'">
             <user-cabinet></user-cabinet>
-        </div>
+        </lazy-page>
         <lazy-page params="id: 'results', params: ['departurePlace','departurePlaceId','arrivalPlace','arrivalPlaceId','departureDate','returnDate', 'countOf', 'type']">
             <app-results params="departurePlace: departurePlace, departurePlaceId:departurePlaceId,arrivalPlace: arrivalPlace, arrivalPlaceId:arrivalPlaceId, departureDate: departureDate, returnDate: returnDate, countOf: countOf , type: type"></app-results>
         </lazy-page>
