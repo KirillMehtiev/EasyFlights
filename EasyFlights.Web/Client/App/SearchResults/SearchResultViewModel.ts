@@ -1,8 +1,7 @@
 ﻿import ko = require("knockout");
 import { RouteItem } from "./FlightResults/RouteItem";
 import { RoutesService } from "./Services/RoutesService"
-import Item = require("./FlightResults/Tickets/FlightItem");
-import FlightItem = Item.FlightItem;
+import { FlightItem } from "./FlightResults/Tickets/FlightItem"
 import Service = require("../Common/Services/dataService");
 import moment = require("moment");
 
@@ -105,16 +104,12 @@ class SearchResultViewModel {
 
         var result: string;
         result = "GetAsync?departureAirportId=" + this.departurePlaceId() + "&destinationAirportId=" + this.arrivalPlaceId() + "&numberOfPeople=" + this.countOf() + "&departureTime=" + moment(this.departureDate()).toISOString();
-
-        
+       
         if (moment(this.returnDate()).toISOString() != null) {
             
             result += "&returnTime=" + moment(this.returnDate()).toISOString();
-
         }
-        
-
-        return result;
+       return result;
     }
 }
 export = SearchResultViewModel;
