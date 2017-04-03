@@ -177,6 +177,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiControllers\AccountController.cs" />
     <Compile Include="ApiControllers\CabinController.cs" />
     <Compile Include="ApiControllers\CabinetController.cs" />
     <Compile Include="ApiControllers\FlightsController.cs" />
@@ -203,6 +204,7 @@
     <Compile Include="NinjectModules\ServicesModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\AccountViewModels\RegisterViewModel.cs" />
     <Compile Include="ViewModels\AirportViewModel.cs" />
     <Compile Include="ViewModels\CabinViewModel.cs" />
     <Compile Include="ViewModels\FlightViewModel.cs" />
@@ -355,6 +357,7 @@
     <TypeScriptCompile Include="Client\App\UserCabinet\ProfileInfo\ProfileInfoViewModel.ts" />
     <TypeScriptCompile Include="Client\App\UserCabinet\UserCabinetComponent.ts" />
     <TypeScriptCompile Include="Client\App\UserCabinet\UserCabinetViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\Validation\AreSameValidationRule.ts" />
     <TypeScriptCompile Include="Client\App\Validation\DateAfterValidationRule.ts" />
     <TypeScriptCompile Include="Client\App\Validation\ISingleValueValidationRule.ts" />
     <TypeScriptCompile Include="Client\App\ValidationRules.ts" />
