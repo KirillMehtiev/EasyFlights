@@ -15,7 +15,7 @@ class SearchResultViewModel {
     public departurePlace: KnockoutObservable<string>;
     public departurePlaceId: KnockoutObservable<number>;
     public returnDate: KnockoutObservable<string>;
-    public countOf: KnockoutObservable<number>;
+    public numberOfPassenger: KnockoutObservable<number>;
     public type: KnockoutObservable<string>;
 
     public pageSize: number;
@@ -40,7 +40,7 @@ class SearchResultViewModel {
         this.departurePlaceId = params.departurePlaceId;
         this.departurePlace = params.departurePlace;
         this.returnDate = params.returnDate;
-        this.countOf = params.countOf;
+        this.numberOfPassenger = params.numberOfPassenger;
         this.type = params.type;
 
         this.createDefaultOptions();
@@ -103,7 +103,7 @@ class SearchResultViewModel {
     private createGetRoutesUrl(): string {
 
         let result: string;
-        result = "GetAsync?departureAirportId=" + this.departurePlaceId() + "&destinationAirportId=" + this.arrivalPlaceId() + "&numberOfPeople=" + this.countOf() + "&departureTime=" + moment(this.departureDate()).toISOString();
+        result = "GetAsync?departureAirportId=" + this.departurePlaceId() + "&destinationAirportId=" + this.arrivalPlaceId() + "&numberOfPeople=" + this.numberOfPassenger() + "&departureTime=" + moment(this.departureDate()).toISOString();
        
         if (moment(this.returnDate()).toISOString() != null) {
             

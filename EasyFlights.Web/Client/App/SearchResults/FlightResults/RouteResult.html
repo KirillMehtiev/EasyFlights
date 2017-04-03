@@ -9,6 +9,6 @@
         <div data-bind="foreach: {data: item.flights, as: 'flightItem'}">
             <flights params="item: flightItem"></flights>
         </div>
-        <a class="btn btn-info" data-bind="page-href: {path: '../selected-route', params: { routeId: $data.item.id, countOf: $data.quantity }}">Select</a>
+        <a class="btn btn-info" data-bind="page-href: {path: '../selected-route', params: { routeId: $data.item.id, numberOfPassenger: $data.quantity }}">Select</a>
     </div>
 </div>

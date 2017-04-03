@@ -7,7 +7,7 @@ import {TicketInfoItem} from "./TicketInfo/TicketInfoItem";
 class SelectFlowViewModel {
     // Params
     public routeId: KnockoutObservable<string>;
-    public countOf: KnockoutObservable<number>;
+    public numberOfPassenger: KnockoutObservable<number>;
     //public departurePlace: KnockoutObservable<string>;
     //public destinationPlace: KnockoutObservable<string>;
     //public departureDate: KnockoutObservable<string>;
@@ -25,8 +25,8 @@ class SelectFlowViewModel {
 
     constructor(params) {
         this.routeId = params.routeId;
-        this.countOf = params.countOf;
-        this.passengerInfoList = ko.observableArray(this.initPassengerInfoList(this.countOf()));
+        this.numberOfPassenger = params.numberOfPassenger;
+        this.passengerInfoList = ko.observableArray(this.initPassengerInfoList(this.numberOfPassenger()));
         this.flights = ko.observableArray([]);        
         this.fillFlightsList(this.routeId());
 
