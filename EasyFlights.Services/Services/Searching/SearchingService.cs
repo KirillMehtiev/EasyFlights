@@ -48,23 +48,23 @@ namespace EasyFlights.Services.Services.Searching
             }
 
             // Try to build routes.
-            IEnumerable<RouteDto> routes = await this.FindRoutesBetweenCitiesAsync(departureAirport, destinationAirport, numberOfPassengers, departureTime);
+            List<RouteDto> routes = this.FindRoutesBetweenCitiesAsync(departureAirport, destinationAirport, numberOfPassengers, departureTime).ToList();
             Guard.OperationValid(routes.Any(), "Impossible to find a route between given cities for the specified time of departure.");
 
             if (returnTime.HasValue)
             {
-                IEnumerable<RouteDto> reverseRoutes = await this.FindRoutesBetweenCitiesAsync(destinationAirport, departureAirport, numberOfPassengers, returnTime.Value);
+                IEnumerable<RouteDto> reverseRoutes = this.FindRoutesBetweenCitiesAsync(destinationAirport, departureAirport, numberOfPassengers, returnTime.Value).ToList();
                 Guard.OperationValid(reverseRoutes.Any(), "Impossible to find a route between given cities for the specified time of return.");
 
-                routes = routes.Concat(reverseRoutes);
+                routes = routes.Concat(reverseRoutes).ToList();
             }
 
             return routes.ToList();
         }
 
-        private async Task<IEnumerable<RouteDto>> FindRoutesBetweenCitiesAsync(Airport departureAirport, Airport destinationAirport, int numberOfPassengers, DateTime departureTime)
+        private IEnumerable<RouteDto> FindRoutesBetweenCitiesAsync(Airport departureAirport, Airport destinationAirport, int numberOfPassengers, DateTime departureTime)
         {
-            IEnumerable<Route> routes = await this.routeBuilder.BuildAsync(departureAirport, destinationAirport, departureTime, numberOfPassengers);
+            IEnumerable<Route> routes = this.routeBuilder.Build(departureAirport, destinationAirport, departureTime, numberOfPassengers);
 
             var result = new List<RouteDto>();
             foreach (Route route in routes)
@@ -75,13 +75,11 @@ namespace EasyFlights.Services.Services.Searching
                     // so, skip it
                     continue;
                 }
-
                 decimal totalCost = this.routeGeneralInfoCalculator.GetTotalCost(route);
-                var totalTime = this.routeGeneralInfoCalculator.GetTotalTime(route);
+                TimeSpan totalTime = this.routeGeneralInfoCalculator.GetTotalTime(route);
 
                 result.Add(this.routeDtoMapper.Map(route, totalCost, totalTime));
             }
-
             return result;
         }
     }

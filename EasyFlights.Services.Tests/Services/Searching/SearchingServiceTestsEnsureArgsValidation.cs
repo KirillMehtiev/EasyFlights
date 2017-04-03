@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using EasyFlights.Data.Repositories.Airports;
 using EasyFlights.DomainModel.Entities;
+using EasyFlights.Engines.RouteBuilding;
 using EasyFlights.Services.Services.Searching;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -10,8 +11,6 @@ namespace EasyFlights.Services.Tests.Services.Searching
 {
     public partial class SearchingServiceTests
     {
-        #region FindRoutesBetweenAirportsAsync Tests
-
         [TestMethod]
         public async Task FindRoutesBetweenAirportsAsync_WhenReceivesWrongDepartureAirportId_ThrowsArgumentException()
         {
@@ -55,20 +54,17 @@ namespace EasyFlights.Services.Tests.Services.Searching
         public async Task FindRoutesBetweenAirportsAsync_WhenAirportDoesNotExist_ThrowsArgumentException()
         {
             // Arrange
-            Airport none = null;
-            int departureAirportId = 1;
-            int destinationAirportId = 2;
-            int numberOfPeople = 1;
+            var numberOfPeople = 1;
 
             var mockRepository = new Mock<IAirportsRepository>();
             mockRepository
                 .Setup(mock => mock.FindByIdAsync(It.IsAny<int>()))
-                .ReturnsAsync(none);
+                .ReturnsAsync((Airport)null);
 
             SearchingService service = this.CreateTestObject(mockRepository);
 
             // Act
-            Func<Task> act = async () => await service.FindRoutesBetweenAirportsAsync(departureAirportId, destinationAirportId, numberOfPeople, DateTime.Now);
+            Func<Task> act = async () => await service.FindRoutesBetweenAirportsAsync(1, 2, numberOfPeople, DateTime.Now);
 
             // Assert
             await Assert.ThrowsExceptionAsync<ArgumentException>(act);
@@ -78,14 +74,14 @@ namespace EasyFlights.Services.Tests.Services.Searching
         public async Task FindRoutesBetweenAirportsAsync_WhenReturnDateIsBeforeDepartureDate_ThrowsArgumentException()
         {
             // Arrange
-            int departureAirportId = 1;
-            int destinationAirportId = 2;
-            int numberOfPeople = 1;
+            var departureAirportId = 1;
+            var destinationAirportId = 2;
+            var numberOfPeople = 1;
             DateTime departureDateTime = DateTime.Now;
             DateTime returnDateTime = departureDateTime.Subtract(TimeSpan.FromDays(1));
 
             Mock<IAirportsRepository> mockRepository = this.CreateMockRepository();
-            var mockRouteBuilder = this.CreateMockRouteBuilder();
+            Mock<IRouteBuilder> mockRouteBuilder = this.CreateMockRouteBuilder();
 
             SearchingService service = this.CreateTestObject(mockRepository, mockRouteBuilder);
 
@@ -95,7 +91,5 @@ namespace EasyFlights.Services.Tests.Services.Searching
             // Assert
             await Assert.ThrowsExceptionAsync<ArgumentException>(act);
         }
-
-        #endregion
     }
 }

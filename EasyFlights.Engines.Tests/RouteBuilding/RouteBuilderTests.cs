@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using EasyFlights.DomainModel.DTOs;
 using EasyFlights.DomainModel.Entities;
 using EasyFlights.Engines.RouteBuilding;
@@ -12,10 +11,8 @@ namespace EasyFlights.Engines.Tests.RouteBuilding
     [TestClass]
     public partial class RouteBuilderTests
     {
-        #region Build Tests
-
         [TestMethod]
-        public async Task Build_ForFakeGraph_ReturnsAllPossibleRoutes()
+        public void Build_ForFakeGraph_ReturnsAllPossibleRoutes()
         {
             // Arrange
             List<Airport> airports = this.CreateFakeGraph();
@@ -43,14 +40,12 @@ namespace EasyFlights.Engines.Tests.RouteBuilding
             RouteBuilder routeBuilder = this.CreateTestObject();
 
             // Act 
-            IEnumerable<Route> routes = await routeBuilder.BuildAsync(airports.First(), airports.Last(), DateTime.Today, 1);
+            IEnumerable<Route> routes = routeBuilder.Build(airports.First(), airports.Last(), DateTime.Today, 1).ToList();
 
             // Assert
             Assert.AreEqual(expectedRoutes.Count, routes.Count());
             Assert.IsTrue(routes.Any(route => route.Flights.SequenceEqual(expectedRoutes[0].Flights)));
             Assert.IsTrue(routes.Any(route => route.Flights.SequenceEqual(expectedRoutes[1].Flights)));
         }
-
-        #endregion
     }
 }

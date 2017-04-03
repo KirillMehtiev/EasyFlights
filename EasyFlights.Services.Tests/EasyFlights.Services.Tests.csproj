@@ -82,8 +82,8 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
-    <Compile Include="Services\Searching\SearchingServiceTests.HelperMethods.cs" />
-    <Compile Include="Services\Searching\SearchingServiceTests.EnsureArgsValidation.cs" />
+    <Compile Include="Services\Searching\SearchingServiceTestsHelperMethods.cs" />
+    <Compile Include="Services\Searching\SearchingServiceTestsEnsureArgsValidation.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
