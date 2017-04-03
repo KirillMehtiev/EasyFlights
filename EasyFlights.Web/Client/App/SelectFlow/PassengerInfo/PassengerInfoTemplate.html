@@ -14,12 +14,6 @@
                             <radio-chooser params="options: $parent.sexOptions, selectedOption:passengerInfo.sex"></radio-chooser>
                         </div>
                     </div>
-                    <div class="col-md-6 form-inline">
-                        <div class="form-group">
-                            <label>Age:</label>
-                            <radio-chooser params="options: $parent.ageOptions, selectedOption:passengerInfo.ageType"></radio-chooser>
-                        </div>
-                    </div>
                     <hr />
                 </div>-->
                 
@@ -48,6 +42,6 @@
     </div>
     <hr />
     <div class="pull-right">
-        <a class="btn btn-default" data-bind="click: $parent.showTicketInfo.bind($parent)">Go to ticket information</a>
+        <a class="btn btn-default" data-bind="click: nextStep">Go to ticket information</a>
     </div>
 </div>

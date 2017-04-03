@@ -8,4 +8,6 @@ export interface ITicketInfoItemOptions {
     ticketNumber: number;
     seat: number;
     price: number;
+    onNextStep: KnockoutSubscribable<number>;
+    onPreviousStep: KnockoutSubscribable<number>;
 }
