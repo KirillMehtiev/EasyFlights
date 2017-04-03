@@ -222,6 +222,7 @@
     <Content Include="Client\App\Layout\Footer\FooterTemplate.html" />
     <Content Include="Client\App\Layout\Header\HeaderTemplate.html" />
     <Content Include="Client\App\Layout\LayoutTemplate.html" />
+    <Content Include="Client\App\Login\LoginTemplate.html" />
     <Content Include="Client\App\SelectFlow\SelectFlowTemplate.html" />
     <Content Include="Client\App\SelectFlow\PassengerInfo\PassengerInfoTemplate.html" />
     <Content Include="Client\App\SearchResults\FlightResults\RouteResult.html" />
@@ -311,6 +312,8 @@
     <TypeScriptCompile Include="Client\App\Layout\Header\HeaderViewModel.ts" />
     <TypeScriptCompile Include="Client\App\Layout\LayoutComponent.ts" />
     <TypeScriptCompile Include="Client\App\Layout\LayoutViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\Login\LoginComponent.ts" />
+    <TypeScriptCompile Include="Client\App\Login\LoginViewModel.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\Services\RoutesService.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\PassengerInfo\IPassengerInfoOptions.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\OrderSummary\IOrderSummaryOptions.ts" />
