@@ -15,14 +15,14 @@ class AccountViewModel {
         this.oldPassword = ko.observable("");
         this.newPassword = ko.observable("");
         this.newPasswordConfirm = ko.observable("");
-        this.isEmailValid = ko.observable(false);
-    }
-    public turnPasswordChanging(): void {
-        this.isPasswordChanging = ko.observable(true);
     }
     public validateEmail(): void {
+        let isEmailValid: boolean = false;
         this.dataService.get<boolean>(("api/Cabinet/ValidateEmail?email=".concat(this.email())))
-            .then((data) => { this.isEmailValid(data) });
+            .then((data) => { isEmailValid=data });
+        if (isEmailValid) {
+            this.isPasswordChanging = ko.observable(true);
+        }
     }
     public changePassword():boolean {
         let result: boolean = false;
