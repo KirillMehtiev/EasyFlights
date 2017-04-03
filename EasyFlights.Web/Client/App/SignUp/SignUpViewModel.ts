@@ -1,0 +1,5 @@
+﻿class SignUpViewModel {
+
+}
+
+export = SignUpViewModel;

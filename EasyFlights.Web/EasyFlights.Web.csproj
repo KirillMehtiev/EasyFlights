@@ -232,6 +232,7 @@
     <Content Include="Client\App\SelectFlow\OrderSummary\OrderSummaryTemplate.html" />
     <Content Include="Client\App\SelectFlow\TicketInfo\SeatPicker\SeatPicker.html" />
     <Content Include="Client\App\SelectFlow\TicketInfo\TicketInfoTemplate.html" />
+    <Content Include="Client\App\SignUp\SignUpTemplate.html" />
     <Content Include="Client\App\UserCabinet\Account\AccountTemplate.html" />
     <Content Include="Client\App\UserCabinet\ManageOrders\ManageOrdersTemplate.html" />
     <Content Include="Client\App\UserCabinet\ProfileInfo\ProfileInfoTemplate.html" />
@@ -350,11 +351,6 @@
     <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\TicketInfoComponent.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\TicketInfoItem.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\TicketInfoViewModel.ts" />
-    <TypeScriptCompile Include="Client\App\UserCabinet\Account\AccountComponent.ts" />
-    <TypeScriptCompile Include="Client\App\UserCabinet\Account\AccountViewModel.ts" />
-    <TypeScriptCompile Include="Client\App\UserCabinet\Account\ChangePasswordModel.ts" />
-    <TypeScriptCompile Include="Client\App\UserCabinet\ManageOrders\ManageOrdersComponent.ts" />
-    <TypeScriptCompile Include="Client\App\UserCabinet\ManageOrders\ManageOrdersViewModel.ts" />
     <TypeScriptCompile Include="Client\App\UserCabinet\ProfileInfo\ProfileInfoComponent.ts" />
     <TypeScriptCompile Include="Client\App\UserCabinet\ProfileInfo\ProfileInfoViewModel.ts" />
     <TypeScriptCompile Include="Client\App\UserCabinet\UserCabinetComponent.ts" />
@@ -393,6 +389,9 @@
     <Folder Include="Client\App\SelectFlow\TicketInfo\SeatPicker\Images\" />
     <Folder Include="Client\App\UserCabinet\ManageOrders\" />
     <Folder Include="Client\App\UserCabinet\Account\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Client\App\SignUp\SignUp.scss" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
