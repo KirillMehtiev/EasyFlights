@@ -1,20 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
 using EasyFlights.DomainModel.DTOs;
 using EasyFlights.Services.Interfaces;
-using EasyFlights.Web.ViewModels;
 using EasyFlights.Web.Util.Converters;
+using EasyFlights.Web.ViewModels;
 
 namespace EasyFlights.Web.ApiControllers
 {
-
-
     public class RoutesController : ApiController
     {
-        private const string DataFormat = "D";
+        private const string DateFormat = "D";
         private const string DurationFormat = @"dd\.hh\:mm";
 
         private readonly ISearchingService searchingService;
@@ -29,14 +26,14 @@ namespace EasyFlights.Web.ApiControllers
         // GET api/<controller>
         public async Task<IEnumerable<RouteViewModel>> GetAsync([FromUri] RouteSearchViewModel search)
         {
-            var routes = await searchingService.FindRoutesBetweenAirportsAsync(
+            IEnumerable<RouteDto> routes = await searchingService.FindRoutesBetweenAirportsAsync(
                 search.DepartureAirportId,
                 search.DestinationAirportId,
                 search.NumberOfPeople,
                 search.DepartureTime,
                 search.ReturnTime);
 
-            var result = routes.Select(MapToRouteViewModel);
+            IEnumerable<RouteViewModel> result = routes.Select(MapToRouteViewModel);
 
             return result;
         }
@@ -44,8 +41,8 @@ namespace EasyFlights.Web.ApiControllers
         private RouteViewModel MapToRouteViewModel(RouteDto route)
         {
             var routeViewModel = new RouteViewModel();
-            var firstFlight = route.Flights.FirstOrDefault();
-            var lastFlight = route.Flights.LastOrDefault();
+            FlightDto firstFlight = route.Flights.FirstOrDefault();
+            FlightDto lastFlight = route.Flights.LastOrDefault();
 
             routeViewModel.TotalCoast = route.TotalCost;
             routeViewModel.TotalTime = route.TotalTime.ToString(DurationFormat);
@@ -55,7 +52,7 @@ namespace EasyFlights.Web.ApiControllers
             if (firstFlight != null)
             {
                 routeViewModel.DeparturePlace = firstFlight.DepartureAirportTitle;
-                routeViewModel.DepartureTime = firstFlight.ScheduledDepartureTime.ToString(DataFormat);
+                routeViewModel.DepartureTime = firstFlight.ScheduledDepartureTime.ToString(DateFormat);
             }
             if (lastFlight != null)
             {
@@ -72,12 +69,11 @@ namespace EasyFlights.Web.ApiControllers
             {
                 DepartureAirport = flight.DepartureAirportTitle,
                 DestinationAirport = flight.DestinationAirportTitle,
-                ArrivalTime = flight.ScheduledArrivalTime.ToString(DataFormat),
-                DepartureTime = flight.ScheduledDepartureTime.ToString(DataFormat),
+                ArrivalTime = flight.ScheduledArrivalTime.ToString(DateFormat),
+                DepartureTime = flight.ScheduledDepartureTime.ToString(DateFormat),
                 Duration = flight.Duration.ToString(DurationFormat),
                 Fare = flight.DefaultFare
             };
         }
     }
-
 }

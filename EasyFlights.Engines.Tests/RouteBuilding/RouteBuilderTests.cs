@@ -12,8 +12,6 @@ namespace EasyFlights.Engines.Tests.RouteBuilding
     [TestClass]
     public partial class RouteBuilderTests
     {
-        #region Build Tests
-
         [TestMethod]
         public async Task Build_ForFakeGraph_ReturnsAllPossibleRoutes()
         {
@@ -43,14 +41,12 @@ namespace EasyFlights.Engines.Tests.RouteBuilding
             RouteBuilder routeBuilder = this.CreateTestObject();
 
             // Act 
-            IEnumerable<Route> routes = await routeBuilder.BuildAsync(airports.First(), airports.Last(), DateTime.Today, 1);
+            IEnumerable<Route> routes = (await routeBuilder.BuildAsync(airports.First(), airports.Last(), DateTime.Today, 1)).ToList();
 
             // Assert
             Assert.AreEqual(expectedRoutes.Count, routes.Count());
             Assert.IsTrue(routes.Any(route => route.Flights.SequenceEqual(expectedRoutes[0].Flights)));
             Assert.IsTrue(routes.Any(route => route.Flights.SequenceEqual(expectedRoutes[1].Flights)));
         }
-
-        #endregion
     }
 }

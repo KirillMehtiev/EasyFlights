@@ -94,7 +94,7 @@ namespace EasyFlights.Services.Tests.Services.Searching
         {
             var result = new List<Route>();
 
-            for (int i = 0; i < count; i++)
+            for (var i = 0; i < count; i++)
             {
                 result.Add(new Route()
                 {

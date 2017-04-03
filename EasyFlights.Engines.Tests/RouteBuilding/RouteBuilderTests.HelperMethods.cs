@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using EasyFlights.DomainModel.Entities;
-using EasyFlights.Engines.RouteBuilding;
+﻿using EasyFlights.Engines.RouteBuilding;
 
 namespace EasyFlights.Engines.Tests.RouteBuilding
 {
