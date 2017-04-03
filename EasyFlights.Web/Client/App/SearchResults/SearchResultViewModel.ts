@@ -51,7 +51,7 @@ class SearchResultViewModel {
         this.isError = ko.observable(false);
 
         let url: string = this.createGetRoutesUrl();
-      
+
         this.routesService.getRoutes(url)
             .then((data) => {
                 this.routeItems(data);
@@ -78,11 +78,15 @@ class SearchResultViewModel {
     public sortByPrice(): void {
         this.routeItems.sort((x, y) => x.totalCoast - y.totalCoast);
         this.setPage();
+        $(".sortByPrice").removeClass('btn btn-default').addClass('btn btn-primary');
+        $(".sortByDuration").removeClass('btn btn-primary').addClass('btn btn-default');
     }
-
     public sortByDuration(): void {
-        this.routeItems.sort((x, y) => x.totalTime - y.totalTime);
+        this.routeItems.sort((x, y) => y.totalTime.split(':').reduce(function (seconds, v) { return +v + seconds * 60; }, 0) / 60 -
+                                       x.totalTime.split(':').reduce(function (seconds, v) { return +v + seconds * 60; }, 0) / 60);
         this.setPage();
+        $(".sortByDuration").removeClass('btn btn-default').addClass('btn btn-primary');
+        $(".sortByPrice").removeClass('btn btn-primary').addClass('btn btn-default');
     }
     private createDefaultOptions(): void {
         this.pagedRouteItems = ko.observableArray([]);
@@ -104,12 +108,12 @@ class SearchResultViewModel {
 
         let result: string;
         result = "GetAsync?departureAirportId=" + this.departurePlaceId() + "&destinationAirportId=" + this.arrivalPlaceId() + "&numberOfPeople=" + this.numberOfPassenger() + "&departureTime=" + moment(this.departureDate()).toISOString();
-       
+
         if (moment(this.returnDate()).toISOString() != null) {
-            
+
             result += "&returnTime=" + moment(this.returnDate()).toISOString();
         }
-       return result;
+        return result;
     }
 }
 export = SearchResultViewModel;
