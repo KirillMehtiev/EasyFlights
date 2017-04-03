@@ -4,7 +4,7 @@ import { IOrderSummaryOptions } from "./IOrderSummaryOptions";
 import { ITicketInfoItemOptions } from "../TicketInfo/ITicketInfoItemOptions";
 import { PassengerInfoItem } from "../PassengerInfo/PassengerInfoItem";
 import { RouteItem } from "../../SearchResults/FlightResults/RouteItem"
-import { StepFlow } from "../../Common/Enum/StepFlow";
+import { StepFlow } from "../../Common/Enum/Enums";
 
 class OrderSummaryViewModel {
 

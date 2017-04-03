@@ -291,7 +291,7 @@
     <TypeScriptCompile Include="Client\App\Common\Components\RouteHeader\IRouteHeaderOptions.ts" />
     <TypeScriptCompile Include="Client\App\Common\Components\RouteHeader\RouteHeaderComponent.ts" />
     <TypeScriptCompile Include="Client\App\Common\Components\RouteHeader\RouteHeaderViewModel.ts" />
-    <TypeScriptCompile Include="Client\App\Common\Enum\StepFlow.ts" />
+    <TypeScriptCompile Include="Client\App\Common\Enum\Enums.ts" />
     <TypeScriptCompile Include="Client\App\Common\Services\dataService.ts" />
     <TypeScriptCompile Include="Client\App\Components.ts" />
     <TypeScriptCompile Include="Client\App\Index\IndexComponent.ts" />

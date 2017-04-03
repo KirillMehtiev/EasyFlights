@@ -3,3 +3,8 @@
     TicketInformation,
     OrderSummary
 }
+
+export enum SexType {
+    Male,
+    Female
+}

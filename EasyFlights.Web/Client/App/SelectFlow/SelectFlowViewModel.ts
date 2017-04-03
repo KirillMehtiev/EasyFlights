@@ -3,7 +3,7 @@ import { PassengerInfoItem } from "./PassengerInfo/PassengerInfoItem"
 import { FlightItem } from "../SearchResults/FlightResults/Tickets/FlightItem";
 import { DataService } from "../Common/Services/dataService";
 import { TicketInfoItem } from "./TicketInfo/TicketInfoItem";
-import { StepFlow } from "../Common/Enum/StepFlow"
+import { StepFlow } from "../Common/Enum/Enums";
 
 class SelectFlowViewModel {
     // Params

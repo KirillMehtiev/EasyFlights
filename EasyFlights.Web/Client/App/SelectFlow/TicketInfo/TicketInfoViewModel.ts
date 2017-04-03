@@ -3,7 +3,7 @@ import { ITicketInfoItemOptions } from "./ITicketInfoItemOptions";
 import { PassengerInfoItem } from "../PassengerInfo/PassengerInfoItem";
 import { RadioChooserItem } from "../../Common/Components/RadioChooser/RadioChooserItem";
 import { RouteItem } from "../../SearchResults/FlightResults/RouteItem"
-import { StepFlow } from "../../Common/Enum/StepFlow";
+import { StepFlow } from "../../Common/Enum/Enums";
 
 class TicketInfoViewModel {
     public tickets: KnockoutObservableArray<PassengerInfoItem>;
