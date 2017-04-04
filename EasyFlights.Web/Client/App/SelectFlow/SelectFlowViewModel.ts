@@ -29,8 +29,8 @@ class SelectFlowViewModel {
         this.passengerInfoList = ko.observableArray([]);
         this.flights = ko.observableArray([]);
 
-        // Call api
-
+        // Get data from server
+        this.initPassengerInfoList(this.routeId(), this.numberOfPassenger());
 
         // Flow routing
         this.onNextStep = new ko.subscribable();
@@ -93,12 +93,16 @@ class SelectFlowViewModel {
 
     private updateTicketInfoData(isShowTicketInfo: boolean) {
         if (isShowTicketInfo) {
-            
+
         }
     }
 
-    private getPassengerInfo(routeId:number, numberOfPassenger: number): Array<PassengerInfoDto> {
-        let url: "";
+    private initPassengerInfoList(routeId: string, numberOfPassenger: number) {
+        let url = `GetPassengers?routeId=${routeId}&numberOfPassengers=${numberOfPassenger}`;
+
+        this.selectFlowServices.getPassengerInfo(url).then((data: Array<PassengerInfoItem>) => {
+            this.passengerInfoList(data);
+        });
     }
 }
 

@@ -13,8 +13,9 @@ class OrderSummaryViewModel {
     public onPreviousStep: KnockoutSubscribable<number>;
 
     constructor(options: ITicketInfoItemOptions) {
-        this.tickets = options.passengers;
-        this.flights = options.flights;
+        //this.tickets = options.passengers;
+        //this.flights = options.flights;
+
         this.onPreviousStep = options.onPreviousStep;
 
         this.previousStep.bind(this);

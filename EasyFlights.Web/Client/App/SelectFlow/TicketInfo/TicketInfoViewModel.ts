@@ -12,8 +12,8 @@ class TicketInfoViewModel {
     public onPreviousStep: KnockoutSubscribable<number>;
 
     constructor(options: ITicketInfoItemOptions) {
-        this.tickets = options.passengers;
-        this.flights = options.flights;
+        //this.tickets = options.passengers;
+        //this.flights = options.flights;
         this.onNextStep = options.onNextStep;
         this.onPreviousStep = options.onPreviousStep;
 
