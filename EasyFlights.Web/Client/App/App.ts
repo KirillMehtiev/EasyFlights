@@ -19,7 +19,12 @@ class Application {
         ko.applyBindings(this);
         validation.init(new KnockoutValidationOptions(), true);
         validation.registerExtenders();
-        pager.start();
+        console.log(ko);
+
+        window.setTimeout(function() {
+            pager.start();
+        });
+
     }
 }
 let application: Application = new Application();
