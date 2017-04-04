@@ -19,6 +19,46 @@ text-align: left;
 font-size: 10px;
 }
 
+#body tr td.withoutImg{
+    background: none;
+    vertical-align: central;
+    text-align: center;
+    font-size: 18px;
+}
+
+table.seat-picker{
+    margin: auto;
+}
+
+h2.picker-label{
+    position: relative; 
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.modal-header h3{
+    font-weight: bold;
+}
+
+div.modal-content{
+    background-color: rgb(214, 206, 204)
+}
+
+div.modal-body{
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+div.modal-footer{
+    text-align: center !important;
+}
+
+div.modal-footer .btn{
+    width: 300px;
+    border: 1px solid black;
+}
+
 #body tr td.chosen {
  background:url("/Client/App/SelectFlow/TicketInfo/SeatPicker/Images/selected_seat_img.gif") no-repeat scroll 0 0 transparent;
 }
@@ -27,12 +67,29 @@ font-size: 10px;
  background:url("/Client/App/SelectFlow/TicketInfo/SeatPicker/Images/booked_seat_img.gif") no-repeat scroll 0 0 transparent;
 }
 
+#seatDescription{
+    padding: 0;
+	margin: 0;
+	list-style: none;
+	text-align: center;
+	height: 20px;
+	display: block; /* добавляем блочность, если необходимо */
+	font-size: 0;
+}
+
 #seatDescription li{
-vertical-align: bottom; 
-list-style: none outside none;
-padding-bottom: 0px;
-padding-left:35px;
-height:35px;
+	padding: 10px;
+    padding-left:35px;
+	margin: 0 20px;
+	font-size: 16px; 
+	display: inline-block; 
+	vertical-align: middle; 
+}
+
+div.modal-header{
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
 }
 
 #seatDescription li.available{

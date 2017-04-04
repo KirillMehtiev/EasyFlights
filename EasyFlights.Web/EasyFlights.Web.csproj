@@ -228,6 +228,10 @@
     <Content Include="Client\App\SearchResults\FlightResults\Tickets\FlightTemplate.html" />
     <Content Include="Client\App\SearchResults\SearchResultTemplate.html" />
     <Content Include="Client\App\SelectFlow\OrderSummary\OrderSummaryTemplate.html" />
+    <Content Include="Client\App\SelectFlow\TicketInfo\SeatPicker\Cabin\Cabin.html" />
+    <Content Include="Client\App\SelectFlow\TicketInfo\SeatPicker\Images\available_seat_img.gif" />
+    <Content Include="Client\App\SelectFlow\TicketInfo\SeatPicker\Images\booked_seat_img.gif" />
+    <Content Include="Client\App\SelectFlow\TicketInfo\SeatPicker\Images\selected_seat_img.gif" />
     <Content Include="Client\App\SelectFlow\TicketInfo\SeatPicker\SeatPicker.html" />
     <Content Include="Client\App\SelectFlow\TicketInfo\TicketInfoTemplate.html" />
     <Content Include="Client\App\UserCabinet\UserCabinetTemplate.html" />
@@ -328,15 +332,15 @@
     <TypeScriptCompile Include="Client\App\SearchResults\FlightResults\Tickets\FlightViewModel.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\SearchResultComponent.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\SearchResultViewModel.ts" />
-    <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\SeatPicker\CabinInfoItem.ts" />
-    <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\SeatPicker\CabinViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\SeatPicker\SeatPickerItems\CabinInfoItem.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\ITicketInfoItemOptions.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\OrderSummary\OrderSummaryComponent.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\OrderSummary\OrderSummaryViewModel.ts" />
-    <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\SeatPicker\IRowOptions.ts" />
-    <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\SeatPicker\ICabinOptions.ts" />
-    <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\SeatPicker\RowItem.ts" />
-    <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\SeatPicker\SeatItem.ts" />
+    <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\SeatPicker\Cabin\CabinComponent.ts" />
+    <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\SeatPicker\Cabin\CabinViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\SeatPicker\Cabin\ICabinOptions.ts" />
+    <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\SeatPicker\SeatPickerItems\RowItem.ts" />
+    <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\SeatPicker\SeatPickerItems\SeatItem.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\SeatPicker\SeatPickerComponent.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\SeatPicker\SeatPickerViewModel.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\TicketInfoComponent.ts" />
@@ -373,8 +377,6 @@
     <Content Include="Client\Libs\fonts\glyphicons-halflings-regular.woff2" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Client\App\SelectFlow\TicketInfo\SeatPicker\Cabin\" />
-    <Folder Include="Client\App\SelectFlow\TicketInfo\SeatPicker\Images\" />
     <Folder Include="Client\App\UserCabinet\Account\" />
     <Folder Include="Client\App\UserCabinet\ManageOrders\" />
     <Folder Include="Client\App\UserCabinet\ProfileInfo\" />

@@ -1,5 +1,7 @@
 ﻿<div class="wrapper">
     <div class="main">
+        <h2 class="picker-label">Need to be choose <span data-bind="text: selectNumber"></span> seats</h2> 
+        <br />
         <div>
             <ul id="seatDescription">
                 <li class="available">Available Seat</li>
@@ -10,11 +12,16 @@
         </div>
         <hr/>
         <section id="body">
-            <h2>You have to select <span data-bind="text: selectNumber"></span> seats</h2> 
-            <table>
+            <table class="seat-picker">
+                <thead>
+                <tr data-bind="foreach: columnsNames">
+                    <td data-bind="text: $data" class="withoutImg"></td>
+                </tr>
+                </thead>
                 <tbody data-bind="foreach: rows">
-                <tr data-bind="foreach: $data.seats, css: {space: $data.rowNumber == 3}" id="place">
+                <tr data-bind="foreach: $data.seats" id="place">
                     <td data-bind="click: ($component.isBlockSelect())? null : function(){$data.updateSeat();}, css: {chosen: $data.isChosen(), booked: $data.isBooked()}, text: $data.seat"></td>
+                    <td data-bind="text: $data.row, visible: $data.isSpace, css: {withoutImg: $data.isSpace}"></td>
                 </tr>
                 </tbody>
             </table>
