@@ -56,7 +56,7 @@ namespace EasyFlights.Web.ApiControllers
             }
             if (lastFlight != null)
             {
-                routeViewModel.ArrivalTime = lastFlight.DestinationAirportTitle;
+                routeViewModel.ArrivalTime = lastFlight.ScheduledArrivalTime.ToString(DateFormat);
                 routeViewModel.DestinationPlace = lastFlight.DestinationAirportTitle;
             }
 
