@@ -28,11 +28,12 @@ class SearchResultViewModel {
     public text: any;
 
     public isLoading: KnockoutObservable<boolean>;
-    public isError: KnockoutObservable<boolean>;
 
     private routesService: RoutesService = new RoutesService();
 
     constructor(params) {
+        console.log("Params: ",params);
+
         this.routeItems = ko.observableArray([]);
         this.departureDate = params.departureDate;
         this.arrivalPlace = params.arrivalPlace;
@@ -48,20 +49,16 @@ class SearchResultViewModel {
         this.sortByPrice();
 
         this.isLoading = ko.observable(true);
-        this.isError = ko.observable(false);
 
         let url: string = this.createGetRoutesUrl();
 
         this.routesService.getRoutes(url)
             .then((data) => {
                 this.routeItems(data);
-
                 this.isLoading(false);
-                this.isError(false);
                 this.setPage();
             }).fail((error) => {
                 this.isLoading(false);
-                this.isError(true);
             });
     }
 
@@ -82,8 +79,8 @@ class SearchResultViewModel {
         $(".sortByDuration").removeClass('btn btn-primary').addClass('btn btn-default');
     }
     public sortByDuration(): void {
-        this.routeItems.sort((x, y) => y.totalTime.split(':').reduce(function (seconds, v) { return +v + seconds * 60; }, 0) / 60 -
-                                       x.totalTime.split(':').reduce(function (seconds, v) { return +v + seconds * 60; }, 0) / 60);
+        this.routeItems.sort((x, y) => y.totalTime.split(':').reduce((seconds, v) => +v + seconds * 60, 0) / 60 -
+                                       x.totalTime.split(':').reduce((seconds, v) => +v + seconds * 60, 0) / 60);
         this.setPage();
         $(".sortByDuration").removeClass('btn btn-default').addClass('btn btn-primary');
         $(".sortByPrice").removeClass('btn btn-primary').addClass('btn btn-default');
@@ -107,11 +104,11 @@ class SearchResultViewModel {
     private createGetRoutesUrl(): string {
 
         let result: string;
-        result = "GetAsync?departureAirportId=" + this.departurePlaceId() + "&destinationAirportId=" + this.arrivalPlaceId() + "&numberOfPeople=" + this.numberOfPassenger() + "&departureTime=" + moment(this.departureDate()).toISOString();
+        result = `GetAsync?departureAirportId=${this.departurePlaceId()}&destinationAirportId=${this.arrivalPlaceId()}&numberOfPeople=${this.numberOfPassenger()}&departureTime=${moment(this.departureDate()).toISOString()}`;
 
         if (moment(this.returnDate()).toISOString() != null) {
 
-            result += "&returnTime=" + moment(this.returnDate()).toISOString();
+            result += `&returnTime=${moment(this.returnDate()).toISOString()}`;
         }
         return result;
     }

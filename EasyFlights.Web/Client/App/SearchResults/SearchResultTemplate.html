@@ -7,17 +7,17 @@
    
         <hr />
         
-        <div data-bind="if: isLoading() && !isError()">
+        <div data-bind="if: isLoading()">
             <h3>Searching...</h3>
         </div>
         
-        <div class="text-center" data-bind="if: !isLoading() && isError()">
+        <div class="text-center" data-bind="if: !isLoading() && routeItems().length === 0">
             <h3>Requested information not found.</h3>
             <h4>Try to change search parameters.</h4>
             <a class="btn btn-info" data-bind="page-href: '../'">Back to search form</a>
         </div>
 
-        <div data-bind="if: !isLoading() && !isError()" params="countOf: countOf">
+        <div data-bind="if: !isLoading() &&  routeItems().length !== 0" params="countOf: countOf">
             
             <div class="btn-group pull-right" role="group" aria-label="...">
                 <button data-bind="click: sortByPrice" type="button" class="btn btn-primary sortByPrice">by Price</button>
