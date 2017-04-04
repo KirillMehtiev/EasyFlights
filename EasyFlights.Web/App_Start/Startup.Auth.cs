@@ -1,11 +1,12 @@
 ﻿using System;
 using EasyFlights.Data.DataContexts;
-using EasyFlights.Services.Identity;
+using EasyFlights.Web.Infrastracture;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
+using ApplicationUserManager = EasyFlights.Services.Identity.ApplicationUserManager;
 
 namespace EasyFlights.Web
 {
@@ -30,18 +31,15 @@ namespace EasyFlights.Web
             // Configure the application for OAuth based flow
             PublicClientId = "self";
 
-            //OAuthOptions = new OAuthAuthorizationServerOptions
-            //{
-            //    TokenEndpointPath = new PathString("/Token"),
-            //    Provider = new ApplicationOAuthProvider(PublicClientId),
-            //    AuthorizeEndpointPath = new PathString("/api/Account/ExternalLogin"),
-            //    AccessTokenExpireTimeSpan = TimeSpan.FromDays(14),
-            //    // In production mode set AllowInsecureHttp = false
-            //    AllowInsecureHttp = true
-            //};
+            OAuthOptions = new OAuthAuthorizationServerOptions
+            {
+                TokenEndpointPath = new PathString("/Token"),
+                Provider = new ApplicationOAuthProvider(PublicClientId),
+                AccessTokenExpireTimeSpan = TimeSpan.FromDays(10),
+                AllowInsecureHttp = true
+            };
 
-            // Enable the application to use bearer tokens to authenticate users
-            // app.UseOAuthBearerTokens(OAuthOptions);
+            app.UseOAuthBearerTokens(OAuthOptions);
 
             // Uncomment the following lines to enable logging in with third party login providers
             //app.UseMicrosoftAccountAuthentication(
