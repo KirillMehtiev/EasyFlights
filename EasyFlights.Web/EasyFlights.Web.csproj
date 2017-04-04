@@ -379,6 +379,7 @@
     <TypeScriptCompile Include="Client\App\UserCabinet\ProfileInfo\ProfileInfoViewModel.ts" />
     <TypeScriptCompile Include="Client\App\UserCabinet\UserCabinetComponent.ts" />
     <TypeScriptCompile Include="Client\App\UserCabinet\UserCabinetViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\Validation\AreNotSameValidationRule.ts" />
     <TypeScriptCompile Include="Client\App\Validation\AreSameValidationRule.ts" />
     <TypeScriptCompile Include="Client\App\Validation\DateAfterValidationRule.ts" />
     <TypeScriptCompile Include="Client\App\Validation\ISingleValueValidationRule.ts" />
