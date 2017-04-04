@@ -1,5 +1,5 @@
 ﻿<div class="container">
-    <div class="row">
+    <div class="row" data-bind="visible: !isPasswordChanging()">
         <div class="col-md-2">
             <input type="email" placeholder="your_email@mailprovider.domain" data-bind="value: email"/>
         </div>
@@ -7,7 +7,7 @@
             <label>Input your email to continue</label>
         </div>
         <div class="col-md-1 col-md-offset-5" >
-            <button class="btn btn-default" data-bind="visible: !isPasswordChanging(), click: validateEmail">Change password</button>
+            <button class="btn btn-default" data-bind="click: validateEmail">Change password</button>
         </div>
     </div>
     <div id="ChangingPassword" data-bind="visible:isPasswordChanging">
@@ -29,6 +29,11 @@
                     Save
                 </button>
             </div>
+        </div>
+    </div>
+    <div class="row" data-bind="visible: isPasswordChanged">
+        <div class="col-md-offset-4 col-md-2">
+            <label>Password changed successfully</label>
         </div>
     </div>
 </div>
