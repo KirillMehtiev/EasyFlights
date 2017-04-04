@@ -1,10 +1,14 @@
-﻿using System.Linq;
+﻿using System;
+using System.Globalization;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using EasyFlights.DomainModel.Entities.Enums;
 using EasyFlights.DomainModel.Entities.Identity;
 using EasyFlights.Web.Infrastracture;
 using EasyFlights.Web.ViewModels.AccountViewModels;
+using EasyFlights.Web.ViewModels.ProfileInfo;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -90,6 +94,38 @@ namespace EasyFlights.Web.ApiControllers
             }
 
             return this.Ok();
+        }
+
+
+        [Route("changeUser")]
+        [HttpPost]
+        public async Task<IHttpActionResult> ChangeUser([FromBody]ProfileViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            ApplicationUser user = await UserManager.FindByEmailAsync(model.Email);
+            if (user == null)
+            {
+                return this.InternalServerError();
+            }
+
+            user.DateOfBirth = DateTime.Parse(model.DateOfBirth);
+            user.FirstName = model.FirstName;
+            user.LastName = model.LastName;
+            user.Sex = (Sex)Enum.Parse(typeof(Sex), model.Sex);
+            user.PhoneNumber = model.ContactPhone;
+
+            IdentityResult result = await UserManager.UpdateAsync(user);
+
+            if (!result.Succeeded)
+            {
+                return GetErrorResult(result);
+            }
+
+            return Ok();
         }
 
         // POST api/Account/Logout
