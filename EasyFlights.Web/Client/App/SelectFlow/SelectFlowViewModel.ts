@@ -90,12 +90,13 @@ class SelectFlowViewModel {
         this.dataService.get<Array<FlightItem>>("api/Flights/Get?routeId=".concat(routeId))
             .then((data) => {
                 this.flights(data);
+                for (let i = 0; i < this.passengerInfoList.length; i++) {
+                    for (let j = 0; j < this.flights.length; j++) {
+                        this.flights()[j].tickets.push(new TicketInfoItem(this.passengerInfoList()[i], 0, "Economy", 0, 100));
+                    }
+                }
             });
-        for (let i = 0; i < this.passengerInfoList.length; i++) {
-            for (let j = 0; j < this.flights.length; j++) {
-                this.flights()[j].tickets.push(new TicketInfoItem(this.passengerInfoList()[i], 0, "Economy", 0, 100));
-            }
-        }
+        
     }
 
     private initPassengerInfoList(numberOfPassenger: number): Array<PassengerInfoItem> {
