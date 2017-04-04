@@ -1,8 +1,9 @@
-﻿using System.Net.Http;
+﻿using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using EasyFlights.DomainModel.Entities.Identity;
-using EasyFlights.Services.Identity;
+using EasyFlights.Web.Infrastracture;
 using EasyFlights.Web.ViewModels.AccountViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -47,6 +48,7 @@ namespace EasyFlights.Web.ApiControllers
         [Route("Register")]
         public async Task<IHttpActionResult> Register(RegisterViewModel model)
         {
+            var l = this.userManager.Users.ToList();
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
