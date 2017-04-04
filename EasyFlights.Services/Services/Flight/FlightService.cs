@@ -31,5 +31,16 @@ namespace EasyFlights.Services.Services.Flight
 
             return cabin;
         }
+
+        public List<int> GetAvailableSeats(int number)
+        {
+            // TODO implement real generation of free seats list
+            var seats = new List<int>();
+            for (var i = 0; i < number; i++)
+            {
+                seats.Add(i);
+            }
+            return seats;
+        }
     }
 }

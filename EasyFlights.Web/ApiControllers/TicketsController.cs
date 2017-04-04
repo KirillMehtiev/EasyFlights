@@ -21,9 +21,9 @@ namespace EasyFlights.Web.ApiControllers
             this.mapper = mapper;
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("GetPassengers")]
-        public List<PassengerDto> GetPassengers([FromBody] string routeId, int numberOfPassengers)
+        public List<PassengerDto> GetPassengers([FromUri] string routeId, int numberOfPassengers)
         {
             RouteDto route = converter.RestoreRouteFromRouteIdAsync(routeId).Result;
             var available = true;
@@ -40,14 +40,7 @@ namespace EasyFlights.Web.ApiControllers
                 return new List<PassengerDto>();
             }
             var answer = new List<PassengerDto>();
-            answer.Add(new PassengerDto()
-            {
-                Birthday = DateTime.Now,
-                DocumentNumber = "user's document number",
-                FirstName = "User's first name",
-                LastName = "User's last name",
-                Sex = Sex.Male // it's truly random, belive me
-            });
+            answer.Add(GeneratePassengerFromUser());
             for (var i = 1; i < numberOfPassengers; i++)
             {
                 answer.Add(new PassengerDto()
@@ -67,6 +60,18 @@ namespace EasyFlights.Web.ApiControllers
         {
             RouteDto route = converter.RestoreRouteFromRouteIdAsync(routeId).Result;
             return mapper.Map(route.Flights.ToList(), passengers);      
+        }
+
+        private PassengerDto GeneratePassengerFromUser()
+        {
+            return new PassengerDto()
+            {
+                Birthday = DateTime.MaxValue,
+                DocumentNumber = "user's document number",
+                FirstName = "User's first name",
+                LastName = "User's last name",
+                Sex = Sex.Male // it's truly random, belive me
+            };
         }
     }
 }
