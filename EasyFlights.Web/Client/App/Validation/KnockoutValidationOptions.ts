@@ -12,7 +12,7 @@
         this.errorsAsTitle = false;
 
         this.errorElementClass = "has-error";
-        this.errorMessageClass = "help-block validation-message";
+        this.errorMessageClass = "validation-message";
     }
 }
 

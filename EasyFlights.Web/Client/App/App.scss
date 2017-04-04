@@ -1,10 +1,7 @@
 ﻿@import "Layout/_Layout.scss";
 @import "Index/Index.scss";
+@import "Validation/Validation.scss";
 @import "SignUp/SignUp.scss";
-
-.validation-message{
-   color: #b94a48;
-}
 
 /* enable absolute positioning */
 .inner-addon {

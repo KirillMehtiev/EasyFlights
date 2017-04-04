@@ -355,6 +355,8 @@
     <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\TicketInfoComponent.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\TicketInfoItem.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\TicketInfoViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\SignUp\SignUpComponent.ts" />
+    <TypeScriptCompile Include="Client\App\SignUp\SignUpViewModel.ts" />
     <TypeScriptCompile Include="Client\App\UserCabinet\ProfileInfo\ProfileInfoComponent.ts" />
     <TypeScriptCompile Include="Client\App\UserCabinet\ProfileInfo\ProfileInfoViewModel.ts" />
     <TypeScriptCompile Include="Client\App\UserCabinet\UserCabinetComponent.ts" />
@@ -364,6 +366,8 @@
     <TypeScriptCompile Include="Client\App\Validation\ISingleValueValidationRule.ts" />
     <TypeScriptCompile Include="Client\App\ValidationRules.ts" />
     <TypeScriptCompile Include="Client\App\Validation\KnockoutValidationOptions.ts" />
+    <TypeScriptCompile Include="Client\App\Validation\PasswordValidation\IPasswordValidationOptions.ts" />
+    <TypeScriptCompile Include="Client\App\Validation\PasswordValidation\PasswordValidationRule.ts" />
     <TypeScriptCompile Include="Client\Libs\typings\knockout\knockout.d.ts" />
     <TypeScriptCompile Include="Client\Libs\typings\knockout\knockout.validation.d.ts" />
     <TypeScriptCompile Include="Client\Libs\typings\pager\pager.d.ts" />
@@ -397,6 +401,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Client\App\SignUp\SignUp.scss" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Client\App\Validation\Validation.scss" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
