@@ -182,6 +182,7 @@
     <Compile Include="ApiControllers\CabinetController.cs" />
     <Compile Include="ApiControllers\FlightsController.cs" />
     <Compile Include="ApiControllers\RoutesController.cs" />
+    <Compile Include="ApiControllers\TicketsController.cs" />
     <Compile Include="ApiControllers\TypeaheadController.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
