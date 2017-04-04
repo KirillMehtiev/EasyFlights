@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Globalization;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -96,7 +94,6 @@ namespace EasyFlights.Web.ApiControllers
             return this.Ok();
         }
 
-
         [Route("changeUser")]
         [HttpPost]
         public async Task<IHttpActionResult> ChangeUser([FromBody]ProfileViewModel model)
@@ -128,6 +125,26 @@ namespace EasyFlights.Web.ApiControllers
             return Ok();
         }
 
+        // POST api/Account/ChangePassword
+        [Route("ChangePassword")]
+        public async Task<IHttpActionResult> ChangePassword(ChangePasswordViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
+
+            if (!result.Succeeded)
+            {
+                return GetErrorResult(result);
+            }
+
+            return Ok();
+        }
+
+
         // POST api/Account/Logout
         [Route("Logout")]
         public IHttpActionResult Logout()
@@ -135,7 +152,6 @@ namespace EasyFlights.Web.ApiControllers
             Authentication.SignOut(CookieAuthenticationDefaults.AuthenticationType);
             return Ok();
         }
-
 
         protected override void Dispose(bool disposing)
         {
