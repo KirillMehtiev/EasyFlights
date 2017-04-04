@@ -4,6 +4,7 @@ using EasyFlights.Web.Infrastracture;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
+using Microsoft.Owin.Security.Google;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
 
@@ -55,8 +56,8 @@ namespace EasyFlights.Web
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{
-            //    ClientId = "",
-            //    ClientSecret = ""
+            //    ClientId = "597379744281-compute@developer.gserviceaccount.com",
+            //    ClientSecret = "159440aa012b69e2b96c2c201ae28ede161d2b85"
             //});
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Http;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web.Http;
 using EasyFlights.DomainModel.Entities.Enums;
@@ -48,8 +49,8 @@ namespace EasyFlights.Web.ApiControllers
 
         // POST api/Account/Register
         [AllowAnonymous]
-        [Route("Register")]
-        public async Task<IHttpActionResult> Register(RegisterViewModel model)
+        [Route("SignUp")]
+        public async Task<IHttpActionResult> SignUp(RegisterViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -75,9 +76,10 @@ namespace EasyFlights.Web.ApiControllers
             return Ok();
         }
 
-        [Route("login")]
+        // POST api/Account/Login
+        [Route("SignIn")]
         [HttpPost]
-        public async Task<IHttpActionResult> Login([FromBody]LoginViewModel model)
+        public async Task<IHttpActionResult> SignIn([FromBody]LoginViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -85,16 +87,20 @@ namespace EasyFlights.Web.ApiControllers
             }
 
             ApplicationUser user = await UserManager.FindAsync(model.UserEmail, model.UserPassword);
-
             if (user == null)
             {
                 return GetErrorResult(IdentityResult.Failed());
             }
 
+            ClaimsIdentity claim = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+            Authentication.SignOut();
+            Authentication.SignIn(new AuthenticationProperties { IsPersistent = true }, claim);
+
             return this.Ok();
         }
 
-        [Route("changeUser")]
+        // POST api/Account/ChangeUser
+        [Route("ChangeUser")]
         [HttpPost]
         public async Task<IHttpActionResult> ChangeUser([FromBody]ProfileViewModel model)
         {
@@ -144,10 +150,9 @@ namespace EasyFlights.Web.ApiControllers
             return Ok();
         }
 
-
         // POST api/Account/Logout
-        [Route("Logout")]
-        public IHttpActionResult Logout()
+        [Route("SignOut")]
+        public IHttpActionResult SignOut()
         {
             Authentication.SignOut(CookieAuthenticationDefaults.AuthenticationType);
             return Ok();

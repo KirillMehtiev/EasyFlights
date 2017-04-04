@@ -1,9 +1,13 @@
-﻿namespace EasyFlights.Web.ViewModels.AccountViewModels
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace EasyFlights.Web.ViewModels.AccountViewModels
 {
-	public class LoginViewModel
-	{
+    public class LoginViewModel
+    {
+        [Required]
         public string UserEmail { get; set; }
 
+        [Required]
         public string UserPassword { get; set; }
 
         public string RememberMe { get; set; }
