@@ -13,6 +13,8 @@ namespace EasyFlights.Web.ViewModels.ProfileInfo
 
        public string ContactPhone { get; set; }
 
+       public string Email { get; set; }
+
        public string Sex { get; set; }
 
        public string DateOfBirth { get; set; }
