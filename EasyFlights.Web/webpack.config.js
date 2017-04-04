@@ -15,7 +15,8 @@ module.exports = {
     resolve: {
         alias: {
             pager: appDirectory + '/Libs/js/pager',
-            'jquery-ui': appDirectory + '/Libs/js/jquery-ui'
+            'jquery-ui': appDirectory + '/Libs/js/jquery-ui',
+            blockUI: appDirectory + '/Libs/js/jquery.blockUI'
         },
         extensions: ['.ts', '.tsx', '.js']
     },

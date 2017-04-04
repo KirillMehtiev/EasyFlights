@@ -7,7 +7,7 @@
             <label>Input your email to continue</label>
         </div>
         <div class="col-md-1 col-md-offset-5" >
-            <button class="btn btn-default" data-bind="click: validateEmail">Change password</button>
+            <button class="btn btn-default" data-bind="visible: !isPasswordChanging(), click: validateEmail">Change password</button>
         </div>
     </div>
     <div id="ChangingPassword" data-bind="visible:isPasswordChanging">

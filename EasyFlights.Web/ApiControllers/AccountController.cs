@@ -110,5 +110,12 @@ namespace EasyFlights.Web.ApiControllers
 
             return null;
         }
+
+        [Route("login")]
+        [HttpPost]
+        public IHttpActionResult Login([FromBody]LoginViewModel model)
+        {
+            return this.Ok();
+        }
     }
 }

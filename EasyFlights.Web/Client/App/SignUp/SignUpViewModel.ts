@@ -14,6 +14,8 @@ class SignUpViewModel {
     public userPassword: KnockoutObservable<string>;
     public userPasswordConfirmation: KnockoutObservable<string>;
 
+    public isRequestProcessing: KnockoutObservable<boolean>;
+
     constructor() {
         this.userName = ko.observable("").extend({
             required: true,
@@ -56,6 +58,8 @@ class SignUpViewModel {
             }
         });
 
+        this.isRequestProcessing = ko.observable(false);
+
         this.dataService = new DataService();
 
         this.onSubmit.bind(this);
@@ -65,6 +69,7 @@ class SignUpViewModel {
     public onSubmit(): void {
         let viewModel = <KnockoutValidationGroup> ko.validatedObservable(this);
         if (viewModel.isValid()) {
+            this.isRequestProcessing(true);
             this.dataService.post("/api/account/register", {
                 userName: this.userName(),
                 userSurname: this.userSurname(),
@@ -82,6 +87,8 @@ class SignUpViewModel {
 
         console.log("Register: response");
         console.log(response);
+
+        this.isRequestProcessing(false);
     }
 }
 
