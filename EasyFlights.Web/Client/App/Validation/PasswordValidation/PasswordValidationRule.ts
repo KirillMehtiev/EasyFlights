@@ -14,8 +14,9 @@ class PasswordValidationRule implements ISingleValueValidationRule<IPasswordVali
 
         return inputValue.length >= requiredValue.minLength &&
             inputValue.length <= requiredValue.maxLenght &&
-            this.hasUpperCaseLetter(inputValue) &&
-            this.hasDigit(inputValue);
+            requiredValue.shouldContainAtLeastOneCapitalLetter ? this.hasUpperCaseLetter(inputValue) : true &&
+            requiredValue.shouldContainAtLeastOneDigit ? this.hasDigit(inputValue) : true &&
+            requiredValue.shouldContainAtLeastOneLowerCaseLetter ? this.hasLowerCaseLetter(inputValue) : true;
     };
 
     private hasUpperCaseLetter(str: string): boolean {
@@ -24,6 +25,10 @@ class PasswordValidationRule implements ISingleValueValidationRule<IPasswordVali
 
     private hasDigit(str: string): boolean {
         return (/[0-9]/.test(str));
+    }
+
+    private hasLowerCaseLetter(str: string) {
+        return (/[a-z]/.test(str));
     }
 }
 

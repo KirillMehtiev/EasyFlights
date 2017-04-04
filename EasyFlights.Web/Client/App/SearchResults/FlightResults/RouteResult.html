@@ -1,13 +1,21 @@
 ﻿<div class="container">
     <div class="row well">
-        <p><b>F L I G H T</b>&nbsp;<span class="glyphicon glyphicon-plane" aria-hidden="true"></span></p> 
-        <p><b>Departure Place:</b> <span data-bind="text: item.departurePlace"></span>&nbsp;<b>Destination Place:</b><span data-bind="text: item.destinationPlace"></span></p>
-        <p><b>Arrival Time:</b> <span data-bind="text: item.arrivalTime"></span>&nbsp;<b>Departure Time:</b><span data-bind="text: item.departureTime"></span></p>
-        <p><b>Total price:</b><span data-bind="text: item.totalCoast"></span></p>
-        <p><b>Total duration:</b><span data-bind="text: item.totalTime"></span> minutes</p>
-        <!--<p><b>Number Of:</b><span data-bind="text: quantity"></span>-->
-        <div data-bind="foreach: {data: item.flights, as: 'flightItem'}">
-            <flights params="item: flightItem"></flights>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div data-bind="foreach: {data: item.flights, as: 'flightItem'}">
+                    <flights params="item: flightItem"></flights>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-md-5">
+                        <h4><b>Total price: </b><span data-bind="text: item.totalCoast"></span></h4>
+                    </div>
+                    <div class="col-md-5 pull-left">
+                        <h4><b>Total duration: </b><span data-bind="text: item.totalTime"></span></h4>
+                    </div>
+                </div>
+            </div>
         </div>
         <a class="btn btn-info" data-bind="page-href: {path: '../selected-route', params: { routeId: $data.item.id, numberOfPassenger: $data.quantity }}">Select</a>
     </div>

@@ -1183,6 +1183,7 @@ interface JQueryStatic {
     parseHTML(data: string, context?: Document, keepScripts?: boolean): any[];
     blockUI(p: { message: string;focusInput: boolean;overlayCSS: { backgroundColor: string;opacity: number;cursor: string } });
     unblockUI();
+    cookie(authCookieName: string): any;
 }
 
 /**

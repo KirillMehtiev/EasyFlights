@@ -1,4 +1,5 @@
 ﻿using System.Web.Http;
+using Microsoft.Owin.Security.Cookies;
 using Newtonsoft.Json.Serialization;
 using Owin;
 
@@ -16,6 +17,11 @@ namespace EasyFlights.Web
             HttpConfiguration config = GlobalConfiguration.Configuration;
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             config.Formatters.JsonFormatter.UseDataContractJsonSerializer = false;
+
+            app.UseCookieAuthentication(new CookieAuthenticationOptions
+            {
+                AuthenticationType = "ApplicationCookie"
+            });
         }
     }
 }

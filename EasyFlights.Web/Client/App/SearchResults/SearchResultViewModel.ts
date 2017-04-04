@@ -18,13 +18,13 @@ class SearchResultViewModel {
     public numberOfPassenger: KnockoutObservable<number>;
     public type: KnockoutObservable<string>;
 
-    public pageSize: number;
+    public pageSize: KnockoutObservable<number>;
     public pageNo: KnockoutObservable<number>;
     public pageIndex: any;
-    public total: number;
-    public maxPages: number;
-    public directions: boolean;
-    public boundary: boolean;
+    public total: KnockoutObservable<number>;
+    public maxPages: KnockoutObservable<number>;
+    public directions: KnockoutObservable<boolean>;
+    public boundary: KnockoutObservable<boolean>;
     public text: any;
 
     public isLoading: KnockoutObservable<boolean>;
@@ -32,7 +32,7 @@ class SearchResultViewModel {
     private routesService: RoutesService = new RoutesService();
 
     constructor(params) {
-        console.log("Params: ",params);
+        console.log("Params: ", params);
 
         this.routeItems = ko.observableArray([]);
         this.departureDate = params.departureDate;
@@ -45,7 +45,6 @@ class SearchResultViewModel {
         this.type = params.type;
 
         this.createDefaultOptions();
-        this.setPage();
         this.sortByPrice();
 
         this.isLoading = ko.observable(true);
@@ -57,6 +56,7 @@ class SearchResultViewModel {
                 this.routeItems(data);
                 this.isLoading(false);
                 this.setPage();
+                this.total = ko.observable(this.routeItems().length);
             }).fail((error) => {
                 this.isLoading(false);
             });
@@ -64,11 +64,11 @@ class SearchResultViewModel {
 
     public setPage(): void {
         this.pagedRouteItems.removeAll();
-        var startIndex = (this.pageNo() - 1) * this.pageSize;
-        var endIndex = this.pageNo() * this.pageSize;
 
-        var pagedFlightItems = this.routeItems.slice(startIndex, endIndex);
+        var startIndex = (this.pageNo() - 1) * this.pageSize();
+        var endIndex = this.pageNo() * this.pageSize();
 
+        var pagedFlightItems = this.routeItems().slice(startIndex, endIndex);
         ko.utils.arrayPushAll<RouteItem>(this.pagedRouteItems, pagedFlightItems);
     };
 
@@ -80,7 +80,7 @@ class SearchResultViewModel {
     }
     public sortByDuration(): void {
         this.routeItems.sort((x, y) => y.totalTime.split(':').reduce((seconds, v) => +v + seconds * 60, 0) / 60 -
-                                       x.totalTime.split(':').reduce((seconds, v) => +v + seconds * 60, 0) / 60);
+            x.totalTime.split(':').reduce((seconds, v) => +v + seconds * 60, 0) / 60);
         this.setPage();
         $(".sortByDuration").removeClass('btn btn-default').addClass('btn btn-primary');
         $(".sortByPrice").removeClass('btn btn-primary').addClass('btn btn-default');
@@ -88,16 +88,16 @@ class SearchResultViewModel {
     private createDefaultOptions(): void {
         this.pagedRouteItems = ko.observableArray([]);
         this.pageNo = ko.observable(1);
-        this.pageSize = 2;
-        this.total = this.routeItems().length;
-        this.maxPages = 5;
-        this.directions = true;
-        this.boundary = true;
+        this.pageSize = ko.observable(5);
+        this.total = ko.observable(this.routeItems().length);
+        this.maxPages = ko.observable(5);
+        this.directions = ko.observable(true);
+        this.boundary = ko.observable(true);
         this.text = {
-            first: 'First',
-            last: 'Last',
-            back: '«',
-            forward: '»'
+            first: ko.observable('First'),
+            last: ko.observable('Last'),
+            back: ko.observable('«'),
+            forward: ko.observable('»')
         };
     }
 

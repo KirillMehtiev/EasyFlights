@@ -19,7 +19,7 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
+    <IISExpressSSLPort>44346</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -254,6 +254,7 @@
     <Content Include="Client\Libs\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Client\Libs\js\jquery-ui.js" />
     <Content Include="Client\Libs\js\jquery.blockUI.js" />
+    <Content Include="Client\Libs\js\jquery.cookie.js" />
     <Content Include="Client\Libs\js\pager.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -315,6 +316,8 @@
     <TypeScriptCompile Include="Client\App\Common\Components\RouteHeader\RouteHeaderComponent.ts" />
     <TypeScriptCompile Include="Client\App\Common\Components\RouteHeader\RouteHeaderViewModel.ts" />
     <TypeScriptCompile Include="Client\App\Common\Enum\Enums.ts" />
+    <TypeScriptCompile Include="Client\App\Common\Services\Auth\authService.ts" />
+    <TypeScriptCompile Include="Client\App\Common\Services\Auth\ISignUpModel.ts" />
     <TypeScriptCompile Include="Client\App\Common\Services\dataService.ts" />
     <TypeScriptCompile Include="Client\App\Components.ts" />
     <TypeScriptCompile Include="Client\App\Index\IndexComponent.ts" />
@@ -334,6 +337,7 @@
     <TypeScriptCompile Include="Client\App\Layout\Footer\FooterViewModel.ts" />
     <TypeScriptCompile Include="Client\App\Layout\Header\HeaderComponent.ts" />
     <TypeScriptCompile Include="Client\App\Layout\Header\HeaderViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\Layout\Header\IHeaderOptions.ts" />
     <TypeScriptCompile Include="Client\App\Layout\LayoutComponent.ts" />
     <TypeScriptCompile Include="Client\App\Layout\LayoutViewModel.ts" />
     <TypeScriptCompile Include="Client\App\Login\LoginComponent.ts" />
@@ -447,7 +451,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>21275</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:21275/</IISUrl>
+          <IISUrl>https://localhost:44346/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
