@@ -1,13 +1,16 @@
-﻿using System.Linq;
+﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using EasyFlights.DomainModel.Entities.Enums;
 using EasyFlights.DomainModel.Entities.Identity;
 using EasyFlights.Web.Infrastracture;
 using EasyFlights.Web.ViewModels.AccountViewModels;
+using EasyFlights.Web.ViewModels.ProfileInfo;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using Microsoft.Owin.Security.Cookies;
 
 namespace EasyFlights.Web.ApiControllers
 {
@@ -41,14 +44,13 @@ namespace EasyFlights.Web.ApiControllers
 
         public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
 
-      // private IAuthenticationManager Authentication => this.Request.GetOwinContext().Authentication;
+        private IAuthenticationManager Authentication => this.Request.GetOwinContext().Authentication;
 
         // POST api/Account/Register
         [AllowAnonymous]
         [Route("Register")]
         public async Task<IHttpActionResult> Register(RegisterViewModel model)
         {
-            var l = this.userManager.Users.ToList();
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -70,6 +72,84 @@ namespace EasyFlights.Web.ApiControllers
                 return GetErrorResult(result);
             }
 
+            return Ok();
+        }
+
+        [Route("login")]
+        [HttpPost]
+        public async Task<IHttpActionResult> Login([FromBody]LoginViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            ApplicationUser user = await UserManager.FindAsync(model.UserEmail, model.UserPassword);
+
+            if (user == null)
+            {
+                return GetErrorResult(IdentityResult.Failed());
+            }
+
+            return this.Ok();
+        }
+
+        [Route("changeUser")]
+        [HttpPost]
+        public async Task<IHttpActionResult> ChangeUser([FromBody]ProfileViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            ApplicationUser user = await UserManager.FindByEmailAsync(model.Email);
+            if (user == null)
+            {
+                return this.InternalServerError();
+            }
+
+            user.DateOfBirth = DateTime.Parse(model.DateOfBirth);
+            user.FirstName = model.FirstName;
+            user.LastName = model.LastName;
+            user.Sex = (Sex)Enum.Parse(typeof(Sex), model.Sex);
+            user.PhoneNumber = model.ContactPhone;
+
+            IdentityResult result = await UserManager.UpdateAsync(user);
+
+            if (!result.Succeeded)
+            {
+                return GetErrorResult(result);
+            }
+
+            return Ok();
+        }
+
+        // POST api/Account/ChangePassword
+        [Route("ChangePassword")]
+        public async Task<IHttpActionResult> ChangePassword(ChangePasswordViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
+
+            if (!result.Succeeded)
+            {
+                return GetErrorResult(result);
+            }
+
+            return Ok();
+        }
+
+
+        // POST api/Account/Logout
+        [Route("Logout")]
+        public IHttpActionResult Logout()
+        {
+            Authentication.SignOut(CookieAuthenticationDefaults.AuthenticationType);
             return Ok();
         }
 
@@ -111,13 +191,6 @@ namespace EasyFlights.Web.ApiControllers
             }
 
             return null;
-        }
-
-        [Route("login")]
-        [HttpPost]
-        public IHttpActionResult Login([FromBody]LoginViewModel model)
-        {
-            return this.Ok();
         }
     }
 }
