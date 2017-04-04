@@ -101,7 +101,7 @@
     <Compile Include="Common\Guard.cs" />
     <Compile Include="Common\OperationDetails.cs" />
     <Compile Include="DtoMappers\FlightDtoMapper.cs" />
-    <Compile Include="DtoMappers\IDtoMapper.cs" />
+    <Compile Include="DtoMappers\IFlightDtoMapper.cs" />
     <Compile Include="DtoMappers\IRouteDtoMapper.cs" />
     <Compile Include="DtoMappers\RouteDtoMapper.cs" />
     <Compile Include="Interfaces\IFlightService.cs" />
