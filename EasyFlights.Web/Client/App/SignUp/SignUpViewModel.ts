@@ -59,6 +59,7 @@ class SignUpViewModel {
         this.dataService = new DataService();
 
         this.onSubmit.bind(this);
+        this.handleServiceResponse.bind(this);
     }
 
     public onSubmit(): void {
