@@ -3,11 +3,11 @@
 <div data-bind="modal: {
     visible: modalVisible,
     dialogCss: modalSize,
-    header: { data: { label: 'Choose a seat'} },
+    header: { data: { label: 'Choose a seat for passenger(s)'} },
     body: { name: bodyTemplate, data: bodyData },
-    footer: { data: {closeLabel: 'Select' } }
+    footer: { data: {closeLabel: 'Done' } }
 }"></div>
 
 <script type="text/html" id="modalTemplate">
-    <cabin params="rows: rows() ? rows : null, rowsCount: rows() ? rowsCount() : 0, selectNumber: 2"></cabin>
+    <cabin params="rows: rows() ? rows : null, rowsCount: rows() ? rowsCount() : 0, selectNumber: 2, columnsNames:  rows() ? columnsNames() : null"></cabin>
 </script>

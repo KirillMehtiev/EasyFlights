@@ -16,10 +16,14 @@ class SignUpViewModel {
 
     constructor() {
         this.userName = ko.observable("").extend({
-            required: true
+            required: true,
+            minLength: 1,
+            maxLength: 50
         });
         this.userSurname = ko.observable("").extend({
-            required: true
+            required: true,
+            minLength: 1,
+            maxLength: 50
         });
         this.userPhone = ko.observable("").extend({
             required: true,
@@ -30,7 +34,17 @@ class SignUpViewModel {
             email: true
         });
         this.userPassword = ko.observable("").extend({
-            required: true
+            required: true,
+            password: {
+                params: {
+                    minLength: 6,
+                    maxLenght: 50,
+                    shouldContainAtLeastOneDigit: true,
+                    shouldContainAtLeastOneCapitalLetter: true
+                },
+                message: "A password should contain at least one digit and one capital letter. " + 
+                         "The length of a password should be greater than 6 characters and less than 50 characters"
+            }
         });
 
         let self = this;
@@ -45,6 +59,7 @@ class SignUpViewModel {
         this.dataService = new DataService();
 
         this.onSubmit.bind(this);
+        this.handleServiceResponse.bind(this);
     }
 
     public onSubmit(): void {
