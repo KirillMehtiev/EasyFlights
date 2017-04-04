@@ -16,9 +16,7 @@ namespace EasyFlights.Services.DtoMappers
                 Duration = model.ScheduledDepartureTime - model.ScheduledArrivalTime,
                 DefaultFare = model.DefaultFare,
                 Id = model.Id,
-
-                // TODO: figure out what this dto should contain
-                Aircraft = new AircraftDto()
+                Aircraft = new AircraftDto() { Capacity = model.Aircraft.Capacity, ModelName = model.Aircraft.Model },
             };
         }
     }
