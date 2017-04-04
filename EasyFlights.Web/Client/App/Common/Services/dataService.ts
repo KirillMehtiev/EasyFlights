@@ -8,7 +8,8 @@ export class DataService {
                 return <T>data;
             })
             .fail((error) => {
-                toastr.error("Error occurred while getting data");
+                let msg: string = error.statusText;
+                toastr.error(msg, "Error", { timeOut: 5000 });
             });
     }
 
@@ -18,8 +19,9 @@ export class DataService {
             type: "POST",
             data: JSON.stringify(data),
             contentType: "application/json; charset=utf-8"
-        }).fail(() => {
-            toastr.error("Error occurred while posting data");
+        }).fail((error) => {
+            let msg: string = error.statusText;
+            toastr.error(msg, "Error", { timeOut: 5000 });
         });
     }
 }
