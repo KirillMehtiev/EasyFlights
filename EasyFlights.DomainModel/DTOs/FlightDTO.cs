@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace EasyFlights.DomainModel.DTOs
 {
@@ -19,5 +20,7 @@ namespace EasyFlights.DomainModel.DTOs
         public AircraftDto Aircraft { get; set; }
 
         public int Id { get; set; }
+
+        public List<TicketDto> Tickets { get; set; }
     }
 }

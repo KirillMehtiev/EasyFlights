@@ -18,6 +18,6 @@ namespace EasyFlights.DomainModel.DTOs
 
         public decimal TotalPrice { get; set; }
 
-        public List<TicketDto> Tickets { get; set; }
+        public List<FlightDto> Flights { get; set; }
     }
 }
