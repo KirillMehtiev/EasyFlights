@@ -26,7 +26,7 @@ export class AuthService {
 
     public signUp(model: ISignUpModel) {
         return this.dataService
-                    .post("/api/account/register", model)
+                    .post("/api/account/signup", model)
                     .then((response => {
 
                         console.log("auth reg");

@@ -29,7 +29,7 @@ var LoginViewModel = (function () {
     LoginViewModel.prototype.login = function () {
         var viewModel = ko.validatedObservable(this);
         if (viewModel.isValid()) {
-            this.dataService.post("/api/account/login", {
+            this.dataService.post("/api/account/signin", {
                 userEmail: this.userEmail(),
                 userPassword: this.userPassword(),
                 rememberMe: this.rememberMe()

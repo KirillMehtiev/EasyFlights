@@ -50,7 +50,7 @@ namespace EasyFlights.Web.ApiControllers
         // POST api/Account/Register
         [AllowAnonymous]
         [HttpPost]
-        [Route("SignUp")]
+        [Route("Signup")]
         public async Task<IHttpActionResult> SignUp(RegisterViewModel model)
         {
             if (!ModelState.IsValid)
