@@ -1,12 +1,9 @@
 ﻿import ko = require("knockout");
 require("knockout.validation");
 
-import { DataService } from "../Common/Services/DataService";
+import { AuthService } from "../Common/Services/Auth/authService";
 
 class SignUpViewModel {
-
-    private dataService: DataService;
-
     public userName: KnockoutObservable<string>;
     public userSurname: KnockoutObservable<string>;
     public userPhone: KnockoutObservable<string>;
@@ -60,8 +57,6 @@ class SignUpViewModel {
 
         this.isRequestProcessing = ko.observable(false);
 
-        this.dataService = new DataService();
-
         this.onSubmit.bind(this);
         this.handleServiceResponse.bind(this);
     }
@@ -70,7 +65,8 @@ class SignUpViewModel {
         let viewModel = <KnockoutValidationGroup> ko.validatedObservable(this);
         if (viewModel.isValid()) {
             this.isRequestProcessing(true);
-            this.dataService.post("/api/account/register", {
+
+            AuthService.current.SignUp({
                 userName: this.userName(),
                 userSurname: this.userSurname(),
                 userPhone: this.userPhone(),
@@ -83,10 +79,18 @@ class SignUpViewModel {
         }
     }
 
-    private handleServiceResponse(response) {
+    private handleServiceResponse(response: boolean) {
 
         console.log("Register: response");
         console.log(response);
+
+        if (response) {
+            // TODO: redirect somewhere
+        }
+        else {
+            // TODO: show error message
+        }
+
 
         this.isRequestProcessing(false);
     }
