@@ -1,7 +1,7 @@
 ﻿import ko = require("knockout");
 import { PassengerInfoItem } from "./PassengerInfo/PassengerInfoItem"
 import { FlightItem } from "../SearchResults/FlightResults/Tickets/FlightItem";
-import { DataService } from "../Common/Services/dataService";
+import { SelectFlowService } from "./Services/SelectFlowService";
 import { TicketInfoItem } from "./TicketInfo/TicketInfoItem";
 import { StepFlow } from "../Common/Enum/Enums";
 
@@ -13,7 +13,7 @@ class SelectFlowViewModel {
     // Shared data
     public passengerInfoList: KnockoutObservableArray<PassengerInfoItem>;
     public flights: KnockoutObservableArray<FlightItem>;
-    private dataService: DataService = new DataService();
+    private selectFlowServices: SelectFlowService = new SelectFlowService();
 
     // Internal routing
     public onNextStep: KnockoutSubscribable<number>;
@@ -28,7 +28,9 @@ class SelectFlowViewModel {
         this.numberOfPassenger = params.numberOfPassenger;
         this.passengerInfoList = ko.observableArray([]);
         this.flights = ko.observableArray([]);
-        this.fillFlightsList(this.routeId());
+
+        // Call api
+
 
         // Flow routing
         this.onNextStep = new ko.subscribable();
@@ -95,27 +97,9 @@ class SelectFlowViewModel {
         }
     }
 
-    //private fillFlightsList(routeId: string): void {
-    //    this.dataService.get<Array<FlightItem>>("api/Flights/Get?routeId=".concat(routeId))
-    //        .then((data) => {
-    //            this.flights(data);
-    //            for (let i = 0; i < this.passengerInfoList.length; i++) {
-    //                for (let j = 0; j < this.flights.length; j++) {
-    //                    this.flights()[j].tickets.push(new TicketInfoItem(this.passengerInfoList()[i], 0, "Economy", 0, 100));
-    //                }
-    //            }
-    //        });
-    //}
-
-    //private initPassengerInfoList(numberOfPassenger: number): Array<PassengerInfoItem> {
-    //    let result = [];
-
-    //    for (var i = 0; i < numberOfPassenger; i++) {
-    //        result.push(new PassengerInfoItem());
-    //    }
-
-    //    return result;
-    //}
+    private getPassengerInfo(routeId:number, numberOfPassenger: number): Array<PassengerInfoDto> {
+        let url: "";
+    }
 }
 
 export = SelectFlowViewModel;

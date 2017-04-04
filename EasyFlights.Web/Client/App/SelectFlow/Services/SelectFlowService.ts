@@ -1,11 +1,12 @@
 ﻿import { DataService } from '../../Common/Services/dataService';
+import { PassengerInfoItem } from "../PassengerInfo/PassengerInfoItem";
 
-export class RoutesService {
+export class SelectFlowService {
     private apiBasePath = "api/Routes";
     private dataService: DataService = new DataService();
 
-    //public getRoutes(url: string): JQueryPromise<Array<RouteItem>> {
-    //    return this.dataService.get<Array<RouteItem>>(this.apiBasePath + '/' + url);
-    //}
+    public getPassengerInfo(url: string): JQueryPromise<Array<PassengerInfoItem>> {
+        return this.dataService.get<Array<PassengerInfoItem>>(this.apiBasePath + '/' + url);
+    }
 
 }
