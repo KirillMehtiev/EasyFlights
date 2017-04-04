@@ -1,4 +1,5 @@
-﻿import "./Layout/LayoutComponent";
+﻿/// <reference path="common/components/busyindicator/busyindicatorcomponent.ts" />
+import "./Layout/LayoutComponent";
 import "./Layout/Footer/FooterComponent";
 import "./Layout/Header/HeaderComponent";
 import "./Index/IndexComponent";
@@ -25,3 +26,4 @@ import "./UserCabinet/Account/AccountComponent";
 import "./UserCabinet/ProfileInfo/ProfileInfoComponent";
 import "./Login/LoginComponent";
 import "./UserCabinet/ManageOrders/ManageOrdersComponent";
+import "./Common/Components/BusyIndicator/BusyIndicatorComponent";

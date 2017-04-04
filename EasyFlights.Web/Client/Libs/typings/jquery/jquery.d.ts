@@ -1181,6 +1181,8 @@ interface JQueryStatic {
      * @param keepScripts A Boolean indicating whether to include scripts passed in the HTML string
      */
     parseHTML(data: string, context?: Document, keepScripts?: boolean): any[];
+    blockUI(p: { message: string;focusInput: boolean;overlayCSS: { backgroundColor: string;opacity: number;cursor: string } });
+    unblockUI();
 }
 
 /**

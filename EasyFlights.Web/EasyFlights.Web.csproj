@@ -217,12 +217,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Client\.gitignore" />
+    <Content Include="Client\App\Common\Components\BusyIndicator\BusyIndicatorTemplate.html" />
+    <Content Include="Client\App\Common\Components\DatePicker\DatePickerTemplate.html" />
     <Content Include="Client\App\Common\Components\LazyPage\LazyPageTemplate.html" />
     <Content Include="Client\App\Common\Components\RouteHeader\RouteHeaderTemplate.html" />
     <Content Include="Client\App\Index\IndexTemplate.html" />
     <Content Include="Client\App\Common\Components\Autocomplete\AutocompleteTemplate.html" />
     <Content Include="Client\App\Index\Search\SearchTemplate.html" />
-    <Content Include="Client\App\Common\Components\DatePicker\DatePickerTemplate.html" />
     <Content Include="Client\App\Common\Components\RadioChooser\RadioChooserTemplate.html" />
     <Content Include="Client\App\Layout\Footer\FooterTemplate.html" />
     <Content Include="Client\App\Layout\Header\HeaderTemplate.html" />
@@ -248,6 +249,7 @@
     <Content Include="Client\Libs\css\jquery-ui.min.css" />
     <Content Include="Client\Libs\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Client\Libs\js\jquery-ui.js" />
+    <Content Include="Client\Libs\js\jquery.blockUI.js" />
     <Content Include="Client\Libs\js\pager.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -298,6 +300,11 @@
     <TypeScriptCompile Include="Client\App\Bindings.ts" />
     <TypeScriptCompile Include="Client\App\Common\Components\Autocomplete\AutocompleteItem.ts" />
     <TypeScriptCompile Include="Client\App\Common\Components\Autocomplete\AutocompleteBinding.ts" />
+    <TypeScriptCompile Include="Client\App\Common\Components\BusyIndicator\BusyIndicatorComponent.ts" />
+    <TypeScriptCompile Include="Client\App\Common\Components\BusyIndicator\BusyIndicatorViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\Common\Components\BusyIndicator\IBusyIndicatorOptions.ts" />
+    <TypeScriptCompile Include="Client\App\Common\Components\DatePicker\DatePickerComponent.ts" />
+    <TypeScriptCompile Include="Client\App\Common\Components\DatePicker\DatePickerViewModel.ts" />
     <TypeScriptCompile Include="Client\App\Common\Components\LazyPage\LazyPageComponent.ts" />
     <TypeScriptCompile Include="Client\App\Common\Components\LazyPage\LazyPageViewModel.ts" />
     <TypeScriptCompile Include="Client\App\Common\Components\RouteHeader\IRouteHeaderOptions.ts" />
@@ -312,8 +319,6 @@
     <TypeScriptCompile Include="Client\App\Common\Components\Autocomplete\AutocompleteViewModel.ts" />
     <TypeScriptCompile Include="Client\App\Common\Components\Autocomplete\IAutocompleteOptions.ts" />
     <TypeScriptCompile Include="Client\App\Common\Components\DatePicker\DatePickerBinding.ts" />
-    <TypeScriptCompile Include="Client\App\Common\Components\DatePicker\DatePickerComponent.ts" />
-    <TypeScriptCompile Include="Client\App\Common\Components\DatePicker\DatePickerViewModel.ts" />
     <TypeScriptCompile Include="Client\App\Common\Components\DatePicker\IDatePickerOptions.ts" />
     <TypeScriptCompile Include="Client\App\Index\Search\SearchComponent.ts" />
     <TypeScriptCompile Include="Client\App\Index\Search\SearchViewModel.ts" />
@@ -377,6 +382,7 @@
     <TypeScriptCompile Include="Client\App\Validation\KnockoutValidationOptions.ts" />
     <TypeScriptCompile Include="Client\App\Validation\PasswordValidation\IPasswordValidationOptions.ts" />
     <TypeScriptCompile Include="Client\App\Validation\PasswordValidation\PasswordValidationRule.ts" />
+    <TypeScriptCompile Include="Client\Libs\typings\jqueryui\jquery.blockUI.d.ts" />
     <TypeScriptCompile Include="Client\Libs\typings\knockout\knockout.d.ts" />
     <TypeScriptCompile Include="Client\Libs\typings\knockout\knockout.validation.d.ts" />
     <TypeScriptCompile Include="Client\Libs\typings\pager\pager.d.ts" />
@@ -416,6 +422,9 @@
     <Folder Include="Client\App\UserCabinet\Account\" />
     <Folder Include="Client\App\UserCabinet\ManageOrders\" />
     <Folder Include="Client\App\UserCabinet\ProfileInfo\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Client\App\Common\Components\BusyIndicator\BusyIndicator.scss" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
