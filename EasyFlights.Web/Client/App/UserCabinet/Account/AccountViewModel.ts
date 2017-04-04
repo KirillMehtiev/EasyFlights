@@ -10,6 +10,7 @@ class AccountViewModel {
     private dataService:DataService = new DataService();
     private validateEmailUrl: string = "api/Cabinet/ValidateEmail?email=";
     private changePasswordUrl: string = "api/Cabinet/ChangePassword";
+    private isEmailValid: KnockoutObservable<boolean>;
 
     public constructor() {
         this.isPasswordChanging = ko.observable(false);
@@ -19,22 +20,26 @@ class AccountViewModel {
         this.email = ko.observable("");
     }
     public validateEmail(): void {
-        let isEmailValid: boolean = false;
+        this.isEmailValid=ko.observable(false);
         this.dataService.get<boolean>(this.validateEmailUrl.concat(this.email()))
-            .then((data) => { isEmailValid=data });
-        if (isEmailValid) {
-            this.isPasswordChanging = ko.observable(true);
-        }
+            .then((data) => {
+                this.isEmailValid(data);
+                if (this.isEmailValid()) {
+                    this.isPasswordChanging(true);
+                }
+            });
     }
     public changePassword():boolean {
         let result: boolean = false;
         this.dataService.post<boolean>(this.changePasswordUrl,new ChangePasswordModel(this.oldPassword(),this.newPassword(),this.newPasswordConfirm()))
-            .then((data) => { result = data });
-        if (result) {
-            this.oldPassword = ko.observable("");
-            this.newPassword = ko.observable("");
-            this.newPasswordConfirm = ko.observable("");
-        }
+            .then((data) => {
+                result = data;
+                if (result) {
+                this.oldPassword = ko.observable("");
+                this.newPassword = ko.observable("");
+                this.newPasswordConfirm = ko.observable("");
+                }
+            });
         return result;
     }
 }

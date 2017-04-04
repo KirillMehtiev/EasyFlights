@@ -204,6 +204,7 @@
     <Compile Include="NinjectModules\ServicesModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\AccountViewModels\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\AccountViewModels\RegisterViewModel.cs" />
     <Compile Include="ViewModels\AirportViewModel.cs" />
     <Compile Include="ViewModels\CabinViewModel.cs" />
@@ -355,6 +356,9 @@
     <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\TicketInfoComponent.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\TicketInfoItem.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\TicketInfoViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\UserCabinet\Account\AccountComponent.ts" />
+    <TypeScriptCompile Include="Client\App\UserCabinet\Account\AccountViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\UserCabinet\Account\ChangePasswordModel.ts" />
     <TypeScriptCompile Include="Client\App\UserCabinet\ProfileInfo\ProfileInfoComponent.ts" />
     <TypeScriptCompile Include="Client\App\UserCabinet\ProfileInfo\ProfileInfoViewModel.ts" />
     <TypeScriptCompile Include="Client\App\UserCabinet\UserCabinetComponent.ts" />

@@ -1,4 +1,6 @@
-﻿using System.Web.Http;
+﻿using System.Web.Helpers;
+using System.Web.Http;
+using EasyFlights.Web.ViewModels.AccountViewModels;
 
 namespace EasyFlights.Web.ApiControllers
 {
@@ -15,7 +17,7 @@ namespace EasyFlights.Web.ApiControllers
 
         [HttpPost]
         [Route("ChangePassword")]
-        public bool ChangePassword(string oldPassword, string newPassword, string newPasswordConfirm)
+        public bool ChangePassword([FromBody] ChangePasswordViewModel model)
         {
             // not implemented yet
             // return newPassword != oldPassword && newPassword == newPasswordConfirm;
