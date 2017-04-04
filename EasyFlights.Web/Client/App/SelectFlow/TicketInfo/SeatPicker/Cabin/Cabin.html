@@ -20,7 +20,7 @@
                 </thead>
                 <tbody data-bind="foreach: rows">
                 <tr data-bind="foreach: $data.seats" id="place">
-                    <td data-bind="click: ($component.isBlockSelect())? null : function(){$data.updateSeat();}, css: {chosen: $data.isChosen(), booked: $data.isBooked()}, text: $data.seat"></td>
+                    <td data-bind="click: $data.updateSeat(), css: {chosen: $data.isChosen(), booked: $data.isBooked()}, text: $data.seat"></td>
                     <td data-bind="text: $data.row, visible: $data.isSpace, css: {withoutImg: $data.isSpace}"></td>
                 </tr>
                 </tbody>

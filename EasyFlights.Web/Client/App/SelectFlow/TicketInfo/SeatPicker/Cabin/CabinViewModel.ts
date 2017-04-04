@@ -21,14 +21,6 @@ class CabinViewModel {
     public updateSeat(rowNumber: number, seatNumber: number, isChosen: boolean): void {
         this.rows()[rowNumber].updateSeate(seatNumber, isChosen);
     }  
-
-    public onSelectSeat(): void {
-        var previousCount = this.selectNumber();
-        this.selectNumber = ko.observable(previousCount - 1);
-        if (this.selectNumber() < 1) {
-            this.isBlockSelect(true);
-        }
-    }
 }
 
 export = CabinViewModel;
