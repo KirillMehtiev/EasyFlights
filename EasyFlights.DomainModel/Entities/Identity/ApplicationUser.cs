@@ -15,9 +15,9 @@ namespace EasyFlights.DomainModel.Entities.Identity
 
         public string LastName { get; set; }
 
-        public Sex Sex { get; set; }
+        public Sex? Sex { get; set; }
 
-        public DateTime DateOfBirth { get; set; }
+        public DateTime? DateOfBirth { get; set; }
 
         public ICollection<Order> Orders { get; set; }
 
@@ -28,7 +28,7 @@ namespace EasyFlights.DomainModel.Entities.Identity
             userIdentity.AddClaim(new Claim("lastname", LastName));
             userIdentity.AddClaim(new Claim("firstname", FirstName));
             userIdentity.AddClaim(new Claim("sex", Sex.ToString()));
-            userIdentity.AddClaim(new Claim("dateofbirth", DateOfBirth.ToString(CultureInfo.InvariantCulture)));
+            userIdentity.AddClaim(new Claim("dateofbirth", DateOfBirth?.ToString(CultureInfo.InvariantCulture)));
 
             // Add custom user claims here
             return userIdentity;

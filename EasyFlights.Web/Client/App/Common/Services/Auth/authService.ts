@@ -16,26 +16,33 @@ export class AuthService {
 
     constructor() {
         this.dataService = new DataService();
-        this.isCurrentUserSignedIn = ko.observable(<boolean>$.cookie(AuthService.authCookieName));
+
+        let cookie = $.cookie(AuthService.authCookieName) || false;
+
+        console.log(cookie);
+
+        this.isCurrentUserSignedIn = ko.observable(<boolean>cookie);
     }
 
-    public SignUp(model: ISignUpModel) {
+    public signUp(model: ISignUpModel) {
         return this.dataService
                     .post("/api/account/register", model)
                     .then((response => {
 
+                        console.log("auth reg");
+                        console.log(response);
+
                         // TODO: do something, maybe, set cookie
 
-                        return false;
                     }));
     }
 
-    public SignIn() {
+    public signIn() {
 
         this.isCurrentUserSignedIn(true);
     }
 
-    public SignOut() {
+    public signOut() {
 
         this.isCurrentUserSignedIn(false);
     }

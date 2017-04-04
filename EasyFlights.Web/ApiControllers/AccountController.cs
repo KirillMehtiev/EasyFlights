@@ -48,6 +48,7 @@ namespace EasyFlights.Web.ApiControllers
 
         // POST api/Account/Register
         [AllowAnonymous]
+        [HttpPost]
         [Route("Register")]
         public async Task<IHttpActionResult> Register(RegisterViewModel model)
         {

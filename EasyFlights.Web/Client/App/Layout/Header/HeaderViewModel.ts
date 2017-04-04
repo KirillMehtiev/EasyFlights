@@ -5,6 +5,9 @@ class HeaderViewModel {
 
     constructor(options: IHeaderOptions) {
         this.isCurrentUserSignedIn = options.isCurrentUserSignedIn;
+
+        console.log(this.isCurrentUserSignedIn);
+        console.log(this.isCurrentUserSignedIn());
     }
 }
 

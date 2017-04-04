@@ -14,6 +14,9 @@ class LayoutViewModel {
         if (this.isCurrentUserSignedIn()) {
             callback();
         }
+        else {
+            window.location.href = "sing-in";
+        }
     }
 }
 
