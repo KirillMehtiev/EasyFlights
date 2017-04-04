@@ -88,9 +88,12 @@
     <Compile Include="DTOs\AircraftDto.cs" />
     <Compile Include="DTOs\CabinDto.cs" />
     <Compile Include="DTOs\FlightDto.cs" />
+    <Compile Include="DTOs\PassengerDto.cs" />
     <Compile Include="DTOs\Route.cs" />
     <Compile Include="DTOs\RouteDto.cs" />
     <Compile Include="DTOs\SeatDto.cs" />
+    <Compile Include="DTOs\TicketDto.cs" />
+    <Compile Include="DTOs\TicketsForRouteDto.cs" />
     <Compile Include="Entities\Aircraft.cs" />
     <Compile Include="Entities\Airport.cs" />
     <Compile Include="Entities\BaseEntity.cs" />

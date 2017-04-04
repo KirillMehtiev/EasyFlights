@@ -20,8 +20,7 @@ namespace EasyFlights.Web.ApiControllers
         public bool ChangePassword([FromBody] ChangePasswordViewModel model)
         {
             // not implemented yet
-            // return newPassword != oldPassword && newPassword == newPasswordConfirm;
-            return true;
+            return model.NewPassword != model.OldPassword && model.NewPassword == model.NewPasswordConfirm;
         }
     }
 }
