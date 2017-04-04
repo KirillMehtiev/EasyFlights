@@ -101,9 +101,13 @@
     <Compile Include="Common\Guard.cs" />
     <Compile Include="Common\OperationDetails.cs" />
     <Compile Include="DtoMappers\FlightDtoMapper.cs" />
-    <Compile Include="DtoMappers\IDtoMapper.cs" />
+    <Compile Include="DtoMappers\IFlightDtoMapper.cs" />
     <Compile Include="DtoMappers\IRouteDtoMapper.cs" />
+    <Compile Include="DtoMappers\ITicketDtoMapper.cs" />
+    <Compile Include="DtoMappers\ITicketsForRouteMapper.cs" />
     <Compile Include="DtoMappers\RouteDtoMapper.cs" />
+    <Compile Include="DtoMappers\TicketDtoMapper.cs" />
+    <Compile Include="DtoMappers\TicketsForRouteMapper.cs" />
     <Compile Include="Interfaces\IFlightService.cs" />
     <Compile Include="Interfaces\ISearchingService.cs" />
     <Compile Include="Interfaces\ITypeaheadProvider.cs" />

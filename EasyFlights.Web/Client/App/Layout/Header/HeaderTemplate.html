@@ -4,8 +4,7 @@
             <a class="navbar-brand" href="#">Easy Flights</a>
         </div>
         <div class="collapse navbar-collapse">
-            
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-right" data-bind="visible: !isCurrentUserSignedIn()">
                 <li class="nav-item nav-link">
                     <a href="#signUp">
                         <i class="glyphicon glyphicon-user">&nbsp;</i> Sign up
@@ -17,7 +16,7 @@
                     </a>
                 </li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-right" data-bind="visible: isCurrentUserSignedIn">
                 <li class="nav-item">
                     <a class="nav-item nav-link" routerLinkActive="active" href="#userCabinet">
                         <i class="glyphicon glyphicon-info-sign">&nbsp;</i>Cabinet

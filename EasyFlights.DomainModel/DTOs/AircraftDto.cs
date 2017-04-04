@@ -1,8 +1,9 @@
-﻿using System;
-
-namespace EasyFlights.DomainModel.DTOs
+﻿namespace EasyFlights.DomainModel.DTOs
 {
     public class AircraftDto
     {
+        public int Capacity { get; set; }
+
+        public string ModelName { get; set; }
     }
 }

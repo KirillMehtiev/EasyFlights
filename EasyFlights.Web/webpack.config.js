@@ -16,6 +16,7 @@ module.exports = {
         alias: {
             pager: appDirectory + '/Libs/js/pager',
             'jquery-ui': appDirectory + '/Libs/js/jquery-ui',
+            jqueryCookie: appDirectory + '/Libs/js/jquery.cookie',
             blockUI: appDirectory + '/Libs/js/jquery.blockUI'
         },
         extensions: ['.ts', '.tsx', '.js']

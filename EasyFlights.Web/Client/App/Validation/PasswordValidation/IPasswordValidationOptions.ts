@@ -3,4 +3,5 @@
     maxLenght: number;
     shouldContainAtLeastOneDigit: boolean;
     shouldContainAtLeastOneCapitalLetter: boolean;
+    shouldContainAtLeastOneLowerCaseLetter: boolean;
 }
