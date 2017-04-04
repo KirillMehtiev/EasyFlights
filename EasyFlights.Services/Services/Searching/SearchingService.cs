@@ -49,12 +49,10 @@ namespace EasyFlights.Services.Services.Searching
 
             // Try to build routes.
             List<RouteDto> routes = this.FindRoutesBetweenCitiesAsync(departureAirport, destinationAirport, numberOfPassengers, departureTime).ToList();
-            Guard.OperationValid(routes.Any(), "Impossible to find a route between given cities for the specified time of departure.");
 
             if (returnTime.HasValue)
             {
                 IEnumerable<RouteDto> reverseRoutes = this.FindRoutesBetweenCitiesAsync(destinationAirport, departureAirport, numberOfPassengers, returnTime.Value).ToList();
-                Guard.OperationValid(reverseRoutes.Any(), "Impossible to find a route between given cities for the specified time of return.");
 
                 routes = routes.Concat(reverseRoutes).ToList();
             }
