@@ -21,6 +21,7 @@ namespace EasyFlights.Web.NinjectModules
             this.Bind<IFlightDtoMapper>().To<FlightDtoMapper>();
             this.Bind<IRouteDtoMapper>().To<RouteDtoMapper>();
             this.Bind<IRouteConverter>().To<RouteConverter>();
+            this.Bind<ITicketsForRouteMapper>().To<TicketsForRouteMapper>();
         }
     }
 }

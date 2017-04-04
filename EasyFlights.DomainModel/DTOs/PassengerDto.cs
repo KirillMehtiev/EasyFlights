@@ -9,7 +9,7 @@ namespace EasyFlights.DomainModel.DTOs
 
         public string LastName { get; set; }
 
-        public DateTime BirthDate { get; set; }
+        public DateTime Birthday { get; set; }
 
         public string DocumentNumber { get; set; }
 

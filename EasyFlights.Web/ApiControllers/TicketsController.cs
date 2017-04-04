@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity.Core.Mapping;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using EasyFlights.DomainModel.DTOs;
 using EasyFlights.DomainModel.Entities.Enums;
+using EasyFlights.Services.DtoMappers;
 using EasyFlights.Web.Util.Converters;
 
 namespace EasyFlights.Web.ApiControllers
@@ -15,10 +13,12 @@ namespace EasyFlights.Web.ApiControllers
     public class TicketsController : ApiController
     {
         private IRouteConverter converter;
+        private ITicketsForRouteMapper mapper;
 
-        public TicketsController(IRouteConverter converter)
+        public TicketsController(IRouteConverter converter, ITicketsForRouteMapper mapper)
         {
             this.converter = converter;
+            this.mapper = mapper;
         }
 
         [HttpPost]
@@ -42,7 +42,7 @@ namespace EasyFlights.Web.ApiControllers
             var answer = new List<PassengerDto>();
             answer.Add(new PassengerDto()
             {
-                BirthDate = DateTime.Now,
+                Birthday = DateTime.Now,
                 DocumentNumber = "user's document number",
                 FirstName = "User's first name",
                 LastName = "User's last name",
@@ -52,7 +52,7 @@ namespace EasyFlights.Web.ApiControllers
             {
                 answer.Add(new PassengerDto()
                 {
-                    BirthDate = DateTime.MinValue,
+                    Birthday = DateTime.MinValue,
                     DocumentNumber = string.Empty,
                     FirstName = string.Empty,
                     LastName = string.Empty
@@ -65,10 +65,8 @@ namespace EasyFlights.Web.ApiControllers
         [Route("GetTickets")]
         public TicketsForRouteDto GetTicketsForRoute([FromBody] string routeId, List<PassengerDto> passengers)
         {
-            var ticketsForRoute = new TicketsForRouteDto();
             RouteDto route = converter.RestoreRouteFromRouteIdAsync(routeId).Result;
-            return ticketsForRoute;
-            
+            return mapper.Map(route.Flights.ToList(), passengers);      
         }
     }
 }
