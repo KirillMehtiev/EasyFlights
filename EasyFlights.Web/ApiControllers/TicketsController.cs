@@ -21,9 +21,9 @@ namespace EasyFlights.Web.ApiControllers
             this.mapper = mapper;
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("GetPassengers")]
-        public List<PassengerDto> GetPassengers([FromBody] string routeId, int numberOfPassengers)
+        public List<PassengerDto> GetPassengers([FromUri] string routeId, int numberOfPassengers)
         {
             RouteDto route = converter.RestoreRouteFromRouteIdAsync(routeId).Result;
             var available = true;
