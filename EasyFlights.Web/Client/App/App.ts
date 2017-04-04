@@ -1,15 +1,15 @@
 ﻿import ko = require("knockout");
 import validation = require("knockout.validation");
 import pager = require("pager");
-import knockstrap = require("knockstrap");
-import jqueryui = require("jquery-ui");
-require('jquery-ui'); 
+require("knockstrap");
+require("jquery-ui");
 import "./Components";
 import "./ValidationRules";
 import "./Bindings";
 import './App.scss';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-datepicker/dist/css/bootstrap-datepicker.css';
+import 'toastr/build/toastr.css';
 
 import KnockoutValidationOptions = require("./Validation/KnockoutValidationOptions");
 

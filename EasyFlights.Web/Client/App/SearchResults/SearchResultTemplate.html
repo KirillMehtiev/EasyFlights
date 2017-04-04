@@ -3,30 +3,30 @@
         <h1 class="text-info">The results of your search</h1>
         <hr />
         <route-header params="departurePlace: departurePlace, destinationPlace:arrivalPlace, departureDate:departureDate, returnDate:returnDate"></route-header>
-        <p><b>Quantity of people:</b>&nbsp;<span data-bind="text: countOf"></span></p>
-        <!--<p><b>Quantity of Flight:</b>&nbsp;<span class="badge" data-bind="text: total"></span></p>-->
+        <p><b>Quantity of people:</b>&nbsp;<span data-bind="text: numberOfPassenger"></span></p>
+   
         <hr />
         
-        <div data-bind="if: isLoading() && !isError()">
+        <div data-bind="if: isLoading()">
             <h3>Searching...</h3>
         </div>
         
-        <div class="text-center" data-bind="if: !isLoading() && isError()">
+        <div class="text-center" data-bind="if: !isLoading() && routeItems().length === 0">
             <h3>Requested information not found.</h3>
             <h4>Try to change search parameters.</h4>
             <a class="btn btn-info" data-bind="page-href: '../'">Back to search form</a>
         </div>
 
-        <div data-bind="if: !isLoading() && !isError()" params="countOf: countOf">
+        <div data-bind="if: !isLoading() &&  routeItems().length !== 0" params="countOf: countOf">
             
             <div class="btn-group pull-right" role="group" aria-label="...">
-                <button data-bind="click: sortByPrice" type="button" class="btn btn-default">by Price</button>
-                <button data-bind="click: sortByDuration" type="button" class="btn btn-default">by Duration</button>
+                <button data-bind="click: sortByPrice" type="button" class="btn btn-primary sortByPrice">by Price</button>
+                <button data-bind="click: sortByDuration" type="button" class="btn btn-default sortByDuration">by Duration</button>
             </div>
             &nbsp;
             <hr/>
             <div data-bind="foreach: {data: pagedRouteItems, as: 'routeItem'}">
-                <routes params="item: routeItem, quantity: $parent.countOf"></routes>
+                <routes params="item: routeItem, quantity: $parent.numberOfPassenger"></routes>
             </div>
             <div class="pull-right" data-bind="pagination: { currentPage: pageNo, totalCount: total, pageSize: pageSize, maxPages: maxPages, directions: directions, boundary: boundary, text: text }, click: setPage"></div>
         </div>

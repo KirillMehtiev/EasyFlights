@@ -1,0 +1,34 @@
+﻿<div class="container">
+    <div class="row">
+        <div class="col-md-2">
+            <input type="email" placeholder="your_email@mailprovider.domain" data-bind="value: email"/>
+        </div>
+        <div class="col-md-2 col-md-offset-2">
+            <label>Input your email to continue</label>
+        </div>
+        <div class="col-md-1 col-md-offset-5" >
+            <button class="btn btn-default" data-bind="click: validateEmail">Change password</button>
+        </div>
+    </div>
+    <div id="ChangingPassword" data-bind="visible:isPasswordChanging">
+        <div class="row">
+            <label>Old password</label>
+            <input type="password" data-bind="value: oldPassword"/>
+        </div>
+        <div class="row">
+            <label>New password</label>
+            <input type="password" data-bind="value: newPassword" />
+        </div>
+        <div class="row">
+            <label>Confirm new password</label>
+            <input type="password" data-bind="value: newPasswordConfirm" />
+        </div>
+        <div class="row">
+            <div class="col-md-offset-11 col-md-1">
+                <button class="btn btn-default" data-bind="click: changePassword">
+                    Save
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

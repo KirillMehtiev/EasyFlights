@@ -12,8 +12,8 @@ export class RouteItem {
    
    
     public flights: Array<FlightItem>;
-    public totalCoast: any;
-    public totalTime: any;
+    public totalCoast: number;
+    public totalTime: string;
    
 
     constructor( id: number, departurePlace: string, destinationPlace: string, arrivalTime: string, departureTime: string, flights: Array<FlightItem>, totalCost: any, totalTime: any) {

@@ -177,7 +177,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiControllers\AccountController.cs" />
     <Compile Include="ApiControllers\CabinController.cs" />
+    <Compile Include="ApiControllers\CabinetController.cs" />
     <Compile Include="ApiControllers\FlightsController.cs" />
     <Compile Include="ApiControllers\RoutesController.cs" />
     <Compile Include="ApiControllers\TypeaheadController.cs" />
@@ -202,6 +204,7 @@
     <Compile Include="NinjectModules\ServicesModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\AccountViewModels\RegisterViewModel.cs" />
     <Compile Include="ViewModels\AirportViewModel.cs" />
     <Compile Include="ViewModels\CabinViewModel.cs" />
     <Compile Include="ViewModels\FlightViewModel.cs" />
@@ -222,6 +225,7 @@
     <Content Include="Client\App\Layout\Footer\FooterTemplate.html" />
     <Content Include="Client\App\Layout\Header\HeaderTemplate.html" />
     <Content Include="Client\App\Layout\LayoutTemplate.html" />
+    <Content Include="Client\App\Login\LoginTemplate.html" />
     <Content Include="Client\App\SelectFlow\SelectFlowTemplate.html" />
     <Content Include="Client\App\SelectFlow\PassengerInfo\PassengerInfoTemplate.html" />
     <Content Include="Client\App\SearchResults\FlightResults\RouteResult.html" />
@@ -234,6 +238,10 @@
     <Content Include="Client\App\SelectFlow\TicketInfo\SeatPicker\Images\selected_seat_img.gif" />
     <Content Include="Client\App\SelectFlow\TicketInfo\SeatPicker\SeatPicker.html" />
     <Content Include="Client\App\SelectFlow\TicketInfo\TicketInfoTemplate.html" />
+    <Content Include="Client\App\SignUp\SignUpTemplate.html" />
+    <Content Include="Client\App\UserCabinet\Account\AccountTemplate.html" />
+    <Content Include="Client\App\UserCabinet\ManageOrders\ManageOrdersTemplate.html" />
+    <Content Include="Client\App\UserCabinet\ProfileInfo\ProfileInfoTemplate.html" />
     <Content Include="Client\App\UserCabinet\UserCabinetTemplate.html" />
     <Content Include="Client\Libs\css\jquery-ui.min.css" />
     <Content Include="Client\Libs\fonts\glyphicons-halflings-regular.svg" />
@@ -241,7 +249,9 @@
     <Content Include="Client\Libs\js\pager.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -291,6 +301,7 @@
     <TypeScriptCompile Include="Client\App\Common\Components\RouteHeader\IRouteHeaderOptions.ts" />
     <TypeScriptCompile Include="Client\App\Common\Components\RouteHeader\RouteHeaderComponent.ts" />
     <TypeScriptCompile Include="Client\App\Common\Components\RouteHeader\RouteHeaderViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\Common\Enum\Enums.ts" />
     <TypeScriptCompile Include="Client\App\Common\Services\dataService.ts" />
     <TypeScriptCompile Include="Client\App\Components.ts" />
     <TypeScriptCompile Include="Client\App\Index\IndexComponent.ts" />
@@ -314,6 +325,8 @@
     <TypeScriptCompile Include="Client\App\Layout\Header\HeaderViewModel.ts" />
     <TypeScriptCompile Include="Client\App\Layout\LayoutComponent.ts" />
     <TypeScriptCompile Include="Client\App\Layout\LayoutViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\Login\LoginComponent.ts" />
+    <TypeScriptCompile Include="Client\App\Login\LoginViewModel.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\Services\RoutesService.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\PassengerInfo\IPassengerInfoOptions.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\OrderSummary\IOrderSummaryOptions.ts" />
@@ -346,17 +359,27 @@
     <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\TicketInfoComponent.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\TicketInfoItem.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\TicketInfoViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\SignUp\SignUpComponent.ts" />
+    <TypeScriptCompile Include="Client\App\SignUp\SignUpViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\UserCabinet\ProfileInfo\ProfileInfoComponent.ts" />
+    <TypeScriptCompile Include="Client\App\UserCabinet\ProfileInfo\ProfileInfoViewModel.ts" />
     <TypeScriptCompile Include="Client\App\UserCabinet\UserCabinetComponent.ts" />
     <TypeScriptCompile Include="Client\App\UserCabinet\UserCabinetViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\Validation\AreSameValidationRule.ts" />
     <TypeScriptCompile Include="Client\App\Validation\DateAfterValidationRule.ts" />
     <TypeScriptCompile Include="Client\App\Validation\ISingleValueValidationRule.ts" />
     <TypeScriptCompile Include="Client\App\ValidationRules.ts" />
     <TypeScriptCompile Include="Client\App\Validation\KnockoutValidationOptions.ts" />
+    <TypeScriptCompile Include="Client\App\Validation\PasswordValidation\IPasswordValidationOptions.ts" />
+    <TypeScriptCompile Include="Client\App\Validation\PasswordValidation\PasswordValidationRule.ts" />
     <TypeScriptCompile Include="Client\Libs\typings\knockout\knockout.d.ts" />
+    <TypeScriptCompile Include="Client\Libs\typings\knockout\knockout.validation.d.ts" />
     <TypeScriptCompile Include="Client\Libs\typings\pager\pager.d.ts" />
     <TypeScriptCompile Include="Client\Libs\typings\require\require.d.ts" />
     <TypeScriptCompile Include="Client\Libs\typings\jquery\jquery.d.ts" />
     <TypeScriptCompile Include="Client\Libs\typings\jqueryui\jqueryui.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\knockout\knockout.d.ts" />
+    <TypeScriptCompile Include="Client\Libs\typings\toastr\toastr.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Client\App\App.scss" />
@@ -377,6 +400,14 @@
     <Content Include="Client\Libs\fonts\glyphicons-halflings-regular.woff2" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Client\App\SelectFlow\TicketInfo\SeatPicker\Cabin\" />
+    <Folder Include="Client\App\SelectFlow\TicketInfo\SeatPicker\Images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Client\App\SignUp\SignUp.scss" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Client\App\Validation\Validation.scss" />
     <Folder Include="Client\App\UserCabinet\Account\" />
     <Folder Include="Client\App\UserCabinet\ManageOrders\" />
     <Folder Include="Client\App\UserCabinet\ProfileInfo\" />

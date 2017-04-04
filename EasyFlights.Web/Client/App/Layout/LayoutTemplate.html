@@ -4,20 +4,27 @@
         <div data-bind="page: {role: 'start'}">
             <index></index>
         </div>
-        <div data-bind="page:{id: 'userCabinet'}">
+
+        <lazy-page params="id: 'userCabinet'">
             <user-cabinet></user-cabinet>
-        </div>
-        <lazy-page params="id: 'results', params: ['departurePlace','departurePlaceId','arrivalPlace','arrivalPlaceId','departureDate','returnDate', 'countOf', 'type']">
-            <app-results params="departurePlace: departurePlace, departurePlaceId:departurePlaceId,arrivalPlace: arrivalPlace, arrivalPlaceId:arrivalPlaceId, departureDate: departureDate, returnDate: returnDate, countOf: countOf , type: type"></app-results>
         </lazy-page>
         
-        <lazy-page params="id: 'selected-route', params: ['routeId','countOf']">
-            <select-flow params="routeId: routeId,  countOf: countOf"></select-flow>
+        <lazy-page params="id: 'signUp'">
+            <sign-up></sign-up>
         </lazy-page>
 
-        <!--<div data-bind="page: {id: 'selected-route', params: ['routeId', 'numberOfPassenger']}">
-            <select-flow params="routeId: routeId, numberOfPassenger: numberOfPassenger"></select-flow>
-        </div>-->
+        <lazy-page params="id: 'results', params: ['departurePlace','departurePlaceId','arrivalPlace','arrivalPlaceId','departureDate','returnDate', 'numberOfPassenger', 'type']">
+            <app-results params="departurePlace: departurePlace, departurePlaceId:departurePlaceId,arrivalPlace: arrivalPlace, arrivalPlaceId:arrivalPlaceId, departureDate: departureDate, returnDate: returnDate, numberOfPassenger: numberOfPassenger , type: type"></app-results>
+        </lazy-page>
+        
+        <lazy-page params="id: 'selected-route', params: ['routeId','numberOfPassenger']">
+            <select-flow params="routeId: routeId,  numberOfPassenger: numberOfPassenger"></select-flow>
+        </lazy-page>
+
+        <lazy-page params="id: 'sign-in'">
+           <sign-in></sign-in>
+        </lazy-page>
+       
     </div>
 
 </div>

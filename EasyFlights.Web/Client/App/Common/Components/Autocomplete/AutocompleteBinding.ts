@@ -19,7 +19,7 @@ class AutocompleteBinding implements KnockoutBindingHandler {
         $(element).autocomplete({
             source(request, response) {
                 var autocompleteUrl = settings.sourceUrl + request.term;
-                service.ajaxGet(autocompleteUrl).then(data => response($
+                service.get(autocompleteUrl).then(data => response($
                     .map(data, item => ({ label: item.label, value: item.value, id: item.id}))));
             },
             minLength: 2,

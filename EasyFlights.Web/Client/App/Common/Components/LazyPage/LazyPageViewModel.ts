@@ -15,16 +15,6 @@
         callback({});
     }
 
-    //public show(page, callback) {
-    //    this.pageVisible(true);
-    //};
-
-    //public hide(page, callback) {
-    //    this.pageVisible(false);
-    //    if (callback) {
-    //        callback();
-    //    }
-    //};
 }
 
 export = LazyPageViewModel;

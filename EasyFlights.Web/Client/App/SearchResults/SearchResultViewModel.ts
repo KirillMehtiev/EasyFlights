@@ -1,8 +1,7 @@
 ﻿import ko = require("knockout");
 import { RouteItem } from "./FlightResults/RouteItem";
 import { RoutesService } from "./Services/RoutesService"
-import Item = require("./FlightResults/Tickets/FlightItem");
-import FlightItem = Item.FlightItem;
+import { FlightItem } from "./FlightResults/Tickets/FlightItem"
 import Service = require("../Common/Services/dataService");
 import moment = require("moment");
 
@@ -16,7 +15,7 @@ class SearchResultViewModel {
     public departurePlace: KnockoutObservable<string>;
     public departurePlaceId: KnockoutObservable<number>;
     public returnDate: KnockoutObservable<string>;
-    public countOf: KnockoutObservable<number>;
+    public numberOfPassenger: KnockoutObservable<number>;
     public type: KnockoutObservable<string>;
 
     public pageSize: number;
@@ -29,11 +28,12 @@ class SearchResultViewModel {
     public text: any;
 
     public isLoading: KnockoutObservable<boolean>;
-    public isError: KnockoutObservable<boolean>;
 
     private routesService: RoutesService = new RoutesService();
 
     constructor(params) {
+        console.log("Params: ",params);
+
         this.routeItems = ko.observableArray([]);
         this.departureDate = params.departureDate;
         this.arrivalPlace = params.arrivalPlace;
@@ -41,7 +41,7 @@ class SearchResultViewModel {
         this.departurePlaceId = params.departurePlaceId;
         this.departurePlace = params.departurePlace;
         this.returnDate = params.returnDate;
-        this.countOf = params.countOf;
+        this.numberOfPassenger = params.numberOfPassenger;
         this.type = params.type;
 
         this.createDefaultOptions();
@@ -49,20 +49,16 @@ class SearchResultViewModel {
         this.sortByPrice();
 
         this.isLoading = ko.observable(true);
-        this.isError = ko.observable(false);
 
         let url: string = this.createGetRoutesUrl();
-        console.log(url);
+
         this.routesService.getRoutes(url)
             .then((data) => {
                 this.routeItems(data);
-                console.log("data loaded");
                 this.isLoading(false);
-                this.isError(false);
                 this.setPage();
             }).fail((error) => {
                 this.isLoading(false);
-                this.isError(true);
             });
     }
 
@@ -79,11 +75,15 @@ class SearchResultViewModel {
     public sortByPrice(): void {
         this.routeItems.sort((x, y) => x.totalCoast - y.totalCoast);
         this.setPage();
+        $(".sortByPrice").removeClass('btn btn-default').addClass('btn btn-primary');
+        $(".sortByDuration").removeClass('btn btn-primary').addClass('btn btn-default');
     }
-
     public sortByDuration(): void {
-        this.routeItems.sort((x, y) => x.totalTime - y.totalTime);
+        this.routeItems.sort((x, y) => y.totalTime.split(':').reduce((seconds, v) => +v + seconds * 60, 0) / 60 -
+                                       x.totalTime.split(':').reduce((seconds, v) => +v + seconds * 60, 0) / 60);
         this.setPage();
+        $(".sortByDuration").removeClass('btn btn-default').addClass('btn btn-primary');
+        $(".sortByPrice").removeClass('btn btn-primary').addClass('btn btn-default');
     }
     private createDefaultOptions(): void {
         this.pagedRouteItems = ko.observableArray([]);
@@ -103,17 +103,13 @@ class SearchResultViewModel {
 
     private createGetRoutesUrl(): string {
 
-        var result: string;
-        result = "GetAsync?departureAirportId=" + this.departurePlaceId() + "&destinationAirportId=" + this.arrivalPlaceId() + "&numberOfPeople=" + this.countOf() + "&departureTime=" + moment(this.departureDate()).toISOString();
+        let result: string;
+        result = `GetAsync?departureAirportId=${this.departurePlaceId()}&destinationAirportId=${this.arrivalPlaceId()}&numberOfPeople=${this.numberOfPassenger()}&departureTime=${moment(this.departureDate()).toISOString()}`;
 
-        
         if (moment(this.returnDate()).toISOString() != null) {
-            
-            result += "&returnTime=" + moment(this.returnDate()).toISOString();
 
+            result += `&returnTime=${moment(this.returnDate()).toISOString()}`;
         }
-        
-
         return result;
     }
 }

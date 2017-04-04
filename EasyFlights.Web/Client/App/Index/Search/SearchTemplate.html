@@ -4,7 +4,7 @@
             <div class="form-group">
                 <label>Ticket type:</label>
                 <!-- params is IRadioChooserOption if change signarute reflect it here -->
-                <radio-chooser params="options: options, selectedOption:selectedTicketType"></radio-chooser>
+                <radio-chooser params="options: options, selectedOption:selectedTicketType, groupName:'ticket-type'"></radio-chooser>
             </div>
         </div>
         <div class="col-md-6">
@@ -41,7 +41,7 @@
     <hr />
     <div class="row">
         <div class="col-md-12">
-            <a class="btn btn-primary btn-lg btn-block" data-bind="page-href: {path: 'results', params: { departurePlace: searchAirportFrom() ? searchAirportFrom().value : '', departurePlaceId: searchAirportFrom() ? searchAirportFrom().id : '' ,arrivalPlace: $data.searchAirportTo() ? searchAirportTo().value : '',arrivalPlaceId: $data.searchAirportTo() ? searchAirportTo().id : '', departureDate: selectedDepartureDate, returnDate: selectedReturnDate, countOf: number, type: selectedTicketType}}"><span class="glyphicon glyphicon-search"></span> Search</a>
+            <a class="btn btn-primary btn-lg btn-block" data-bind="page-href: {path: 'results', params: { departurePlace: searchAirportFrom() ? searchAirportFrom().value : '', departurePlaceId: searchAirportFrom() ? searchAirportFrom().id : '' ,arrivalPlace: $data.searchAirportTo() ? searchAirportTo().value : '',arrivalPlaceId: $data.searchAirportTo() ? searchAirportTo().id : '', departureDate: selectedDepartureDate, returnDate: selectedReturnDate, numberOfPassenger: number, type: selectedTicketType}}"><span class="glyphicon glyphicon-search"></span> Search</a>
         </div>
     </div>
 </div>

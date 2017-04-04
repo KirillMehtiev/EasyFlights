@@ -20,7 +20,7 @@ namespace EasyFlights.Engines.Tests.RouteBuilding
             var routeGeneralInfoCalculator = new RouteGeneralInfoCalculator();
 
             // Act
-            var result = routeGeneralInfoCalculator.GetTotalCost(fakeRoute);
+            decimal result = routeGeneralInfoCalculator.GetTotalCost(fakeRoute);
 
             // Assert
             Assert.AreEqual(expectedTotalCost, result);
@@ -36,7 +36,7 @@ namespace EasyFlights.Engines.Tests.RouteBuilding
             var routeGeneralInfoCalculator = new RouteGeneralInfoCalculator();
 
             // Act
-            var result = routeGeneralInfoCalculator.GetTotalTime(fakeRoute);
+            TimeSpan result = routeGeneralInfoCalculator.GetTotalTime(fakeRoute);
 
             // Assert
             bool calculatedTotalTimeIsApproximatelyTheSameAsExpected = Math.Abs((expectedTotalTime - result).Minutes) < 0.001;
