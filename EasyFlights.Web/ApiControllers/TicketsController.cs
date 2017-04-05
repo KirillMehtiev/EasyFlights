@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Http;
 using EasyFlights.DomainModel.DTOs;
 using EasyFlights.DomainModel.Entities.Enums;
@@ -22,14 +23,14 @@ namespace EasyFlights.Web.ApiControllers
         }
 
         [HttpGet]
-        [Route("GetPassengers")]
-        public List<PassengerDto> GetPassengers(string routeId, int numberOfPassengers)
+        [Route("GetPassengersAsync")]
+        public async Task<List<PassengerDto>> GetPassengersAsync(string routeId, int numberOfPassengers)
         {
-            RouteDto route = converter.RestoreRouteFromRouteIdAsync(routeId).Result;
+            RouteDto route = await converter.RestoreRouteFromRouteIdAsync(routeId);
             var available = true;
             foreach (FlightDto flight in route.Flights)
             {
-                if (numberOfPassengers > flight.Aircraft.Capacity - flight.Tickets.Count)
+                if (numberOfPassengers > flight.Aircraft.Capacity - flight.Tickets?.Count)
                 {
                     available = false;
                     break;
