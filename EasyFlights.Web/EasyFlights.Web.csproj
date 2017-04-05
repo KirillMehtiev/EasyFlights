@@ -308,6 +308,7 @@
     <TypeScriptCompile Include="Client\App\Bindings.ts" />
     <TypeScriptCompile Include="Client\App\Common\Components\Autocomplete\AutocompleteItem.ts" />
     <TypeScriptCompile Include="Client\App\Common\Components\Autocomplete\AutocompleteBinding.ts" />
+    <TypeScriptCompile Include="Client\App\Common\Components\BusyIndicator\BusyIndicatorBinding.ts" />
     <TypeScriptCompile Include="Client\App\Common\Components\BusyIndicator\BusyIndicatorComponent.ts" />
     <TypeScriptCompile Include="Client\App\Common\Components\BusyIndicator\BusyIndicatorViewModel.ts" />
     <TypeScriptCompile Include="Client\App\Common\Components\BusyIndicator\IBusyIndicatorOptions.ts" />
