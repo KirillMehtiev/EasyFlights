@@ -26,6 +26,9 @@ class SearchViewModel {
     public returnDateName: KnockoutObservable<string>;
     public number: KnockoutObservable<number>;
     public numberOfPeople: KnockoutObservableArray<number>;
+    public isSuccess: KnockoutObservable<boolean>;
+   
+
 
     constructor() {
         this.options = [
@@ -42,9 +45,13 @@ class SearchViewModel {
             dateAfter: moment().format("L")
         });
         let self = this;
+        
         this.selectedReturnDate = ko.observable("").extend({
-            dateAfter: self.selectedDepartureDate
-        });
+                dateAfter: self.selectedDepartureDate
+            });
+      
+       
+        
 
         this.searchAirportFrom = ko.observable<Item.AutocompleteItem>().extend({
             required: {
@@ -60,15 +67,28 @@ class SearchViewModel {
         });
 
         this.isRoundTripSelected = ko.observable(false);
-
+        this.isSuccess = ko.observable(false);
+        
+        this.checked.bind(this);
         this.selectedTicketType.subscribe(this.onTicketTypeChanged, this);
     }
 
+    public checked(): boolean {
+        var viewModel = <KnockoutValidationGroup>ko.validatedObservable([this.searchAirportFrom, this.searchAirportTo, this.selectedDepartureDate]);
+        if (viewModel.isValid()) {
+         
+            return true;
+        }
+        //viewModel.errors.showAllMessages();
+        return false;
+        
+    }
     public onTicketTypeChanged(newValue: string) {
         this.isRoundTripSelected(newValue === TicketType.roundTrip);
-        // clean a return date if don't need it'
+    
         if (!this.isRoundTripSelected()) {
             this.selectedReturnDate("");
+
         }
     }
 
