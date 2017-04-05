@@ -52,14 +52,20 @@ namespace EasyFlights.Services.Services.Searching
 
             if (returnTime.HasValue)
             {
+                
                 IEnumerable<RouteDto> reverseRoutes = this.FindRoutesBetweenCitiesAsync(destinationAirport, departureAirport, numberOfPassengers, returnTime.Value).ToList();
-
-                routes = routes.Concat(reverseRoutes).ToList();
+      
+                var routesRes = routes.Zip(reverseRoutes, delegate (RouteDto route, RouteDto reverseRoute)
+                {
+                    route.Flights = route.Flights.Concat(reverseRoute.Flights).ToList();
+                    route.TotalCost = route.TotalCost + reverseRoute.TotalCost;
+                    route.TotalTime = route.TotalTime.Add(reverseRoute.TotalTime);
+                    return route;
+                }).ToList();
             }
-
             return routes.ToList();
         }
-
+ 
         private IEnumerable<RouteDto> FindRoutesBetweenCitiesAsync(Airport departureAirport, Airport destinationAirport, int numberOfPassengers, DateTime departureTime)
         {
             IEnumerable<Route> routes = this.routeBuilder.Build(departureAirport, destinationAirport, departureTime, numberOfPassengers);
