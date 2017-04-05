@@ -213,11 +213,14 @@
     <Compile Include="ViewModels\AirportViewModel.cs" />
     <Compile Include="ViewModels\CabinViewModel.cs" />
     <Compile Include="ViewModels\FlightViewModel.cs" />
+    <Compile Include="ViewModels\PassengerViewModel.cs" />
     <Compile Include="ViewModels\ProfileInfo\ProfileViewModel.cs" />
     <Compile Include="ViewModels\RouteSearchViewModel.cs" />
     <Compile Include="ViewModels\RouteViewModel.cs" />
+    <Compile Include="ViewModels\TicketsForRouteViewModel.cs" />
     <Compile Include="ViewModels\TicketVIewModel.cs" />
     <Compile Include="ViewModels\TypeaheadViewModel.cs" />
+    <Compile Include="Wrappers\GetTicketsWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Client\.gitignore" />
@@ -232,6 +235,7 @@
     <Content Include="Client\App\Layout\Footer\FooterTemplate.html" />
     <Content Include="Client\App\Layout\Header\HeaderTemplate.html" />
     <Content Include="Client\App\Layout\LayoutTemplate.html" />
+    <None Include="Client\App\Login\Login.scss" />
     <Content Include="Client\App\Login\LoginTemplate.html" />
     <Content Include="Client\App\SelectFlow\SelectFlowTemplate.html" />
     <Content Include="Client\App\SelectFlow\PassengerInfo\PassengerInfoTemplate.html" />
@@ -254,7 +258,6 @@
     <Content Include="Client\Libs\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Client\Libs\js\jquery-ui.js" />
     <Content Include="Client\Libs\js\jquery.blockUI.js" />
-    <Content Include="Client\Libs\js\jquery.cookie.js" />
     <Content Include="Client\Libs\js\pager.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -268,6 +271,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="webpack.config.js" />
+    <Content Include="Client\App\SelectFlow\OrderSummary\OrderSummary.scss" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EasyFlights.Data\EasyFlights.Data.csproj">
@@ -305,6 +309,7 @@
     <TypeScriptCompile Include="Client\App\Bindings.ts" />
     <TypeScriptCompile Include="Client\App\Common\Components\Autocomplete\AutocompleteItem.ts" />
     <TypeScriptCompile Include="Client\App\Common\Components\Autocomplete\AutocompleteBinding.ts" />
+    <TypeScriptCompile Include="Client\App\Common\Components\BusyIndicator\BusyIndicatorBinding.ts" />
     <TypeScriptCompile Include="Client\App\Common\Components\BusyIndicator\BusyIndicatorComponent.ts" />
     <TypeScriptCompile Include="Client\App\Common\Components\BusyIndicator\BusyIndicatorViewModel.ts" />
     <TypeScriptCompile Include="Client\App\Common\Components\BusyIndicator\IBusyIndicatorOptions.ts" />
@@ -315,8 +320,10 @@
     <TypeScriptCompile Include="Client\App\Common\Components\RouteHeader\IRouteHeaderOptions.ts" />
     <TypeScriptCompile Include="Client\App\Common\Components\RouteHeader\RouteHeaderComponent.ts" />
     <TypeScriptCompile Include="Client\App\Common\Components\RouteHeader\RouteHeaderViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\Common\Dtos\PassengerInfoDto.ts" />
     <TypeScriptCompile Include="Client\App\Common\Enum\Enums.ts" />
     <TypeScriptCompile Include="Client\App\Common\Services\Auth\authService.ts" />
+    <TypeScriptCompile Include="Client\App\Common\Services\Auth\ISignInModel.ts" />
     <TypeScriptCompile Include="Client\App\Common\Services\Auth\ISignUpModel.ts" />
     <TypeScriptCompile Include="Client\App\Common\Services\dataService.ts" />
     <TypeScriptCompile Include="Client\App\Components.ts" />
@@ -348,7 +355,7 @@
     <TypeScriptCompile Include="Client\App\SelectFlow\SelectFlowComponent.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\SelectFlowViewModel.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\PassengerInfo\PassengerInfoComponent.ts" />
-    <TypeScriptCompile Include="Client\App\SelectFlow\PassengerInfo\PassengerInfoItem.ts" />
+    <TypeScriptCompile Include="Client\App\SelectFlow\PassengerInfo\IPassengerInfoItem.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\PassengerInfo\PassengerInfoViewModel.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\FlightResults\RouteItem.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\FlightResults\RouteResultComponent.ts" />
@@ -380,6 +387,8 @@
     <TypeScriptCompile Include="Client\App\UserCabinet\Account\AccountComponent.ts" />
     <TypeScriptCompile Include="Client\App\UserCabinet\Account\AccountViewModel.ts" />
     <TypeScriptCompile Include="Client\App\UserCabinet\Account\ChangePasswordModel.ts" />
+    <TypeScriptCompile Include="Client\App\UserCabinet\ManageOrders\ManageOrdersComponent.ts" />
+    <TypeScriptCompile Include="Client\App\UserCabinet\ManageOrders\ManageOrdersViewModel.ts" />
     <TypeScriptCompile Include="Client\App\UserCabinet\ProfileInfo\IProfileInfoOptions.ts" />
     <TypeScriptCompile Include="Client\App\UserCabinet\ProfileInfo\ProfileInfoComponent.ts" />
     <TypeScriptCompile Include="Client\App\UserCabinet\ProfileInfo\ProfileInfoItem.ts" />
@@ -392,8 +401,8 @@
     <TypeScriptCompile Include="Client\App\Validation\ISingleValueValidationRule.ts" />
     <TypeScriptCompile Include="Client\App\ValidationRules.ts" />
     <TypeScriptCompile Include="Client\App\Validation\KnockoutValidationOptions.ts" />
-    <TypeScriptCompile Include="Client\App\Validation\PasswordValidation\IPasswordValidationOptions.ts" />
-    <TypeScriptCompile Include="Client\App\Validation\PasswordValidation\PasswordValidationRule.ts" />
+    <TypeScriptCompile Include="Client\App\SignUp\PasswordValidation\IPasswordValidationOptions.ts" />
+    <TypeScriptCompile Include="Client\App\SignUp\PasswordValidation\PasswordValidationRule.ts" />
     <TypeScriptCompile Include="Client\Libs\typings\jqueryui\jquery.blockUI.d.ts" />
     <TypeScriptCompile Include="Client\Libs\typings\knockout\knockout.d.ts" />
     <TypeScriptCompile Include="Client\Libs\typings\knockout\knockout.validation.d.ts" />

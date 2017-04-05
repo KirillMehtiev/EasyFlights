@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace EasyFlights.DomainModel.DTOs
+namespace EasyFlights.Web.ViewModels
 {
-    public class TicketsForRouteDto
+    public class TicketsForRouteViewModel
     {
         public string DepartureAirport { get; set; }
 
@@ -13,10 +13,10 @@ namespace EasyFlights.DomainModel.DTOs
 
         public string ArrivalCity { get; set; }
 
-        public TimeSpan Duration { get; set; }
+        public string Duration { get; set; }
 
         public decimal TotalPrice { get; set; }
 
-        public List<FlightDto> Flights { get; set; }
+        public List<FlightViewModel> Flights { get; set; }
     }
 }

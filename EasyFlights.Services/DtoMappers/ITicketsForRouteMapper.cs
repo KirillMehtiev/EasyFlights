@@ -5,6 +5,6 @@ namespace EasyFlights.Services.DtoMappers
 {
     public interface ITicketsForRouteMapper
     {
-        TicketsForRouteDto Map(List<FlightDto> flights, List<PassengerDto> passengers);
+        TicketsForRouteDto Map(RouteDto route, List<PassengerDto> passengers);
     }
 }
