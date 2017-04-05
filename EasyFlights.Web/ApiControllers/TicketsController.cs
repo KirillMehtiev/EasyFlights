@@ -23,7 +23,7 @@ namespace EasyFlights.Web.ApiControllers
         }
 
         [HttpGet]
-        [Route("GetPassengersAsync")]
+        [Route("GetPassengers")]
         public async Task<List<PassengerDto>> GetPassengersAsync(string routeId, int numberOfPassengers)
         {
             RouteDto route = await converter.RestoreRouteFromRouteIdAsync(routeId);
@@ -56,7 +56,7 @@ namespace EasyFlights.Web.ApiControllers
         }
 
         [HttpPost]
-        [Route("GetTicketsAsync")]
+        [Route("GetTickets")]
         public async Task<TicketsForRouteDto> GetTicketsForRouteAsync([FromBody] string routeId, List<PassengerDto> passengers)
         {
             RouteDto route = await converter.RestoreRouteFromRouteIdAsync(routeId);
