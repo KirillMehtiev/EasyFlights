@@ -44,7 +44,7 @@ namespace EasyFlights.Web.Infrastracture
                 return;
             }
 
-            ClaimsIdentity authIdentity = await userManager.GenerateUserIdentityAsync(user, OAuthDefaults.AuthenticationType);
+            ClaimsIdentity authIdentity = await userManager.CreateIdentityAsync(user, OAuthDefaults.AuthenticationType);
             var properties = new AuthenticationProperties();
             var ticket = new AuthenticationTicket(authIdentity, properties);
             context.Validated(ticket);
