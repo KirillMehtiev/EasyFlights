@@ -4,6 +4,7 @@ require("jqueryCookie");
 
 import { DataService } from "../DataService";
 import { ISignUpModel } from "./ISignUpModel";
+import { ISignInModel } from "./ISignInModel";
 
 export class AuthService {
     private static authCookieName: string = ";alsdfj;dlasfj";
@@ -26,24 +27,32 @@ export class AuthService {
 
     public signUp(model: ISignUpModel) {
         return this.dataService
-                    .post("/api/account/signup", model)
-                    .then((response => {
+            .post("/api/account/signup", model)
+            .then((response => {
 
-                        console.log("auth reg");
-                        console.log(response);
+                console.log("auth reg");
+                console.log(response);
 
-                        // TODO: do something, maybe, set cookie
+                // TODO: do something, maybe, set cookie
 
-                    }));
+            }));
     }
 
-    public signIn() {
-
-        this.isCurrentUserSignedIn(true);
+    public signIn(model: ISignInModel) {
+        return this.dataService
+            .post("/api/account/signin", model)
+            .then((response => {
+                this.isCurrentUserSignedIn(true);
+                window.location.href = "#";
+            }));
     }
 
     public signOut() {
-
-        this.isCurrentUserSignedIn(false);
+        return this.dataService
+            .post("/api/account/signout")
+            .then((response => {
+                this.isCurrentUserSignedIn(false);
+                window.location.href = "#sign-in";
+            }));
     }
 }

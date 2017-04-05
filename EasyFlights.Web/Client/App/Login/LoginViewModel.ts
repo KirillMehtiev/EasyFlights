@@ -1,14 +1,41 @@
 ﻿import ko = require("knockout");
 require("knockout.validation");
-import { DataService } from "../Common/Services/DataService";
+import { AuthService } from "../Common/Services/Auth/authService";
 
 class LoginViewModel {
     public userEmail: KnockoutObservable<string>;
     public userPassword: KnockoutObservable<string>;
     public rememberMe: KnockoutObservable<boolean>;
-    private dataService: DataService;
+
+    public isRequestProcessing: KnockoutObservable<boolean>;
 
     constructor() {
+        this.createDefaultOptions();
+    }
+
+    public login(): void {
+        let viewModel = <KnockoutValidationGroup>ko.validatedObservable(this);
+        if (viewModel.isValid()) {
+            this.isRequestProcessing(true);
+
+            AuthService.current.signIn({
+                userEmail: this.userEmail(),
+                userPassword: this.userPassword(),
+                rememberMe: this.rememberMe()
+            }).then(this.handleServiceResponse)
+                .always(() => this.isRequestProcessing(false));
+        }
+        else {
+            viewModel.errors.showAllMessages();
+        }
+    };
+
+    private handleServiceResponse(response) {
+        console.log("Register: response");
+        console.log(response);
+    }
+
+    private createDefaultOptions() {
         this.userEmail = ko.observable("").extend({
             required: true,
             email: true
@@ -29,30 +56,10 @@ class LoginViewModel {
         });
 
         this.rememberMe = ko.observable(false);
-
-        this.dataService = new DataService();
+        this.isRequestProcessing = ko.observable(false);
 
         this.login.bind(this);
         this.handleServiceResponse.bind(this);
-    }
-
-    public login(): void {
-        let viewModel = <KnockoutValidationGroup>ko.validatedObservable(this);
-        if (viewModel.isValid()) {
-            this.dataService.post("/api/account/signin", {
-                userEmail: this.userEmail(),
-                userPassword: this.userPassword(),
-                rememberMe: this.rememberMe()
-            }).then(this.handleServiceResponse);
-        }
-        else {
-            viewModel.errors.showAllMessages();
-        }
-    };
-
-    private handleServiceResponse(response) {
-        console.log("Register: response");
-        console.log(response);
     }
 }
 
