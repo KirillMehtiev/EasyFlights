@@ -15,5 +15,12 @@ namespace EasyFlights.Web.Controllers
         {
             return View();
         }
+
+        [Authorize]
+        [Route("~/test")]
+        public ActionResult Test()
+        {
+            return Content("[]", "application/json");
+        }
     }
 }

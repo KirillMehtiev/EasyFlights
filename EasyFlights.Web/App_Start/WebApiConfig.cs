@@ -1,4 +1,6 @@
-﻿namespace EasyFlights.Web.App_Start
+﻿using Microsoft.AspNet.Identity;
+
+namespace EasyFlights.Web.App_Start
 {
     using System.Web.Http;
     using Microsoft.Owin.Security.OAuth;
@@ -12,8 +14,8 @@
         {
             // Web API configuration and services
             // Configure Web API to use only bearer token authentication.
-            config.SuppressDefaultHostAuthentication();
-            config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
+            //config.SuppressDefaultHostAuthentication();
+            //config.Filters.Add(new HostAuthenticationFilter(DefaultAuthenticationTypes.ApplicationCookie));
             config.Services.Replace(typeof(IExceptionHandler), new GlobalExceptionHandler());
             config.Filters.Add(new ModelStateValidatorAttribute());
             // Web API routes

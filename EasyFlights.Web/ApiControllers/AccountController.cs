@@ -5,18 +5,17 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
-using System.Web.Security;
 using EasyFlights.DomainModel.Entities.Enums;
 using EasyFlights.DomainModel.Entities.Identity;
 using EasyFlights.Web.Identity;
 using EasyFlights.Web.Infrastracture;
 using EasyFlights.Web.Results;
-using EasyFlights.Web.ViewModels;
 using EasyFlights.Web.ViewModels.AccountViewModels;
 using EasyFlights.Web.ViewModels.ProfileInfo;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
@@ -45,7 +44,7 @@ namespace EasyFlights.Web.ApiControllers
         {
             get
             {
-                return this.userManager ?? Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                return this.userManager ?? HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
             }
 
             private set
@@ -113,11 +112,6 @@ namespace EasyFlights.Web.ApiControllers
         [HttpPost]
         public async Task<IHttpActionResult> SignIn([FromBody]LoginViewModel model)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
             Authentication.SignOut();
             ApplicationUser user = await UserManager.FindAsync(model.UserEmail, model.UserPassword);
             if (user == null)
@@ -127,16 +121,16 @@ namespace EasyFlights.Web.ApiControllers
 
             ClaimsIdentity claim = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
             Authentication.SignIn(new AuthenticationProperties { IsPersistent = true }, claim);
-
+            Authentication.SignIn(claim);
             return this.Ok();
         }
 
-        [Authorize]
-        [Route("t")]
         [HttpGet]
-        public IHttpActionResult test()
+        [Authorize]
+        [Route("get")]
+        public IHttpActionResult GetResult()
         {
-            return this.Ok(this.User.Identity.IsAuthenticated);
+            return this.Ok();
         }
 
         // POST api/Account/ChangeUser
