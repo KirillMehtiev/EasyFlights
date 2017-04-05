@@ -322,6 +322,7 @@
     <TypeScriptCompile Include="Client\App\Common\Dtos\PassengerInfoDto.ts" />
     <TypeScriptCompile Include="Client\App\Common\Enum\Enums.ts" />
     <TypeScriptCompile Include="Client\App\Common\Services\Auth\authService.ts" />
+    <TypeScriptCompile Include="Client\App\Common\Services\Auth\ISignInModel.ts" />
     <TypeScriptCompile Include="Client\App\Common\Services\Auth\ISignUpModel.ts" />
     <TypeScriptCompile Include="Client\App\Common\Services\dataService.ts" />
     <TypeScriptCompile Include="Client\App\Components.ts" />
