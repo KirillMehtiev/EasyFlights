@@ -1,5 +1,4 @@
-﻿
-<div>
+﻿<div>
     <div data-bind="if: isShowPassengerInfo">
         <passenger-info params="passangerInfoList:passengerInfoList, onNextStep: onNextStep"></passenger-info>
     </div>
@@ -7,8 +6,7 @@
         <ticket-info params="generalInfo: generalTicketInfo, onNextStep: onNextStep, onPreviousStep: onPreviousStep"></ticket-info>
     </div>
     <div data-bind="if: isShowOrderSummary">
-        <order-summary params="passengers:passengerInfoList, flights: flights, onPreviousStep: onPreviousStep"></order-summary> 
+        <order-summary params="onPreviousStep: onPreviousStep"></order-summary> 
     </div>
- 
 </div>
 

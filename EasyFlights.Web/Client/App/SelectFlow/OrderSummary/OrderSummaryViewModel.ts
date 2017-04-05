@@ -17,7 +17,6 @@ class OrderSummaryViewModel {
         //this.flights = options.flights;
 
         this.onPreviousStep = options.onPreviousStep;
-
         this.previousStep.bind(this);
     }
 
