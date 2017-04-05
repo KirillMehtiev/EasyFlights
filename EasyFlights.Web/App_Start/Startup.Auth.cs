@@ -1,9 +1,14 @@
 ﻿using System;
+using System.Security.Claims;
+using System.Threading.Tasks;
 using EasyFlights.Data.DataContexts;
+using EasyFlights.DomainModel.Entities.Identity;
 using EasyFlights.Web.Infrastracture;
 using EasyFlights.Web.Providers;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
+using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Facebook;
 using Microsoft.Owin.Security.Google;
@@ -33,23 +38,25 @@ namespace EasyFlights.Web
             // and to use a cookie to temporarily store information about a user logging in with a third party login provider
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
-                AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie
+                AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
+                LoginPath = new PathString("/Account/Login222"),
             });
-            app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
-            OAuthBearerOptions = new OAuthBearerAuthenticationOptions();
+            //app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
+
+            //OAuthBearerOptions = new OAuthBearerAuthenticationOptions();
             // Configure the application for OAuth based flow
-            PublicClientId = "self";
+            //PublicClientId = "self";
 
-            OAuthOptions = new OAuthAuthorizationServerOptions
-            {
-                TokenEndpointPath = new PathString("/Token"),
-                Provider = new ApplicationOAuthProvider(PublicClientId),
-                AccessTokenExpireTimeSpan = TimeSpan.FromDays(10),
-                AllowInsecureHttp = true
-            };
+            //OAuthOptions = new OAuthAuthorizationServerOptions
+            //{
+            //    TokenEndpointPath = new PathString("/Token"),
+            //    Provider = new ApplicationOAuthProvider(PublicClientId),
+            //    AccessTokenExpireTimeSpan = TimeSpan.FromDays(10),
+            //    AllowInsecureHttp = true
+            //};
 
-            app.UseOAuthBearerTokens(OAuthOptions);
+            //app.UseOAuthBearerTokens(OAuthOptions);
 
             // Uncomment the following lines to enable logging in with third party login providers
             //app.UseMicrosoftAccountAuthentication(
@@ -60,13 +67,13 @@ namespace EasyFlights.Web
             //    consumerKey: "",
             //    consumerSecret: "");
 
-            facebookAuthOptions = new FacebookAuthenticationOptions()
-            {
-                AppId = "197059630795187",
-                AppSecret = "3d57cfebeca91a5335ba52a6535d2eca",
-                Provider = new FacebookAuthProvider()
-            };
-            app.UseFacebookAuthentication(facebookAuthOptions);
+            //facebookAuthOptions = new FacebookAuthenticationOptions()
+            //{
+            //    AppId = "197059630795187",
+            //    AppSecret = "3d57cfebeca91a5335ba52a6535d2eca",
+            //    Provider = new FacebookAuthProvider()
+            //};
+            //app.UseFacebookAuthentication(facebookAuthOptions);
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{

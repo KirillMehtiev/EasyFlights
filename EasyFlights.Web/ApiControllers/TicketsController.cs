@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 using EasyFlights.DomainModel.DTOs;
 using EasyFlights.DomainModel.Entities.Enums;
@@ -30,7 +31,7 @@ namespace EasyFlights.Web.ApiControllers
             this.userManager = userManager;
         }
 
-        private ApplicationUserManager UserManager => this.userManager ?? this.Request.GetOwinContext().GetUserManager<ApplicationUserManager>();       
+        private ApplicationUserManager UserManager => userManager ?? HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();       
 
         [HttpPost]
         [Route("GetTickets")]
@@ -94,7 +95,7 @@ namespace EasyFlights.Web.ApiControllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                ApplicationUser user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+                var user = await AccountController.GetUser(User.Identity.GetUserId());
                 var model = new PassengerViewModel()
                 {
                     Birthday =

@@ -25,10 +25,10 @@ namespace EasyFlights.DomainModel.Entities.Identity
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
             ClaimsIdentity userIdentity = await manager.CreateIdentityAsync(this, authenticationType);
-            userIdentity.AddClaim(new Claim("lastname", LastName));
-            userIdentity.AddClaim(new Claim("firstname", FirstName));
-            userIdentity.AddClaim(new Claim("sex", Sex.ToString()));
-            userIdentity.AddClaim(new Claim("dateofbirth", DateOfBirth?.ToString(CultureInfo.InvariantCulture)));
+            //userIdentity.AddClaim(new Claim("lastname", LastName));
+            //userIdentity.AddClaim(new Claim("firstname", FirstName));
+            //userIdentity.AddClaim(new Claim("sex", Sex.ToString()));
+            //userIdentity.AddClaim(new Claim("dateofbirth", DateOfBirth?.ToString(CultureInfo.InvariantCulture)));
 
             // Add custom user claims here
             return userIdentity;
