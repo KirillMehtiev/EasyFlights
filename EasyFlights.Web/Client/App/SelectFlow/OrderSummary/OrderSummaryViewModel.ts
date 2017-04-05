@@ -1,19 +1,15 @@
-﻿import ko = require("knockout");
-import { TicketInfoItem } from "../TicketInfo/TicketInfoItem";
-import { IOrderSummaryOptions } from "./IOrderSummaryOptions";
-import { ITicketInfoItemOptions } from "../TicketInfo/ITicketInfoItemOptions";
-import { RouteItem } from "../../SearchResults/FlightResults/RouteItem"
+﻿import { IOrderSummaryOptions } from "./IOrderSummaryOptions";
 import { StepFlow } from "../../Common/Enum/Enums";
+import { IEditablePassengerOptions } from "../PassengersInfo/EditablePassenger/IEditablePassengerOptions";
 
 class OrderSummaryViewModel {
 
-    public tickets: KnockoutObservableArray<{}>;
-    public flights: KnockoutObservableArray<RouteItem>;
+    public passengers: KnockoutObservableArray<IEditablePassengerOptions>;
+
     public onPreviousStep: KnockoutSubscribable<number>;
 
-    constructor(options: ITicketInfoItemOptions) {
-        //this.tickets = options.passengers;
-        //this.flights = options.flights;
+    constructor(options: IOrderSummaryOptions) {
+        this.passengers = options.passengers;
 
         this.onPreviousStep = options.onPreviousStep;
         this.previousStep.bind(this);

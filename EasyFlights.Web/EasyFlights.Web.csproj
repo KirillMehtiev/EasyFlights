@@ -243,6 +243,7 @@
     <Content Include="Client\App\Layout\LayoutTemplate.html" />
     <None Include="Client\App\Login\Login.scss" />
     <Content Include="Client\App\Login\LoginTemplate.html" />
+    <Content Include="Client\App\SelectFlow\OrderSummary\Ticket\TicketTemplate.html" />
     <Content Include="Client\App\SelectFlow\PassengersInfo\EditablePassenger\EditablePassengerTemplate.html" />
     <Content Include="Client\App\SelectFlow\SelectFlowTemplate.html" />
     <Content Include="Client\App\SelectFlow\PassengersInfo\PassengersInfoTemplate.html" />
@@ -360,6 +361,10 @@
     <TypeScriptCompile Include="Client\App\SearchResults\Services\RoutesService.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\EditableTicketOptions.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\EditablePassengerOptions.ts" />
+    <TypeScriptCompile Include="Client\App\SelectFlow\IInternalNavigation.ts" />
+    <TypeScriptCompile Include="Client\App\SelectFlow\OrderSummary\Ticket\ITicketOptions.ts" />
+    <TypeScriptCompile Include="Client\App\SelectFlow\OrderSummary\Ticket\TicketComponent.ts" />
+    <TypeScriptCompile Include="Client\App\SelectFlow\OrderSummary\Ticket\TicketViewModel.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\PassengersInfo\EditablePassenger\EditablePassengerComponent.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\PassengersInfo\EditablePassenger\EditablePassengerViewModel.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\PassengersInfo\EditablePassenger\IEditablePassengerOptions.ts" />

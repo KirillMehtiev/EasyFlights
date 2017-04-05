@@ -1,6 +1,6 @@
-﻿import { IEditablePassengerOptions } from "./EditablePassenger/IEditablePassengerOptions";
+﻿import { IInternalNavigation } from "../IInternalNavigation";
+import { IEditablePassengerOptions } from "./EditablePassenger/IEditablePassengerOptions";
 
-export interface IPassengersInfoOptions {
+export interface IPassengersInfoOptions extends IInternalNavigation {
     passangerInfoList: KnockoutObservableArray<IEditablePassengerOptions>;
-    onNextStep: KnockoutSubscribable<number>;
 }

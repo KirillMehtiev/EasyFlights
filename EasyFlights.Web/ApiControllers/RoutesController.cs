@@ -38,6 +38,15 @@ namespace EasyFlights.Web.ApiControllers
             return result;
         }
 
+        [Route("getRouteById")]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetRouteById(string routeId)
+        {
+            RouteDto route = await this.routeConverter.RestoreRouteFromRouteIdAsync(routeId);
+
+            return this.Ok(this.MapToRouteViewModel(route));
+        }
+
         private RouteViewModel MapToRouteViewModel(RouteDto route)
         {
             var routeViewModel = new RouteViewModel();
