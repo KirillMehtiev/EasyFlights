@@ -7,6 +7,7 @@ using EasyFlights.DomainModel.DTOs;
 using EasyFlights.DomainModel.Entities.Enums;
 using EasyFlights.Services.DtoMappers;
 using EasyFlights.Web.Util.Converters;
+using EasyFlights.Web.ViewModels;
 
 namespace EasyFlights.Web.ApiControllers
 {
@@ -14,17 +15,17 @@ namespace EasyFlights.Web.ApiControllers
     public class TicketsController : ApiController
     {
         private IRouteConverter converter;
-        private ITicketsForRouteMapper mapper;
+        private ITicketsForRouteMapper dtoMapper;
 
-        public TicketsController(IRouteConverter converter, ITicketsForRouteMapper mapper)
+        public TicketsController(IRouteConverter converter, ITicketsForRouteMapper dtoMapper)
         {
             this.converter = converter;
-            this.mapper = mapper;
+            this.dtoMapper = dtoMapper;
         }
 
         [HttpGet]
         [Route("GetPassengers")]
-        public async Task<List<PassengerDto>> GetPassengersAsync(string routeId, int numberOfPassengers)
+        public async Task<List<PassengerViewModel>> GetPassengersAsync(string routeId, int numberOfPassengers)
         {
             RouteDto route = await converter.RestoreRouteFromRouteIdAsync(routeId);
             var available = true;
@@ -38,15 +39,15 @@ namespace EasyFlights.Web.ApiControllers
             }
             if (!available)
             {
-                return new List<PassengerDto>();
+                return new List<PassengerViewModel>();
             }
-            var answer = new List<PassengerDto>();
+            var answer = new List<PassengerViewModel>();
             answer.Add(GeneratePassengerFromUser());
             for (var i = 1; i < numberOfPassengers; i++)
             {
-                answer.Add(new PassengerDto()
+                answer.Add(new PassengerViewModel()
                 {
-                    Birthday = DateTime.MinValue,
+                    Birthday = DateTime.MinValue.ToShortDateString(),
                     DocumentNumber = string.Empty,
                     FirstName = string.Empty,
                     LastName = string.Empty
@@ -57,17 +58,20 @@ namespace EasyFlights.Web.ApiControllers
 
         [HttpPost]
         [Route("GetTickets")]
-        public async Task<TicketsForRouteDto> GetTicketsForRouteAsync([FromBody] string routeId, List<PassengerDto> passengers)
+        public async Task<TicketsForRouteViewModel> GetTicketsForRouteAsync([FromBody] string routeId, List<PassengerDto> passengers)
         {
             RouteDto route = await converter.RestoreRouteFromRouteIdAsync(routeId);
-            return mapper.Map(route.Flights.ToList(), passengers);      
+            TicketsForRouteDto dto = this.dtoMapper.Map(route, passengers);
+            var model = new TicketsForRouteViewModel();
+            
+            return model;
         }
 
-        private PassengerDto GeneratePassengerFromUser()
+        private PassengerViewModel GeneratePassengerFromUser()
         {
-            return new PassengerDto()
+            return new PassengerViewModel()
             {
-                Birthday = DateTime.MaxValue,
+                Birthday = DateTime.MaxValue.ToShortDateString(),
                 DocumentNumber = "user's document number",
                 FirstName = "User's first name",
                 LastName = "User's last name",

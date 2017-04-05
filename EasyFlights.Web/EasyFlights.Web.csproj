@@ -213,9 +213,11 @@
     <Compile Include="ViewModels\AirportViewModel.cs" />
     <Compile Include="ViewModels\CabinViewModel.cs" />
     <Compile Include="ViewModels\FlightViewModel.cs" />
+    <Compile Include="ViewModels\PassengerViewModel.cs" />
     <Compile Include="ViewModels\ProfileInfo\ProfileViewModel.cs" />
     <Compile Include="ViewModels\RouteSearchViewModel.cs" />
     <Compile Include="ViewModels\RouteViewModel.cs" />
+    <Compile Include="ViewModels\TicketsForRouteViewModel.cs" />
     <Compile Include="ViewModels\TicketVIewModel.cs" />
     <Compile Include="ViewModels\TypeaheadViewModel.cs" />
   </ItemGroup>

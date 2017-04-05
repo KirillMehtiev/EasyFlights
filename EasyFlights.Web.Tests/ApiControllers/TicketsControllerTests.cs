@@ -4,6 +4,7 @@ using EasyFlights.DomainModel.DTOs;
 using EasyFlights.Services.DtoMappers;
 using EasyFlights.Web.ApiControllers;
 using EasyFlights.Web.Util.Converters;
+using EasyFlights.Web.ViewModels;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
@@ -35,7 +36,7 @@ namespace EasyFlights.WebApi.Tests.ApiControllers
             var expected = "Arrival";
 
             // Assert
-            TicketsForRouteDto dto = controller.GetTicketsForRouteAsync("id", controller.GetPassengersAsync("id", 1).Result).Result;
+            TicketsForRouteViewModel dto = controller.GetTicketsForRouteAsync("id", controller.GetPassengersAsync("id", 1).Result).Result;
             Assert.AreEqual(expected, dto.ArrivalAirport);
         }
 
@@ -68,7 +69,7 @@ namespace EasyFlights.WebApi.Tests.ApiControllers
                 }
             };
             converterMock.Setup(x => x.RestoreRouteFromRouteIdAsync(routeId)).ReturnsAsync(routeDto);
-            mapperMock.Setup(x => x.Map(It.IsAny<List<FlightDto>>(), It.IsAny<List<PassengerDto>>()))
+            mapperMock.Setup(x => x.Map(It.IsAny<RouteDto>(), It.IsAny<List<PassengerDto>>()))
                 .Returns(new TicketsForRouteDto()
                 {
                     ArrivalAirport = "Arrival"
