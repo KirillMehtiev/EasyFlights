@@ -79,9 +79,13 @@ class SignUpViewModel {
     }
 
     private handleServiceResponse() {
-
-        // TODO: redirect somewhere
-        console.log("Register: response");
+        // clear all fields
+        this.userName("");
+        this.userSurname("");
+        this.userPhone("");
+        this.userEmail("");
+        this.userPassword("");
+        this.userPasswordConfirmation("");
     }
 }
 

@@ -20,7 +20,12 @@ export class AuthService {
     }
 
     public signUp(model: ISignUpModel) {
-        return this.dataService.post("/api/account/signup", model);
+        return this.dataService
+            .post("/api/account/signup", model)
+            .then((response => {
+                this.isCurrentUserSignedIn(true);
+                window.location.href = "#";
+            }));
     }
 
     public signIn(model: ISignInModel) {
