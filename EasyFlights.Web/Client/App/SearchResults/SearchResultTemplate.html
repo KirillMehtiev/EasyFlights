@@ -4,13 +4,13 @@
         <hr />
         <route-header params="departurePlace: departurePlace, destinationPlace:arrivalPlace, departureDate:departureDate, returnDate:returnDate"></route-header>
         <p><b>Quantity of people:</b>&nbsp;<span data-bind="text: numberOfPassenger"></span></p>
-   
+
         <hr />
-        
+
         <div data-bind="if: isLoading()">
             <h3>Searching...</h3>
         </div>
-        
+
         <div class="text-center" data-bind="if: !isLoading() && routeItems().length === 0">
             <h3>Requested information not found.</h3>
             <h4>Try to change search parameters.</h4>
@@ -18,13 +18,22 @@
         </div>
 
         <div data-bind="if: !isLoading() &&  routeItems().length !== 0" params="countOf: countOf">
-            
+
             <div class="btn-group pull-right" role="group" aria-label="...">
-                <button data-bind="click: sortByPrice" type="button" class="btn btn-primary sortByPrice">by Price</button>
-                <button data-bind="click: sortByDuration" type="button" class="btn btn-default sortByDuration">by Duration</button>
+                <div class="btn-group form-group" data-toggle="buttons">
+                    <label class="btn btn-default active" data-bind="click: sortByDuration">
+                        <input type="radio" name="byPrice" />by Price
+                    </label>
+                    <label class="btn btn-default" data-bind="click: sortByDuration">
+                        <input type="radio" name="byDuration" />by Duration
+                    </label>
+                </div>
             </div>
+
+
+
             &nbsp;
-            <hr/>
+            <hr />
             <h4><b>Flights: </b></h4>
             <div data-bind="foreach: {data: pagedRouteItems, as: 'routeItem'}">
                 <routes params="item: routeItem, quantity: $parent.numberOfPassenger"></routes>

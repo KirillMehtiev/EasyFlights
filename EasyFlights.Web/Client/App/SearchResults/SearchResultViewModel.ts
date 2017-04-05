@@ -75,15 +75,11 @@ class SearchResultViewModel {
     public sortByPrice(): void {
         this.routeItems.sort((x, y) => x.totalCoast - y.totalCoast);
         this.setPage();
-        $(".sortByPrice").removeClass('btn btn-default').addClass('btn btn-primary');
-        $(".sortByDuration").removeClass('btn btn-primary').addClass('btn btn-default');
     }
     public sortByDuration(): void {
         this.routeItems.sort((x, y) => y.totalTime.split(':').reduce((seconds, v) => +v + seconds * 60, 0) / 60 -
             x.totalTime.split(':').reduce((seconds, v) => +v + seconds * 60, 0) / 60);
         this.setPage();
-        $(".sortByDuration").removeClass('btn btn-default').addClass('btn btn-primary');
-        $(".sortByPrice").removeClass('btn btn-primary').addClass('btn btn-default');
     }
     private createDefaultOptions(): void {
         this.pagedRouteItems = ko.observableArray([]);
