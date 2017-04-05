@@ -8,7 +8,7 @@ class EditableTicketViewModel {
 
     private ticketClassOptions: Array<RadioChooserItem>;
 
-    public firstName: KnockoutObservable< string>;
+    public firstName: KnockoutObservable<string>;
     public lastName: KnockoutObservable<string>;
     public fare: KnockoutObservable<number>;
     public seat: KnockoutObservable<string>;
@@ -31,6 +31,7 @@ class EditableTicketViewModel {
         this.seat = options.seat;
         this.class = options.class;
 
+        this.radioChooserIndex = ++EditableTicketViewModel.currentRadioChooserIndex;
     }
 }
 

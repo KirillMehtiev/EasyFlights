@@ -1,3 +1,25 @@
-﻿<h1>
-    Hello
-</h1>
+﻿<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-4">
+                <p data-bind="text: firstName"></p>
+                <p data-bind="text: lastName"></p>
+            </div>
+            <div class="col-md-4">
+                <p class="text-center" data-bind="text: seat"></p>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Class:</label>
+                    <radio-chooser params="options: ticketClassOptions, selectedOption: class, groupName: radioChooserIndex"></radio-chooser>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="panel-footer">
+        <div class="col-md-4">
+            <p class="text-center" data-bind="text: fare"></p>
+        </div>
+    </div>
+</div>
