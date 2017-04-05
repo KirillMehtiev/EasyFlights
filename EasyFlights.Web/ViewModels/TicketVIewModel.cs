@@ -7,12 +7,10 @@ namespace EasyFlights.Web.ViewModels
     {
         public decimal Fare { get; set; }
 
-        public decimal Discount { get; set; }
-
         public int Seat { get; set; }
 
         public FlightClass Class { get; set; }
 
-        public List<PassengerViewModel> Passengers { get; set; }
+        public string Passenger { get; set; }
     }
 }

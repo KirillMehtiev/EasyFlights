@@ -58,12 +58,57 @@ namespace EasyFlights.Web.ApiControllers
 
         [HttpPost]
         [Route("GetTickets")]
-        public async Task<TicketsForRouteViewModel> GetTicketsForRouteAsync([FromBody] string routeId, List<PassengerDto> passengers)
+        public async Task<TicketsForRouteViewModel> GetTicketsForRouteAsync([FromBody] string routeId, List<PassengerViewModel> passengers)
         {
             RouteDto route = await converter.RestoreRouteFromRouteIdAsync(routeId);
-            TicketsForRouteDto dto = this.dtoMapper.Map(route, passengers);
-            var model = new TicketsForRouteViewModel();
-            
+            var passengersDto = new List<PassengerDto>();
+            foreach (PassengerViewModel passenger in passengers)
+            {
+                passengersDto.Add(new PassengerDto()
+                {
+                    Birthday = DateTime.Parse(passenger.Birthday),
+                    DocumentNumber = passenger.DocumentNumber,
+                    FirstName = passenger.FirstName,
+                    LastName = passenger.LastName,
+                    Sex = passenger.Sex
+                });
+            }
+            TicketsForRouteDto dto = this.dtoMapper.Map(route, passengersDto);
+            var model = new TicketsForRouteViewModel()
+            {
+                ArrivalAirport = dto.ArrivalAirport,
+                ArrivalCity = dto.ArrivalCity,
+                DepartureAirport = dto.DepartureAirport,
+                DepartureCity = dto.DepartureCity,
+                Duration = dto.Duration.ToString("d' days, 'hh':'mm"),
+                Flights = new List<FlightViewModel>(),
+                TotalPrice = dto.TotalPrice
+            };
+            foreach (FlightDto flight in dto.Flights)
+            {
+                var flightModel = new FlightViewModel()
+                {
+                    ArrivalTime = flight.ScheduledArrivalTime.ToShortDateString(),
+                    DepartureAirport = flight.DepartureAirportTitle,
+                    DepartureTime = flight.ScheduledDepartureTime.ToShortDateString(),
+                    DestinationAirport = flight.DestinationAirportTitle,
+                    Duration = flight.Duration.ToString("d' days, 'hh':'mm"),
+                    Fare = flight.DefaultFare,
+                    Tickets = new List<TicketVIewModel>()
+                };
+                foreach (TicketDto ticket in flight.Tickets)
+                {
+                    var ticketModel = new TicketVIewModel()
+                    {
+                        Class = ticket.FlightClass,
+                        Fare = ticket.Price,
+                        Passenger = ticket.Passenger.FirstName + " " + ticket.Passenger.LastName,
+                        Seat = ticket.Seat.Number
+                    };
+                    flightModel.Tickets.Add(ticketModel);
+                }
+                model.Flights.Add(flightModel);
+            }
             return model;
         }
 

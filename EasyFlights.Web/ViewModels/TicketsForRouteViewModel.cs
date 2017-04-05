@@ -13,7 +13,7 @@ namespace EasyFlights.Web.ViewModels
 
         public string ArrivalCity { get; set; }
 
-        public TimeSpan Duration { get; set; }
+        public string Duration { get; set; }
 
         public decimal TotalPrice { get; set; }
 
