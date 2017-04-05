@@ -1,27 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using EasyFlights.DomainModel.DTOs;
 using EasyFlights.DomainModel.Entities.Enums;
+using EasyFlights.DomainModel.Entities.Identity;
 using EasyFlights.Services.DtoMappers;
+using EasyFlights.Web.Infrastracture;
 using EasyFlights.Web.Util.Converters;
 using EasyFlights.Web.ViewModels;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace EasyFlights.Web.ApiControllers
 {
     [RoutePrefix("api/Tickets")]
     public class TicketsController : ApiController
     {
+        private ApplicationUserManager userManager;
         private IRouteConverter converter;
         private ITicketsForRouteMapper dtoMapper;
 
-        public TicketsController(IRouteConverter converter, ITicketsForRouteMapper dtoMapper)
+        public TicketsController(IRouteConverter converter, ITicketsForRouteMapper dtoMapper, ApplicationUserManager userManager)
         {
             this.converter = converter;
             this.dtoMapper = dtoMapper;
+            this.userManager = userManager;
         }
+
+        private ApplicationUserManager UserManager => this.userManager ?? this.Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
 
         [HttpGet]
         [Route("GetPassengers")]
@@ -41,8 +49,7 @@ namespace EasyFlights.Web.ApiControllers
             {
                 return new List<PassengerViewModel>();
             }
-            var answer = new List<PassengerViewModel>();
-            answer.Add(GeneratePassengerFromUser());
+            var answer = new List<PassengerViewModel> { await this.GeneratePassengerFromUserAsync() };
             for (var i = 1; i < numberOfPassengers; i++)
             {
                 answer.Add(new PassengerViewModel()
@@ -112,16 +119,33 @@ namespace EasyFlights.Web.ApiControllers
             return model;
         }
 
-        private PassengerViewModel GeneratePassengerFromUser()
+        private async Task<PassengerViewModel> GeneratePassengerFromUserAsync()
         {
-            return new PassengerViewModel()
+            PassengerViewModel model;
+            if (User.Identity.IsAuthenticated)
             {
-                Birthday = DateTime.MaxValue.ToShortDateString(),
-                DocumentNumber = "user's document number",
-                FirstName = "User's first name",
-                LastName = "User's last name",
-                Sex = Sex.Male // it's truly random, belive me
-            };
+                ApplicationUser user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+                model = new PassengerViewModel()
+                {     
+                    Birthday = (user.DateOfBirth != null) ? user.DateOfBirth?.ToShortDateString() : DateTime.Now.ToShortDateString(),
+                    DocumentNumber = string.Empty,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    Sex = user.Sex ?? Sex.Male
+                };               
+            }
+            else
+            {
+                model = new PassengerViewModel()
+                {
+                    Birthday = DateTime.Now.ToShortDateString(),
+                    DocumentNumber = string.Empty,
+                    FirstName = string.Empty,
+                    LastName = string.Empty,
+                    Sex = Sex.Male // it's truly random, belive me
+                };
+            }
+            return model;
         }
     }
 }

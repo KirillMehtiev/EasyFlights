@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using EasyFlights.DomainModel.DTOs;
+using EasyFlights.DomainModel.Entities.Identity;
 using EasyFlights.Services.DtoMappers;
 using EasyFlights.Web.ApiControllers;
+using EasyFlights.Web.Infrastracture;
 using EasyFlights.Web.Util.Converters;
 using EasyFlights.Web.ViewModels;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -12,7 +14,7 @@ namespace EasyFlights.WebApi.Tests.ApiControllers
 {
     [TestClass]
     public class TicketsControllerTests
-    {        
+    {
         [TestMethod]
         public void GetPassengers()
         {
@@ -44,6 +46,7 @@ namespace EasyFlights.WebApi.Tests.ApiControllers
         {
             var converterMock = new Mock<IRouteConverter>();
             var mapperMock = new Mock<ITicketsForRouteMapper>();
+            var userManagerMock = new Mock<ApplicationUserManager>();
             var routeDto = new RouteDto()
             {
                 Flights = new List<FlightDto>()
@@ -74,7 +77,8 @@ namespace EasyFlights.WebApi.Tests.ApiControllers
                 {
                     ArrivalAirport = "Arrival"
                 });
-            return new TicketsController(converterMock.Object, mapperMock.Object);
+            userManagerMock.Setup(x => x.FindByIdAsync(It.IsAny<string>())).ReturnsAsync(new ApplicationUser());
+            return new TicketsController(converterMock.Object, mapperMock.Object, userManagerMock.Object);
         }
-     }
+    }
 }
