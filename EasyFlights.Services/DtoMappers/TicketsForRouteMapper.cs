@@ -19,8 +19,13 @@ namespace EasyFlights.Services.DtoMappers
         public TicketsForRouteDto Map(RouteDto route, List<PassengerDto> passengers)
         {
             var dto = new TicketsForRouteDto();
-            foreach (FlightDto flight in route.Flights)
+            dto.Flights = route.Flights.ToList();
+            foreach (FlightDto flight in dto.Flights)
             {
+                if (flight.Tickets == null)
+                {
+                    flight.Tickets = new List<TicketDto>();
+                }
                 List<int> availableSeats = service.GetAvailableSeats(passengers.Count);
                 for (var i = 0; i < passengers.Count; i++)
                 {

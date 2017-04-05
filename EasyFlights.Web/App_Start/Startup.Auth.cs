@@ -1,9 +1,11 @@
 ﻿using System;
 using EasyFlights.Data.DataContexts;
 using EasyFlights.Web.Infrastracture;
+using EasyFlights.Web.Providers;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
+using Microsoft.Owin.Security.Facebook;
 using Microsoft.Owin.Security.Google;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
@@ -12,6 +14,10 @@ namespace EasyFlights.Web
 {
     public partial class Startup
     {
+        public static OAuthBearerAuthenticationOptions OAuthBearerOptions { get; private set; }
+
+        public static FacebookAuthenticationOptions facebookAuthOptions { get; private set; }
+
         public static OAuthAuthorizationServerOptions OAuthOptions { get; private set; }
 
         public static string PublicClientId { get; private set; }
@@ -25,9 +31,13 @@ namespace EasyFlights.Web
 
             // Enable the application to use a cookie to store information for the signed in user
             // and to use a cookie to temporarily store information about a user logging in with a third party login provider
-            app.UseCookieAuthentication(new CookieAuthenticationOptions());
+            app.UseCookieAuthentication(new CookieAuthenticationOptions
+            {
+                AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie
+            });
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
+            OAuthBearerOptions = new OAuthBearerAuthenticationOptions();
             // Configure the application for OAuth based flow
             PublicClientId = "self";
 
@@ -50,9 +60,13 @@ namespace EasyFlights.Web
             //    consumerKey: "",
             //    consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //    appId: "",
-            //    appSecret: "");
+            facebookAuthOptions = new FacebookAuthenticationOptions()
+            {
+                AppId = "197059630795187",
+                AppSecret = "3d57cfebeca91a5335ba52a6535d2eca",
+                Provider = new FacebookAuthProvider()
+            };
+            app.UseFacebookAuthentication(facebookAuthOptions);
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{

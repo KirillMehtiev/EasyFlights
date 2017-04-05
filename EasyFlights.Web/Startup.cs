@@ -1,4 +1,5 @@
 ﻿using System.Web.Http;
+using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Newtonsoft.Json.Serialization;
 using Owin;
@@ -19,8 +20,9 @@ namespace EasyFlights.Web
             config.Formatters.JsonFormatter.UseDataContractJsonSerializer = false;
 
             app.UseCookieAuthentication(new CookieAuthenticationOptions
-            {
-                AuthenticationType = "ApplicationCookie"
+            {        
+                AuthenticationType = "ApplicationCookie",
+                LoginPath = new PathString("/Account/Login")
             });
         }
     }

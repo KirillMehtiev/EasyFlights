@@ -196,8 +196,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Identity\ExternalLoginData.cs" />
+    <Compile Include="Identity\ParsedExternalAccessToken.cs" />
     <Compile Include="Infrastracture\ApplicationOAuthProvider.cs" />
     <Compile Include="Infrastracture\ApplicationUserManager.cs" />
+    <Compile Include="Providers\FacebookAuthProvider.cs" />
+    <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Util\Converters\IRouteConverter.cs" />
     <Compile Include="Util\Converters\RouteConverter.cs" />
     <Compile Include="Util\NinjectDependencyResolver.cs" />
@@ -209,9 +213,11 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AccountViewModels\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\AccountViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\AccountViewModels\RegisterExternalBindingModel.cs" />
     <Compile Include="ViewModels\AccountViewModels\RegisterViewModel.cs" />
     <Compile Include="ViewModels\AirportViewModel.cs" />
     <Compile Include="ViewModels\CabinViewModel.cs" />
+    <Compile Include="ViewModels\AccountViewModels\ExternalLoginViewModel.cs" />
     <Compile Include="ViewModels\FlightViewModel.cs" />
     <Compile Include="ViewModels\PassengerViewModel.cs" />
     <Compile Include="ViewModels\ProfileInfo\ProfileViewModel.cs" />
