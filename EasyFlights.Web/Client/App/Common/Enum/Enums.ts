@@ -4,7 +4,7 @@
     OrderSummary
 }
 
-export enum SexType {
+export enum Sex {
     Male,
     Female
 }

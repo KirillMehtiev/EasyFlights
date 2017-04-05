@@ -315,6 +315,7 @@
     <TypeScriptCompile Include="Client\App\Common\Components\RouteHeader\IRouteHeaderOptions.ts" />
     <TypeScriptCompile Include="Client\App\Common\Components\RouteHeader\RouteHeaderComponent.ts" />
     <TypeScriptCompile Include="Client\App\Common\Components\RouteHeader\RouteHeaderViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\Common\Dtos\PassengerInfoDto.ts" />
     <TypeScriptCompile Include="Client\App\Common\Enum\Enums.ts" />
     <TypeScriptCompile Include="Client\App\Common\Services\Auth\authService.ts" />
     <TypeScriptCompile Include="Client\App\Common\Services\Auth\ISignUpModel.ts" />
@@ -348,7 +349,7 @@
     <TypeScriptCompile Include="Client\App\SelectFlow\SelectFlowComponent.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\SelectFlowViewModel.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\PassengerInfo\PassengerInfoComponent.ts" />
-    <TypeScriptCompile Include="Client\App\SelectFlow\PassengerInfo\PassengerInfoItem.ts" />
+    <TypeScriptCompile Include="Client\App\SelectFlow\PassengerInfo\IPassengerInfoItem.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\PassengerInfo\PassengerInfoViewModel.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\FlightResults\RouteItem.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\FlightResults\RouteResultComponent.ts" />
