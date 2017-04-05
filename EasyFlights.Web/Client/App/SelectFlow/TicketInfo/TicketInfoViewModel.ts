@@ -1,6 +1,5 @@
 ﻿import { TicketInfoItem } from "./TicketInfoItem";
 import { ITicketInfoItemOptions } from "./ITicketInfoItemOptions";
-import { IPassengerInfoItem } from "../PassengerInfo/IPassengerInfoItem";
 import { RadioChooserItem } from "../../Common/Components/RadioChooser/RadioChooserItem";
 import { RouteItem } from "../../SearchResults/FlightResults/RouteItem"
 import { StepFlow } from "../../Common/Enum/Enums";

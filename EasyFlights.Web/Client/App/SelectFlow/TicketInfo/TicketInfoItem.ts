@@ -1,5 +1,4 @@
 ﻿import ko = require("knockout");
-import { IPassengerInfoItem } from "../PassengerInfo/IPassengerInfoItem";
 import { FlightItem } from "../../SearchResults/FlightResults/Tickets/FlightItem";
 
 export class TicketInfoItem {

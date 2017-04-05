@@ -1,5 +1,4 @@
-﻿/// <reference path="common/components/busyindicator/busyindicatorcomponent.ts" />
-import "./Layout/LayoutComponent";
+﻿import "./Layout/LayoutComponent";
 import "./Layout/Footer/FooterComponent";
 import "./Layout/Header/HeaderComponent";
 import "./Index/IndexComponent";
@@ -13,7 +12,7 @@ import "./Common/Components/RouteHeader/RouteHeaderComponent"
 import "./SearchResults/FlightResults/RouteResultComponent"
 import "./SearchResults/FlightResults/Tickets/FlightComponent"
 import "./SelectFlow/SelectFlowComponent";
-import "./SelectFlow/PassengerInfo/PassengerInfoComponent";
+import "./SelectFlow/PassengersInfo/PassengersInfoComponent";
 import "./SelectFlow/TicketInfo/TicketInfoComponent";
 import "./SelectFlow/OrderSummary/OrderSummaryComponent";
 import "./SelectFlow/TicketInfo/SeatPicker/Cabin/CabinComponent";
@@ -27,3 +26,4 @@ import "./UserCabinet/ProfileInfo/ProfileInfoComponent";
 import "./Login/LoginComponent";
 import "./UserCabinet/ManageOrders/ManageOrdersComponent";
 import "./Common/Components/BusyIndicator/BusyIndicatorComponent";
+import "./SelectFlow/PassengersInfo/EditablePassenger/EditablePassengerComponent";

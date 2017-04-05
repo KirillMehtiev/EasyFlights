@@ -1,5 +1,4 @@
-﻿import { IPassengerInfoItem } from "../PassengerInfo/IPassengerInfoItem";
-import { TicketInfoItem } from "./TicketInfoItem";
+﻿import { TicketInfoItem } from "./TicketInfoItem";
 import { TicketInfoGeneral } from "./TicketInfo";
 
 export interface ITicketInfoItemOptions {
