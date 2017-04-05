@@ -1,9 +1,9 @@
-﻿import { SexType } from "../../Common/Enum/Enums";
+﻿import { Sex } from "../Enum/Enums"
 
-export class PassengerInfoItem {
+export class PassengerInfoDto {
     public firstName: string;
     public lastName: string;
     public birthday: string;
-    public sex: SexType;
     public documentNumber: string;
+    public sex: Sex;
 }

@@ -1,19 +1,18 @@
 ﻿import { TicketInfoItem } from "./TicketInfoItem";
 import { ITicketInfoItemOptions } from "./ITicketInfoItemOptions";
-import { PassengerInfoItem } from "../PassengerInfo/PassengerInfoItem";
+import { IPassengerInfoItem } from "../PassengerInfo/IPassengerInfoItem";
 import { RadioChooserItem } from "../../Common/Components/RadioChooser/RadioChooserItem";
 import { RouteItem } from "../../SearchResults/FlightResults/RouteItem"
 import { StepFlow } from "../../Common/Enum/Enums";
+import { TicketInfoGeneral } from "./TicketInfo";
 
 class TicketInfoViewModel {
-    public tickets: KnockoutObservableArray<PassengerInfoItem>;
-    public flights: KnockoutObservableArray<RouteItem>;
+    public generalInfo: KnockoutObservableArray<TicketInfoGeneral>;
     public onNextStep: KnockoutSubscribable<number>;
     public onPreviousStep: KnockoutSubscribable<number>;
 
     constructor(options: ITicketInfoItemOptions) {
-        //this.tickets = options.passengers;
-        //this.flights = options.flights;
+        this.generalInfo = options.generalInfo;
         this.onNextStep = options.onNextStep;
         this.onPreviousStep = options.onPreviousStep;
 
