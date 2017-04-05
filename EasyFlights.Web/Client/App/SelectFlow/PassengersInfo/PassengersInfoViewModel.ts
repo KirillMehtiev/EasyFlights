@@ -9,7 +9,7 @@ class PassengersInfoViewModel {
     private onNextStep: KnockoutSubscribable<number>;
 
     constructor(options: IPassengersInfoOptions) {
-        this.passengersInfoList = options.passangerInfoList;
+        this.passengersInfoList = options.passengerInfoList;
 
         this.onNextStep = options.onNextStep;
         this.nextStep.bind(this);

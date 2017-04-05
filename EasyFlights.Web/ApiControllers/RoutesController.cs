@@ -38,7 +38,6 @@ namespace EasyFlights.Web.ApiControllers
             return result;
         }
 
-        [Route("getRouteById")]
         [HttpGet]
         public async Task<IHttpActionResult> GetRouteById(string routeId)
         {

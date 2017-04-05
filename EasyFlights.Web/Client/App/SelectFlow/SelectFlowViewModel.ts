@@ -4,9 +4,10 @@ import { PassengerInfoDto } from "../Common/Dtos/PassengerInfoDto";
 import { SelectFlowService } from "./Services/SelectFlowService";
 import { TicketInfoItem } from "./TicketInfo/TicketInfoItem";
 import { StepFlow } from "../Common/Enum/Enums";
-//import { TicketInfoGeneral } from "./TicketInfo/TicketInfo"
 import { IEditablePassengerOptions } from "./PassengersInfo/EditablePassenger/IEditablePassengerOptions";
+import { IEditableTicketOptions } from "./TicketInfo/EditableTicket/IEditableTicketOptions";
 import { EditablePassengerOptions } from "./EditablePassengerOptions";
+import { EditableTicketOptions } from "./EditableTicketOptions";
 
 class SelectFlowViewModel {
     // Params
@@ -105,17 +106,35 @@ class SelectFlowViewModel {
 
     private initPassengerInfoList(routeId: string, numberOfPassenger: number) {
         this.passengerInfoList = ko.observableArray([]);
-
         for (let i = 0; i < numberOfPassenger; i++) {
-            // Todo: get var with numberOfFlight and based on it init tickets property
-            
             this.passengerInfoList.push(new EditablePassengerOptions());
         }
 
-        //let url = `GetPassengers?routeId=${routeId}&numberOfPassengers=${numberOfPassenger}`;
-        //this.selectFlowServices.getPassengerInfo(url).then((data: Array<IPassengerInfoItem>) => {
-        //    this.passengerInfoList(data);
-        //});
+        this.selectFlowServices
+            .loadRoute(this.routeId())
+            .then((route => {
+                for (let i = 0; i < this.passengerInfoList().length; i++) {
+                    let passenger = this.passengerInfoList()[i];
+                    passenger.tickets = this.createTicketsForPassenger(route.flights);
+                }
+            }));
+    }
+
+    private createTicketsForPassenger(flights: Array<any>): KnockoutObservableArray<IEditableTicketOptions> {
+        let result = ko.observableArray([]);
+        for (let i = 0; i < flights.length; i++) {
+            let flight = flights[i];
+            let ticket = new EditableTicketOptions();
+
+            ticket.departureAirport(flight.departureAirport);
+            ticket.destinationAirport(flight.destinationAirport);
+            ticket.duration(flight.duration);
+            ticket.fare(flight.fare);
+            ticket.departureTime(flight.departureTime);
+
+            result.push(ticket);
+        }
+        return result;
     }
 }
 

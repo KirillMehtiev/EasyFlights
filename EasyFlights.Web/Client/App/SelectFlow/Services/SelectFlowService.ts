@@ -15,4 +15,8 @@ export class SelectFlowService {
         //return this.dataService.post<Array<TicketInfoGeneral>>(this.apiBasePath + '/' + url, { routeId: routeId, passengers: passengerInfo });
         return null;
     }
+
+    public loadRoute(routeId: string): JQueryPromise<any> {
+        return this.dataService.get("api/routes/getRouteById?routeId=" + routeId);
+    }
 }

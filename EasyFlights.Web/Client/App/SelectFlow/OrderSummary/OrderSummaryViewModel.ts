@@ -4,12 +4,14 @@ import { IEditablePassengerOptions } from "../PassengersInfo/EditablePassenger/I
 
 class OrderSummaryViewModel {
 
-    public passengers: KnockoutObservableArray<IEditablePassengerOptions>;
+    public passengerInfoList: KnockoutObservableArray<IEditablePassengerOptions>;
 
     public onPreviousStep: KnockoutSubscribable<number>;
 
     constructor(options: IOrderSummaryOptions) {
-        this.passengers = options.passengers;
+        this.passengerInfoList = options.passengerInfoList;
+
+        console.log(this.passengerInfoList());
 
         this.onPreviousStep = options.onPreviousStep;
         this.previousStep.bind(this);
