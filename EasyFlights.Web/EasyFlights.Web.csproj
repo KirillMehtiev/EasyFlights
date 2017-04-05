@@ -257,7 +257,6 @@
     <Content Include="Client\Libs\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Client\Libs\js\jquery-ui.js" />
     <Content Include="Client\Libs\js\jquery.blockUI.js" />
-    <Content Include="Client\Libs\js\jquery.cookie.js" />
     <Content Include="Client\Libs\js\pager.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -400,8 +399,8 @@
     <TypeScriptCompile Include="Client\App\Validation\ISingleValueValidationRule.ts" />
     <TypeScriptCompile Include="Client\App\ValidationRules.ts" />
     <TypeScriptCompile Include="Client\App\Validation\KnockoutValidationOptions.ts" />
-    <TypeScriptCompile Include="Client\App\Validation\PasswordValidation\IPasswordValidationOptions.ts" />
-    <TypeScriptCompile Include="Client\App\Validation\PasswordValidation\PasswordValidationRule.ts" />
+    <TypeScriptCompile Include="Client\App\SignUp\PasswordValidation\IPasswordValidationOptions.ts" />
+    <TypeScriptCompile Include="Client\App\SignUp\PasswordValidation\PasswordValidationRule.ts" />
     <TypeScriptCompile Include="Client\Libs\typings\jqueryui\jquery.blockUI.d.ts" />
     <TypeScriptCompile Include="Client\Libs\typings\knockout\knockout.d.ts" />
     <TypeScriptCompile Include="Client\Libs\typings\knockout\knockout.validation.d.ts" />
