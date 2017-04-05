@@ -1,4 +1,4 @@
-﻿import { ISingleValueValidationRule } from "../ISingleValueValidationRule";
+﻿import { ISingleValueValidationRule } from "../../Validation/ISingleValueValidationRule";
 import { IPasswordValidationOptions } from "./IPasswordValidationOptions";
 
 class PasswordValidationRule implements ISingleValueValidationRule<IPasswordValidationOptions> {
@@ -7,7 +7,6 @@ class PasswordValidationRule implements ISingleValueValidationRule<IPasswordVali
 
     constructor() {
         this.hasUpperCaseLetter.bind(this);
-        this.hasDigit.bind(this);
     }
 
     public validator(inputValue: string, requiredValue: IPasswordValidationOptions): boolean {

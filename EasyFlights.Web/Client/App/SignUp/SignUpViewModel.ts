@@ -46,16 +46,13 @@ class SignUpViewModel {
                          "The length of a password should be greater than 6 characters and less than 50 characters"
             }
         });
-
-        let self = this;
         this.userPasswordConfirmation = ko.observable("").extend({
             required: true,
             areSame: {
-                params: self.userPassword,
+                params: this.userPassword,
                 message: "Please, confirm your password"
             }
         });
-
         this.isRequestProcessing = ko.observable(false);
 
         this.onSubmit.bind(this);
