@@ -10,6 +10,7 @@ using EasyFlights.Services.DtoMappers;
 using EasyFlights.Web.Infrastracture;
 using EasyFlights.Web.Util.Converters;
 using EasyFlights.Web.ViewModels;
+using EasyFlights.Web.Wrappers;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 
@@ -65,11 +66,11 @@ namespace EasyFlights.Web.ApiControllers
 
         [HttpPost]
         [Route("GetTickets")]
-        public async Task<TicketsForRouteViewModel> GetTicketsForRouteAsync([FromBody] string routeId, List<PassengerViewModel> passengers)
+        public async Task<TicketsForRouteViewModel> GetTicketsForRouteAsync([FromBody] GetTicketsWrapper wrapper)
         {
-            RouteDto route = await converter.RestoreRouteFromRouteIdAsync(routeId);
+            RouteDto route = await converter.RestoreRouteFromRouteIdAsync(wrapper.RouteId);
             var passengersDto = new List<PassengerDto>();
-            foreach (PassengerViewModel passenger in passengers)
+            foreach (PassengerViewModel passenger in wrapper.Passengers)
             {
                 passengersDto.Add(new PassengerDto()
                 {

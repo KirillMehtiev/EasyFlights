@@ -220,6 +220,7 @@
     <Compile Include="ViewModels\TicketsForRouteViewModel.cs" />
     <Compile Include="ViewModels\TicketVIewModel.cs" />
     <Compile Include="ViewModels\TypeaheadViewModel.cs" />
+    <Compile Include="Wrappers\GetTicketsWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Client\.gitignore" />
