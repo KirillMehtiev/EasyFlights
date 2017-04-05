@@ -94,13 +94,13 @@ class SelectFlowViewModel {
     }
 
     private updateTicketInfoData(isShowTicketInfo: boolean) {
-        if (!isShowTicketInfo) {
-            console.log("Ticket Triggered");
-            let url = "GetTickets";
-            this.selectFlowServices.getTicketInfo(url, this.routeId(), this.passengerInfoList()).then((data) => {
-                this.generalTicketInfo(data);
-            });
-        }
+        //if (!isShowTicketInfo) {
+        //    console.log("Ticket Triggered");
+        //    let url = "GetTickets";
+        //    this.selectFlowServices.getTicketInfo(url, this.routeId(), this.passengerInfoList()).then((data) => {
+        //        this.generalTicketInfo(data);
+        //    });
+        //}
     }
 
     private initPassengerInfoList(routeId: string, numberOfPassenger: number) {

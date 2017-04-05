@@ -250,6 +250,7 @@
     <Content Include="Client\App\SearchResults\FlightResults\Tickets\FlightTemplate.html" />
     <Content Include="Client\App\SearchResults\SearchResultTemplate.html" />
     <Content Include="Client\App\SelectFlow\OrderSummary\OrderSummaryTemplate.html" />
+    <Content Include="Client\App\SelectFlow\TicketInfo\EditableTicket\EditableTicketTemplate.html" />
     <Content Include="Client\App\SelectFlow\TicketInfo\SeatPicker\Cabin\Cabin.html" />
     <Content Include="Client\App\SelectFlow\TicketInfo\SeatPicker\Images\available_seat_img.gif" />
     <Content Include="Client\App\SelectFlow\TicketInfo\SeatPicker\Images\booked_seat_img.gif" />
@@ -357,6 +358,7 @@
     <TypeScriptCompile Include="Client\App\Login\LoginComponent.ts" />
     <TypeScriptCompile Include="Client\App\Login\LoginViewModel.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\Services\RoutesService.ts" />
+    <TypeScriptCompile Include="Client\App\SelectFlow\EditableTicketOptions.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\EditablePassengerOptions.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\PassengersInfo\EditablePassenger\EditablePassengerComponent.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\PassengersInfo\EditablePassenger\EditablePassengerViewModel.ts" />
@@ -378,6 +380,9 @@
     <TypeScriptCompile Include="Client\App\SearchResults\SearchResultComponent.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\SearchResultViewModel.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\Services\SelectFlowService.ts" />
+    <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\EditableTicket\EditableTicketComponent.ts" />
+    <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\EditableTicket\EditableTicketViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\EditableTicket\IEditableTicketOptions.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\SeatPicker\SeatPickerItems\CabinInfoItem.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\ITicketInfoItemOptions.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\OrderSummary\OrderSummaryComponent.ts" />

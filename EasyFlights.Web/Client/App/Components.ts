@@ -27,3 +27,4 @@ import "./Login/LoginComponent";
 import "./UserCabinet/ManageOrders/ManageOrdersComponent";
 import "./Common/Components/BusyIndicator/BusyIndicatorComponent";
 import "./SelectFlow/PassengersInfo/EditablePassenger/EditablePassengerComponent";
+import "./SelectFlow/TicketInfo/EditableTicket/EditableTicketComponent"
