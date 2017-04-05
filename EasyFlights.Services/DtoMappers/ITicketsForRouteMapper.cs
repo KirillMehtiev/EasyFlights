@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using EasyFlights.DomainModel.DTOs;
 
 namespace EasyFlights.Services.DtoMappers
 {
     public interface ITicketsForRouteMapper
     {
-        TicketsForRouteDto Map(RouteDto route, List<PassengerDto> passengers);
+        Task<TicketsForRouteDto> Map(RouteDto route, List<PassengerDto> passengers);
     }
 }

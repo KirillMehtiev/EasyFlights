@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using EasyFlights.DomainModel.DTOs;
 using EasyFlights.DomainModel.Entities.Enums;
 using EasyFlights.Services.Interfaces;
@@ -16,12 +17,17 @@ namespace EasyFlights.Services.DtoMappers
             this.service = service;
         }
 
-        public TicketsForRouteDto Map(RouteDto route, List<PassengerDto> passengers)
+        public async Task<TicketsForRouteDto> Map(RouteDto route, List<PassengerDto> passengers)
         {
             var dto = new TicketsForRouteDto();
-            foreach (FlightDto flight in route.Flights)
+            dto.Flights = route.Flights.ToList();
+            foreach (FlightDto flight in dto.Flights)
             {
-                List<int> availableSeats = service.GetAvailableSeats(passengers.Count);
+                if (flight.Tickets == null)
+                {
+                    flight.Tickets = new List<TicketDto>();
+                }
+                List<int> availableSeats = await service.GetAvailableSeats(passengers.Count, flight.Id);
                 for (var i = 0; i < passengers.Count; i++)
                 {
                     flight.Tickets.Add(new TicketDto()

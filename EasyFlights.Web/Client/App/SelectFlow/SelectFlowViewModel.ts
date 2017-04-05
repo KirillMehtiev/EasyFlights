@@ -1,11 +1,12 @@
 ﻿import ko = require("knockout");
-import { IPassengerInfoItem } from "./PassengerInfo/IPassengerInfoItem"
 import { FlightItem } from "../SearchResults/FlightResults/Tickets/FlightItem";
 import { PassengerInfoDto } from "../Common/Dtos/PassengerInfoDto";
 import { SelectFlowService } from "./Services/SelectFlowService";
 import { TicketInfoItem } from "./TicketInfo/TicketInfoItem";
 import { StepFlow } from "../Common/Enum/Enums";
 import { TicketInfoGeneral } from "./TicketInfo/TicketInfo"
+import { IEditablePassengerOptions } from "./PassengersInfo/EditablePassenger/IEditablePassengerOptions";
+import { EditablePassengerOptions } from "./EditablePassengerOptions";
 
 class SelectFlowViewModel {
     // Params
@@ -13,7 +14,7 @@ class SelectFlowViewModel {
     public numberOfPassenger: KnockoutObservable<number>;
 
     // Shared data
-    public passengerInfoList: KnockoutObservableArray<IPassengerInfoItem>;
+    public passengerInfoList: KnockoutObservableArray<IEditablePassengerOptions>;
     public generalTicketInfo: KnockoutObservableArray<TicketInfoGeneral>;
     private selectFlowServices: SelectFlowService = new SelectFlowService();
 
@@ -28,10 +29,9 @@ class SelectFlowViewModel {
     constructor(params) {
         this.routeId = params.routeId;
         this.numberOfPassenger = params.numberOfPassenger;
-        this.passengerInfoList = ko.observableArray([]);
+
         this.generalTicketInfo = ko.observableArray([]);
 
-        // Get data from server
         this.initPassengerInfoList(this.routeId(), this.numberOfPassenger());
 
         // Flow routing
@@ -94,21 +94,26 @@ class SelectFlowViewModel {
     }
 
     private updateTicketInfoData(isShowTicketInfo: boolean) {
-        if (!isShowTicketInfo) {
-            console.log("Ticket Triggered");
-            let url = "GetTickets";
-            this.selectFlowServices.getTicketInfo(url, this.routeId(), this.passengerInfoList()).then((data) => {
-                this.generalTicketInfo(data);
-            });
-        }
+        //if (!isShowTicketInfo) {
+        //    console.log("Ticket Triggered");
+        //    let url = "GetTickets";
+        //    this.selectFlowServices.getTicketInfo(url, this.routeId(), this.passengerInfoList()).then((data) => {
+        //        this.generalTicketInfo(data);
+        //    });
+        //}
     }
 
     private initPassengerInfoList(routeId: string, numberOfPassenger: number) {
-        let url = `GetPassengers?routeId=${routeId}&numberOfPassengers=${numberOfPassenger}`;
+        this.passengerInfoList = ko.observableArray([]);
 
-        this.selectFlowServices.getPassengerInfo(url).then((data: Array<IPassengerInfoItem>) => {
-            this.passengerInfoList(data);
-        });
+        for (let i = 0; i < numberOfPassenger; i++) {
+            this.passengerInfoList.push(new EditablePassengerOptions());
+        }
+
+        //let url = `GetPassengers?routeId=${routeId}&numberOfPassengers=${numberOfPassenger}`;
+        //this.selectFlowServices.getPassengerInfo(url).then((data: Array<IPassengerInfoItem>) => {
+        //    this.passengerInfoList(data);
+        //});
     }
 }
 
