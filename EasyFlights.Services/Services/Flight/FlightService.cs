@@ -36,7 +36,7 @@ namespace EasyFlights.Services.Services.Flight
         {
             // TODO implement real generation of free seats list
             var seats = new List<int>();
-            for (var i = 0; i < number; i++)
+            for (var i = 1; i < number + 1; i++)
             {
                 seats.Add(i);
             }
