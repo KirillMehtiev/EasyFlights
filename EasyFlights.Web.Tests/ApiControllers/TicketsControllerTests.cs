@@ -17,19 +17,6 @@ namespace EasyFlights.WebApi.Tests.ApiControllers
     public class TicketsControllerTests
     {
         [TestMethod]
-        public void GetPassengers()
-        {
-            // Arrange
-            TicketsController controller = GetController("id");
-
-            // Act
-            var expected = "User's first name";
-
-            // Assert
-            Assert.AreEqual(expected, controller.GetPassengersAsync("id", 1).Result.FirstOrDefault()?.FirstName);
-        }
-
-        [TestMethod]
         public async void GetTickets()
         {
             // Arrange
@@ -39,7 +26,7 @@ namespace EasyFlights.WebApi.Tests.ApiControllers
             var expected = "Arrival";
 
             // Assert
-            TicketsForRouteViewModel model = await controller.GetTicketsForRouteAsync(new GetTicketsWrapper() { RouteId = "id", Passengers = await controller.GetPassengersAsync("id", 1) });
+            TicketsForRouteViewModel model = await controller.GetTicketsForRouteAsync(new GetTicketsWrapper() { RouteId = "id", Passengers = new List<PassengerViewModel>() });
             Assert.AreEqual(expected, model.ArrivalAirport);
         }
 
