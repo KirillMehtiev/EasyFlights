@@ -48,11 +48,5 @@ namespace EasyFlights.Web.Infrastracture
 
             return manager;
         }
-
-        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(ApplicationUser user, string authenticationType)
-        {
-            ClaimsIdentity userIdentity = await CreateIdentityAsync(user, authenticationType);
-            return userIdentity;
-        }
     }
 }
