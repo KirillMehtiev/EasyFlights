@@ -269,6 +269,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="webpack.config.js" />
+    <Content Include="Client\App\SelectFlow\OrderSummary\OrderSummary.scss" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EasyFlights.Data\EasyFlights.Data.csproj">

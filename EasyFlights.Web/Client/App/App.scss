@@ -4,6 +4,7 @@
 @import "Validation/Validation.scss";
 @import "SignUp/SignUp.scss";
 @import "Login/Login.scss";
+@import "SelectFlow/OrderSummary/OrderSummary.scss";
 
 /* enable absolute positioning */
 .inner-addon {
@@ -135,15 +136,6 @@ div.modal-header {
 
 #body tr.space td {
     height: 50px;
-}
-
-.previousStep_Button {
-    margin-top: 1%;
-    margin-right: 10%;
-}
-
-.book_buy_Buttons {
-    margin-top: 1%;
 }
 
 .no-margin-top {
