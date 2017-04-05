@@ -16,6 +16,8 @@ export class AuthService {
     constructor() {
         this.dataService = new DataService();
 
+        this.trySignInCurrentUser();
+
         this.isCurrentUserSignedIn = ko.observable(false);
     }
 
@@ -44,5 +46,12 @@ export class AuthService {
                 this.isCurrentUserSignedIn(false);
                 window.location.href = "#sign-in";
             }));
+    }
+
+    private trySignInCurrentUser() {
+        this.dataService
+            .get("/api/account/IsAuthenticated")
+            .then((response) => this.isCurrentUserSignedIn(true))
+            .fail((error) => this.isCurrentUserSignedIn(false));
     }
 }

@@ -30,39 +30,7 @@ namespace EasyFlights.Web.ApiControllers
             this.userManager = userManager;
         }
 
-        private ApplicationUserManager UserManager => this.userManager ?? this.Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
-
-        [HttpGet]
-        [Route("GetPassengers")]
-        public async Task<List<PassengerViewModel>> GetPassengersAsync(string routeId, int numberOfPassengers)
-        {
-            RouteDto route = await converter.RestoreRouteFromRouteIdAsync(routeId);
-            var available = true;
-            foreach (FlightDto flight in route.Flights)
-            {
-                if (numberOfPassengers > flight.Aircraft.Capacity - flight.Tickets?.Count)
-                {
-                    available = false;
-                    break;
-                }
-            }
-            if (!available)
-            {
-                return new List<PassengerViewModel>();
-            }
-            var answer = new List<PassengerViewModel> { await this.GeneratePassengerFromUserAsync() };
-            for (var i = 1; i < numberOfPassengers; i++)
-            {
-                answer.Add(new PassengerViewModel()
-                {
-                    Birthday = DateTime.MinValue.ToShortDateString(),
-                    DocumentNumber = string.Empty,
-                    FirstName = string.Empty,
-                    LastName = string.Empty
-                });
-            }
-            return answer;
-        }
+        private ApplicationUserManager UserManager => this.userManager ?? this.Request.GetOwinContext().GetUserManager<ApplicationUserManager>();       
 
         [HttpPost]
         [Route("GetTickets")]
@@ -81,7 +49,7 @@ namespace EasyFlights.Web.ApiControllers
                     Sex = passenger.Sex
                 });
             }
-            TicketsForRouteDto dto = this.dtoMapper.Map(route, passengersDto);
+            TicketsForRouteDto dto = await dtoMapper.Map(route, passengersDto);
             var model = new TicketsForRouteViewModel()
             {
                 ArrivalAirport = dto.ArrivalAirport,
@@ -120,33 +88,30 @@ namespace EasyFlights.Web.ApiControllers
             return model;
         }
 
-        private async Task<PassengerViewModel> GeneratePassengerFromUserAsync()
+        [HttpGet]
+        [Route("GetUser")]
+        public async Task<IHttpActionResult> GeneratePassengerFromUserAsync()
         {
-            PassengerViewModel model;
             if (User.Identity.IsAuthenticated)
             {
                 ApplicationUser user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-                model = new PassengerViewModel()
-                {     
-                    Birthday = (user.DateOfBirth != null) ? user.DateOfBirth?.ToShortDateString() : DateTime.Now.ToShortDateString(),
+                var model = new PassengerViewModel()
+                {
+                    Birthday =
+                        (user.DateOfBirth != null)
+                            ? user.DateOfBirth?.ToShortDateString()
+                            : DateTime.Now.ToShortDateString(),
                     DocumentNumber = string.Empty,
                     FirstName = user.FirstName,
                     LastName = user.LastName,
                     Sex = user.Sex ?? Sex.Male
-                };               
+                };
+                return Ok(model);
             }
             else
             {
-                model = new PassengerViewModel()
-                {
-                    Birthday = DateTime.Now.ToShortDateString(),
-                    DocumentNumber = string.Empty,
-                    FirstName = string.Empty,
-                    LastName = string.Empty,
-                    Sex = Sex.Male // it's truly random, belive me
-                };
+                return Unauthorized();
             }
-            return model;
         }
     }
 }

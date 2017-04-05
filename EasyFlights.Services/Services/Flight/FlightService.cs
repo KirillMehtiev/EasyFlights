@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EasyFlights.Data.Repositories.Flights;
 using EasyFlights.DomainModel.DTOs;
+using EasyFlights.DomainModel.Entities;
 using EasyFlights.Services.Interfaces;
 
 namespace EasyFlights.Services.Services.Flight
@@ -32,13 +33,53 @@ namespace EasyFlights.Services.Services.Flight
             return cabin;
         }
 
-        public List<int> GetAvailableSeats(int number)
+        public async Task<List<int>> GetAvailableSeats(int number, int flightId)
         {
-            // TODO implement real generation of free seats list
+            DomainModel.Entities.Flight flight = await repository.FindByIdAsync(flightId);
             var seats = new List<int>();
-            for (var i = 0; i < number; i++)
+            if (flight.Tickets == null || flight.Tickets.Count == 0)
             {
-                seats.Add(i);
+                for (var i = 1; i < number + 1; i++)
+                {
+                    seats.Add(i);
+                }
+            }
+            else
+            {
+                var blocked = new List<int>();
+                foreach (Ticket ticket in flight.Tickets)
+                {
+                    blocked.Add(ticket.Seat);
+                }
+                for (var i = 1; i < flight.Aircraft.Capacity + 1; i++)
+                {
+                    if (!blocked.Contains(i))
+                    {
+                        seats.Add(i);
+                        if (seats.Count == number)
+                        {
+                            break;
+                        }
+                    }
+                    else
+                    { 
+                        seats.Clear();
+                    }
+                }
+                if (seats.Count < number)
+                {
+                    for (var i = 1; i < flight.Aircraft.Capacity + 1; i++)
+                    {
+                        if (!seats.Contains(i) && !blocked.Contains(i))
+                        {
+                            seats.Add(i);
+                            if (seats.Count == number)
+                            {
+                                break;
+                            }
+                        }
+                    }
+                }
             }
             return seats;
         }

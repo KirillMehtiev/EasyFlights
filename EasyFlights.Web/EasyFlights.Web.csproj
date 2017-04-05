@@ -196,8 +196,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Identity\ExternalLoginData.cs" />
+    <Compile Include="Identity\ParsedExternalAccessToken.cs" />
     <Compile Include="Infrastracture\ApplicationOAuthProvider.cs" />
     <Compile Include="Infrastracture\ApplicationUserManager.cs" />
+    <Compile Include="Providers\FacebookAuthProvider.cs" />
+    <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Util\Converters\IRouteConverter.cs" />
     <Compile Include="Util\Converters\RouteConverter.cs" />
     <Compile Include="Util\NinjectDependencyResolver.cs" />
@@ -209,9 +213,11 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AccountViewModels\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\AccountViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\AccountViewModels\RegisterExternalBindingModel.cs" />
     <Compile Include="ViewModels\AccountViewModels\RegisterViewModel.cs" />
     <Compile Include="ViewModels\AirportViewModel.cs" />
     <Compile Include="ViewModels\CabinViewModel.cs" />
+    <Compile Include="ViewModels\AccountViewModels\ExternalLoginViewModel.cs" />
     <Compile Include="ViewModels\FlightViewModel.cs" />
     <Compile Include="ViewModels\PassengerViewModel.cs" />
     <Compile Include="ViewModels\ProfileInfo\ProfileViewModel.cs" />
@@ -237,12 +243,14 @@
     <Content Include="Client\App\Layout\LayoutTemplate.html" />
     <None Include="Client\App\Login\Login.scss" />
     <Content Include="Client\App\Login\LoginTemplate.html" />
+    <Content Include="Client\App\SelectFlow\PassengersInfo\EditablePassenger\EditablePassengerTemplate.html" />
     <Content Include="Client\App\SelectFlow\SelectFlowTemplate.html" />
-    <Content Include="Client\App\SelectFlow\PassengerInfo\PassengerInfoTemplate.html" />
+    <Content Include="Client\App\SelectFlow\PassengersInfo\PassengersInfoTemplate.html" />
     <Content Include="Client\App\SearchResults\FlightResults\RouteResult.html" />
     <Content Include="Client\App\SearchResults\FlightResults\Tickets\FlightTemplate.html" />
     <Content Include="Client\App\SearchResults\SearchResultTemplate.html" />
     <Content Include="Client\App\SelectFlow\OrderSummary\OrderSummaryTemplate.html" />
+    <Content Include="Client\App\SelectFlow\TicketInfo\EditableTicket\EditableTicketTemplate.html" />
     <Content Include="Client\App\SelectFlow\TicketInfo\SeatPicker\Cabin\Cabin.html" />
     <Content Include="Client\App\SelectFlow\TicketInfo\SeatPicker\Images\available_seat_img.gif" />
     <Content Include="Client\App\SelectFlow\TicketInfo\SeatPicker\Images\booked_seat_img.gif" />
@@ -350,13 +358,17 @@
     <TypeScriptCompile Include="Client\App\Login\LoginComponent.ts" />
     <TypeScriptCompile Include="Client\App\Login\LoginViewModel.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\Services\RoutesService.ts" />
-    <TypeScriptCompile Include="Client\App\SelectFlow\PassengerInfo\IPassengerInfoOptions.ts" />
+    <TypeScriptCompile Include="Client\App\SelectFlow\EditableTicketOptions.ts" />
+    <TypeScriptCompile Include="Client\App\SelectFlow\EditablePassengerOptions.ts" />
+    <TypeScriptCompile Include="Client\App\SelectFlow\PassengersInfo\EditablePassenger\EditablePassengerComponent.ts" />
+    <TypeScriptCompile Include="Client\App\SelectFlow\PassengersInfo\EditablePassenger\EditablePassengerViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\SelectFlow\PassengersInfo\EditablePassenger\IEditablePassengerOptions.ts" />
+    <TypeScriptCompile Include="Client\App\SelectFlow\PassengersInfo\IPassengersInfoOptions.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\OrderSummary\IOrderSummaryOptions.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\SelectFlowComponent.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\SelectFlowViewModel.ts" />
-    <TypeScriptCompile Include="Client\App\SelectFlow\PassengerInfo\PassengerInfoComponent.ts" />
-    <TypeScriptCompile Include="Client\App\SelectFlow\PassengerInfo\IPassengerInfoItem.ts" />
-    <TypeScriptCompile Include="Client\App\SelectFlow\PassengerInfo\PassengerInfoViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\SelectFlow\PassengersInfo\PassengersInfoComponent.ts" />
+    <TypeScriptCompile Include="Client\App\SelectFlow\PassengersInfo\PassengersInfoViewModel.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\FlightResults\RouteItem.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\FlightResults\RouteResultComponent.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\FlightResults\RouteResultViewModel.ts" />
@@ -368,6 +380,9 @@
     <TypeScriptCompile Include="Client\App\SearchResults\SearchResultComponent.ts" />
     <TypeScriptCompile Include="Client\App\SearchResults\SearchResultViewModel.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\Services\SelectFlowService.ts" />
+    <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\EditableTicket\EditableTicketComponent.ts" />
+    <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\EditableTicket\EditableTicketViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\EditableTicket\IEditableTicketOptions.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\SeatPicker\SeatPickerItems\CabinInfoItem.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\ITicketInfoItemOptions.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\OrderSummary\OrderSummaryComponent.ts" />
