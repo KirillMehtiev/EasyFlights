@@ -3,199 +3,140 @@
 @import "Index/Index.scss";
 @import "Validation/Validation.scss";
 @import "SignUp/SignUp.scss";
+@import "Login/Login.scss";
+@import "SelectFlow/OrderSummary/OrderSummary.scss";
 
 /* enable absolute positioning */
 .inner-addon {
-  position: relative;
+    position: relative;
 }
 
 /* style glyph */
 .inner-addon .glyphicon {
-  position: absolute;
-  padding: 10px;
-  pointer-events: none;
+    position: absolute;
+    padding: 10px;
+    pointer-events: none;
 }
 
 /* align glyph */
-.left-addon .glyphicon  { left:  0px;}
-.right-addon .glyphicon { right: 0px;}
-
-/* add padding  */
-.left-addon input  { padding-left:  30px; }
-.right-addon input { padding-right: 30px; }
-
-#place td:hover
-{
-background-color:yellow; 
-} 
-
-#body tr td {
-background:url("/Client/App/SelectFlow/TicketInfo/SeatPicker/Images/available_seat_img.gif") no-repeat scroll 0 0 transparent;
-height:33px;
-width:33px;
-vertical-align: top;
-text-align: left;
-font-size: 10px;
+.left-addon .glyphicon {
+    left: 0px;
 }
 
-#body tr td.withoutImg{
+.right-addon .glyphicon {
+    right: 0px;
+}
+
+/* add padding  */
+.left-addon input {
+    padding-left: 30px;
+}
+
+.right-addon input {
+    padding-right: 30px;
+}
+
+#place td:hover {
+    background-color: yellow;
+}
+
+#body tr td {
+    background: url("/Client/App/SelectFlow/TicketInfo/SeatPicker/Images/available_seat_img.gif") no-repeat scroll 0 0 transparent;
+    height: 33px;
+    width: 33px;
+    vertical-align: top;
+    text-align: left;
+    font-size: 10px;
+}
+
+#body tr td.withoutImg {
     background: none;
     vertical-align: central;
     text-align: center;
     font-size: 18px;
 }
 
-table.seat-picker{
+table.seat-picker {
     margin: auto;
 }
 
-h2.picker-label{
-    position: relative; 
+h2.picker-label {
+    position: relative;
     text-align: center;
     font-size: 16px;
     font-weight: bold;
 }
 
-.modal-header h3{
+.modal-header h3 {
     font-weight: bold;
 }
 
-div.modal-content{
-    background-color: rgb(214, 206, 204)
+div.modal-content {
+    background-color: rgb(214, 206, 204);
 }
 
-div.modal-body{
+div.modal-body {
     border-top: 1px solid black;
     border-bottom: 1px solid black;
 }
 
-div.modal-footer{
+div.modal-footer {
     text-align: center !important;
 }
 
-div.modal-footer .btn{
+div.modal-footer .btn {
     width: 300px;
     border: 1px solid black;
 }
 
 #body tr td.chosen {
- background:url("/Client/App/SelectFlow/TicketInfo/SeatPicker/Images/selected_seat_img.gif") no-repeat scroll 0 0 transparent;
+    background: url("/Client/App/SelectFlow/TicketInfo/SeatPicker/Images/selected_seat_img.gif") no-repeat scroll 0 0 transparent;
 }
 
 #body tr td.booked {
- background:url("/Client/App/SelectFlow/TicketInfo/SeatPicker/Images/booked_seat_img.gif") no-repeat scroll 0 0 transparent;
+    background: url("/Client/App/SelectFlow/TicketInfo/SeatPicker/Images/booked_seat_img.gif") no-repeat scroll 0 0 transparent;
 }
 
-#seatDescription{
+#seatDescription {
     padding: 0;
-	margin: 0;
-	list-style: none;
-	text-align: center;
-	height: 20px;
-	display: block; /* добавляем блочность, если необходимо */
-	font-size: 0;
+    margin: 0;
+    list-style: none;
+    text-align: center;
+    height: 20px;
+    display: block; /* добавляем блочность, если необходимо */
+    font-size: 0;
 }
 
-#seatDescription li{
-	padding: 10px;
-    padding-left:35px;
-	margin: 0 20px;
-	font-size: 16px; 
-	display: inline-block; 
-	vertical-align: middle; 
+#seatDescription li {
+    padding: 10px;
+    padding-left: 35px;
+    margin: 0 20px;
+    font-size: 16px;
+    display: inline-block;
+    vertical-align: middle;
 }
 
-div.modal-header{
+div.modal-header {
     text-align: center;
     font-weight: bold;
     font-size: 18px;
 }
 
-#seatDescription li.available{
-  background:url("/Client/App/SelectFlow/TicketInfo/SeatPicker/Images/available_seat_img.gif") no-repeat scroll 0 0 transparent;
+#seatDescription li.available {
+    background: url("/Client/App/SelectFlow/TicketInfo/SeatPicker/Images/available_seat_img.gif") no-repeat scroll 0 0 transparent;
 }
 
-#seatDescription li.selected{
-  background:url("/Client/App/SelectFlow/TicketInfo/SeatPicker/Images/selected_seat_img.gif") no-repeat scroll 0 0 transparent;
+#seatDescription li.selected {
+    background: url("/Client/App/SelectFlow/TicketInfo/SeatPicker/Images/selected_seat_img.gif") no-repeat scroll 0 0 transparent;
 }
 
-#seatDescription li.booked{
-  background:url("/Client/App/SelectFlow/TicketInfo/SeatPicker/Images/booked_seat_img.gif") no-repeat scroll 0 0 transparent;
+#seatDescription li.booked {
+    background: url("/Client/App/SelectFlow/TicketInfo/SeatPicker/Images/booked_seat_img.gif") no-repeat scroll 0 0 transparent;
 }
 
-#body tr.space td{
-   height: 50px;
+#body tr.space td {
+    height: 50px;
 }
-@media (min-width: 768px) {
-        .login_row-sm-offset-3 div:first-child[class*="col-"] {
-            margin-left: 25%;
-        }
-    }
-
-    .social_media_login .social_media_login_title {
-        text-align: center;
-        padding-bottom: 0;
-    }
-
-    .social_media_login .social_media_login_description {
-        text-align: center;
-    }
-
-    .social_media_login .login_socialButtons a {
-        color: white;
-        opacity: 0.9;
-    }
-
-        .social_media_login .login_socialButtons a:hover {
-            color: white;
-            opacity: 1;
-        }
-
-    .social_media_login .login_socialButtons .login_btn-facebook {
-        background: #3b5998;
-    }
-
-    .social_media_login .login_socialButtons .login_btn-google {
-        background: #c32f10;
-    }
-
-    .login {
-        margin-top: 50px;
-    }
-
-        .login .login_border {
-            margin-top: 50px;
-        }
-
-    .login_form .email_input {
-        margin-bottom: 25px;
-    }
-
-    .login_form .password_input {
-        margin-bottom: 25px;
-    }
-
-    .login_form .forgot_your_password_checkbox {
-        float: right;
-        font-size: 80%;
-        position: relative;
-        top: -10px;
-    }
-
-    .login_form .not_registered_yet {
-        border-top: 1px solid#888;
-        padding-top: 15px;
-        font-size: 85%;
-    }
-
-    .previousStep_Button{
-        margin-top:1%;
-         margin-right:10%;
-    }
-
-    .book_buy_Buttons{
-        margin-top:1%;
-    }
 
 .no-margin-top {
     margin-top: 0;

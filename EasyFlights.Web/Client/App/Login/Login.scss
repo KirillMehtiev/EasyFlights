@@ -1,0 +1,67 @@
+﻿@media (min-width: 768px) {
+    .login-row-sm-offset-3 div:first-child[class*="col-"] {
+        margin-left: 25%;
+    }
+}
+
+.socialMediaLogin {
+    .socialMediaLoginTitle {
+        text-align: center;
+        padding-bottom: 0;
+    }
+
+    .socialMediaLoginDescription {
+        text-align: center;
+    }
+
+    .loginSocialButtons {
+        a {
+            color: white;
+            opacity: 0.9;
+        }
+
+        a:hover {
+            color: white;
+            opacity: 1;
+        }
+
+        .loginFacebookButton {
+            background: #3b5998;
+        }
+
+        .loginGoogleButton {
+            background: #c32f10;
+        }
+    }
+}
+
+.login {
+    margin-top: 50px;
+}
+
+.loginForm {
+    .emailInput {
+        margin-bottom: 25px;
+    }
+
+    .passwordInput {
+        margin-bottom: 25px;
+    }
+
+    .forgotYourPasswordCheckbox {
+        float: right;
+        font-size: 80%;
+        position: relative;
+        top: -10px;
+    }
+
+    .notRegisteredYet {
+        border-top: 1px solid#888;
+        padding-top: 15px;
+        font-size: 85%;
+    }
+
+    .loginButton {
+        margin-top: 10px;
+    }
+}

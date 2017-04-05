@@ -232,6 +232,7 @@
     <Content Include="Client\App\Layout\Footer\FooterTemplate.html" />
     <Content Include="Client\App\Layout\Header\HeaderTemplate.html" />
     <Content Include="Client\App\Layout\LayoutTemplate.html" />
+    <None Include="Client\App\Login\Login.scss" />
     <Content Include="Client\App\Login\LoginTemplate.html" />
     <Content Include="Client\App\SelectFlow\SelectFlowTemplate.html" />
     <Content Include="Client\App\SelectFlow\PassengerInfo\PassengerInfoTemplate.html" />
@@ -268,6 +269,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="webpack.config.js" />
+    <Content Include="Client\App\SelectFlow\OrderSummary\OrderSummary.scss" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EasyFlights.Data\EasyFlights.Data.csproj">
