@@ -1,4 +1,5 @@
 ﻿import { Sex } from "../../../Common/Enum/Enums";
+import { IEditableTicketOptions } from "../../TicketInfo/EditableTicket/IEditableTicketOptions";
 
 export interface IEditablePassengerOptions {
     firstName: KnockoutObservable<string>;
@@ -6,4 +7,5 @@ export interface IEditablePassengerOptions {
     birthday: KnockoutObservable<string>;
     documentNumber: KnockoutObservable<string>;
     sex: KnockoutObservable<Sex>;
+    tickets: KnockoutObservableArray<IEditableTicketOptions>;
 }

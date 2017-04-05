@@ -4,7 +4,7 @@ import { PassengerInfoDto } from "../Common/Dtos/PassengerInfoDto";
 import { SelectFlowService } from "./Services/SelectFlowService";
 import { TicketInfoItem } from "./TicketInfo/TicketInfoItem";
 import { StepFlow } from "../Common/Enum/Enums";
-import { TicketInfoGeneral } from "./TicketInfo/TicketInfo"
+//import { TicketInfoGeneral } from "./TicketInfo/TicketInfo"
 import { IEditablePassengerOptions } from "./PassengersInfo/EditablePassenger/IEditablePassengerOptions";
 import { EditablePassengerOptions } from "./EditablePassengerOptions";
 
@@ -15,7 +15,7 @@ class SelectFlowViewModel {
 
     // Shared data
     public passengerInfoList: KnockoutObservableArray<IEditablePassengerOptions>;
-    public generalTicketInfo: KnockoutObservableArray<TicketInfoGeneral>;
+    //public generalTicketInfo: KnockoutObservableArray<TicketInfoGeneral>;
     private selectFlowServices: SelectFlowService = new SelectFlowService();
 
     // Internal routing
@@ -30,7 +30,7 @@ class SelectFlowViewModel {
         this.routeId = params.routeId;
         this.numberOfPassenger = params.numberOfPassenger;
 
-        this.generalTicketInfo = ko.observableArray([]);
+        //this.generalTicketInfo = ko.observableArray([]);
 
         this.initPassengerInfoList(this.routeId(), this.numberOfPassenger());
 
@@ -107,6 +107,8 @@ class SelectFlowViewModel {
         this.passengerInfoList = ko.observableArray([]);
 
         for (let i = 0; i < numberOfPassenger; i++) {
+            // Todo: get var with numberOfFlight and based on it init tickets property
+            
             this.passengerInfoList.push(new EditablePassengerOptions());
         }
 

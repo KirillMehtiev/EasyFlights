@@ -1,5 +1,5 @@
 ﻿import { DataService } from '../../Common/Services/dataService';
-import { TicketInfoGeneral } from "../TicketInfo/TicketInfo";
+//import { TicketInfoGeneral } from "../TicketInfo/TicketInfo";
 
 export class SelectFlowService {
     private apiBasePath = "api/Tickets";
@@ -10,7 +10,7 @@ export class SelectFlowService {
         return null;
     }
 
-    public getTicketInfo(url: string, routeId: string, passengerInfo: Array<any>): JQueryPromise<Array<TicketInfoGeneral>> {
+    public getTicketInfo(url: string, routeId: string, passengerInfo: Array<any>): JQueryPromise<Array<any>> {
         console.log("GetTickInfo");
         //return this.dataService.post<Array<TicketInfoGeneral>>(this.apiBasePath + '/' + url, { routeId: routeId, passengers: passengerInfo });
         return null;
