@@ -1,6 +1,7 @@
 ﻿import ko = require("knockout");
-import { PassengerInfoItem } from "./PassengerInfo/PassengerInfoItem"
+import { IPassengerInfoItem } from "./PassengerInfo/IPassengerInfoItem"
 import { FlightItem } from "../SearchResults/FlightResults/Tickets/FlightItem";
+import { PassengerInfoDto } from "../Common/Dtos/PassengerInfoDto";
 import { SelectFlowService } from "./Services/SelectFlowService";
 import { TicketInfoItem } from "./TicketInfo/TicketInfoItem";
 import { StepFlow } from "../Common/Enum/Enums";
@@ -11,7 +12,7 @@ class SelectFlowViewModel {
     public numberOfPassenger: KnockoutObservable<number>;
 
     // Shared data
-    public passengerInfoList: KnockoutObservableArray<PassengerInfoItem>;
+    public passengerInfoList: KnockoutObservableArray<IPassengerInfoItem>;
     public flights: KnockoutObservableArray<FlightItem>;
     private selectFlowServices: SelectFlowService = new SelectFlowService();
 
@@ -100,7 +101,7 @@ class SelectFlowViewModel {
     private initPassengerInfoList(routeId: string, numberOfPassenger: number) {
         let url = `GetPassengers?routeId=${routeId}&numberOfPassengers=${numberOfPassenger}`;
 
-        this.selectFlowServices.getPassengerInfo(url).then((data: Array<PassengerInfoItem>) => {
+        this.selectFlowServices.getPassengerInfo(url).then((data: Array<IPassengerInfoItem>) => {
             this.passengerInfoList(data);
         });
     }

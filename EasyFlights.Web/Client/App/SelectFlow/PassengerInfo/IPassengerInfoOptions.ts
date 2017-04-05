@@ -1,6 +1,6 @@
-﻿import { PassengerInfoItem } from "./PassengerInfoItem";
+﻿import { IPassengerInfoItem } from "./IPassengerInfoItem";
 
 export interface IPassengerInfoOptions {
-    passangerInfoList: KnockoutObservableArray<PassengerInfoItem>;
+    passangerInfoList: KnockoutObservableArray<IPassengerInfoItem>;
     onNextStep: KnockoutSubscribable<number>;
 }

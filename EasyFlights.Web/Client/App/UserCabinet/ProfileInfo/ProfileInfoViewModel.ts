@@ -1,6 +1,6 @@
 ﻿import ko = require("knockout");
 import { RadioChooserItem } from "../../Common/Components/RadioChooser/RadioChooserItem";
-import { SexType } from "../../Common/Enum/Enums";
+import { Sex } from "../../Common/Enum/Enums";
 import ProfileInfoOptions = require("./IProfileInfoOptions");
 
 class ProfileInfoViewModel {
@@ -14,8 +14,8 @@ class ProfileInfoViewModel {
 
     constructor(options: ProfileInfoOptions.IProfileInfoOptions) {
         this.sexOptions = [
-            new RadioChooserItem("Male", SexType.Male.toString()),
-            new RadioChooserItem("Female", SexType.Female.toString())
+            new RadioChooserItem("Male", Sex.Male.toString()),
+            new RadioChooserItem("Female", Sex.Female.toString())
         ];
         
 
