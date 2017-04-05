@@ -1,6 +1,4 @@
 ﻿import ko = require("knockout");
-import $ = require("jquery");
-require("jqueryCookie");
 
 import { DataService } from "../DataService";
 import { ISignUpModel } from "./ISignUpModel";
@@ -18,23 +16,15 @@ export class AuthService {
     constructor() {
         this.dataService = new DataService();
 
-        let cookie = $.cookie(AuthService.authCookieName) || false;
-
-        console.log(cookie);
-
-        this.isCurrentUserSignedIn = ko.observable(<boolean>cookie);
+        this.isCurrentUserSignedIn = ko.observable(false);
     }
 
     public signUp(model: ISignUpModel) {
         return this.dataService
             .post("/api/account/signup", model)
             .then((response => {
-
-                console.log("auth reg");
-                console.log(response);
-
-                // TODO: do something, maybe, set cookie
-
+                this.isCurrentUserSignedIn(true);
+                window.location.href = "#";
             }));
     }
 
