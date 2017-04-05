@@ -7,6 +7,7 @@ using EasyFlights.Web.ApiControllers;
 using EasyFlights.Web.Infrastracture;
 using EasyFlights.Web.Util.Converters;
 using EasyFlights.Web.ViewModels;
+using EasyFlights.Web.Wrappers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
@@ -38,7 +39,7 @@ namespace EasyFlights.WebApi.Tests.ApiControllers
             var expected = "Arrival";
 
             // Assert
-            TicketsForRouteViewModel model = await controller.GetTicketsForRouteAsync("id", await controller.GetPassengersAsync("id", 1));
+            TicketsForRouteViewModel model = await controller.GetTicketsForRouteAsync(new GetTicketsWrapper() { RouteId = "id", Passengers = await controller.GetPassengersAsync("id", 1) });
             Assert.AreEqual(expected, model.ArrivalAirport);
         }
 
