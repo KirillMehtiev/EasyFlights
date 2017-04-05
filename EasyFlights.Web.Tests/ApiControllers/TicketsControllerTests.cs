@@ -74,7 +74,7 @@ namespace EasyFlights.WebApi.Tests.ApiControllers
             };
             converterMock.Setup(x => x.RestoreRouteFromRouteIdAsync(routeId)).ReturnsAsync(routeDto);
             mapperMock.Setup(x => x.Map(It.IsAny<RouteDto>(), It.IsAny<List<PassengerDto>>()))
-                .Returns(new TicketsForRouteDto()
+                .ReturnsAsync(new TicketsForRouteDto()
                 {
                     ArrivalAirport = "Arrival"
                 });

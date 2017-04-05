@@ -81,7 +81,7 @@ namespace EasyFlights.Web.ApiControllers
                     Sex = passenger.Sex
                 });
             }
-            TicketsForRouteDto dto = this.dtoMapper.Map(route, passengersDto);
+            TicketsForRouteDto dto = await dtoMapper.Map(route, passengersDto);
             var model = new TicketsForRouteViewModel()
             {
                 ArrivalAirport = dto.ArrivalAirport,
@@ -120,7 +120,9 @@ namespace EasyFlights.Web.ApiControllers
             return model;
         }
 
-        private async Task<PassengerViewModel> GeneratePassengerFromUserAsync()
+        [HttpGet]
+        [Route("GetUser")]
+        public async Task<PassengerViewModel> GeneratePassengerFromUserAsync()
         {
             PassengerViewModel model;
             if (User.Identity.IsAuthenticated)

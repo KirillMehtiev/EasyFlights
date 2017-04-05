@@ -8,6 +8,6 @@ namespace EasyFlights.Services.Interfaces
     {
         Task<CabinDto> GetCabinForFlight(int flightId);
 
-        List<int> GetAvailableSeats(int number);
+        Task<List<int>> GetAvailableSeats(int number, int flightId);
     }
 }
