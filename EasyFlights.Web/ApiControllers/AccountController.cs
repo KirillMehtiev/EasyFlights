@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Runtime.CompilerServices;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
@@ -25,7 +26,8 @@ namespace EasyFlights.Web.ApiControllers
 {
     [RoutePrefix("api/account")]
     public class AccountController : ApiController
-    {
+    {        
+        private static ApplicationUserManager staticUserManager;
         private ApplicationUserManager userManager;
         private IAuthenticationManager authentication;
 
@@ -40,6 +42,19 @@ namespace EasyFlights.Web.ApiControllers
             Authentication = authentication;
         }
 
+        public static ApplicationUserManager StaticUserManager
+        {
+            get
+            {
+                return staticUserManager ?? HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+
+            private set
+            {
+                staticUserManager = value;
+            }
+        }
+
         public ApplicationUserManager UserManager
         {
             get
@@ -51,7 +66,7 @@ namespace EasyFlights.Web.ApiControllers
             {
                 this.userManager = value;
             }
-        }
+        }        
 
         public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
 
@@ -63,6 +78,11 @@ namespace EasyFlights.Web.ApiControllers
             {
                 this.authentication = value;
             }
+        }
+
+        public static Task<ApplicationUser> GetUser(string userId)
+        {
+            return StaticUserManager.FindByIdAsync(userId);
         }
 
         // POST api/Account/Register
@@ -445,6 +465,6 @@ namespace EasyFlights.Web.ApiControllers
                                         new JProperty(".expires", ticket.Properties.ExpiresUtc.ToString()));
 
             return tokenResponse;
-        }
+        }        
     }
 }
