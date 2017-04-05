@@ -57,9 +57,9 @@ namespace EasyFlights.Web.ApiControllers
 
         [HttpPost]
         [Route("GetTickets")]
-        public TicketsForRouteDto GetTicketsForRoute([FromBody] string routeId, List<PassengerDto> passengers)
+        public async Task<TicketsForRouteDto> GetTicketsForRouteAsync([FromBody] string routeId, List<PassengerDto> passengers)
         {
-            RouteDto route = converter.RestoreRouteFromRouteIdAsync(routeId).Result;
+            RouteDto route = await converter.RestoreRouteFromRouteIdAsync(routeId);
             return mapper.Map(route.Flights.ToList(), passengers);      
         }
 

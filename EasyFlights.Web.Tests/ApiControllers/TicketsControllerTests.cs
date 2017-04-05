@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using EasyFlights.DomainModel.DTOs;
-using EasyFlights.DomainModel.Entities.Enums;
 using EasyFlights.Services.DtoMappers;
 using EasyFlights.Web.ApiControllers;
 using EasyFlights.Web.Util.Converters;
@@ -13,8 +11,7 @@ namespace EasyFlights.WebApi.Tests.ApiControllers
 {
     [TestClass]
     public class TicketsControllerTests
-    {
-        
+    {        
         [TestMethod]
         public void GetPassengers()
         {
@@ -25,7 +22,7 @@ namespace EasyFlights.WebApi.Tests.ApiControllers
             var expected = "User's first name";
 
             // Assert
-            Assert.AreEqual(expected, controller.GetPassengers("id", 1).FirstOrDefault()?.FirstName);
+            Assert.AreEqual(expected, controller.GetPassengersAsync("id", 1).Result.FirstOrDefault()?.FirstName);
         }
 
         [TestMethod]
@@ -38,7 +35,7 @@ namespace EasyFlights.WebApi.Tests.ApiControllers
             var expected = "Arrival";
 
             // Assert
-            TicketsForRouteDto dto = controller.GetTicketsForRoute("id", controller.GetPassengers("id", 1));
+            TicketsForRouteDto dto = controller.GetTicketsForRouteAsync("id", controller.GetPassengersAsync("id", 1).Result).Result;
             Assert.AreEqual(expected, dto.ArrivalAirport);
         }
 
@@ -78,17 +75,5 @@ namespace EasyFlights.WebApi.Tests.ApiControllers
                 });
             return new TicketsController(converterMock.Object, mapperMock.Object);
         }
-        
-        private PassengerDto GeneratePassengerFromUser()
-        {
-            return new PassengerDto()
-            {
-                Birthday = DateTime.MaxValue,
-                DocumentNumber = "user's document number",
-                FirstName = "User's first name",
-                LastName = "User's last name",
-                Sex = Sex.Male
-            };
-        }
-    }
+     }
 }
