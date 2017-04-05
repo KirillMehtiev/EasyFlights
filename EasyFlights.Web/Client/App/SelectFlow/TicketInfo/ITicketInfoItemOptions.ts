@@ -1,8 +1,9 @@
 ﻿import { IPassengerInfoItem } from "../PassengerInfo/IPassengerInfoItem";
 import { TicketInfoItem } from "./TicketInfoItem";
+import { TicketInfoGeneral } from "./TicketInfo";
 
 export interface ITicketInfoItemOptions {
-    ticketInfoList: Array<TicketInfoItem>;
+    generalInfo: KnockoutObservableArray<TicketInfoGeneral>;
     onNextStep: KnockoutSubscribable<number>;
     onPreviousStep: KnockoutSubscribable<number>;
 }

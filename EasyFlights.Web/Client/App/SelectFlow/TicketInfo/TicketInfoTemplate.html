@@ -1,5 +1,6 @@
 ﻿<div class="container">
-    <div data-bind="foreach: {data: flights, as: 'flight'}">
+    <span data-bind="text: generalInfo.length"></span>
+    <!--<div data-bind="foreach: {data: flights, as: 'flight'}">
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
                 <p>
@@ -11,19 +12,19 @@
             <table class="table table-bordered">
                 <tr>
                     <td>
-                        Flight: <br />
-                        Aircraft: <span data-bind="text: flight.aircraft"></span><br />
-                        Country: <span data-bind="text: flight.country "></span><br />
+                        Flight: <br/>
+                        Aircraft: <span data-bind="text: flight.aircraft"></span><br/>
+                        Country: <span data-bind="text: flight.country "></span><br/>
                     </td>
                     <td>
-                        Departure time: <span data-bind="text: flight.departureTime"></span><br />
-                        Departure airport: <span data-bind="text: flight.departureAirport"></span><br />
+                        Departure time: <span data-bind="text: flight.departureTime"></span><br/>
+                        Departure airport: <span data-bind="text: flight.departureAirport"></span><br/>
                     </td>
                     <td>
-                        Duration: <span data-bind="text: flight.duration"></span><br />
+                        Duration: <span data-bind="text: flight.duration"></span><br/>
                     </td>
                     <td>
-                        Arrival time: <span data-bind="text: flight.arrivalTime"></span><br />
+                        Arrival time: <span data-bind="text: flight.arrivalTime"></span><br/>
                         Arrival airport: <span data-bind="text: flight.destinationAirport"></span>
                     </td>
                 </tr>
@@ -41,14 +42,14 @@
                 <table class="table table-bordered">
                     <tr>
                         <td>
-                            Ticket №: <span data-bind="text: ticket.ticketNumber "></span><br />
-                            Name: <span data-bind="text: ticket.firstName"></span> <span data-bind="text: ticket.lastName "></span><br />
+                            Ticket №: <span data-bind="text: ticket.ticketNumber "></span><br/>
+                            Name: <span data-bind="text: ticket.firstName"></span> <span data-bind="text: ticket.lastName "></span><br/>
                         </td>
                         <td>
-                            Seat: <span data-bind="text: ticket.seat"></span><br />
+                            Seat: <span data-bind="text: ticket.seat"></span><br/>
                         </td>
                         <td>
-                            Class: <span data-bind="text: ticket.ticketClass"></span><br />
+                            Class: <span data-bind="text: ticket.ticketClass"></span><br/>
                             <radio-chooser params="options: $parent.classTypes, selectedOption:ticket.ticketClass"></radio-chooser>
                         </td>
                     </tr>
@@ -68,15 +69,15 @@
                 <seat-picker></seat-picker>
             </div>
         </div>
-    </div>
+    </div>-->
     <div class="row">
         <div class="pull-left">
             <a class="btn btn-default" data-bind="click: previousStep">Back</a>
-            <hr />
+            <hr/>
         </div>
         <div class="pull-right">
             <a class="btn btn-default" data-bind="click: nextStep">Go to order summary</a>
-            <hr />
+            <hr/>
         </div>
     </div>
 </div>

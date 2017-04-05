@@ -5,6 +5,7 @@ import { PassengerInfoDto } from "../Common/Dtos/PassengerInfoDto";
 import { SelectFlowService } from "./Services/SelectFlowService";
 import { TicketInfoItem } from "./TicketInfo/TicketInfoItem";
 import { StepFlow } from "../Common/Enum/Enums";
+import { TicketInfoGeneral } from "./TicketInfo/TicketInfo"
 
 class SelectFlowViewModel {
     // Params
@@ -13,7 +14,7 @@ class SelectFlowViewModel {
 
     // Shared data
     public passengerInfoList: KnockoutObservableArray<IPassengerInfoItem>;
-    public flights: KnockoutObservableArray<FlightItem>;
+    public generalTicketInfo: KnockoutObservableArray<TicketInfoGeneral>;
     private selectFlowServices: SelectFlowService = new SelectFlowService();
 
     // Internal routing
@@ -28,7 +29,7 @@ class SelectFlowViewModel {
         this.routeId = params.routeId;
         this.numberOfPassenger = params.numberOfPassenger;
         this.passengerInfoList = ko.observableArray([]);
-        this.flights = ko.observableArray([]);
+        this.generalTicketInfo = ko.observableArray([]);
 
         // Get data from server
         this.initPassengerInfoList(this.routeId(), this.numberOfPassenger());
@@ -93,8 +94,12 @@ class SelectFlowViewModel {
     }
 
     private updateTicketInfoData(isShowTicketInfo: boolean) {
-        if (isShowTicketInfo) {
-
+        if (!isShowTicketInfo) {
+            console.log("Ticket Triggered");
+            let url = "GetTickets";
+            this.selectFlowServices.getTicketInfo(url, this.routeId(), this.passengerInfoList()).then((data) => {
+                this.generalTicketInfo(data);
+            });
         }
     }
 

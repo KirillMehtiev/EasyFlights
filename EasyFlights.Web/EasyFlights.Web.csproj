@@ -378,6 +378,7 @@
     <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\SeatPicker\SeatPickerItems\SeatItem.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\SeatPicker\SeatPickerComponent.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\SeatPicker\SeatPickerViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\TicketInfo.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\TicketInfoComponent.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\TicketInfoItem.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\TicketInfoViewModel.ts" />
