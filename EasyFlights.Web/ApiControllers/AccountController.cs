@@ -149,6 +149,8 @@ namespace EasyFlights.Web.ApiControllers
         [AllowAnonymous]
         [Route("ExternalLogin", Name = "ExternalLogin")]
         public async Task<IHttpActionResult> GetExternalLogin(string provider, string error = null)
+
+
         {
             if (error != null)
             {
