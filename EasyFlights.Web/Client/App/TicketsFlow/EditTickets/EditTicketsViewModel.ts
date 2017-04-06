@@ -1,0 +1,5 @@
+﻿class EditTicketsViewModel {
+
+}
+
+export = EditTicketsViewModel;

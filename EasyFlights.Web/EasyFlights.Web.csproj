@@ -260,6 +260,7 @@
     <Content Include="Client\App\SelectFlow\TicketInfo\SeatPicker\SeatPicker.html" />
     <Content Include="Client\App\SelectFlow\TicketInfo\TicketInfoTemplate.html" />
     <Content Include="Client\App\SignUp\SignUpTemplate.html" />
+    <Content Include="Client\App\TicketsFlow\TicketsFlowTemplate.html" />
     <Content Include="Client\App\UserCabinet\Account\AccountTemplate.html" />
     <Content Include="Client\App\UserCabinet\ManageOrders\ManageOrdersTemplate.html" />
     <Content Include="Client\App\UserCabinet\ProfileInfo\ProfileInfoTemplate.html" />
@@ -406,6 +407,11 @@
     <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\TicketInfoViewModel.ts" />
     <TypeScriptCompile Include="Client\App\SignUp\SignUpComponent.ts" />
     <TypeScriptCompile Include="Client\App\SignUp\SignUpViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\TicketsFlow\EditTickets\EditTicketsViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\TicketsFlow\EditTickets\EditTicketsComponent.ts" />
+    <TypeScriptCompile Include="Client\App\TicketsFlow\OrderTickets\OrderTicketsComponent.ts" />
+    <TypeScriptCompile Include="Client\App\TicketsFlow\OrderTickets\OrderTicketsViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\TicketsFlow\TicketsFlowBaseViewModel.ts" />
     <TypeScriptCompile Include="Client\App\UserCabinet\Account\AccountComponent.ts" />
     <TypeScriptCompile Include="Client\App\UserCabinet\Account\AccountViewModel.ts" />
     <TypeScriptCompile Include="Client\App\UserCabinet\Account\ChangePasswordModel.ts" />
@@ -455,7 +461,9 @@
     <Content Include="Client\Libs\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Client\Libs\fonts\glyphicons-halflings-regular.woff2" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Client\App\TicketsFlow\BaseComponents\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Client\App\SignUp\SignUp.scss" />
   </ItemGroup>

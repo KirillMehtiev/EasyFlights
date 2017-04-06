@@ -1,0 +1,5 @@
+﻿class OrderTicketsViewModel {
+
+}
+
+export = OrderTicketsViewModel;

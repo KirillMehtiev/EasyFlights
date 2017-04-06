@@ -29,3 +29,5 @@ import "./Common/Components/BusyIndicator/BusyIndicatorComponent";
 import "./SelectFlow/PassengersInfo/EditablePassenger/EditablePassengerComponent";
 import "./SelectFlow/TicketInfo/EditableTicket/EditableTicketComponent"
 import "./SelectFlow/OrderSummary/Ticket/TicketComponent";
+import "./TicketsFlow/EditTickets/EditTicketsComponent";
+import "./TicketsFlow/OrderTickets/OrderTicketsComponent";
