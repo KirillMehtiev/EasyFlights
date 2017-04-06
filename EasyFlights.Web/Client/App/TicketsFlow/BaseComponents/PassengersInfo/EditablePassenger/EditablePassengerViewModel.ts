@@ -18,8 +18,8 @@ class EditablePassengerViewModel {
 
     constructor(options: IEditablePassengerOptions) {
         this.sexOptions = [
-            new RadioChooserItem("Male", Sex.Male.toString()),
-            new RadioChooserItem("Female", Sex.Female.toString())
+            new RadioChooserItem("Male", Sex.Male),
+            new RadioChooserItem("Female", Sex.Female)
         ];
 
         this.firstName = options.firstName;

@@ -19,7 +19,6 @@ class Application {
         ko.applyBindings(this);
         validation.init(new KnockoutValidationOptions(), true);
         validation.registerExtenders();
-        console.log(ko);
 
         window.setTimeout(function() {
             pager.start();
