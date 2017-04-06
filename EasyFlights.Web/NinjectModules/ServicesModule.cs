@@ -3,6 +3,7 @@ using EasyFlights.DomainModel.Entities;
 using EasyFlights.DomainModel.Entities.Identity;
 using EasyFlights.Services.DtoMappers;
 using EasyFlights.Services.Interfaces;
+using EasyFlights.Services.Services.Cabinet;
 using EasyFlights.Services.Services.Flight;
 using EasyFlights.Services.Services.Searching;
 using EasyFlights.Services.Services.Typeahead;
@@ -35,6 +36,7 @@ namespace EasyFlights.Web.NinjectModules
             this.Bind<ITypeaheadProvider<City>>().To<TypeaheadService>();
             this.Bind<ISearchingService>().To<SearchingService>();
             this.Bind<IFlightService>().To<FlightService>();
+            this.Bind<IManageOrdersService>().To<ManageOrdersService>();
 
             // Dto mappers
             this.Bind<IFlightDtoMapper>().To<FlightDtoMapper>();

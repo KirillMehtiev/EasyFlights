@@ -9,6 +9,10 @@ using EasyFlights.Web.ViewModels;
 using EasyFlights.Web.Wrappers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using EasyFlights.Services.Services.Cabinet;
+using EasyFlights.Services.Interfaces;
+using EasyFlights.Web.Infrastracture;
+using EasyFlights.Data.Repositories.Flights;
 
 namespace EasyFlights.WebApi.Tests.ApiControllers
 {
@@ -33,7 +37,9 @@ namespace EasyFlights.WebApi.Tests.ApiControllers
         {
             var converterMock = new Mock<IRouteConverter>();
             var mapperMock = new Mock<ITicketsForRouteMapper>();
-            var usermanagerMock = new Mock<ApplicationUserManager>();
+            var flightRepositoryMock = new Mock<IFlightsRepository>();
+            var manageOrdersServiceMock = new Mock<IManageOrdersService>();
+            var userManagerMock = new Mock<IApplicationUserManager>();
             var routeDto = new RouteDto()
             {
                 Flights = new List<FlightDto>()
@@ -64,7 +70,8 @@ namespace EasyFlights.WebApi.Tests.ApiControllers
                 {
                     ArrivalAirport = "Arrival"
                 });
-            return new TicketsController(converterMock.Object, mapperMock.Object, usermanagerMock.Object);
+
+            return new TicketsController(converterMock.Object, mapperMock.Object, manageOrdersServiceMock.Object, userManagerMock.Object, flightRepositoryMock.Object);
         }
     }
 }

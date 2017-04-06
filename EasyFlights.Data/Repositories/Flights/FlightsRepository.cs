@@ -29,6 +29,11 @@ namespace EasyFlights.Data.Repositories.Flights
 
             return result.ToList();
         }
+
+        public async Task<Flight> GetFlightsById(int flightId)
+        {
+            return await this.FindByIdAsync(flightId);
+        }
     }
 }
 
