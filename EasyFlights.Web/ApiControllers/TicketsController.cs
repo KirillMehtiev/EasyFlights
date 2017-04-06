@@ -7,7 +7,7 @@ using EasyFlights.DomainModel.DTOs;
 using EasyFlights.DomainModel.Entities.Enums;
 using EasyFlights.DomainModel.Entities.Identity;
 using EasyFlights.Services.DtoMappers;
-using EasyFlights.Web.Infrastracture;
+using EasyFlights.Web.Infrastructure;
 using EasyFlights.Web.Util.Converters;
 using EasyFlights.Web.ViewModels;
 using EasyFlights.Web.Wrappers;
@@ -21,16 +21,14 @@ namespace EasyFlights.Web.ApiControllers
     {
         private IRouteConverter converter;
         private ITicketsForRouteMapper dtoMapper;
-        private ApplicationUserManager userManager;
+        private IApplicationUserManager userManager;
 
-        public TicketsController(IRouteConverter converter, ITicketsForRouteMapper dtoMapper)
+        public TicketsController(IRouteConverter converter, ITicketsForRouteMapper dtoMapper, IApplicationUserManager userManager)
         {
             this.converter = converter;
             this.dtoMapper = dtoMapper;
+            this.userManager = userManager;
         }
-
-        public ApplicationUserManager UserManager => userManager ?? HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
-
 
         [HttpPost]
         [Route("GetTickets")]
@@ -94,7 +92,7 @@ namespace EasyFlights.Web.ApiControllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                ApplicationUser user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+                ApplicationUser user = await userManager.FindByIdAsync(User.Identity.GetUserId());
                 var model = new PassengerViewModel()
                 {
                     Birthday =

@@ -198,9 +198,9 @@
     </Compile>
     <Compile Include="Identity\ExternalLoginData.cs" />
     <Compile Include="Identity\ParsedExternalAccessToken.cs" />
-    <Compile Include="Infrastracture\ApplicationOAuthProvider.cs" />
-    <Compile Include="Infrastracture\ApplicationUserManager.cs" />
-    <Compile Include="Infrastracture\IApplicationUserManager.cs" />
+    <Compile Include="Infrastructure\ApplicationOAuthProvider.cs" />
+    <Compile Include="Infrastructure\ApplicationUserManager.cs" />
+    <Compile Include="Infrastructure\IApplicationUserManager.cs" />
     <Compile Include="Providers\FacebookAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Util\Converters\IRouteConverter.cs" />
