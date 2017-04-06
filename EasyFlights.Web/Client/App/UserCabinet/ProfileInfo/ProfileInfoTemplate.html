@@ -2,23 +2,23 @@
     <div class="row">
         <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
           <h3>Edit personal info</h3>
-            <form class="form-horizontal" role="form">
+           <!--data-bind-->
                 <div class="form-group">
                     <label class="col-lg-3 control-label">First name:</label>
                     <div class="col-lg-8">
-                        <input class="form-control" value="Ivan" type="text">
+                        <input class="form-control" type="text" data-bind="value: item.firstName">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Last name:</label>
                     <div class="col-lg-8">
-                        <input class="form-control" value="Ivanov" type="text">
+                        <input class="form-control" type="text" data-bind="value: item.lastname">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Contact Phone:</label>
                     <div class="col-lg-8">
-                        <input class="form-control" value="7859640560" type="text">
+                        <input class="form-control" type="text" data-bind="value: item.contactPhone">
                     </div>
                 </div>
                 <div class="form-group">
@@ -30,11 +30,20 @@
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Date of Birth:</label>
                     <div class="col-lg-8">
-                        <!--<date-picker id="birthday-date-picker" params="selectedDate: selectedBirthday, name: birthdayDateName"></date-picker>-->
+                        <date-picker id="birthday-date-picker" params="selectedDate: selectedBirthday, name: birthdayDateName"></date-picker>
                         </div>
                     </div>
-               
-            </form>
+            <div class="col-md-offset-11 col-md-1">
+                <button class="btn btn-default" data-bind="click: changeData">
+                    Save 
+                </button>
+            </div>
+            <div class="row" data-bind="visible: isDataChanged">
+                <div class="col-md-offset-4 col-md-2">
+                    <label>Personal information changed successfully</label>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
