@@ -1,9 +1,13 @@
 ﻿<div class="row">
     <h1 class="text-info">Enter information about passanger(s)</h1>
     <hr />
-    <div data-bind="foreach: { data: passengersInfoList, as: 'passengersInfo' }">
-        <div data-bind="foreach: { data: passengersInfo.tickets, as: 'ticket'}">
-            <editable-ticket params="ticket: ticket"></editable-ticket>    
+    <div data-bind="foreach: { data: passengerInfoList, as: 'passengerInfo' }">
+        <div data-bind="foreach: { data: passengerInfo.tickets, as: 'ticket'}">
+            <editable-ticket params="seat: ticket.seat,
+                                     departureAirport: ticket.departureAirport,
+                                     destinationAirport: ticket.destinationAirport,
+                                     firstName: ticket.firstName,
+                                     lastName: ticket.lastName"></editable-ticket>
         </div>
     </div>
     <hr />

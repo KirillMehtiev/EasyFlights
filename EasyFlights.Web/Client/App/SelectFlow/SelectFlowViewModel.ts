@@ -104,16 +104,14 @@ class SelectFlowViewModel {
             .loadRoute(this.routeId())
             .then((route => {
                 for (let i = 0; i < this.passengerInfoList().length; i++) {
-                    console.log('-----------');
-                    console.log("Api called");
                     let passenger = this.passengerInfoList()[i];
-                    passenger.tickets(this.createTicketsForPassenger(route.flights));
+                    passenger.tickets = this.createTicketsForPassenger(route.flights, passenger);
                 }
             }));
     }
 
-    private createTicketsForPassenger(flights: Array<any>): Array<IEditableTicketOptions> {
-        let result = [];
+    private createTicketsForPassenger(flights: Array<any>, passengerInfo: IEditablePassengerOptions): KnockoutObservableArray<IEditableTicketOptions> {
+        let result = ko.observableArray([]);
         for (let i = 0; i < flights.length; i++) {
             let flight = flights[i];
             let ticket = new EditableTicketOptions();
@@ -123,11 +121,13 @@ class SelectFlowViewModel {
             ticket.duration(flight.duration);
             ticket.fare(flight.fare);
             ticket.departureTime(flight.departureTime);
+            //ticket.seat(5);
+
+            ticket.firstName = passengerInfo.firstName;
+            ticket.lastName = passengerInfo.lastName;
 
             result.push(ticket);
         }
-        console.log("Result arrray after ticket added", result);
-        console.log('-----------');
         return result;
     }
 }

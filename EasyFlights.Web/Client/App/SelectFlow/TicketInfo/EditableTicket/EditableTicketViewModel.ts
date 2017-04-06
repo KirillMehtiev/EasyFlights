@@ -4,13 +4,17 @@ import { RadioChooserItem } from "../../../Common/Components/RadioChooser/RadioC
 
 class EditableTicketViewModel {
     public seat: KnockoutObservable<number>;
-    public radioChooserIndex: number;
+    public departureAirport: KnockoutObservable<string>;
+    public destinationAirport: KnockoutObservable<string>;
+    public firstName: KnockoutObservable<string>;
+    public lastName: KnockoutObservable<string>;
 
     constructor(options: IEditableTicketOptions) {
-        console.log("Hello from editable-ticket");
-        console.log(options);
-
         this.seat = options.seat;
+        this.departureAirport = options.departureAirport;
+        this.destinationAirport = options.destinationAirport;
+        this.firstName = options.firstName;
+        this.lastName = options.lastName;
     }
 }
 

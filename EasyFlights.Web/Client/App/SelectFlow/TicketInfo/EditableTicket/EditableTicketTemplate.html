@@ -1,17 +1,30 @@
 ﻿<div class="panel panel-default">
-    <h1>Hello</h1>
     <div class="panel-body">
         <div class="row">
             <div class="col-md-6">
-                <p>Place of departure <span data-bind="text: departureAirport"></span>
+                <p>
+                    Place of departure: <b data-bind="text: departureAirport"></b>
                 </p>
-                <seat-picker></seat-picker>
+                <p>
+                    Ticket for:
+                    <b>
+                        <span data-bind="text: firstName"></span> <span data-bind="text: lastName"></span>
+                    </b>
+                </p>
             </div>
             <div class="col-md-6">
-                <p>Place of arrival <span data-bind="text: destinationAirport"></span>
+                <p>
+                    Place of arrival: <b data-bind="text: destinationAirport"></b>
+                    <seat-picker class="pull-right"></seat-picker>
                 </p>
-                <p><span data-bind="text: firstName"></span> <span data-bind="text: lastName"></span>
+                <p>
+                    Seat:
+                    <b data-bind="if: seat()">
+                        #<span data-bind="text: seat"></span>
+                    </b>
+                    <i data-bind="ifnot: seat()"> <b>Not selected.</b> In this case we will do it instead of you!</i>
                 </p>
+
             </div>
         </div>
     </div>
