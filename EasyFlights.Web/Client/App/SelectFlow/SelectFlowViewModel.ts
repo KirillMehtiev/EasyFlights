@@ -1,4 +1,5 @@
 ﻿import ko = require("knockout");
+import moment = require("moment");
 import { FlightItem } from "../SearchResults/FlightResults/Tickets/FlightItem";
 import { PassengerInfoDto } from "../Common/Dtos/PassengerInfoDto";
 import { SelectFlowService } from "./Services/SelectFlowService";
@@ -31,6 +32,7 @@ class SelectFlowViewModel {
         this.numberOfPassenger = params.numberOfPassenger;
 
         this.initPassengerInfoList(this.routeId(), this.numberOfPassenger());
+        this.extendEditablePassengerWithValidation(this.passengerInfoList);
 
         // Flow routing
         this.onNextStep = new ko.subscribable();
@@ -75,6 +77,7 @@ class SelectFlowViewModel {
     }
 
     private showTicketInfo() {
+        if (!this.validatePassengersInfo()) return;
         this.isShowPassengerInfo(false);
         this.isShowTicketInfo(true);
         this.isShowOrderSummary(false);
@@ -121,7 +124,6 @@ class SelectFlowViewModel {
             ticket.duration(flight.duration);
             ticket.fare(flight.fare);
             ticket.departureTime(flight.departureTime);
-            //ticket.seat(5);
 
             ticket.firstName = passengerInfo.firstName;
             ticket.lastName = passengerInfo.lastName;
@@ -129,6 +131,39 @@ class SelectFlowViewModel {
             result.push(ticket);
         }
         return result;
+    }
+
+    private extendEditablePassengerWithValidation(passengers: KnockoutObservableArray<IEditablePassengerOptions>) {
+        for (let i = 0; i < passengers().length; i++) {
+            let passenger = passengers()[i];
+
+            passenger.firstName.extend({
+                required: true
+            });
+            passenger.lastName.extend({
+                required: true
+            });
+            passenger.birthday.extend({
+                required: true,
+                dateBefore: moment().format("L")
+            });
+            passenger.documentNumber.extend({
+                required: true
+            });
+        }
+    }
+
+    private validatePassengersInfo() {
+        let viewModel = <KnockoutValidationGroup>ko.validatedObservable({
+            passengers: this.passengerInfoList
+        });
+
+        if (!viewModel.isValid()) {
+            viewModel.errors.showAllMessages();
+            return false;
+        }
+
+        return true;
     }
 }
 
