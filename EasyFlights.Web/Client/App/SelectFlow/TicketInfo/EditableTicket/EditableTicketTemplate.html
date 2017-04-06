@@ -1,25 +1,18 @@
 ﻿<div class="panel panel-default">
+    <h1>Hello</h1>
     <div class="panel-body">
         <div class="row">
-            <div class="col-md-4">
-                <p data-bind="text: firstName"></p>
-                <p data-bind="text: lastName"></p>
+            <div class="col-md-6">
+                <p>Place of departure <span data-bind="text: departureAirport"></span>
+                </p>
+                <seat-picker></seat-picker>
             </div>
-            <div class="col-md-4">
-                <p class="text-center" data-bind="text: seat"></p>
+            <div class="col-md-6">
+                <p>Place of arrival <span data-bind="text: destinationAirport"></span>
+                </p>
+                <p><span data-bind="text: firstName"></span> <span data-bind="text: lastName"></span>
+                </p>
             </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label>Class:</label>
-                    <radio-chooser params="options: ticketClassOptions, selectedOption: class, groupName: radioChooserIndex"></radio-chooser>
-                </div>
-            </div>
-        </div>
-
-    </div>
-    <div class="panel-footer">
-        <div class="col-md-4">
-            <p class="text-center" data-bind="text: fare"></p>
         </div>
     </div>
 </div>

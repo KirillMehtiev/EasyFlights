@@ -16,7 +16,6 @@ class SelectFlowViewModel {
 
     // Shared data
     public passengerInfoList: KnockoutObservableArray<IEditablePassengerOptions>;
-    //public generalTicketInfo: KnockoutObservableArray<TicketInfoGeneral>;
     private selectFlowServices: SelectFlowService = new SelectFlowService();
 
     // Internal routing
@@ -30,8 +29,6 @@ class SelectFlowViewModel {
     constructor(params) {
         this.routeId = params.routeId;
         this.numberOfPassenger = params.numberOfPassenger;
-
-        //this.generalTicketInfo = ko.observableArray([]);
 
         this.initPassengerInfoList(this.routeId(), this.numberOfPassenger());
 
@@ -95,13 +92,6 @@ class SelectFlowViewModel {
     }
 
     private updateTicketInfoData(isShowTicketInfo: boolean) {
-        //if (!isShowTicketInfo) {
-        //    console.log("Ticket Triggered");
-        //    let url = "GetTickets";
-        //    this.selectFlowServices.getTicketInfo(url, this.routeId(), this.passengerInfoList()).then((data) => {
-        //        this.generalTicketInfo(data);
-        //    });
-        //}
     }
 
     private initPassengerInfoList(routeId: string, numberOfPassenger: number) {
@@ -114,14 +104,16 @@ class SelectFlowViewModel {
             .loadRoute(this.routeId())
             .then((route => {
                 for (let i = 0; i < this.passengerInfoList().length; i++) {
+                    console.log('-----------');
+                    console.log("Api called");
                     let passenger = this.passengerInfoList()[i];
-                    passenger.tickets = this.createTicketsForPassenger(route.flights);
+                    passenger.tickets(this.createTicketsForPassenger(route.flights));
                 }
             }));
     }
 
-    private createTicketsForPassenger(flights: Array<any>): KnockoutObservableArray<IEditableTicketOptions> {
-        let result = ko.observableArray([]);
+    private createTicketsForPassenger(flights: Array<any>): Array<IEditableTicketOptions> {
+        let result = [];
         for (let i = 0; i < flights.length; i++) {
             let flight = flights[i];
             let ticket = new EditableTicketOptions();
@@ -134,6 +126,8 @@ class SelectFlowViewModel {
 
             result.push(ticket);
         }
+        console.log("Result arrray after ticket added", result);
+        console.log('-----------');
         return result;
     }
 }

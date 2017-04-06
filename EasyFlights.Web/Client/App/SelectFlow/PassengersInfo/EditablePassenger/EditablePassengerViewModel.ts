@@ -22,9 +22,6 @@ class EditablePassengerViewModel {
             new RadioChooserItem("Female", Sex.Female.toString())
         ];
 
-        console.log("asdfdasf");
-        console.log(options);
-
         this.firstName = options.firstName;
         this.lastName = options.lastName;
         this.birthday = options.birthday;

@@ -12,10 +12,12 @@ class TicketInfoViewModel {
     public passengersInfoList: KnockoutObservableArray<IEditablePassengerOptions>;
 
     constructor(options: ITicketInfoItemOptions) {
+        console.log("Hello from TicketInfoVM", options);
+        console.log("passengersInfoList", options.passengersInfoList());
         this.passengersInfoList = options.passengersInfoList;
         this.onNextStep = options.onNextStep;
         this.onPreviousStep = options.onPreviousStep;
-
+        
         this.nextStep.bind(this);
         this.previousStep.bind(this);
     }
