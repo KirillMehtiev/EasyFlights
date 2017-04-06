@@ -3,7 +3,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security.DataProtection;
 
-namespace EasyFlights.Web.Infrastracture
+namespace EasyFlights.Web.Infrastructure
 {
     public class ApplicationUserManager : UserManager<ApplicationUser>, IApplicationUserManager
     {

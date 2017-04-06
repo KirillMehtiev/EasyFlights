@@ -7,7 +7,7 @@ using System.Web.Http;
 using EasyFlights.DomainModel.Entities.Enums;
 using EasyFlights.DomainModel.Entities.Identity;
 using EasyFlights.Web.Identity;
-using EasyFlights.Web.Infrastracture;
+using EasyFlights.Web.Infrastructure;
 using EasyFlights.Web.Results;
 using EasyFlights.Web.ViewModels.AccountViewModels;
 using EasyFlights.Web.ViewModels.ProfileInfo;
@@ -124,6 +124,24 @@ namespace EasyFlights.Web.ApiControllers
             }
 
             return Ok();
+        }
+
+        [Route("UserInfo")]
+        public async Task<ProfileViewModel> GetUserInfo()
+        {
+            string email = User.Identity.Name;
+            ApplicationUser user = await this.applicationUserManager.FindByEmailAsync(email);
+            var profileInfo = new ProfileViewModel
+            {
+                ContactPhone = user.PhoneNumber,
+                DateOfBirth = user.DateOfBirth.ToString(),
+                Email = user.Email,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Sex = user.Sex.ToString()
+            };
+
+            return profileInfo;
         }
 
         [OverrideAuthentication]

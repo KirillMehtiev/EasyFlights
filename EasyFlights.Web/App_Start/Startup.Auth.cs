@@ -1,5 +1,5 @@
 ﻿using System;
-using EasyFlights.Web.Infrastracture;
+using EasyFlights.Web.Infrastructure;
 using EasyFlights.Web.Providers;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
