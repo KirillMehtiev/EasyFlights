@@ -2,9 +2,8 @@
 import { IOrderSummaryOptions } from "./IOrderSummaryOptions";
 import { StepFlow } from "../../../Common/Enum/Enums";
 import { IEditablePassengerOptions } from "../PassengersInfo/EditablePassenger/IEditablePassengerOptions";
-import Service = require("../../../Common/Services/dataService");
-import DataService = Service.DataService;
-import Service1 = require("../../../Common/Services/Auth/authService");
+import { AuthService } from "../../Common/Services/Auth/authService";
+import { DataService } from "../../Common/Services/dataService";
 
 class OrderSummaryViewModel {
 
@@ -62,7 +61,7 @@ class OrderSummaryViewModel {
             }]
         };
 
-        if (Service1.AuthService.current.isCurrentUserSignedIn() === false) {
+        if (AuthService.current.isCurrentUserSignedIn() === false) {
             window.localStorage.setItem("filledData", JSON.stringify(data));
             window.location.href = "#sign-in";
             return;

@@ -1,4 +1,5 @@
-﻿import ko = require("knockout");
+﻿/// <reference path="../selectflow/selectflowcomponent.ts" />
+import ko = require("knockout");
 require("knockout.validation");
 import { AuthService } from "../Common/Services/Auth/authService";
 import { DataService } from "../Common/Services/dataService";

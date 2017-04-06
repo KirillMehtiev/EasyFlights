@@ -113,6 +113,10 @@
     <Compile Include="Migrations\201704041435559_MakeNotRequiredFieldsOfApplicationUserNullable.Designer.cs">
       <DependentUpon>201704041435559_MakeNotRequiredFieldsOfApplicationUserNullable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704061418250_Test.cs" />
+    <Compile Include="Migrations\201704061418250_Test.Designer.cs">
+      <DependentUpon>201704061418250_Test.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Seed\AircraftsCSVSeeder.cs" />
     <Compile Include="Migrations\201703231630146_ChangeAiportTimeZoneOffsetType.cs" />
     <Compile Include="Migrations\201703231630146_ChangeAiportTimeZoneOffsetType.Designer.cs">
@@ -190,6 +194,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704041435559_MakeNotRequiredFieldsOfApplicationUserNullable.resx">
       <DependentUpon>201704041435559_MakeNotRequiredFieldsOfApplicationUserNullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704061418250_Test.resx">
+      <DependentUpon>201704061418250_Test.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

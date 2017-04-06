@@ -13,12 +13,6 @@ using EasyFlights.Web.ViewModels;
 using EasyFlights.Web.Wrappers;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
-using EasyFlights.DomainModel.Entities;
-using EasyFlights.Services.Interfaces;
-using System.Linq;
-using EasyFlights.Data.DataContexts;
-using Microsoft.Owin.Security;
-using EasyFlights.Data.Repositories.Flights;
 
 namespace EasyFlights.Web.ApiControllers
 {
