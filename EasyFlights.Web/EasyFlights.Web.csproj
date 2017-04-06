@@ -458,6 +458,7 @@
     <TypeScriptCompile Include="Client\App\UserCabinet\Account\AccountViewModel.ts" />
     <TypeScriptCompile Include="Client\App\UserCabinet\Account\ChangePasswordModel.ts" />
     <TypeScriptCompile Include="Client\App\UserCabinet\ManageOrders\ManageOrdersComponent.ts" />
+    <TypeScriptCompile Include="Client\App\UserCabinet\ManageOrders\ManageOrdersItem.ts" />
     <TypeScriptCompile Include="Client\App\UserCabinet\ManageOrders\ManageOrdersViewModel.ts" />
     <TypeScriptCompile Include="Client\App\UserCabinet\ProfileInfo\IProfileInfoOptions.ts" />
     <TypeScriptCompile Include="Client\App\UserCabinet\ProfileInfo\ProfileInfoComponent.ts" />
