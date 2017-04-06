@@ -192,8 +192,8 @@ namespace EasyFlights.Web.ApiControllers
             else
             {
                 IEnumerable<Claim> claims = externalLogin.GetClaims();
-                var identity = new ClaimsIdentity(claims, OAuthDefaults.AuthenticationType);
-                this.authenticationManager.SignIn(identity);
+                var identity = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
+                this.authenticationManager.SignIn(new AuthenticationProperties { IsPersistent = true }, identity);
             }
 
             return Ok();
@@ -273,7 +273,7 @@ namespace EasyFlights.Web.ApiControllers
         [Route("SignOut")]
         public IHttpActionResult SignOut()
         {
-            this.authenticationManager.SignOut(CookieAuthenticationDefaults.AuthenticationType);
+            this.authenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return Ok();
         }
 
