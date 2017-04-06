@@ -9,13 +9,13 @@ import { IEditableTicketOptions } from "./EditableTicket/IEditableTicketOptions"
 class TicketInfoViewModel {
     public onNextStep: KnockoutSubscribable<number>;
     public onPreviousStep: KnockoutSubscribable<number>;
-    public passengersInfoList: KnockoutObservableArray<IEditablePassengerOptions>;
+    public passengerInfoList: KnockoutObservableArray<IEditablePassengerOptions>;
 
     constructor(options: ITicketInfoItemOptions) {
-        this.passengersInfoList = options.passengersInfoList;
+        this.passengerInfoList = options.passengerInfoList;
         this.onNextStep = options.onNextStep;
         this.onPreviousStep = options.onPreviousStep;
-
+        
         this.nextStep.bind(this);
         this.previousStep.bind(this);
     }
