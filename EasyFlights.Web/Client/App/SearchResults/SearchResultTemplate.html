@@ -7,9 +7,7 @@
 
         <hr />
 
-        <div data-bind="if: isLoading()">
-            <h3>Searching...</h3>
-        </div>
+        <busy-indicator params="isLoading: isRequestProcessing"></busy-indicator>
 
         <div class="text-center" data-bind="if: !isLoading() && routeItems().length === 0">
             <h3>Requested information not found.</h3>

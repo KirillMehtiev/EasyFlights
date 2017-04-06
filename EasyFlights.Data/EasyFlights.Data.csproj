@@ -150,6 +150,8 @@
     <Compile Include="Repositories\Cities\ICitiesRepository.cs" />
     <Compile Include="Repositories\Flights\FlightsRepository.cs" />
     <Compile Include="Repositories\Flights\IFlightsRepository.cs" />
+    <Compile Include="Repositories\Orders\IOrderRepository.cs" />
+    <Compile Include="Repositories\Orders\OrderRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EasyFlights.DomainModel\EasyFlights.DomainModel.csproj">

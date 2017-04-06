@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using EasyFlights.DomainModel.Entities.Enums;
 using EasyFlights.DomainModel.Entities.Identity;
 using EasyFlights.Web.Identity;
@@ -147,6 +148,7 @@ namespace EasyFlights.Web.ApiControllers
         [OverrideAuthentication]
         [HostAuthentication(DefaultAuthenticationTypes.ExternalCookie)]
         [AllowAnonymous]
+        [EnableCors("*", "*", "*")]
         [Route("ExternalLogin", Name = "ExternalLogin")]
         public async Task<IHttpActionResult> GetExternalLogin(string provider, string error = null)
 
