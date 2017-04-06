@@ -7,7 +7,7 @@ import InfoItem = require("./ProfileInfoItem");
 
 class ProfileInfoViewModel {
     private options: Array<RadioChooserItem>;
-   
+
     private sexOptions: Array<RadioChooserItem>;
     public selectedBirthday: KnockoutObservable<string>;
     public birthdayDateName: KnockoutObservable<string>;
@@ -15,7 +15,6 @@ class ProfileInfoViewModel {
     private dataService: Service.DataService = new Service.DataService();
     public item: InfoItem.ProfileInfoItem;
 
-   
 
     constructor(options: ProfileInfoOptions.IProfileInfoOptions) {
         this.isDataChanged = ko.observable(false);
@@ -30,7 +29,11 @@ class ProfileInfoViewModel {
 
     }
 
+    public changeData() {
+
+        return "";
+
     }
-   
+}
 
 export = ProfileInfoViewModel;
