@@ -2,7 +2,7 @@
 import Item = require("./SeatPickerItems/SeatItem");
 import RowItem1 = require("./SeatPickerItems/RowItem");
 import InfoItem = require("./SeatPickerItems/CabinInfoItem");
-import Service = require("../../../Common/Services/dataService");
+import Service = require("../../../../Common/Services/dataService");
 import SeatPickerOptions = require("./ISeatPickerOptions");
 
 class SeatPickerViewModel {

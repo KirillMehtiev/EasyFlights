@@ -1,6 +1,6 @@
 ﻿import { IPassengersInfoOptions } from "./IPassengersInfoOptions";
-import { RadioChooserItem } from "../../Common/Components/RadioChooser/RadioChooserItem";
-import { StepFlow, Sex } from "../../Common/Enum/Enums";
+import { RadioChooserItem } from "../../../Common/Components/RadioChooser/RadioChooserItem";
+import { StepFlow, Sex } from "../../../Common/Enum/Enums";
 import { IEditablePassengerOptions } from "./EditablePassenger/IEditablePassengerOptions";
 
 class PassengersInfoViewModel {

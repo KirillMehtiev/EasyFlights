@@ -1,6 +1,6 @@
-﻿import { TicketClass } from "../../../Common/Enum/Enums";
+﻿import { TicketClass } from "../../../../Common/Enum/Enums";
+import { RadioChooserItem } from "../../../../Common/Components/RadioChooser/RadioChooserItem";
 import { IEditableTicketOptions } from "./IEditableTicketOptions";
-import { RadioChooserItem } from "../../../Common/Components/RadioChooser/RadioChooserItem";
 
 class EditableTicketViewModel {
     public seat: KnockoutObservable<number>;

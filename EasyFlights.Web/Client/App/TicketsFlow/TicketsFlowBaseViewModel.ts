@@ -1,23 +1,22 @@
 ﻿import ko = require("knockout");
 import moment = require("moment");
-import { FlightItem } from "../SearchResults/FlightResults/Tickets/FlightItem";
-import { PassengerInfoDto } from "../Common/Dtos/PassengerInfoDto";
-import { SelectFlowService } from "./Services/SelectFlowService";
-import { TicketInfoItem } from "./TicketInfo/TicketInfoItem";
+
 import { StepFlow } from "../Common/Enum/Enums";
-import { IEditablePassengerOptions } from "./PassengersInfo/EditablePassenger/IEditablePassengerOptions";
-import { IEditableTicketOptions } from "./TicketInfo/EditableTicket/IEditableTicketOptions";
+import { TicketsFlowService } from "./Services/TicketsFlowService";
+import { IEditablePassengerOptions } from "./BaseComponents/PassengersInfo/EditablePassenger/IEditablePassengerOptions";
+import { IEditableTicketOptions } from "./BaseComponents/TicketInfo/EditableTicket/IEditableTicketOptions";
 import { EditablePassengerOptions } from "./EditablePassengerOptions";
 import { EditableTicketOptions } from "./EditableTicketOptions";
 
-class SelectFlowViewModel {
+abstract class TicketsFlowBaseViewModel {
     // Params
     public routeId: KnockoutObservable<string>;
     public numberOfPassenger: KnockoutObservable<number>;
 
     // Shared data
     public passengerInfoList: KnockoutObservableArray<IEditablePassengerOptions>;
-    private selectFlowServices: SelectFlowService = new SelectFlowService();
+
+    protected ticketsFlowService: TicketsFlowService = new TicketsFlowService();
 
     // Internal routing
     public onNextStep: KnockoutSubscribable<number>;
@@ -44,9 +43,6 @@ class SelectFlowViewModel {
         this.isShowPassengerInfo = ko.observable(true);
         this.isShowTicketInfo = ko.observable(false);
         this.isShowOrderSummary = ko.observable(false);
-
-        // Update data
-        this.isShowPassengerInfo.subscribe(this.updateTicketInfoData, this);
     }
 
     public nextStep(caller: number) {
@@ -94,45 +90,6 @@ class SelectFlowViewModel {
         this.isShowOrderSummary(true);
     }
 
-    private updateTicketInfoData(isShowTicketInfo: boolean) {
-    }
-
-    private initPassengerInfoList(routeId: string, numberOfPassenger: number) {
-        this.passengerInfoList = ko.observableArray([]);
-        for (let i = 0; i < numberOfPassenger; i++) {
-            this.passengerInfoList.push(new EditablePassengerOptions());
-        }
-
-        this.selectFlowServices
-            .loadRoute(this.routeId())
-            .then((route => {
-                for (let i = 0; i < this.passengerInfoList().length; i++) {
-                    let passenger = this.passengerInfoList()[i];
-                    passenger.tickets = this.createTicketsForPassenger(route.flights, passenger);
-                }
-            }));
-    }
-
-    private createTicketsForPassenger(flights: Array<any>, passengerInfo: IEditablePassengerOptions): KnockoutObservableArray<IEditableTicketOptions> {
-        let result = ko.observableArray([]);
-        for (let i = 0; i < flights.length; i++) {
-            let flight = flights[i];
-            let ticket = new EditableTicketOptions();
-
-            ticket.departureAirport(flight.departureAirport);
-            ticket.destinationAirport(flight.destinationAirport);
-            ticket.duration(flight.duration);
-            ticket.fare(flight.fare);
-            ticket.departureTime(flight.departureTime);
-
-            ticket.firstName = passengerInfo.firstName;
-            ticket.lastName = passengerInfo.lastName;
-
-            result.push(ticket);
-        }
-        return result;
-    }
-
     private extendEditablePassengerWithValidation(passengers: KnockoutObservableArray<IEditablePassengerOptions>) {
         for (let i = 0; i < passengers().length; i++) {
             let passenger = passengers()[i];
@@ -165,6 +122,8 @@ class SelectFlowViewModel {
 
         return true;
     }
+
+    protected abstract initPassengerInfoList(routeId: string, numberOfPassenger: number);
 }
 
-export = SelectFlowViewModel;
+export = TicketsFlowBaseViewModel;

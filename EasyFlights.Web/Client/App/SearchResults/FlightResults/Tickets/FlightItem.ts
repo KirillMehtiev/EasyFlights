@@ -1,6 +1,6 @@
 ﻿import ko = require("knockout");
-import {TicketInfoItem} from "../../../SelectFlow/TicketInfo/TicketInfoItem";
 import { RadioChooserItem } from "../../../Common/Components/RadioChooser/RadioChooserItem";
+import { TicketInfoItem } from "./TicketInfoItem";
 
 
 export class FlightItem {

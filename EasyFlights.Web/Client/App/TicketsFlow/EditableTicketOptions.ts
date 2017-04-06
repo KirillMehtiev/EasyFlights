@@ -1,5 +1,5 @@
 ﻿import ko = require("knockout");
-import { IEditableTicketOptions } from "./TicketInfo/EditableTicket/IEditableTicketOptions";
+import { IEditableTicketOptions } from "./BaseComponents/TicketInfo/EditableTicket/IEditableTicketOptions";
 import { TicketClass } from "../Common/Enum/Enums";
 
 

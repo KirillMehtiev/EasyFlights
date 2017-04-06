@@ -1,4 +1,4 @@
-﻿import { Sex } from "../../../Common/Enum/Enums";
+﻿import { Sex } from "../../../../Common/Enum/Enums";
 import { IEditableTicketOptions } from "../../TicketInfo/EditableTicket/IEditableTicketOptions";
 
 export interface IEditablePassengerOptions {
