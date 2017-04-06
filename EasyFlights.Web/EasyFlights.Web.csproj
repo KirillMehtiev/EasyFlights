@@ -220,6 +220,7 @@
     <Compile Include="ViewModels\CabinViewModel.cs" />
     <Compile Include="ViewModels\AccountViewModels\ExternalLoginViewModel.cs" />
     <Compile Include="ViewModels\FlightViewModel.cs" />
+    <Compile Include="ViewModels\OrderViewModel.cs" />
     <Compile Include="ViewModels\PassengerViewModel.cs" />
     <Compile Include="ViewModels\ProfileInfo\ProfileViewModel.cs" />
     <Compile Include="ViewModels\RouteSearchViewModel.cs" />

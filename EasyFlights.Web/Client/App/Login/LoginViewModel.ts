@@ -1,6 +1,8 @@
-﻿import ko = require("knockout");
+﻿/// <reference path="../selectflow/selectflowcomponent.ts" />
+import ko = require("knockout");
 require("knockout.validation");
 import { AuthService } from "../Common/Services/Auth/authService";
+import { DataService } from "../Common/Services/dataService";
 
 class LoginViewModel {
     public userEmail: KnockoutObservable<string>;
@@ -8,7 +10,9 @@ class LoginViewModel {
     public rememberMe: KnockoutObservable<boolean>;
 
     public isRequestProcessing: KnockoutObservable<boolean>;
+    public dataService: DataService = new DataService();
 
+    private urlToBookTickets: string = "api/Tickets/BookTickets";
     constructor() {
         this.createDefaultOptions();
     }
@@ -32,6 +36,16 @@ class LoginViewModel {
         }
         else {
             viewModel.errors.showAllMessages();
+        }
+
+        var filledData = window.localStorage.getItem("filledData");
+        if (filledData !== null) {
+            this.isRequestProcessing(true);
+            this.dataService.post(this.urlToBookTickets, JSON.parse(filledData))
+                .then(() => {
+                    window.localStorage.removeItem("filledData");
+                    window.location.href = "#";
+                }).always(() => this.isRequestProcessing(false));;
         }
     };
 

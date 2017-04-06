@@ -7,6 +7,10 @@ namespace EasyFlights.Data.DataContexts
 {
     public class EasyFlightsDataContext : IdentityDbContext<ApplicationUser>, IDataContext
     {
+        private static int id = 0;
+
+        private int idObj = ++id;
+       
         public EasyFlightsDataContext() : base("DefaultConnection", false)
         {
         }

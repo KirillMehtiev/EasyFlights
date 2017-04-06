@@ -6,23 +6,63 @@
             </p>
         </div>
     </div>
+    <busy-indicator params="isLoading: isRequestProcessing"></busy-indicator>
+
     <div data-bind="">
-        <div data-bind="foreach: {data: passengerInfoList, as: 'passenger'}">
+        <!--<div data-bind="foreach: {data: passengerInfoList, as: 'passenger'}">
             <div data-bind="foreach: {data: passenger.tickets(), as: 'ticket'}">
                 <ticket params="passenger: passenger, ticketIndex: $index"></ticket>
+                <div class="row well">
+                    <div class="row">
+                        <div class="col-md-4 pull-left">
+                            <h1>
+                                <b>Ticket #</b>&nbsp;<span data-bind="text: "></span>
+                            </h1>
+                            <h4><b>Name:</b>&nbsp;<span data-bind="text: passenger.firstName()"></span></h4>
+                            <h4><b>Surname:</b>&nbsp;<span data-bind="text: passenger.lastName()"></span></h4>
+                            <h4><b>Sex:</b>&nbsp;<span data-bind="text: passenger.sex()"></span></h4>
+                            <h4><b>Passport no:</b>&nbsp;<span data-bind="text: passenger.documentNumber()"></span></h4>
+                        </div>
+                        <div class="col-md-4 pull-right">
+                            <h4><b>Place of departure:</b>&nbsp;<span data-bind="text: ticket.departureAirport()"></span></h4>
+                            <h4><b>Place of arrival:</b>&nbsp;<span data-bind="text: ticket.destinationAirport()"></span></h4>
+                            <h4><b>Duration:</b>&nbsp;<span data-bind="text: ticket.duration()"></span></h4>
+                            <h4><b>Departure date:</b>&nbsp;<span data-bind="text: ticket.departureTime()"></span></h4>
+                            <h4><b>Type:</b>&nbsp;<span data-bind="text: "></span></h4>
+                            <h4><b>Lagguage:</b>&nbsp;<span data-bind="text: "></span></h4>
+                            <h4><b>Seat:</b>&nbsp;<span data-bind="text: ticket.seat()"></span></h4>
+                            <h4><b>Price:</b>&nbsp;<span data-bind="text: ticket.fare()"></span></h4>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+        </div>-->
     </div>
     <div class="row">
         <div class="pull-right bookAndbuyButtons">
-            <button type="button" class="btn btn-default">Book</button>
-            <button type="button" class="btn btn-default">Buy</button>
+            <button type="button" class="btn btn-default" data-target="#confirm" data-toggle="modal">Book</button>
         </div>
         <div class="pull-left">
             <h1><b>Total price: </b><span data-bind="text: totalPrice"></span></h1>
         </div>
         <div class="pull-right previousStepButton">
             <a class="btn btn-default" data-bind="click: previousStep">Back</a>
+        </div>
+    </div>
+    <div id="confirm" class="modal fade in" aria-labelledby="modallabel" aria-hidden="true" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you confirm the booking tickets?</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                    <button class="btn btn-primary" data-bind="click: bookTickets" data-dismiss="modal">Continue</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
