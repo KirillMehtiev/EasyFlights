@@ -2,7 +2,7 @@
 import moment = require("moment");
 
 import { StepFlow } from "../Common/Enum/Enums";
-import { SelectFlowService } from "./Services/SelectFlowService";
+import { TicketsFlowService } from "./Services/TicketsFlowService";
 import { IEditablePassengerOptions } from "./BaseComponents/PassengersInfo/EditablePassenger/IEditablePassengerOptions";
 import { IEditableTicketOptions } from "./BaseComponents/TicketInfo/EditableTicket/IEditableTicketOptions";
 import { EditablePassengerOptions } from "./EditablePassengerOptions";
@@ -16,7 +16,7 @@ abstract class TicketsFlowBaseViewModel {
     // Shared data
     public passengerInfoList: KnockoutObservableArray<IEditablePassengerOptions>;
 
-    protected selectFlowServices: SelectFlowService = new SelectFlowService();
+    protected ticketsFlowService: TicketsFlowService = new TicketsFlowService();
 
     // Internal routing
     public onNextStep: KnockoutSubscribable<number>;
@@ -43,9 +43,6 @@ abstract class TicketsFlowBaseViewModel {
         this.isShowPassengerInfo = ko.observable(true);
         this.isShowTicketInfo = ko.observable(false);
         this.isShowOrderSummary = ko.observable(false);
-
-        // Update data
-        this.isShowPassengerInfo.subscribe(this.updateTicketInfoData, this);
     }
 
     public nextStep(caller: number) {
@@ -93,11 +90,6 @@ abstract class TicketsFlowBaseViewModel {
         this.isShowOrderSummary(true);
     }
 
-    private updateTicketInfoData(isShowTicketInfo: boolean) {
-    }
-
-    
-
     private extendEditablePassengerWithValidation(passengers: KnockoutObservableArray<IEditablePassengerOptions>) {
         for (let i = 0; i < passengers().length; i++) {
             let passenger = passengers()[i];
@@ -130,11 +122,8 @@ abstract class TicketsFlowBaseViewModel {
 
         return true;
     }
-    // an example of an abstract method
-    //abstract makeSound(): void;
 
     protected abstract initPassengerInfoList(routeId: string, numberOfPassenger: number);
-
 }
 
 export = TicketsFlowBaseViewModel;

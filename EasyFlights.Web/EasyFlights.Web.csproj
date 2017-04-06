@@ -407,7 +407,7 @@
     <TypeScriptCompile Include="Client\App\TicketsFlow\IInternalNavigation.ts" />
     <TypeScriptCompile Include="Client\App\TicketsFlow\OrderTickets\OrderTicketsComponent.ts" />
     <TypeScriptCompile Include="Client\App\TicketsFlow\OrderTickets\OrderTicketsViewModel.ts" />
-    <TypeScriptCompile Include="Client\App\TicketsFlow\Services\SelectFlowService.ts" />
+    <TypeScriptCompile Include="Client\App\TicketsFlow\Services\TicketsFlowService.ts" />
     <TypeScriptCompile Include="Client\App\TicketsFlow\TicketsFlowBaseViewModel.ts" />
     <TypeScriptCompile Include="Client\App\UserCabinet\Account\AccountComponent.ts" />
     <TypeScriptCompile Include="Client\App\UserCabinet\Account\AccountViewModel.ts" />

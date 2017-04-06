@@ -16,7 +16,7 @@ class OrderTicketsViewModel extends TicketsFlowBaseViewModel {
         this.passengerInfoList.push(new EditablePassengerOptions());
     }
 
-    this.selectFlowServices
+    this.ticketsFlowService
         .loadRoute(this.routeId())
         .then((route => {
             for (let i = 0; i < this.passengerInfoList().length; i++) {
