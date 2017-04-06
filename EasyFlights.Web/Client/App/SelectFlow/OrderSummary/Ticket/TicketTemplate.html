@@ -1,22 +1,21 @@
 ﻿<div class="row well">
     <div class="row">
         <div class="col-md-4 pull-left">
-            <h1><b>Ticket #</b>&nbsp;<span data-bind="text: "></span></h1>
-            <h4><b>Name:</b>&nbsp;<span data-bind="text: "></span></h4>
-            <h4><b>Surname:</b>&nbsp;<span data-bind="text: "></span></h4>
-            <!--<h4><b>Type:</b>&nbsp;<span data-bind="text: "></span></h4>-->
-            <h4><b>Sex:</b>&nbsp;<span data-bind="text: "></span></h4>
-            <h4><b>Passport no:</b>&nbsp;<span data-bind="text: "></span></h4>
+            <h1>
+                <b>Ticket #</b>&nbsp;<span data-bind="text: "></span>
+            </h1>
+            <h4><b>Name:</b>&nbsp;<span data-bind="text: passenger.firstName()"></span></h4>
+            <h4><b>Surname:</b>&nbsp;<span data-bind="text: passenger.lastName()"></span></h4>
+            <h4><b>Sex:</b>&nbsp;<span data-bind="text: passenger.sex()"></span></h4>
+            <h4><b>Passport no:</b>&nbsp;<span data-bind="text: passenger.documentNumber()"></span></h4>
         </div>
         <div class="col-md-4 pull-right">
-            <h4><b>Place of departure:</b>&nbsp;<span data-bind="text: "></span></h4>
-            <h4><b>Place of arrival:</b>&nbsp;<span data-bind="text: "></span></h4>
-            <h4><b>Duration:</b>&nbsp;<span data-bind="text: "></span></h4>
-            <h4><b>Departure date:</b>&nbsp;<span data-bind="text: "></span></h4>
-            <h4><b>Type:</b>&nbsp;<span data-bind="text: "></span></h4>
-            <h4><b>Lagguage:</b>&nbsp;<span data-bind="text: "></span></h4>
-            <h4><b>Seat:</b>&nbsp;<span data-bind="text: "></span></h4>
-            <h4><b>Price:</b>&nbsp;<span data-bind="text: "></span></h4>
+            <h4><b>Place of departure:</b>&nbsp;<span data-bind="text: ticket.departureAirport()"></span></h4>
+            <h4><b>Place of arrival:</b>&nbsp;<span data-bind="text: ticket.destinationAirport()"></span></h4>
+            <h4><b>Duration:</b>&nbsp;<span data-bind="text: ticket.duration()"></span></h4>
+            <h4><b>Departure date:</b>&nbsp;<span data-bind="text: ticket.departureTime()"></span></h4>
+            <h4><b>Seat:</b>&nbsp;<span data-bind="text: ticket.seat()"></span></h4>
+            <h4><b>Price:</b>&nbsp;<span data-bind="text: ticket.fare()"></span></h4>
         </div>
     </div>
 </div>

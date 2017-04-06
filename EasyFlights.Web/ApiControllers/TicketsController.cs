@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
@@ -20,18 +19,18 @@ namespace EasyFlights.Web.ApiControllers
     [RoutePrefix("api/Tickets")]
     public class TicketsController : ApiController
     {
-        private ApplicationUserManager userManager;
         private IRouteConverter converter;
         private ITicketsForRouteMapper dtoMapper;
+        private ApplicationUserManager userManager;
 
-        public TicketsController(IRouteConverter converter, ITicketsForRouteMapper dtoMapper, ApplicationUserManager userManager)
+        public TicketsController(IRouteConverter converter, ITicketsForRouteMapper dtoMapper)
         {
             this.converter = converter;
             this.dtoMapper = dtoMapper;
-            this.userManager = userManager;
         }
 
-        private ApplicationUserManager UserManager => userManager ?? HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();       
+        public ApplicationUserManager UserManager => userManager ?? HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
+
 
         [HttpPost]
         [Route("GetTickets")]
@@ -95,7 +94,7 @@ namespace EasyFlights.Web.ApiControllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                var user = await AccountController.GetUser(User.Identity.GetUserId());
+                ApplicationUser user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
                 var model = new PassengerViewModel()
                 {
                     Birthday =
