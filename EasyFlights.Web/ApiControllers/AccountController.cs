@@ -7,7 +7,7 @@ using System.Web.Http;
 using EasyFlights.DomainModel.Entities.Enums;
 using EasyFlights.DomainModel.Entities.Identity;
 using EasyFlights.Web.Identity;
-using EasyFlights.Web.Infrastracture;
+using EasyFlights.Web.Infrastructure;
 using EasyFlights.Web.Results;
 using EasyFlights.Web.ViewModels.AccountViewModels;
 using EasyFlights.Web.ViewModels.ProfileInfo;

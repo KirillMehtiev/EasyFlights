@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using EasyFlights.DomainModel.DTOs;
+using EasyFlights.DomainModel.Entities.Identity;
 using EasyFlights.Services.DtoMappers;
 using EasyFlights.Web.ApiControllers;
+using EasyFlights.Web.Infrastructure;
 using EasyFlights.Web.Util.Converters;
 using EasyFlights.Web.ViewModels;
 using EasyFlights.Web.Wrappers;
@@ -31,6 +33,7 @@ namespace EasyFlights.WebApi.Tests.ApiControllers
         {
             var converterMock = new Mock<IRouteConverter>();
             var mapperMock = new Mock<ITicketsForRouteMapper>();
+            var usermanagerMock = new Mock<ApplicationUserManager>();
             var routeDto = new RouteDto()
             {
                 Flights = new List<FlightDto>()
@@ -61,7 +64,7 @@ namespace EasyFlights.WebApi.Tests.ApiControllers
                 {
                     ArrivalAirport = "Arrival"
                 });
-            return new TicketsController(converterMock.Object, mapperMock.Object);
+            return new TicketsController(converterMock.Object, mapperMock.Object, usermanagerMock.Object);
         }
     }
 }

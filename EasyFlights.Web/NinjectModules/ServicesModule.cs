@@ -6,7 +6,7 @@ using EasyFlights.Services.Interfaces;
 using EasyFlights.Services.Services.Flight;
 using EasyFlights.Services.Services.Searching;
 using EasyFlights.Services.Services.Typeahead;
-using EasyFlights.Web.Infrastracture;
+using EasyFlights.Web.Infrastructure;
 using EasyFlights.Web.Util.Converters;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;

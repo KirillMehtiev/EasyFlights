@@ -198,9 +198,9 @@
     </Compile>
     <Compile Include="Identity\ExternalLoginData.cs" />
     <Compile Include="Identity\ParsedExternalAccessToken.cs" />
-    <Compile Include="Infrastracture\ApplicationOAuthProvider.cs" />
-    <Compile Include="Infrastracture\ApplicationUserManager.cs" />
-    <Compile Include="Infrastracture\IApplicationUserManager.cs" />
+    <Compile Include="Infrastructure\ApplicationOAuthProvider.cs" />
+    <Compile Include="Infrastructure\ApplicationUserManager.cs" />
+    <Compile Include="Infrastructure\IApplicationUserManager.cs" />
     <Compile Include="Providers\FacebookAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Util\Converters\IRouteConverter.cs" />
@@ -417,8 +417,10 @@
     <TypeScriptCompile Include="Client\App\UserCabinet\ProfileInfo\ProfileInfoViewModel.ts" />
     <TypeScriptCompile Include="Client\App\UserCabinet\UserCabinetComponent.ts" />
     <TypeScriptCompile Include="Client\App\UserCabinet\UserCabinetViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\UserCabinet\UserItem.ts" />
     <TypeScriptCompile Include="Client\App\Validation\AreNotSameValidationRule.ts" />
     <TypeScriptCompile Include="Client\App\Validation\AreSameValidationRule.ts" />
+    <TypeScriptCompile Include="Client\App\Validation\DateBeforeValidationRule.ts" />
     <TypeScriptCompile Include="Client\App\Validation\DateAfterValidationRule.ts" />
     <TypeScriptCompile Include="Client\App\Validation\ISingleValueValidationRule.ts" />
     <TypeScriptCompile Include="Client\App\ValidationRules.ts" />
