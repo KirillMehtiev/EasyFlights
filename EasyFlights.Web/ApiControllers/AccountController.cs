@@ -273,7 +273,7 @@ namespace EasyFlights.Web.ApiControllers
         [Route("SignOut")]
         public IHttpActionResult SignOut()
         {
-            this.authenticationManager.SignOut(CookieAuthenticationDefaults.AuthenticationType);
+            this.authenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return Ok();
         }
 
