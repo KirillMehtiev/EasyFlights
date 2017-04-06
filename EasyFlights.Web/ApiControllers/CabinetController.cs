@@ -1,11 +1,13 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 using System.Web;
-using System.Web.Helpers;
 using System.Web.Http;
 using EasyFlights.DomainModel.Entities.Identity;
 using EasyFlights.Web.Infrastructure;
 using EasyFlights.Web.ViewModels.AccountViewModels;
 using Microsoft.AspNet.Identity;
+using EasyFlights.Services.Interfaces;
+using EasyFlights.DomainModel.DTOs;
+using System.Collections.Generic;
 using Microsoft.AspNet.Identity.Owin;
 
 namespace EasyFlights.Web.ApiControllers
@@ -14,10 +16,12 @@ namespace EasyFlights.Web.ApiControllers
     public class CabinetController : ApiController
     {
         private readonly IApplicationUserManager userManager;
+        private readonly IManageOrdersService manageOrderService;
 
-        public CabinetController(IApplicationUserManager userManager)
+        public CabinetController(IApplicationUserManager userManager, IManageOrdersService manageOrderService)
         {
             this.userManager = userManager;
+            this.manageOrderService = manageOrderService;
         }
 
         [HttpGet]
@@ -49,6 +53,15 @@ namespace EasyFlights.Web.ApiControllers
             {
                 return true;
             }
+        }
+
+        [HttpGet]
+        public async Task<List<OrderDto>> GetOrdersForUser()
+        {
+            var user = await userManager.FindByEmailAsync(User.Identity.Name);
+
+            var orders = await manageOrderService.GetOrdersForUser(user.Id);
+            return orders;
         }
     }
 }

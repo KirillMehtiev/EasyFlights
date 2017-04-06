@@ -4,6 +4,7 @@ import { RoutesService } from "./Services/RoutesService"
 import { FlightItem } from "./FlightResults/Tickets/FlightItem"
 import Service = require("../Common/Services/dataService");
 import moment = require("moment");
+import { DataService } from "../Common/Services/dataService";
 
 class SearchResultViewModel {
 
@@ -17,6 +18,7 @@ class SearchResultViewModel {
     public returnDate: KnockoutObservable<string>;
     public numberOfPassenger: KnockoutObservable<number>;
     public type: KnockoutObservable<string>;
+    public dataService: DataService = new DataService();
 
     public pageSize: KnockoutObservable<number>;
     public pageNo: KnockoutObservable<number>;
@@ -28,6 +30,7 @@ class SearchResultViewModel {
     public text: any;
 
     public isLoading: KnockoutObservable<boolean>;
+    public isRequestProcessing: KnockoutObservable<boolean>;
 
     private routesService: RoutesService = new RoutesService();
 
@@ -46,19 +49,23 @@ class SearchResultViewModel {
 
         this.createDefaultOptions();
         this.sortByPrice();
-
+        this.isRequestProcessing = ko.observable(false);
         this.isLoading = ko.observable(true);
 
         let url: string = this.createGetRoutesUrl();
 
+        this.isRequestProcessing(true);
         this.routesService.getRoutes(url)
             .then((data) => {
                 this.routeItems(data);
                 this.isLoading(false);
                 this.setPage();
                 this.total = ko.observable(this.routeItems().length);
+                this.isRequestProcessing(false);
             }).fail((error) => {
                 this.isLoading(false);
+                this.isRequestProcessing(false);
+
             });
     }
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using EasyFlights.Data.Repositories.Base;
 using EasyFlights.DomainModel.Entities;
+using System.Threading.Tasks;
 
 namespace EasyFlights.Data.Repositories.Flights
 {
@@ -11,5 +12,6 @@ namespace EasyFlights.Data.Repositories.Flights
     public interface IFlightsRepository : IRepository<Flight>
     {
         IEnumerable<Flight> GetFlightsByDeparture(Airport departureAirport, DateTime departureTime);
+        Task<Flight> GetFlightsById(int flightId);
     }
 }
