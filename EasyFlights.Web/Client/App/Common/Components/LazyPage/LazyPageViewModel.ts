@@ -6,7 +6,6 @@
     public pageVisible: KnockoutObservable<boolean>;
 
     constructor(params) {
-        console.log(params);
         this.id = params.id;
         this.guard = params.guard;
         this.params = params.params;
