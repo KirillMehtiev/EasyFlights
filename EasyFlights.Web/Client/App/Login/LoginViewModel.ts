@@ -13,6 +13,11 @@ class LoginViewModel {
         this.createDefaultOptions();
     }
 
+    public facebookLogin(): void {
+        AuthService.current.facebookLogin().then(this.handleServiceResponse)
+            .always(() => this.isRequestProcessing(false));
+    }
+
     public login(): void {
         let viewModel = <KnockoutValidationGroup>ko.validatedObservable(this);
         if (viewModel.isValid()) {

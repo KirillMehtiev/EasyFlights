@@ -39,6 +39,15 @@ export class AuthService {
             }));
     }
 
+    public facebookLogin() {
+        return this.dataService
+            .get("api/account/externallogin?provider=Facebook")
+            .then((response => {
+                this.isCurrentUserSignedIn(true);
+                window.location.href = "#";
+            }));
+    }
+
     public signOut() {
         return this.dataService
             .post("/api/account/signout")
@@ -54,4 +63,5 @@ export class AuthService {
             .then((response) => this.isCurrentUserSignedIn(true))
             .fail((error) => this.isCurrentUserSignedIn(false));
     }
+    
 }
