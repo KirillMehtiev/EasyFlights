@@ -31,7 +31,8 @@ class SeatPickerViewModel {
         this.templateData = {
             rows: this.rows,
             rowsCount: this.rowsCount,
-            columnsNames: this.columnsNames
+            columnsNames: this.columnsNames,
+            seatNumber: this.seatNumber
         };
         this.bodyTemplate = ko.observable('modalTemplate');
         this.bodyData = ko.computed(() => this.templateData);
@@ -94,6 +95,7 @@ class TemplateData {
     rows: KnockoutObservableArray<RowItem1.RowItem>;
     rowsCount: KnockoutObservable<number>;
     columnsNames: KnockoutObservableArray<string>;
+    seatNumber: KnockoutObservable<number>;
 }
 
 export = SeatPickerViewModel;

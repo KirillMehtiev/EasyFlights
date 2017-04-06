@@ -21,11 +21,11 @@ class CabinViewModel {
     }
 
     public updateSeat(rowNumber: number, seatNumber: number, isChosen: boolean): void {
-        this.rows()[rowNumber].updateSeate(seatNumber, isChosen);
+        this.rows()[rowNumber].updateSeat(seatNumber, isChosen);
     } 
 
     public chooseNumber(seatNumber: number) {
-        this.seatNumber = ko.observable(seatNumber);
+        this.rows().forEach(x=> x.seats().forEach(z=>(z.seat!==seatNumber)?z.isChosen(false):  this.seatNumber(seatNumber)));
     } 
 }
 

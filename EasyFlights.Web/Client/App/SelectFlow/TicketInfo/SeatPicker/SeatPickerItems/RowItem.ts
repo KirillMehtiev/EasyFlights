@@ -9,7 +9,7 @@ export class RowItem {
         this.seats = seats;
     }
 
-    public updateSeate(seatNumber: number, isChosen: boolean): void {
+    public updateSeat(seatNumber: number, isChosen: boolean): void {
         let seat = this.seats()[seatNumber];
         seat.isChosen(isChosen);
     }    
