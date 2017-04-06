@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Http;
 using EasyFlights.DomainModel.Entities.Enums;
 using EasyFlights.DomainModel.Entities.Identity;
@@ -24,45 +23,15 @@ namespace EasyFlights.Web.ApiControllers
 {
     [RoutePrefix("api/account")]
     public class AccountController : ApiController
-    {        
-        private ApplicationUserManager userManager;
-        private IAuthenticationManager authentication;
+    {
+        private readonly IAuthenticationManager authenticationManager;
 
-        public AccountController()
+        private readonly IApplicationUserManager applicationUserManager;
+
+        public AccountController(IAuthenticationManager authenticationManager, IApplicationUserManager applicationUserManager)
         {
-        }
-
-        public AccountController(ApplicationUserManager userManager, IAuthenticationManager authentication, ISecureDataFormat<AuthenticationTicket> accessTokenFormat)
-        {
-            UserManager = userManager;
-            AccessTokenFormat = accessTokenFormat;
-            Authentication = authentication;
-        }
-
-
-        public ApplicationUserManager UserManager
-        {
-            get
-            {
-                return this.userManager ?? HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-
-            private set
-            {
-                this.userManager = value;
-            }
-        }        
-
-        public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
-
-        public IAuthenticationManager Authentication
-        {
-            get { return this.authentication ?? HttpContext.Current.GetOwinContext().Authentication; }
-                   
-            private set
-            {
-                this.authentication = value;
-            }
+            this.authenticationManager = authenticationManager;
+            this.applicationUserManager = applicationUserManager;
         }
 
         // POST api/Account/Register
@@ -85,7 +54,7 @@ namespace EasyFlights.Web.ApiControllers
                 PhoneNumber = model.UserPhone
             };
 
-            IdentityResult result = await UserManager.CreateAsync(user, model.UserPassword);
+            IdentityResult result = await this.applicationUserManager.CreateAsync(user, model.UserPassword);
 
             if (!result.Succeeded)
             {
@@ -112,16 +81,16 @@ namespace EasyFlights.Web.ApiControllers
         [HttpPost]
         public async Task<IHttpActionResult> SignIn([FromBody]LoginViewModel model)
         {
-            Authentication.SignOut();
-            ApplicationUser user = await UserManager.FindAsync(model.UserEmail, model.UserPassword);
+            this.authenticationManager.SignOut();
+            ApplicationUser user = await this.applicationUserManager.FindAsync(model.UserEmail, model.UserPassword);
             if (user == null)
             {
                 return GetErrorResult(IdentityResult.Failed());
             }
 
-            ClaimsIdentity claim = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
-            Authentication.SignIn(new AuthenticationProperties { IsPersistent = true }, claim);
-            Authentication.SignIn(claim);
+            ClaimsIdentity claim = await this.applicationUserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+            this.authenticationManager.SignIn(new AuthenticationProperties { IsPersistent = true }, claim);
+            this.authenticationManager.SignIn(claim);
             return this.Ok();
         }
 
@@ -135,7 +104,7 @@ namespace EasyFlights.Web.ApiControllers
                 return BadRequest(ModelState);
             }
 
-            ApplicationUser user = await UserManager.FindByEmailAsync(model.Email);
+            ApplicationUser user = await this.applicationUserManager.FindByEmailAsync(model.Email);
             if (user == null)
             {
                 return this.InternalServerError();
@@ -147,7 +116,7 @@ namespace EasyFlights.Web.ApiControllers
             user.Sex = (Sex)Enum.Parse(typeof(Sex), model.Sex);
             user.PhoneNumber = model.ContactPhone;
 
-            IdentityResult result = await UserManager.UpdateAsync(user);
+            IdentityResult result = await this.applicationUserManager.UpdateAsync(user);
 
             if (!result.Succeeded)
             {
@@ -182,29 +151,29 @@ namespace EasyFlights.Web.ApiControllers
 
             if (externalLogin.LoginProvider != provider)
             {
-                Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
+                this.authenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
                 return new ChallengeResult(provider, this);
             }
 
-            ApplicationUser user = await UserManager.FindAsync(new UserLoginInfo(externalLogin.LoginProvider, externalLogin.ProviderKey));
+            ApplicationUser user = await this.applicationUserManager.FindAsync(new UserLoginInfo(externalLogin.LoginProvider, externalLogin.ProviderKey));
 
             bool hasRegistered = user != null;
 
             if (hasRegistered)
             {
-                Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
+                this.authenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
 
-                ClaimsIdentity authIdentity = await user.GenerateUserIdentityAsync(UserManager, OAuthDefaults.AuthenticationType);
-                ClaimsIdentity cookieIdentity = await user.GenerateUserIdentityAsync(UserManager, CookieAuthenticationDefaults.AuthenticationType);
+                ClaimsIdentity authIdentity = await this.applicationUserManager.CreateIdentityAsync(user, OAuthDefaults.AuthenticationType);
+                ClaimsIdentity cookieIdentity = await this.applicationUserManager.CreateIdentityAsync(user, CookieAuthenticationDefaults.AuthenticationType);
 
                 AuthenticationProperties properties = ApplicationOAuthProvider.CreateProperties(user.UserName);
-                Authentication.SignIn(properties, authIdentity, cookieIdentity);
+                this.authenticationManager.SignIn(properties, authIdentity, cookieIdentity);
             }
             else
             {
                 IEnumerable<Claim> claims = externalLogin.GetClaims();
                 var identity = new ClaimsIdentity(claims, OAuthDefaults.AuthenticationType);
-                Authentication.SignIn(identity);
+                this.authenticationManager.SignIn(identity);
             }
 
             return Ok();
@@ -215,19 +184,18 @@ namespace EasyFlights.Web.ApiControllers
         [Route("RegisterExternal")]
         public async Task<IHttpActionResult> RegisterExternal(RegisterExternalBindingModel model)
         {
-
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var verifiedAccessToken = await VerifyExternalAccessToken(model.Provider, model.ExternalAccessToken);
+            ParsedExternalAccessToken verifiedAccessToken = await VerifyExternalAccessToken(model.Provider, model.ExternalAccessToken);
             if (verifiedAccessToken == null)
             {
                 return BadRequest("Invalid Provider or External Access Token");
             }
 
-            ApplicationUser user = await UserManager.FindAsync(new UserLoginInfo(model.Provider, verifiedAccessToken.UserId));
+            ApplicationUser user = await this.applicationUserManager.FindAsync(new UserLoginInfo(model.Provider, verifiedAccessToken.UserId));
 
             bool hasRegistered = user != null;
 
@@ -238,7 +206,7 @@ namespace EasyFlights.Web.ApiControllers
 
             user = new ApplicationUser { UserName = model.UserName };
 
-            IdentityResult result = await UserManager.CreateAsync(user);
+            IdentityResult result = await this.applicationUserManager.CreateAsync(user);
             if (!result.Succeeded)
             {
                 return GetErrorResult(result);
@@ -250,14 +218,14 @@ namespace EasyFlights.Web.ApiControllers
                 Login = new UserLoginInfo(model.Provider, verifiedAccessToken.UserId)
             };
 
-            result = await UserManager.AddLoginAsync(user.Id, info.Login);
+            result = await this.applicationUserManager.AddLoginAsync(user.Id, info.Login);
             if (!result.Succeeded)
             {
                 return GetErrorResult(result);
             }
 
-            //generate access token response
-            var accessTokenResponse = GenerateLocalAccessTokenResponse(model.UserName);
+            // generate access token response
+            JObject accessTokenResponse = GenerateLocalAccessTokenResponse(model.UserName);
 
             return Ok(accessTokenResponse);
         }
@@ -271,7 +239,7 @@ namespace EasyFlights.Web.ApiControllers
                 return BadRequest(ModelState);
             }
 
-            IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
+            IdentityResult result = await this.applicationUserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
 
             if (!result.Succeeded)
             {
@@ -285,7 +253,7 @@ namespace EasyFlights.Web.ApiControllers
         [Route("SignOut")]
         public IHttpActionResult SignOut()
         {
-            Authentication.SignOut(CookieAuthenticationDefaults.AuthenticationType);
+            this.authenticationManager.SignOut(CookieAuthenticationDefaults.AuthenticationType);
             return Ok();
         }
 
@@ -294,19 +262,18 @@ namespace EasyFlights.Web.ApiControllers
         [Route("ObtainLocalAccessToken")]
         public async Task<IHttpActionResult> ObtainLocalAccessToken(string provider, string externalAccessToken)
         {
-
             if (string.IsNullOrWhiteSpace(provider) || string.IsNullOrWhiteSpace(externalAccessToken))
             {
                 return BadRequest("Provider or external access token is not sent");
             }
 
-            var verifiedAccessToken = await VerifyExternalAccessToken(provider, externalAccessToken);
+            ParsedExternalAccessToken verifiedAccessToken = await VerifyExternalAccessToken(provider, externalAccessToken);
             if (verifiedAccessToken == null)
             {
                 return BadRequest("Invalid Provider or External Access Token");
             }
 
-            IdentityUser user = await UserManager.FindAsync(new UserLoginInfo(provider, verifiedAccessToken.UserId));
+            IdentityUser user = await this.applicationUserManager.FindAsync(new UserLoginInfo(provider, verifiedAccessToken.UserId));
 
             bool hasRegistered = user != null;
 
@@ -315,19 +282,17 @@ namespace EasyFlights.Web.ApiControllers
                 return BadRequest("External user is not registered");
             }
 
-            //generate access token response
+            // generate access token response
             JObject accessTokenResponse = GenerateLocalAccessTokenResponse(user.UserName);
 
             return Ok(accessTokenResponse);
-
         }
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing && this.userManager != null)
+            if (disposing)
             {
-                this.userManager.Dispose();
-                this.userManager = null;
+                applicationUserManager?.Dispose();
             }
 
             base.Dispose(disposing);
@@ -366,13 +331,12 @@ namespace EasyFlights.Web.ApiControllers
         {
             ParsedExternalAccessToken parsedToken = null;
 
-            var verifyTokenEndPoint = "";
+            string verifyTokenEndPoint = string.Empty;
 
             if (provider == "Facebook")
             {
-                //You can get it from here: https://developers.facebook.com/tools/accesstoken/
-                //More about debug_tokn here: http://stackoverflow.com/questions/16641083/how-does-one-get-the-app-access-token-for-debug-token-inspection-on-facebook
-
+                // You can get it from here: https://developers.facebook.com/tools/accesstoken/
+                // More about debug_tokn here: http://stackoverflow.com/questions/16641083/how-does-one-get-the-app-access-token-for-debug-token-inspection-on-facebook
                 var appToken = "197059630795187";
                 verifyTokenEndPoint = string.Format("https://graph.facebook.com/debug_token?input_token={0}&access_token={1}", accessToken, appToken);
             }
@@ -383,11 +347,11 @@ namespace EasyFlights.Web.ApiControllers
 
             var client = new HttpClient();
             var uri = new Uri(verifyTokenEndPoint);
-            var response = await client.GetAsync(uri);
+            HttpResponseMessage response = await client.GetAsync(uri);
 
             if (response.IsSuccessStatusCode)
             {
-                var content = await response.Content.ReadAsStringAsync();
+                string content = await response.Content.ReadAsStringAsync();
 
                 dynamic jObj = (JObject)Newtonsoft.Json.JsonConvert.DeserializeObject(content);
 
@@ -398,7 +362,7 @@ namespace EasyFlights.Web.ApiControllers
                     parsedToken.UserId = jObj["data"]["user_id"];
                     parsedToken.AppId = jObj["data"]["app_id"];
 
-                    if (!string.Equals(Startup.facebookAuthOptions.AppId, parsedToken.AppId, StringComparison.OrdinalIgnoreCase))
+                    if (!string.Equals(Startup.FacebookAuthOptions.AppId, parsedToken.AppId, StringComparison.OrdinalIgnoreCase))
                     {
                         return null;
                     }
@@ -410,10 +374,9 @@ namespace EasyFlights.Web.ApiControllers
 
         private JObject GenerateLocalAccessTokenResponse(string userName)
         {
+            TimeSpan tokenExpiration = TimeSpan.FromDays(1);
 
-            var tokenExpiration = TimeSpan.FromDays(1);
-
-            ClaimsIdentity identity = new ClaimsIdentity(OAuthDefaults.AuthenticationType);
+            var identity = new ClaimsIdentity(OAuthDefaults.AuthenticationType);
 
             identity.AddClaim(new Claim(ClaimTypes.Name, userName));
             identity.AddClaim(new Claim("role", "user"));
@@ -426,9 +389,9 @@ namespace EasyFlights.Web.ApiControllers
 
             var ticket = new AuthenticationTicket(identity, props);
 
-            var accessToken = Startup.OAuthBearerOptions.AccessTokenFormat.Protect(ticket);
+            string accessToken = Startup.OAuthBearerOptions.AccessTokenFormat.Protect(ticket);
 
-            JObject tokenResponse = new JObject(
+            var tokenResponse = new JObject(
                                         new JProperty("userName", userName),
                                         new JProperty("access_token", accessToken),
                                         new JProperty("token_type", "bearer"),

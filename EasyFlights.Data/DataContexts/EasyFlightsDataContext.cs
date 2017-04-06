@@ -17,11 +17,6 @@ namespace EasyFlights.Data.DataContexts
             set { Configuration.AutoDetectChangesEnabled = value; }
         }
 
-        public static EasyFlightsDataContext Create()
-        {
-            return new EasyFlightsDataContext();
-        }
-
         public void DetectChanges()
         {
             ChangeTracker.DetectChanges();
