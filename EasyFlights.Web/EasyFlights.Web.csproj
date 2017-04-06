@@ -234,6 +234,7 @@
     <Content Include="Client\App\Common\Components\BusyIndicator\BusyIndicatorTemplate.html" />
     <Content Include="Client\App\Common\Components\DatePicker\DatePickerTemplate.html" />
     <Content Include="Client\App\Common\Components\LazyPage\LazyPageTemplate.html" />
+    <Content Include="Client\App\Common\Components\PrintButton\PrintButtonTemplate.html" />
     <Content Include="Client\App\Common\Components\RouteHeader\RouteHeaderTemplate.html" />
     <Content Include="Client\App\Index\IndexTemplate.html" />
     <Content Include="Client\App\Common\Components\Autocomplete\AutocompleteTemplate.html" />
@@ -327,6 +328,8 @@
     <TypeScriptCompile Include="Client\App\Common\Components\DatePicker\DatePickerViewModel.ts" />
     <TypeScriptCompile Include="Client\App\Common\Components\LazyPage\LazyPageComponent.ts" />
     <TypeScriptCompile Include="Client\App\Common\Components\LazyPage\LazyPageViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\Common\Components\PrintButton\PrintButtonComponent.ts" />
+    <TypeScriptCompile Include="Client\App\Common\Components\PrintButton\PrintButtonViewModel.ts" />
     <TypeScriptCompile Include="Client\App\Common\Components\RouteHeader\IRouteHeaderOptions.ts" />
     <TypeScriptCompile Include="Client\App\Common\Components\RouteHeader\RouteHeaderComponent.ts" />
     <TypeScriptCompile Include="Client\App\Common\Components\RouteHeader\RouteHeaderViewModel.ts" />
