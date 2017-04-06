@@ -16,7 +16,6 @@ class SelectFlowViewModel {
 
     // Shared data
     public passengerInfoList: KnockoutObservableArray<IEditablePassengerOptions>;
-    //public generalTicketInfo: KnockoutObservableArray<TicketInfoGeneral>;
     private selectFlowServices: SelectFlowService = new SelectFlowService();
 
     // Internal routing
@@ -30,8 +29,6 @@ class SelectFlowViewModel {
     constructor(params) {
         this.routeId = params.routeId;
         this.numberOfPassenger = params.numberOfPassenger;
-
-        //this.generalTicketInfo = ko.observableArray([]);
 
         this.initPassengerInfoList(this.routeId(), this.numberOfPassenger());
 
@@ -95,13 +92,6 @@ class SelectFlowViewModel {
     }
 
     private updateTicketInfoData(isShowTicketInfo: boolean) {
-        //if (!isShowTicketInfo) {
-        //    console.log("Ticket Triggered");
-        //    let url = "GetTickets";
-        //    this.selectFlowServices.getTicketInfo(url, this.routeId(), this.passengerInfoList()).then((data) => {
-        //        this.generalTicketInfo(data);
-        //    });
-        //}
     }
 
     private initPassengerInfoList(routeId: string, numberOfPassenger: number) {
@@ -115,12 +105,12 @@ class SelectFlowViewModel {
             .then((route => {
                 for (let i = 0; i < this.passengerInfoList().length; i++) {
                     let passenger = this.passengerInfoList()[i];
-                    passenger.tickets = this.createTicketsForPassenger(route.flights);
+                    passenger.tickets = this.createTicketsForPassenger(route.flights, passenger);
                 }
             }));
     }
 
-    private createTicketsForPassenger(flights: Array<any>): KnockoutObservableArray<IEditableTicketOptions> {
+    private createTicketsForPassenger(flights: Array<any>, passengerInfo: IEditablePassengerOptions): KnockoutObservableArray<IEditableTicketOptions> {
         let result = ko.observableArray([]);
         for (let i = 0; i < flights.length; i++) {
             let flight = flights[i];
@@ -131,6 +121,10 @@ class SelectFlowViewModel {
             ticket.duration(flight.duration);
             ticket.fare(flight.fare);
             ticket.departureTime(flight.departureTime);
+            //ticket.seat(5);
+
+            ticket.firstName = passengerInfo.firstName;
+            ticket.lastName = passengerInfo.lastName;
 
             result.push(ticket);
         }

@@ -200,6 +200,7 @@
     <Compile Include="Identity\ParsedExternalAccessToken.cs" />
     <Compile Include="Infrastracture\ApplicationOAuthProvider.cs" />
     <Compile Include="Infrastracture\ApplicationUserManager.cs" />
+    <Compile Include="Infrastracture\IApplicationUserManager.cs" />
     <Compile Include="Providers\FacebookAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Util\Converters\IRouteConverter.cs" />

@@ -1,13 +1,10 @@
+using System.Data.Entity;
 using EasyFlights.Data.DataContexts;
 using EasyFlights.Data.Repositories.Airports;
 using EasyFlights.Data.Repositories.Base;
 using EasyFlights.Data.Repositories.Cities;
 using EasyFlights.Data.Repositories.Flights;
 using EasyFlights.DomainModel.Entities;
-using EasyFlights.DomainModel.Entities.Identity;
-using EasyFlights.Web.Infrastracture;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Ninject.Modules;
 using Ninject.Web.Common;
 
@@ -19,6 +16,7 @@ namespace EasyFlights.Web.NinjectModules
         {
             // Data contexts
             this.Bind<IDataContext>().To<EasyFlightsDataContext>().InRequestScope();
+            this.Bind<DbContext>().To<EasyFlightsDataContext>().InRequestScope();
 
             // Repositories
             this.Bind<IFlightsRepository>().To<FlightsRepository>().InRequestScope();
