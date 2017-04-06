@@ -73,12 +73,21 @@ class SearchViewModel {
     }
 
     public checked(): boolean {
-        var viewModel = <KnockoutValidationGroup>ko.validatedObservable([this.searchAirportFrom, this.searchAirportTo, this.selectedDepartureDate]);
-        if (viewModel.isValid()) {
+        if (this.isRoundTripSelected()) {
+            var viewModel1 = <KnockoutValidationGroup>ko.validatedObservable([this.searchAirportFrom, this.searchAirportTo, this.selectedDepartureDate, this.selectedReturnDate]);
+            if (viewModel1.isValid()) {
+
+                return true;
+            }
+            return false;
+        }
+        var viewModel2 = <KnockoutValidationGroup>ko
+            .validatedObservable([this.searchAirportFrom, this.searchAirportTo, this.selectedDepartureDate]);
+        if (viewModel2.isValid()) {
 
             return true;
         }
-        //viewModel.errors.showAllMessages();
+        
         return false;
 
     }

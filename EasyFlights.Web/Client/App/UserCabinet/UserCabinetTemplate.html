@@ -1,4 +1,5 @@
-﻿<div class="tabbable tabs-left">
+﻿<div class="tabbable tabs-left" data-bind="load: GetUser()">
+    <!--<button data-bind="click: GetUser">Get User</button>-->
     <ul class="nav nav-tabs">
         <li class="active"><a href="#orders" data-toggle="tab">Manage Orders</a></li>
         <li><a href="#profile" data-toggle="tab">Profile info</a></li>
@@ -9,10 +10,10 @@
             <manage-orders></manage-orders>
         </div>
         <div class="tab-pane" id="profile">
-            <profile-info></profile-info>
+            <profile-info params="item: user"></profile-info>
         </div>
         <div class="tab-pane" id="account">
             <account></account>
         </div>
-        </div>
- </div>
+    </div>
+</div>
