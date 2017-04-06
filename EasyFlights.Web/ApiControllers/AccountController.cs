@@ -126,6 +126,24 @@ namespace EasyFlights.Web.ApiControllers
             return Ok();
         }
 
+        [Route("UserInfo")]
+        public async Task<ProfileViewModel> GetUserInfo()
+        {
+            string email = User.Identity.Name;
+            ApplicationUser user = await this.applicationUserManager.FindByEmailAsync(email);
+            var profileInfo = new ProfileViewModel
+            {
+                ContactPhone = user.PhoneNumber,
+                DateOfBirth = user.DateOfBirth.ToString(),
+                Email = user.Email,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Sex = user.Sex.ToString()
+            };
+
+            return profileInfo;
+        }
+
         [OverrideAuthentication]
         [HostAuthentication(DefaultAuthenticationTypes.ExternalCookie)]
         [AllowAnonymous]
