@@ -1,8 +1,8 @@
 ﻿export class RadioChooserItem {
     public label: string;
-    public value: string;
+    public value: any;
 
-    constructor(label: string, value: string) {
+    constructor(label: string, value: any) {
         this.label = label;
         this.value = value;
     }
