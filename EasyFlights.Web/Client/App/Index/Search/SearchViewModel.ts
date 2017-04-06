@@ -67,29 +67,21 @@ class SearchViewModel {
         });
 
         this.isRoundTripSelected = ko.observable(false);
-        //this.isSuccess = ko.observable(false);
-        //this.isSuccess.subscribe(this.checked, this);
+
         this.checked.bind(this);
         this.selectedTicketType.subscribe(this.onTicketTypeChanged, this);
     }
 
-    //public checked(): void {
-    //        var viewModel = <KnockoutValidationGroup>ko.validatedObservable([this.searchAirportFrom, this.searchAirportTo, this.departureDateName]);
-    //        if (viewModel.isValid()) {
-    //            this.isSuccess = ko.observable(true);
-    //            console.log("ok");
-    //        }
-        
-    //        viewModel.errors.showAllMessages();
-    //}
-
-    public checked() {
-        var viewModel = <KnockoutValidationGroup>ko.validatedObservable([this.searchAirportFrom, this.searchAirportTo, this.departureDateName]);
+    public checked(): boolean {
+        var viewModel = <KnockoutValidationGroup>ko.validatedObservable([this.searchAirportFrom, this.searchAirportTo, this.selectedDepartureDate]);
         if (viewModel.isValid()) {
+
             return true;
         }
+        //viewModel.errors.showAllMessages();
         return false;
-    }  
+
+    }
 
     public onTicketTypeChanged(newValue: string) {
         this.isRoundTripSelected(newValue === TicketType.roundTrip);
