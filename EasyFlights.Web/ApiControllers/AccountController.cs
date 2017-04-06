@@ -25,7 +25,6 @@ namespace EasyFlights.Web.ApiControllers
     [RoutePrefix("api/account")]
     public class AccountController : ApiController
     {        
-        private static ApplicationUserManager staticUserManager;
         private ApplicationUserManager userManager;
         private IAuthenticationManager authentication;
 
@@ -40,18 +39,6 @@ namespace EasyFlights.Web.ApiControllers
             Authentication = authentication;
         }
 
-        public static ApplicationUserManager StaticUserManager
-        {
-            get
-            {
-                return staticUserManager ?? HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-
-            private set
-            {
-                staticUserManager = value;
-            }
-        }
 
         public ApplicationUserManager UserManager
         {
@@ -76,11 +63,6 @@ namespace EasyFlights.Web.ApiControllers
             {
                 this.authentication = value;
             }
-        }
-
-        public static Task<ApplicationUser> GetUser(string userId)
-        {
-            return StaticUserManager.FindByIdAsync(userId);
         }
 
         // POST api/Account/Register
