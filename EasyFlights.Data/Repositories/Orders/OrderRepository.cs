@@ -13,12 +13,10 @@ namespace EasyFlights.Data.Repositories.Orders
     public class OrderRepository : Repository<Order>, IOrderRepository
     {
         private readonly IDbSet<Order> orderDataSet;
-        private readonly DbContext dataContext;
 
         public OrderRepository(IDataContext dataContext) : base(dataContext)
         {
             this.orderDataSet = dataContext.Set<Order>();
-            this.dataContext = (DbContext)dataContext;
         }
 
         public Task<List<Order>> GetOrdersByUserId(string userId)
@@ -28,12 +26,6 @@ namespace EasyFlights.Data.Repositories.Orders
 
         public void AddOrder(ApplicationUser user, Order order)
         {
-
-            var newUser = dataContext.Set<ApplicationUser>().FirstOrDefault(x => x.Email == user.Email);
-
-
-            order.User = newUser;
-
 
             Add(order);
             SaveChanges();

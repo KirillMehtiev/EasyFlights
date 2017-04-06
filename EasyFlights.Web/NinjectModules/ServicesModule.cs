@@ -1,4 +1,5 @@
 ﻿using System.Web;
+using EasyFlights.Data.DataContexts;
 using EasyFlights.DomainModel.Entities;
 using EasyFlights.DomainModel.Entities.Identity;
 using EasyFlights.Services.DtoMappers;
@@ -13,6 +14,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using Ninject;
 using Ninject.Modules;
 using Ninject.Web.Common;
 
@@ -25,12 +27,16 @@ namespace EasyFlights.Web.NinjectModules
             // Identity
             this.Bind<IAuthenticationManager>().ToMethod((context) => HttpContext.Current.GetOwinContext().Authentication).InRequestScope();
             this.Bind<IApplicationUserManager>().To<ApplicationUserManager>().InRequestScope();
-            this.Bind<IUserStore<ApplicationUser>>().To<UserStore<ApplicationUser>>().InRequestScope();
+            //this.Bind<IUserStore<ApplicationUser>>().To<UserStore<ApplicationUser>>().InRequestScope();
+            this.Bind<IUserStore<ApplicationUser>>().To<ApplicationUserStore>().InRequestScope();
+
             this.Bind<IdentityFactoryOptions<ApplicationUserManager>>()
                 .ToMethod(x => new IdentityFactoryOptions<ApplicationUserManager>()
                 {
                     DataProtectionProvider = Startup.DataProtectionProvider
                 });
+
+            //this.Kernel.Get()
 
             // Services
             this.Bind<ITypeaheadProvider<City>>().To<TypeaheadService>();
@@ -43,6 +49,14 @@ namespace EasyFlights.Web.NinjectModules
             this.Bind<IRouteDtoMapper>().To<RouteDtoMapper>();
             this.Bind<IRouteConverter>().To<RouteConverter>();
             this.Bind<ITicketsForRouteMapper>().To<TicketsForRouteMapper>();
+        }
+    }
+
+    public class ApplicationUserStore : UserStore<ApplicationUser>
+    {
+        public ApplicationUserStore(IDataContext context)
+            : base(context as EasyFlightsDataContext)
+        {
         }
     }
 }

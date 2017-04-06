@@ -60,7 +60,8 @@ namespace EasyFlights.Web.ApiControllers
         {
             var user = await userManager.FindByEmailAsync(User.Identity.Name);
 
-            return await manageOrderService.GetOrdersForUser(user.Id);
+            var orders = await manageOrderService.GetOrdersForUser(user.Id);
+            return orders;
         }
     }
 }

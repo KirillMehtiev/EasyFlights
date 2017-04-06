@@ -20,10 +20,11 @@ namespace EasyFlights.Web.NinjectModules
         public override void Load()
         {
             // Data contexts
+            this.Bind<EasyFlightsDataContext>().ToSelf().InRequestScope();
             this.Bind<IDataContext>().To<EasyFlightsDataContext>().InRequestScope();
 
-            this.Bind<DbContext>().ToMethod(context => (DbContext) context.Kernel.GetService(typeof(IDataContext))).InRequestScope();
-            //this.Bind<DbContext>().To<EasyFlightsDataContext>().InRequestScope();
+            //this.Bind<DbContext>().ToMethod(context => (DbContext) context.Kernel.GetService(typeof(IDataContext))).InRequestScope();
+           // this.Bind<DbContext>().To<EasyFlightsDataContext>().InRequestScope();
 
             // Repositories
             this.Bind<IFlightsRepository>().To<FlightsRepository>().InRequestScope();

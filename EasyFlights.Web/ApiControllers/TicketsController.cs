@@ -16,6 +16,7 @@ using Microsoft.AspNet.Identity.Owin;
 using EasyFlights.DomainModel.Entities;
 using EasyFlights.Services.Interfaces;
 using System.Linq;
+using EasyFlights.Data.DataContexts;
 using Microsoft.Owin.Security;
 using EasyFlights.Data.Repositories.Flights;
 
@@ -35,7 +36,8 @@ namespace EasyFlights.Web.ApiControllers
             ITicketsForRouteMapper dtoMapper,
             IManageOrdersService manageOrderService,
             IApplicationUserManager applicationUserManager,
-            IFlightsRepository flightRepository)
+            IFlightsRepository flightRepository,
+            IDataContext context)
         {
             this.converter = converter;
             this.dtoMapper = dtoMapper;
@@ -46,7 +48,7 @@ namespace EasyFlights.Web.ApiControllers
 
         [HttpPost]
         [Route("BookTickets")]
-        public async Task BookTicketsAsync([FromBody] OrderViewModel orderModel)
+        public async Task BookTicketsAsync([FromBody] BookOrderViewModel orderModel)
         {
             var orderDateTime = DateTime.Now.ToUniversalTime();
 
@@ -54,16 +56,13 @@ namespace EasyFlights.Web.ApiControllers
             var flights = new List<Flight>();
             var ticketsForOrder = new List<Ticket>();
 
-
             var user = await applicationUserManager.FindByEmailAsync(User.Identity.Name);
-
             var route = await converter.RestoreRouteFromRouteIdAsync(orderModel.RouteId);
 
             foreach (var flight in route.Flights)
             {
                 flights.Add(await flightRepository.GetFlightsById(flight.Id));
             }
-
 
             foreach (var flight in flights)
             {
@@ -74,11 +73,11 @@ namespace EasyFlights.Web.ApiControllers
                 }
             }
 
-
             var order = new Order
             {
                 OrderDate = orderDateTime,
-                Tickets = ticketsForOrder
+                Tickets = ticketsForOrder,
+                User = user
             };
 
             try
