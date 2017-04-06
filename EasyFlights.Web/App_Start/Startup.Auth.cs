@@ -46,17 +46,21 @@ namespace EasyFlights.Web
 
             //OAuthBearerOptions = new OAuthBearerAuthenticationOptions();
             // Configure the application for OAuth based flow
-            //PublicClientId = "self";
+            PublicClientId = "self";
 
-            //OAuthOptions = new OAuthAuthorizationServerOptions
-            //{
-            //    TokenEndpointPath = new PathString("/Token"),
-            //    Provider = new ApplicationOAuthProvider(PublicClientId),
-            //    AccessTokenExpireTimeSpan = TimeSpan.FromDays(10),
-            //    AllowInsecureHttp = true
-            //};
+            app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
+            OAuthBearerOptions = new OAuthBearerAuthenticationOptions();
 
-            //app.UseOAuthBearerTokens(OAuthOptions);
+            OAuthOptions = new OAuthAuthorizationServerOptions
+            {
+                TokenEndpointPath = new PathString("/Token"),
+                Provider = new ApplicationOAuthProvider(PublicClientId),
+                AccessTokenExpireTimeSpan = TimeSpan.FromDays(10),
+                AllowInsecureHttp = true
+            };
+
+            app.UseOAuthBearerTokens(OAuthOptions);
+            app.UseOAuthBearerAuthentication(OAuthBearerOptions);
 
             // Uncomment the following lines to enable logging in with third party login providers
             //app.UseMicrosoftAccountAuthentication(
@@ -67,13 +71,13 @@ namespace EasyFlights.Web
             //    consumerKey: "",
             //    consumerSecret: "");
 
-            //facebookAuthOptions = new FacebookAuthenticationOptions()
-            //{
-            //    AppId = "197059630795187",
-            //    AppSecret = "3d57cfebeca91a5335ba52a6535d2eca",
-            //    Provider = new FacebookAuthProvider()
-            //};
-            //app.UseFacebookAuthentication(facebookAuthOptions);
+            facebookAuthOptions = new FacebookAuthenticationOptions()
+            {
+                AppId = "197059630795187",
+                AppSecret = "3d57cfebeca91a5335ba52a6535d2eca",
+                Provider = new FacebookAuthProvider()
+            };
+            app.UseFacebookAuthentication(facebookAuthOptions);
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{

@@ -12,6 +12,8 @@ namespace EasyFlights.Web.Identity
         public string ProviderKey { get; set; }
 
         public string UserName { get; set; }
+  
+        public string ExternalAccessToken { get; set; }
 
         public static ExternalLoginData FromIdentity(ClaimsIdentity identity)
         {
@@ -37,6 +39,7 @@ namespace EasyFlights.Web.Identity
             {
                 LoginProvider = providerKeyClaim.Issuer,
                 ProviderKey = providerKeyClaim.Value,
+                ExternalAccessToken = identity.FindFirstValue("ExternalAccessToken"),
                 UserName = identity.FindFirstValue(ClaimTypes.Name)
             };
         }
