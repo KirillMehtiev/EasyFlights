@@ -1,18 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Http;
+using EasyFlights.Data.DataContexts;
+using EasyFlights.Data.Repositories.Flights;
 using EasyFlights.DomainModel.DTOs;
+using EasyFlights.DomainModel.Entities;
 using EasyFlights.DomainModel.Entities.Enums;
 using EasyFlights.DomainModel.Entities.Identity;
 using EasyFlights.Services.DtoMappers;
+using EasyFlights.Services.Interfaces;
 using EasyFlights.Web.Infrastructure;
 using EasyFlights.Web.Util.Converters;
 using EasyFlights.Web.ViewModels;
 using EasyFlights.Web.Wrappers;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
 
 namespace EasyFlights.Web.ApiControllers
 {

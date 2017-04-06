@@ -26,12 +26,6 @@ namespace EasyFlights.Data.Repositories.Orders
 
         public void AddOrder(ApplicationUser user, Order order)
         {
-            var newUser = dataContext.Set<ApplicationUser>().FirstOrDefault(x => x.Email == user.Email);
-
-
-            order.User = newUser;
-
-
             Add(order);
             SaveChanges();
         }

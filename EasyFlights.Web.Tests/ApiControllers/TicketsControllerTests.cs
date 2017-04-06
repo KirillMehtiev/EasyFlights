@@ -10,9 +10,6 @@ using EasyFlights.Web.ViewModels;
 using EasyFlights.Web.Wrappers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using EasyFlights.Services.Services.Cabinet;
-using EasyFlights.Services.Interfaces;
-using EasyFlights.Data.Repositories.Flights;
 
 namespace EasyFlights.WebApi.Tests.ApiControllers
 {

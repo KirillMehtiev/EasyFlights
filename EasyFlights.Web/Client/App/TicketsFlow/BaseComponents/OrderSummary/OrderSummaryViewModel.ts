@@ -13,7 +13,7 @@ class OrderSummaryViewModel {
     public onPreviousStep: KnockoutSubscribable<number>;
 
     public isRequestProcessing: KnockoutObservable<boolean>;
-    public dataService: Service.DataService = new DataService();
+    public dataService: DataService = new DataService();
     private urlToBookTickets: string = "api/Tickets/BookTickets";
 
     constructor(options: IOrderSummaryOptions) {
