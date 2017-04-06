@@ -1,0 +1,11 @@
+﻿<div class="row">
+    <h1 class="text-info">Enter information about passanger(s)</h1>
+    <hr />
+    <div data-bind="foreach: {data: passengersInfoList, as: 'passengerInfo'}">
+        <editable-passenger params="firstName: passengerInfo.firstName, lastName: passengerInfo.lastName, birthday: passengerInfo.birthday, documentNumber: passengerInfo.documentNumber, sex: passengerInfo.sex"></editable-passenger>
+    </div>
+    <hr />
+    <div class="pull-right">
+        <a class="btn btn-default" data-bind="click: nextStep">Go to ticket information <i class="glyphicon glyphicon-menu-right"></i></a>
+    </div>
+</div>

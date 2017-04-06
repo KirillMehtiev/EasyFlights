@@ -4,7 +4,7 @@
     public errorsAsTitle: boolean;
     public errorElementClass: string;
     public errorMessageClass: string;
-    
+    public grouping: any;
 
     constructor() {
         this.insertMessages = true;
@@ -13,6 +13,12 @@
 
         this.errorElementClass = "has-error";
         this.errorMessageClass = "validation-message";
+
+        this.grouping = {
+            deep: true,
+            live: true,
+            observable: true
+        }
     }
 }
 

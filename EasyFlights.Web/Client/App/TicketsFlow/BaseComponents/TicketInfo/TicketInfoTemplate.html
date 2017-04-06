@@ -1,0 +1,22 @@
+﻿<div class="row">
+    <h1 class="text-info">Enter information about ticket(s)</h1>
+    <hr />
+    <div data-bind="foreach: { data: passengerInfoList, as: 'passengerInfo' }">
+        <div data-bind="foreach: { data: passengerInfo.tickets, as: 'ticket'}">
+            <editable-ticket params="seat: ticket.seat,
+                                     departureAirport: ticket.departureAirport,
+                                     destinationAirport: ticket.destinationAirport,
+                                     firstName: ticket.firstName,
+                                     lastName: ticket.lastName"></editable-ticket>
+        </div>
+    </div>
+    <hr />
+    <div class="">
+        <div class="pull-left">
+            <a class="btn btn-default" data-bind="click: previousStep"><i class="glyphicon glyphicon-menu-left"></i> Back</a>
+        </div>
+        <div class="pull-right">
+            <a class="btn btn-default" data-bind="click: nextStep">Go to order summary <i class="glyphicon glyphicon-menu-right"></i></a>
+        </div>
+    </div>
+</div>

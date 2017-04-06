@@ -4,10 +4,11 @@ using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using EasyFlights.DomainModel.Entities.Enums;
 using EasyFlights.DomainModel.Entities.Identity;
 using EasyFlights.Web.Identity;
-using EasyFlights.Web.Infrastracture;
+using EasyFlights.Web.Infrastructure;
 using EasyFlights.Web.Results;
 using EasyFlights.Web.ViewModels.AccountViewModels;
 using EasyFlights.Web.ViewModels.ProfileInfo;
@@ -147,8 +148,11 @@ namespace EasyFlights.Web.ApiControllers
         [OverrideAuthentication]
         [HostAuthentication(DefaultAuthenticationTypes.ExternalCookie)]
         [AllowAnonymous]
+        [EnableCors("*", "*", "*")]
         [Route("ExternalLogin", Name = "ExternalLogin")]
         public async Task<IHttpActionResult> GetExternalLogin(string provider, string error = null)
+
+
         {
             if (error != null)
             {
@@ -190,8 +194,8 @@ namespace EasyFlights.Web.ApiControllers
             else
             {
                 IEnumerable<Claim> claims = externalLogin.GetClaims();
-                var identity = new ClaimsIdentity(claims, OAuthDefaults.AuthenticationType);
-                this.authenticationManager.SignIn(identity);
+                var identity = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
+                this.authenticationManager.SignIn(new AuthenticationProperties { IsPersistent = true }, identity);
             }
 
             return Ok();
@@ -271,7 +275,7 @@ namespace EasyFlights.Web.ApiControllers
         [Route("SignOut")]
         public IHttpActionResult SignOut()
         {
-            this.authenticationManager.SignOut(CookieAuthenticationDefaults.AuthenticationType);
+            this.authenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return Ok();
         }
 

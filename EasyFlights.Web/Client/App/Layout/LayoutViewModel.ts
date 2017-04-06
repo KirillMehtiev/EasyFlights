@@ -15,7 +15,7 @@ class LayoutViewModel {
             callback();
         }
         else {
-            window.location.href = "sing-in";
+            window.location.href = "userCabinet";
         }
     }
 }

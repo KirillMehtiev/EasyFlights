@@ -1,4 +1,4 @@
-﻿<div>
+﻿<div class="content">
     <app-header params="isCurrentUserSignedIn: isCurrentUserSignedIn"></app-header>
     <div class="app-content">
         <div class="container">
@@ -20,7 +20,7 @@
             </lazy-page>
 
             <lazy-page params="id: 'selected-route', params: ['routeId','numberOfPassenger']">
-                <select-flow params="routeId: routeId,  numberOfPassenger: numberOfPassenger"></select-flow>
+                <order-tickets params="routeId: routeId,  numberOfPassenger: numberOfPassenger"></order-tickets>
             </lazy-page>
 
             <lazy-page params="id: 'sign-in'">
@@ -28,7 +28,7 @@
             </lazy-page>
 
         </div>
-
+        <div class="push"></div>
     </div>
-    <app-footer></app-footer>
 </div>
+<app-footer></app-footer>

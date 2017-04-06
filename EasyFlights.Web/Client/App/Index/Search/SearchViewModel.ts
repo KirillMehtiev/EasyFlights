@@ -1,12 +1,9 @@
 ﻿import ko = require("knockout");
 import moment = require("moment");
 import { RadioChooserItem } from "../../Common/Components/RadioChooser/RadioChooserItem";
+import { TicketType } from "../../Common/Enum/Enums"
 import Item = require("../../Common/Components/Autocomplete/AutocompleteItem");
 
-class TicketType {
-    static oneWay = "OneWay";
-    static roundTrip = "RoundTrip";
-}
 class DatePickerType {
     static departureDate = "departureDate";
     static returnDate = "returnDate";
@@ -18,7 +15,7 @@ class SearchViewModel {
     public searchAirportFrom: KnockoutObservable<Item.AutocompleteItem>;
     public searchAirportTo: KnockoutObservable<Item.AutocompleteItem>;
 
-    public selectedTicketType: KnockoutObservable<string>;
+    public selectedTicketType: KnockoutObservable<TicketType>;
     public selectedDepartureDate: KnockoutObservable<string>;
     public selectedReturnDate: KnockoutObservable<string>;
     public isRoundTripSelected: KnockoutObservable<boolean>;
@@ -27,31 +24,31 @@ class SearchViewModel {
     public number: KnockoutObservable<number>;
     public numberOfPeople: KnockoutObservableArray<number>;
     //public isSuccess: KnockoutObservable<boolean>;
-   
+
 
 
     constructor() {
         this.options = [
-            new RadioChooserItem("One Way", TicketType.oneWay),
-            new RadioChooserItem("Round trip", TicketType.roundTrip)
+            new RadioChooserItem("One Way", TicketType.OneWay),
+            new RadioChooserItem("Round trip", TicketType.RoundTrip)
         ];
         this.createDefaultOptions();
         this.departureDateName = ko.observable(DatePickerType.departureDate);
         this.returnDateName = ko.observable(DatePickerType.returnDate);
 
-        this.selectedTicketType = ko.observable(TicketType.oneWay);
+        this.selectedTicketType = ko.observable(TicketType.OneWay);
 
         this.selectedDepartureDate = ko.observable("").extend({
             dateAfter: moment().format("L")
         });
         let self = this;
-        
+
         this.selectedReturnDate = ko.observable("").extend({
-                dateAfter: self.selectedDepartureDate
-            });
-      
-       
-        
+            dateAfter: self.selectedDepartureDate
+        });
+
+
+
 
         this.searchAirportFrom = ko.observable<Item.AutocompleteItem>().extend({
             required: {
@@ -92,10 +89,10 @@ class SearchViewModel {
 
     }
 
-    public onTicketTypeChanged(newValue: string) {
-        this.isRoundTripSelected(newValue === TicketType.roundTrip);
+    public onTicketTypeChanged(newValue: TicketType) {
+        this.isRoundTripSelected(newValue === TicketType.RoundTrip);
         if (!this.isRoundTripSelected()) {
-          
+
             this.selectedReturnDate("");
 
         }
