@@ -53,6 +53,7 @@ namespace EasyFlights.Web.ApiControllers
         // DELETE api/<controller>/5
         public void Delete(int id)
         {
+            this.applicationUserManager = applicationUserManager;
         }
 
         private IEnumerable<ShortOrderViewModel> MapToShortOrderViewModels(IEnumerable<OrderDto> orders)

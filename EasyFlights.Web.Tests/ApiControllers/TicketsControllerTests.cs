@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
+using EasyFlights.Data.Repositories.Flights;
 using EasyFlights.DomainModel.DTOs;
-using EasyFlights.DomainModel.Entities.Identity;
 using EasyFlights.Services.DtoMappers;
+using EasyFlights.Services.Interfaces;
 using EasyFlights.Web.ApiControllers;
 using EasyFlights.Web.Infrastructure;
 using EasyFlights.Web.Util.Converters;

@@ -2,8 +2,8 @@
 import { IOrderSummaryOptions } from "./IOrderSummaryOptions";
 import { StepFlow } from "../../../Common/Enum/Enums";
 import { IEditablePassengerOptions } from "../PassengersInfo/EditablePassenger/IEditablePassengerOptions";
-import { AuthService } from "../../Common/Services/Auth/authService";
-import { DataService } from "../../Common/Services/dataService";
+import { AuthService } from "../../../Common/Services/Auth/authService";
+import { DataService } from "../../../Common/Services/dataService";
 
 class OrderSummaryViewModel {
 

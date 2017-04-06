@@ -1,14 +1,12 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Http;
+using EasyFlights.DomainModel.DTOs;
 using EasyFlights.DomainModel.Entities.Identity;
+using EasyFlights.Services.Interfaces;
 using EasyFlights.Web.Infrastructure;
 using EasyFlights.Web.ViewModels.AccountViewModels;
 using Microsoft.AspNet.Identity;
-using EasyFlights.Services.Interfaces;
-using EasyFlights.DomainModel.DTOs;
-using System.Collections.Generic;
-using Microsoft.AspNet.Identity.Owin;
 
 namespace EasyFlights.Web.ApiControllers
 {

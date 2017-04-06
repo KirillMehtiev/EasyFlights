@@ -21,6 +21,8 @@ class EditTicketsViewModel extends TicketsFlowBaseViewModel {
 
         // TODO: get from server all required info
 
+        this.ticketsFlowService.loadOrder(this.orderId().toString());
+
         // temp
         this.passengerInfoList = ko.observableArray([]);
         for (let i = 0; i < 4; i++) {

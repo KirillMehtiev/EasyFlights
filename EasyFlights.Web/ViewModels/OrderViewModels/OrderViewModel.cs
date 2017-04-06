@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 
-namespace EasyFlights.DomainModel.DTOs
+namespace EasyFlights.Web.ViewModels.OrderViewModels
 {
-    public class OrderDto
+    public class OrderViewModel
     {
         public string DepartureCity { get; set; }
 
@@ -16,6 +19,6 @@ namespace EasyFlights.DomainModel.DTOs
 
         public string Duration { get; set; }
 
-        public IEnumerable<TicketDto> Tickets { get; set; }
+        public IEnumerable<TicketVIewModel> Tickets { get; set; }
     }
 }

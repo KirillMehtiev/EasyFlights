@@ -6,4 +6,8 @@ export class TicketsFlowService {
     public loadRoute(routeId: string): JQueryPromise<any> {
         return this.dataService.get("api/routes/getRouteById?routeId=" + routeId);
     }
+
+    public loadOrder(orderId: string): JQueryPromise<any> {
+        return this.dataService.get("api/orders/getOrderById?orderId=" + orderId);
+    }
 }
