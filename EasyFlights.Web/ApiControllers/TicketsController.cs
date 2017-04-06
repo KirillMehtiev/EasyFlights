@@ -1,37 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net.Http;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Http;
 using EasyFlights.DomainModel.DTOs;
 using EasyFlights.DomainModel.Entities.Enums;
 using EasyFlights.DomainModel.Entities.Identity;
 using EasyFlights.Services.DtoMappers;
-using EasyFlights.Web.Infrastracture;
 using EasyFlights.Web.Util.Converters;
 using EasyFlights.Web.ViewModels;
 using EasyFlights.Web.Wrappers;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
 
 namespace EasyFlights.Web.ApiControllers
 {
     [RoutePrefix("api/Tickets")]
     public class TicketsController : ApiController
     {
-        private ApplicationUserManager userManager;
         private IRouteConverter converter;
         private ITicketsForRouteMapper dtoMapper;
 
-        public TicketsController(IRouteConverter converter, ITicketsForRouteMapper dtoMapper, ApplicationUserManager userManager)
+        public TicketsController(IRouteConverter converter, ITicketsForRouteMapper dtoMapper)
         {
             this.converter = converter;
             this.dtoMapper = dtoMapper;
-            this.userManager = userManager;
         }
 
-        private ApplicationUserManager UserManager => userManager ?? HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();       
 
         [HttpPost]
         [Route("GetTickets")]
@@ -95,7 +88,7 @@ namespace EasyFlights.Web.ApiControllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                var user = await AccountController.GetUser(User.Identity.GetUserId());
+                ApplicationUser user = await AccountController.GetUser(User.Identity.GetUserId());
                 var model = new PassengerViewModel()
                 {
                     Birthday =
