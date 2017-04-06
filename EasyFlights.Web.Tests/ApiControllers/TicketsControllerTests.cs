@@ -11,7 +11,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using EasyFlights.Services.Services.Cabinet;
 using EasyFlights.Services.Interfaces;
-using EasyFlights.Web.Infrastracture;
 using EasyFlights.Data.Repositories.Flights;
 
 namespace EasyFlights.WebApi.Tests.ApiControllers
