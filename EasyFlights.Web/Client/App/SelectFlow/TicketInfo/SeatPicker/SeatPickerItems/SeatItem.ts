@@ -1,6 +1,9 @@
-﻿export class SeatItem {
+﻿import ViewModel = require("../Cabin/CabinViewModel");
+
+export class SeatItem {
     public row: number;
     public seat: number;
+    public cabin: KnockoutObservable<ViewModel>;
     public isSpace: KnockoutObservable<boolean>;
     public isBooked: KnockoutObservable<boolean>;
     public isChosen: KnockoutObservable<boolean>; 

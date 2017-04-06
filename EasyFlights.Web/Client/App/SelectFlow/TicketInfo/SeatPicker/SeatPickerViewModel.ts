@@ -3,6 +3,7 @@ import Item = require("./SeatPickerItems/SeatItem");
 import RowItem1 = require("./SeatPickerItems/RowItem");
 import InfoItem = require("./SeatPickerItems/CabinInfoItem");
 import Service = require("../../../Common/Services/dataService");
+import SeatPickerOptions = require("./ISeatPickerOptions");
 
 class SeatPickerViewModel {
 
@@ -10,6 +11,7 @@ class SeatPickerViewModel {
     public cabin: KnockoutObservable<InfoItem.CabinInfoItem>;
     public rowsCount: KnockoutObservable<number>;
     public columnsNames: KnockoutObservableArray<string>;
+    public seatNumber: KnockoutObservable<number>;
 
     public modalVisible: KnockoutObservable<boolean>;
     public modalSize: KnockoutObservable<string>;
@@ -19,7 +21,8 @@ class SeatPickerViewModel {
 
     private dataService: Service.DataService = new Service.DataService();
 
-    constructor() {
+    constructor(options: SeatPickerOptions.ISeatPickerOptions) {
+        this.seatNumber = options.seatNumber;
         this.rowsCount = ko.observable<number>();
         this.columnsNames = ko.observableArray<string>();
         this.getSeatPickerInfo();

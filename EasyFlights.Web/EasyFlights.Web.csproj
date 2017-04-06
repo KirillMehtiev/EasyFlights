@@ -388,6 +388,7 @@
     <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\EditableTicket\EditableTicketComponent.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\EditableTicket\EditableTicketViewModel.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\EditableTicket\IEditableTicketOptions.ts" />
+    <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\SeatPicker\ISeatPickerOptions.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\SeatPicker\SeatPickerItems\CabinInfoItem.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\TicketInfo\ITicketInfoItemOptions.ts" />
     <TypeScriptCompile Include="Client\App\SelectFlow\OrderSummary\OrderSummaryComponent.ts" />
