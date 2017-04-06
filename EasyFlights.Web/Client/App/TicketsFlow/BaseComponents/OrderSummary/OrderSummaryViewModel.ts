@@ -1,6 +1,6 @@
 ﻿import ko = require("knockout");
 import { IOrderSummaryOptions } from "./IOrderSummaryOptions";
-import { StepFlow } from "../../Common/Enum/Enums";
+import { StepFlow } from "../../../Common/Enum/Enums";
 import { IEditablePassengerOptions } from "../PassengersInfo/EditablePassenger/IEditablePassengerOptions";
 
 class OrderSummaryViewModel {

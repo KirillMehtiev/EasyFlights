@@ -1,5 +1,5 @@
 ﻿import ko = require("knockout");
-import { FlightItem } from "../../SearchResults/FlightResults/Tickets/FlightItem";
+import { FlightItem } from "./FlightItem";
 
 export class TicketInfoItem {
     public departureAirport: string;

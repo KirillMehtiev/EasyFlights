@@ -1,8 +1,7 @@
-﻿import { TicketInfoItem } from "./TicketInfoItem";
-import { ITicketInfoItemOptions } from "./ITicketInfoItemOptions";
-import { RadioChooserItem } from "../../Common/Components/RadioChooser/RadioChooserItem";
-import { RouteItem } from "../../SearchResults/FlightResults/RouteItem"
-import { StepFlow } from "../../Common/Enum/Enums";
+﻿import { ITicketInfoOptions } from "./ITicketInfoOptions";
+import { RadioChooserItem } from "../../../Common/Components/RadioChooser/RadioChooserItem";
+import { RouteItem } from "../../../SearchResults/FlightResults/RouteItem"
+import { StepFlow } from "../../../Common/Enum/Enums";
 import { IEditablePassengerOptions } from "../PassengersInfo/EditablePassenger/IEditablePassengerOptions";
 import { IEditableTicketOptions } from "./EditableTicket/IEditableTicketOptions";
 
@@ -11,7 +10,7 @@ class TicketInfoViewModel {
     public onPreviousStep: KnockoutSubscribable<number>;
     public passengerInfoList: KnockoutObservableArray<IEditablePassengerOptions>;
 
-    constructor(options: ITicketInfoItemOptions) {
+    constructor(options: ITicketInfoOptions) {
         this.passengerInfoList = options.passengerInfoList;
         this.onNextStep = options.onNextStep;
         this.onPreviousStep = options.onPreviousStep;

@@ -1,4 +1,4 @@
-﻿import { TicketClass } from "../../../Common/Enum/Enums";
+﻿import { TicketClass } from "../../../../Common/Enum/Enums";
 
 export interface IEditableTicketOptions {
     departureAirport: KnockoutObservable<string>;

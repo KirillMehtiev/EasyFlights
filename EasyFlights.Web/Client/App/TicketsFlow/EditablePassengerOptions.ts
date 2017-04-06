@@ -1,7 +1,8 @@
 ﻿import ko = require("knockout");
-import { IEditablePassengerOptions } from "./PassengersInfo/EditablePassenger/IEditablePassengerOptions";
+
 import { Sex } from "../Common/Enum/Enums";
-import {IEditableTicketOptions } from "./TicketInfo/EditableTicket/IEditableTicketOptions";
+import { IEditablePassengerOptions } from "./BaseComponents/PassengersInfo/EditablePassenger/IEditablePassengerOptions";
+import { IEditableTicketOptions } from "./BaseComponents/TicketInfo/EditableTicket/IEditableTicketOptions";
 
 export class EditablePassengerOptions implements IEditablePassengerOptions {
     firstName: KnockoutObservable<string>;

@@ -1,6 +1,6 @@
-﻿import { StepFlow, Sex } from "../../../Common/Enum/Enums";
+﻿import { StepFlow, Sex } from "../../../../Common/Enum/Enums";
 import { IEditablePassengerOptions } from "./IEditablePassengerOptions";
-import { RadioChooserItem } from "../../../Common/Components/RadioChooser/RadioChooserItem";
+import { RadioChooserItem } from "../../../../Common/Components/RadioChooser/RadioChooserItem";
 
 class EditablePassengerViewModel {
 
