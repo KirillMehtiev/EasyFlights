@@ -308,6 +308,7 @@
     <Content Include="Client\App\TicketsFlow\TicketsFlowTemplate.html" />
     <Content Include="Client\App\UserCabinet\Account\AccountTemplate.html" />
     <Content Include="Client\App\UserCabinet\ManageOrders\ManageOrdersTemplate.html" />
+    <Content Include="Client\App\UserCabinet\ManageOrders\OrderFullInfo\OrderFullInfoTemplate.html" />
     <Content Include="Client\App\UserCabinet\ProfileInfo\ProfileInfoTemplate.html" />
     <Content Include="Client\App\UserCabinet\UserCabinetTemplate.html" />
     <Content Include="Client\Libs\css\jquery-ui.min.css" />
@@ -452,7 +453,9 @@
     <TypeScriptCompile Include="Client\App\TicketsFlow\EditableTicketOptions.ts" />
     <TypeScriptCompile Include="Client\App\TicketsFlow\EditTickets\EditTicketsViewModel.ts" />
     <TypeScriptCompile Include="Client\App\TicketsFlow\EditTickets\EditTicketsComponent.ts" />
+    <TypeScriptCompile Include="Client\App\TicketsFlow\EditTickets\IEditTicketsOptions.ts" />
     <TypeScriptCompile Include="Client\App\TicketsFlow\IInternalNavigation.ts" />
+    <TypeScriptCompile Include="Client\App\TicketsFlow\OrderTickets\IOrderTicketsOptions.ts" />
     <TypeScriptCompile Include="Client\App\TicketsFlow\OrderTickets\OrderTicketsComponent.ts" />
     <TypeScriptCompile Include="Client\App\TicketsFlow\OrderTickets\OrderTicketsViewModel.ts" />
     <TypeScriptCompile Include="Client\App\TicketsFlow\Services\TicketsFlowService.ts" />
@@ -464,6 +467,10 @@
     <TypeScriptCompile Include="Client\App\UserCabinet\ManageOrders\ManageOrdersComponent.ts" />
     <TypeScriptCompile Include="Client\App\UserCabinet\ManageOrders\ManageOrdersItem.ts" />
     <TypeScriptCompile Include="Client\App\UserCabinet\ManageOrders\ManageOrdersViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\UserCabinet\ManageOrders\OrderFullInfo\IOrderFullInfoOptions.ts" />
+    <TypeScriptCompile Include="Client\App\UserCabinet\ManageOrders\OrderFullInfo\OrderFullInfoComponent.ts" />
+    <TypeScriptCompile Include="Client\App\UserCabinet\ManageOrders\OrderFullInfo\OrderFullInfoViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\UserCabinet\ProfileInfo\IProfileInfoOptions.ts" />
     <TypeScriptCompile Include="Client\App\UserCabinet\ProfileInfo\ProfileInfoComponent.ts" />
     <TypeScriptCompile Include="Client\App\UserCabinet\ProfileInfo\ProfileInfoViewModel.ts" />
     <TypeScriptCompile Include="Client\App\UserCabinet\UserCabinetComponent.ts" />

@@ -9,10 +9,6 @@ import { EditablePassengerOptions } from "./EditablePassengerOptions";
 import { EditableTicketOptions } from "./EditableTicketOptions";
 
 abstract class TicketsFlowBaseViewModel {
-    // Params
-    public routeId: KnockoutObservable<string>;
-    public numberOfPassenger: KnockoutObservable<number>;
-
     // Shared data
     public passengerInfoList: KnockoutObservableArray<IEditablePassengerOptions>;
 
@@ -26,11 +22,8 @@ abstract class TicketsFlowBaseViewModel {
     public isShowTicketInfo: KnockoutObservable<boolean>;
     public isShowOrderSummary: KnockoutObservable<boolean>;
 
-    constructor(params) {
-        this.routeId = params.routeId;
-        this.numberOfPassenger = params.numberOfPassenger;
-
-        this.initPassengerInfoList(this.routeId(), this.numberOfPassenger());
+    constructor() {
+        this.initPassengerInfoList();
         this.extendEditablePassengerWithValidation(this.passengerInfoList);
 
         // Flow routing
@@ -123,7 +116,7 @@ abstract class TicketsFlowBaseViewModel {
         return true;
     }
 
-    protected abstract initPassengerInfoList(routeId: string, numberOfPassenger: number);
+    protected abstract initPassengerInfoList();
 }
 
 export = TicketsFlowBaseViewModel;
