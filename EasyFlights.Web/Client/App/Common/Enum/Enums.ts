@@ -13,3 +13,8 @@ export enum TicketClass {
     Economy,
     Business,
 }
+
+export enum TicketType {
+    OneWay,
+    RoundTrip
+}
