@@ -6,25 +6,25 @@
                 <div class="form-group">
                     <label class="col-lg-3 control-label">First name:</label>
                     <div class="col-lg-8">
-                        <input class="form-control" type="text" data-bind="value: item.firstName">
+                        <input class="form-control" type="text" > <!--databind-->
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Last name:</label>
                     <div class="col-lg-8">
-                        <input class="form-control" type="text" data-bind="value: item.lastname">
+                        <input class="form-control" type="text" > <!--databind-->
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Contact Phone:</label>
                     <div class="col-lg-8">
-                        <input class="form-control" type="text" data-bind="value: item.contactPhone">
+                        <input class="form-control" type="text" > <!--databind-->
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Sex:</label>
                     <div class="col-lg-8">
-                        <!--<radio-chooser params="options: $parent.sexOptions, selectedOption:profileInfo.sex, groupName:'sex-type'"></radio-chooser>-->
+                        <!--<radio-chooser params="options: sexOptions, selectedOption: item.sex, groupName:'sex-type'"></radio-chooser>-->
                         </div>
                     </div>
                 <div class="form-group">
@@ -38,7 +38,7 @@
                     Save 
                 </button>
             </div>
-            <div class="row" data-bind="visible: isDataChanged">
+            <div class="row" data-bind="visible: isDataChanged()">
                 <div class="col-md-offset-4 col-md-2">
                     <label>Personal information changed successfully</label>
                 </div>
