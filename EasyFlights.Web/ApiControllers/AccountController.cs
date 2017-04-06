@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using System.Runtime.CompilerServices;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
@@ -16,7 +15,6 @@ using EasyFlights.Web.ViewModels.ProfileInfo;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
@@ -27,7 +25,6 @@ namespace EasyFlights.Web.ApiControllers
     [RoutePrefix("api/account")]
     public class AccountController : ApiController
     {        
-        private static ApplicationUserManager staticUserManager;
         private ApplicationUserManager userManager;
         private IAuthenticationManager authentication;
 
@@ -42,18 +39,6 @@ namespace EasyFlights.Web.ApiControllers
             Authentication = authentication;
         }
 
-        public static ApplicationUserManager StaticUserManager
-        {
-            get
-            {
-                return staticUserManager ?? HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-
-            private set
-            {
-                staticUserManager = value;
-            }
-        }
 
         public ApplicationUserManager UserManager
         {
@@ -78,11 +63,6 @@ namespace EasyFlights.Web.ApiControllers
             {
                 this.authentication = value;
             }
-        }
-
-        public static Task<ApplicationUser> GetUser(string userId)
-        {
-            return StaticUserManager.FindByIdAsync(userId);
         }
 
         // POST api/Account/Register
@@ -119,7 +99,7 @@ namespace EasyFlights.Web.ApiControllers
         [HttpGet]
         public IHttpActionResult IsAuthenticated()
         {
-           bool result = User.Identity.IsAuthenticated;
+            bool result = User.Identity.IsAuthenticated;
             if (!result)
             {
                 return this.BadRequest();
@@ -142,14 +122,6 @@ namespace EasyFlights.Web.ApiControllers
             ClaimsIdentity claim = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
             Authentication.SignIn(new AuthenticationProperties { IsPersistent = true }, claim);
             Authentication.SignIn(claim);
-            return this.Ok();
-        }
-
-        [HttpGet]
-        [Authorize]
-        [Route("get")]
-        public IHttpActionResult GetResult()
-        {
             return this.Ok();
         }
 
@@ -465,6 +437,6 @@ namespace EasyFlights.Web.ApiControllers
                                         new JProperty(".expires", ticket.Properties.ExpiresUtc.ToString()));
 
             return tokenResponse;
-        }        
+        }
     }
 }
