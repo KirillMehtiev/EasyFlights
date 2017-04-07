@@ -8,4 +8,5 @@ export interface IEditablePassengerOptions {
     documentNumber: KnockoutObservable<string>;
     sex: KnockoutObservable<Sex>;
     tickets: KnockoutObservableArray<IEditableTicketOptions>;
+
 }

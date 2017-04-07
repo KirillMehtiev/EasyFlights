@@ -4,6 +4,7 @@
     <div data-bind="foreach: { data: passengerInfoList, as: 'passengerInfo' }">
         <div data-bind="foreach: { data: passengerInfo.tickets, as: 'ticket'}">
             <editable-ticket params="seat: ticket.seat,
+                                     seatChosen: $component.seatChosen,
                                      departureAirport: ticket.departureAirport,
                                      destinationAirport: ticket.destinationAirport,
                                      firstName: ticket.firstName,

@@ -3,6 +3,7 @@
 export interface IEditableTicketOptions {
     departureAirport: KnockoutObservable<string>;
     destinationAirport: KnockoutObservable<string>;
+    seatChosen: KnockoutObservableArray<number>;
     duration: KnockoutObservable<string>;
     fare: KnockoutObservable<string>;
     departureTime: KnockoutObservable<string>;

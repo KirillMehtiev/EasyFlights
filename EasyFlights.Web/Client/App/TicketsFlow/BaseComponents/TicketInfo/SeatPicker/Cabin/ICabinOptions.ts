@@ -6,4 +6,6 @@ export interface ICabinOptions {
     columnsNames: KnockoutObservableArray<string>;
     rowsCount: number;
     selectNumber: KnockoutObservable<number>;
+    seatChosen: KnockoutObservableArray<number>;
+    firstName: string;
 }

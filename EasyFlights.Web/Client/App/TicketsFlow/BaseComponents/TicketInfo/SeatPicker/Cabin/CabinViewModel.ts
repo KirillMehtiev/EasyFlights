@@ -9,6 +9,8 @@ class CabinViewModel {
     public isBlockSelect: KnockoutObservable<boolean>;
     public columnsNames: KnockoutObservableArray<string>;
     public seatNumber: KnockoutObservable<number>;
+    public seatChosen: KnockoutObservableArray<number>;
+    public firstName: string;
 
     constructor(options: CabinOptions.ICabinOptions) {
         this.rows = options.rows;
@@ -17,6 +19,8 @@ class CabinViewModel {
         this.seatNumber = options.seatNumber;
         this.isBlockSelect = ko.observable<boolean>(false);
         this.columnsNames = options.columnsNames;
+        this.seatChosen = options.seatChosen;
+        this.firstName = options.firstName;
         console.log(this.columnsNames());
     }
 
@@ -25,8 +29,14 @@ class CabinViewModel {
     } 
 
     public chooseNumber(seatNumber: number) {
-        this.rows().forEach(x=> x.seats().forEach(z=>(z.seat!==seatNumber)?z.isChosen(false):  this.seatNumber(seatNumber)));
+        this.rows().forEach(x => x.seats().forEach(z => (z.seat !== seatNumber) ? z.isChosen(false) : this.choose(seatNumber)));
     } 
+
+    public choose(seatNumber: number) {
+        console.log(this.firstName);
+        this.seatChosen()[this.firstName] = seatNumber;
+        this.seatNumber(seatNumber);
+    }
 }
 
 export = CabinViewModel;

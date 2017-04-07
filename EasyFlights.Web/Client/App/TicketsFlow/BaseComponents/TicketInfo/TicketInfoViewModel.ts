@@ -15,8 +15,11 @@ class TicketInfoViewModel {
         this.passengerInfoList = options.passengerInfoList;
         this.onNextStep = options.onNextStep;
         this.onPreviousStep = options.onPreviousStep;
-        var amount = this.passengerInfoList().length;
-        this.seatChosen = ko.observableArray<number>(new Array(amount));
+        var amount = new Array();
+        for (var i = 0; i < this.passengerInfoList().length; i++) {
+            amount[this.passengerInfoList()[i].firstName()] = 0;
+        }
+        this.seatChosen = ko.observableArray<number>(amount);
         this.nextStep.bind(this);
         this.previousStep.bind(this);
     }
