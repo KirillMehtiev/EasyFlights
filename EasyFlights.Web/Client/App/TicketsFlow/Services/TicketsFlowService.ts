@@ -1,4 +1,5 @@
 ﻿import { DataService } from '../../Common/Services/dataService';
+import { ITicketForBooking } from "./ITicketForBooking";
 
 export class TicketsFlowService {
     private dataService: DataService = new DataService();
@@ -9,5 +10,11 @@ export class TicketsFlowService {
 
     public loadOrder(orderId: string): JQueryPromise<any> {
         return this.dataService.get("api/orders/getOrderById?orderId=" + orderId);
+    }
+
+    public bookTickets(tickets: Array<ITicketForBooking>) {
+        return this.dataService.post("api/orders/bookTickets", {
+            tickets: tickets
+        });
     }
 }

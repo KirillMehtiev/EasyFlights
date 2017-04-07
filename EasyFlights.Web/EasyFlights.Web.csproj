@@ -461,6 +461,7 @@
     <TypeScriptCompile Include="Client\App\TicketsFlow\OrderTickets\IOrderTicketsOptions.ts" />
     <TypeScriptCompile Include="Client\App\TicketsFlow\OrderTickets\OrderTicketsComponent.ts" />
     <TypeScriptCompile Include="Client\App\TicketsFlow\OrderTickets\OrderTicketsViewModel.ts" />
+    <TypeScriptCompile Include="Client\App\TicketsFlow\Services\ITicketForBooking.ts" />
     <TypeScriptCompile Include="Client\App\TicketsFlow\Services\TicketsFlowService.ts" />
     <TypeScriptCompile Include="Client\App\TicketsFlow\TicketsFlowBaseViewModel.ts" />
     <TypeScriptCompile Include="Client\App\UserCabinet\Account\AccountComponent.ts" />
