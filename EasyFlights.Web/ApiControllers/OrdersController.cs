@@ -1,44 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using EasyFlights.Data.Repositories.Flights;
 using EasyFlights.DomainModel.Entities;
-using EasyFlights.Services.DtoMappers;
 using EasyFlights.Web.Infrastructure;
-using EasyFlights.Web.Util.Converters;
+using System.Threading.Tasks;
+using EasyFlights.DomainModel.DTOs;
+using EasyFlights.Services.Interfaces;
+using EasyFlights.Web.ViewModels.OrdersViewModel;
+using EasyFlights.Web.ViewModels.OrdersViewModels;
+using Microsoft.AspNet.Identity;
 
 namespace EasyFlights.Web.ApiControllers
 {
-    using System.Threading.Tasks;
-
-    using EasyFlights.DomainModel.DTOs;
-    using EasyFlights.Services.Interfaces;
-    using EasyFlights.Web.ViewModels.OrdersViewModel;
-
-    using Microsoft.AspNet.Identity;
-    using ViewModels.OrdersViewModels;
-
     [Authorize]
     public class OrdersController : ApiController
     {
         private readonly IManageOrdersService manageOrderService;
-        private IRouteConverter converter;
-        private ITicketsForRouteMapper dtoMapper;
         private readonly IFlightsRepository flightRepository;
         private readonly IApplicationUserManager applicationUserManager;
 
-        public OrdersController(IRouteConverter converter,
-            ITicketsForRouteMapper dtoMapper,
+        public OrdersController(
             IManageOrdersService manageOrderService,
             IApplicationUserManager applicationUserManager,
             IFlightsRepository flightRepository)
         {
             this.manageOrderService = manageOrderService;
-            this.converter = converter;
-            this.dtoMapper = dtoMapper;
             this.applicationUserManager = applicationUserManager;
             this.flightRepository = flightRepository;
         }
@@ -60,47 +48,29 @@ namespace EasyFlights.Web.ApiControllers
 
         // POST api/<controller>
         [HttpPost]
-        [Route("BookTickets")]
-        public async Task BookTicketsAsync([FromBody] BookOrderViewModel orderModel)
+        public async Task BookTicketsAsync([FromBody] List<TicketForBookingViewModel> ticketsForBooking)
         {
-            //var orderDateTime = DateTime.Now.ToUniversalTime();
+            var orderDateTime = DateTime.UtcNow;
 
-            //orderModel.RouteId = "137";
-            //var flights = new List<Flight>();
-            //var ticketsForOrder = new List<Ticket>();
+            var ticketsForOrder = new List<Ticket>();
 
-            //var user = await applicationUserManager.FindByEmailAsync(User.Identity.Name);
-            //var route = await converter.RestoreRouteFromRouteIdAsync(orderModel.RouteId);
+            var user = await applicationUserManager.FindByEmailAsync(User.Identity.Name);
 
-            //foreach (var flight in route.Flights)
-            //{
-            //    flights.Add(await flightRepository.GetFlightsById(flight.Id));
-            //}
+            foreach (var ticket in ticketsForBooking)
+            {
+                var flight = await flightRepository.GetFlightsById(ticket.FlightId);
+                var newTicket = CreateTicket(ticket, flight);
+                ticketsForOrder.Add(newTicket);
+            }
 
-            //foreach (var flight in flights)
-            //{
-            //    foreach (var ticket in orderModel.Tickets)
-            //    {
-            //        var newTicket = CreateTicket(ticket, flight);
-            //        ticketsForOrder.Add(newTicket);
-            //    }
-            //}
+            var order = new Order
+            {
+                OrderDate = orderDateTime,
+                Tickets = ticketsForOrder,
+                User = user
+            };
 
-            //var order = new Order
-            //{
-            //    OrderDate = orderDateTime,
-            //    Tickets = ticketsForOrder,
-            //    User = user
-            //};
-
-            //try
-            //{
-            //    manageOrderService.AddOrder(user, order);
-            //}
-            //catch (Exception ex)
-            //{
-
-            //}
+            manageOrderService.AddOrder(user, order);
         }
 
         // PUT api/<controller>/5
@@ -125,21 +95,20 @@ namespace EasyFlights.Web.ApiControllers
                 Duration = order.Duration
             });
         }
-        private Ticket CreateTicket(TicketDto ticket, Flight flight)
+        private Ticket CreateTicket(TicketForBookingViewModel ticket, Flight flight)
         {
             return new Ticket
             {
                 Passenger = new Passenger
                 {
-                    FirstName = ticket.Passenger.FirstName,
-                    LastName = ticket.Passenger.LastName,
-                    DocumentNumber = ticket.Passenger.DocumentNumber,
-                    Sex = ticket.Passenger.Sex,
-                    BirthDate = ticket.Passenger.Birthday
+                    FirstName = ticket.FirstName,
+                    LastName = ticket.LastName,
+                    DocumentNumber = ticket.DocumentNumber,
+                    Sex = ticket.Sex,
+                    BirthDate = ticket.Birthday
                 },
-                Fare = ticket.Price,
-                Seat = ticket.Seat.Number,
-                FlightClass = ticket.FlightClass,
+                Fare = flight.DefaultFare,
+                Seat = ticket.Seat,
                 Flight = flight
             };
         }
