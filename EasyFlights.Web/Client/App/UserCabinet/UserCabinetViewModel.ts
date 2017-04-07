@@ -14,28 +14,26 @@ class UserCabinetViewModel {
     private sex: KnockoutObservable<string>;
     private dateOfBirth: KnockoutObservable<string>;
     public user: KnockoutObservable<UserItem>;
+    public isRequestProcessing: KnockoutObservable<boolean>;
 
     private getUrl: string = "api/Account/UserInfo";
 
     constructor() {
-        this.user = ko.observable(new UserItem("","","","","",""));
-        this.GetUser.bind(this);
-
-   
-        console.log(this.user().firstName);
+        this.user = ko.observable(new UserItem("", "", "", "", "", ""));
+        this.isRequestProcessing = ko.observable(false);
+        this.getUser();
 
     }
-
-    public GetUser(): UserItem {
+    private getUser(): UserItem {
+        this.isRequestProcessing(true);
         this.dataService.get<UserItem>(this.getUrl)
             .then((data) => {
                 this.user(data);
-
-            });
+            }).always(() => this.isRequestProcessing(false));;
         return this.user();
-    }
-    
-    
+
+    } 
+ 
 }
 
 export = UserCabinetViewModel;

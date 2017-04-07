@@ -26,7 +26,6 @@ namespace EasyFlights.Data.Repositories.Orders
 
         public void AddOrder(ApplicationUser user, Order order)
         {
-
             Add(order);
             SaveChanges();
         }

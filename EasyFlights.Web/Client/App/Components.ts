@@ -30,4 +30,6 @@ import "./TicketsFlow/BaseComponents/TicketInfo/EditableTicket/EditableTicketCom
 import "./TicketsFlow/BaseComponents/OrderSummary/Ticket/TicketComponent";
 import "./TicketsFlow/EditTickets/EditTicketsComponent";
 import "./TicketsFlow/OrderTickets/OrderTicketsComponent";
+import "./UserCabinet/ManageOrders/OrderFullInfo/OrderFullInfoComponent";
+import "./TicketsFlow/OrderTickets/OrderTicketsComponent";
 import "./Common/Components/PrintButton/PrintButtonComponent";
