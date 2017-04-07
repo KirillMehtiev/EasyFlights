@@ -44,12 +44,12 @@ namespace EasyFlights.Web.ApiControllers
         }
 
         // GET api/<controller>/5
-        public string Get(int orderId)
+        public async Task<DetailedOrderViewModel> Get(int orderId)
         {
             var userId = User.Identity.GetUserId();
-            var order = this.manageOrderService.GetOrderByIdForUserAsync(orderId, userId);
+            var order = await this.manageOrderService.GetOrderByIdForUserAsync(orderId, userId);
 
-            return "value";
+            return MapToDetailedOrderViewModel(order);
         }
 
         // POST api/<controller>

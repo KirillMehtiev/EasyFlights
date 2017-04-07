@@ -104,10 +104,20 @@ namespace EasyFlights.Services.Services.Cabinet
 
         private IEnumerable<TicketDto> ToTicketDto(IEnumerable<Ticket> ticket)
         {
-            return null;
+            return ticket.Select(t => new TicketDto
+            {
+                Passenger = ToPassengerDto(t.Passenger),
+                FlightClass = t.FlightClass,
+                Price = t.Fare
+            });
         }
 
         private PassengerDto ToPassengerDto(Passenger passenger)
+        {
+            return null;
+        }
+
+        private SeatDto ToSeat(int seatNumber)
         {
             return null;
         }
