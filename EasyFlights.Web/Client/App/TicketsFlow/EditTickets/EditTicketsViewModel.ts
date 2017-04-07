@@ -10,11 +10,12 @@ class EditTicketsViewModel extends TicketsFlowBaseViewModel {
     public orderId: KnockoutObservable<number>;
 
     constructor(options: IEditTicketsOptions) {
-        super();
+        super(options);
 
         this.orderId = options.orderId;
 
-        console.log(this.orderId());
+        // dirty hach :)
+        this.init();
     }
 
     protected initPassengerInfoList() {

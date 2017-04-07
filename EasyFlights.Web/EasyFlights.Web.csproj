@@ -222,7 +222,6 @@
     <Compile Include="ApiControllers\CabinController.cs" />
     <Compile Include="ApiControllers\CabinetController.cs" />
     <Compile Include="ApiControllers\FlightsController.cs" />
-    <Compile Include="ApiControllers\OrdersController.cs" />
     <Compile Include="ApiControllers\RoutesController.cs" />
     <Compile Include="ApiControllers\TicketsController.cs" />
     <Compile Include="ApiControllers\TypeaheadController.cs" />
@@ -262,7 +261,6 @@
     <Compile Include="ViewModels\CabinViewModel.cs" />
     <Compile Include="ViewModels\AccountViewModels\ExternalLoginViewModel.cs" />
     <Compile Include="ViewModels\FlightViewModel.cs" />
-    <Compile Include="ViewModels\OrderViewModels\OrderViewModel.cs" />
     <Compile Include="ViewModels\BookOrderViewModel.cs" />
     <Compile Include="ViewModels\OrdersViewModel\DetailedOrederViewModel.cs" />
     <Compile Include="ViewModels\OrdersViewModel\ShortOrderViewModel.cs" />
@@ -456,6 +454,7 @@
     <TypeScriptCompile Include="Client\App\TicketsFlow\EditTickets\EditTicketsComponent.ts" />
     <TypeScriptCompile Include="Client\App\TicketsFlow\EditTickets\IEditTicketsOptions.ts" />
     <TypeScriptCompile Include="Client\App\TicketsFlow\IInternalNavigation.ts" />
+    <TypeScriptCompile Include="Client\App\TicketsFlow\ITicketsFlowOptions.ts" />
     <TypeScriptCompile Include="Client\App\TicketsFlow\OrderTickets\IOrderTicketsOptions.ts" />
     <TypeScriptCompile Include="Client\App\TicketsFlow\OrderTickets\OrderTicketsComponent.ts" />
     <TypeScriptCompile Include="Client\App\TicketsFlow\OrderTickets\OrderTicketsViewModel.ts" />

@@ -3,21 +3,25 @@ import { EditablePassengerOptions } from "../EditablePassengerOptions";
 import { EditableTicketOptions } from "../EditableTicketOptions";
 import { IEditablePassengerOptions } from "../BaseComponents/PassengersInfo/EditablePassenger/IEditablePassengerOptions";
 import { IEditableTicketOptions } from "../BaseComponents/TicketInfo/EditableTicket/IEditableTicketOptions";
+import { IOrderTicketsOptions } from "./IOrderTicketsOptions";
 
 class OrderTicketsViewModel extends TicketsFlowBaseViewModel {
-    routeId: KnockoutObservable<string>;
-    numberOfPassenger: KnockoutObservable<number>;
+    public routeId: KnockoutObservable<string>;
+    public numberOfPassengers: KnockoutObservable<number>;
 
-    constructor(options) {
-        super();
+    constructor(options: IOrderTicketsOptions) {
+        super(options);
 
         this.routeId = options.routeId;
-        this.numberOfPassenger = options.numberOfPassenger;
+        this.numberOfPassengers = options.numberOfPassenger;
+
+        // dirty hack :)
+        this.init();
     }
 
     protected initPassengerInfoList() {
     this.passengerInfoList = ko.observableArray([]);
-    for (let i = 0; i < this.numberOfPassenger(); i++) {
+    for (let i = 0; i < this.numberOfPassengers(); i++) {
         this.passengerInfoList.push(new EditablePassengerOptions());
     }
 

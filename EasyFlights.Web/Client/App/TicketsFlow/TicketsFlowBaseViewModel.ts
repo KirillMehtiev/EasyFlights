@@ -7,6 +7,7 @@ import { IEditablePassengerOptions } from "./BaseComponents/PassengersInfo/Edita
 import { IEditableTicketOptions } from "./BaseComponents/TicketInfo/EditableTicket/IEditableTicketOptions";
 import { EditablePassengerOptions } from "./EditablePassengerOptions";
 import { EditableTicketOptions } from "./EditableTicketOptions";
+import { ITicketsFlowOptions } from "./ITicketsFlowOptions";
 
 abstract class TicketsFlowBaseViewModel {
     // Shared data
@@ -22,10 +23,7 @@ abstract class TicketsFlowBaseViewModel {
     public isShowTicketInfo: KnockoutObservable<boolean>;
     public isShowOrderSummary: KnockoutObservable<boolean>;
 
-    constructor() {
-        this.initPassengerInfoList();
-        this.extendEditablePassengerWithValidation(this.passengerInfoList);
-
+    constructor(options: ITicketsFlowOptions) {
         // Flow routing
         this.onNextStep = new ko.subscribable();
         this.onPreviousStep = new ko.subscribable();
@@ -81,6 +79,11 @@ abstract class TicketsFlowBaseViewModel {
     private showOrderSummary() {
         this.isShowTicketInfo(false);
         this.isShowOrderSummary(true);
+    }
+
+    protected init() {
+        this.initPassengerInfoList();
+        this.extendEditablePassengerWithValidation(this.passengerInfoList);
     }
 
     private extendEditablePassengerWithValidation(passengers: KnockoutObservableArray<IEditablePassengerOptions>) {
