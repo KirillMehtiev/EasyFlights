@@ -41,7 +41,7 @@
 }
 
 #body tr td {
-    background: url("/Client/App/SelectFlow/TicketInfo/SeatPicker/Images/available_seat_img.gif") no-repeat scroll 0 0 transparent;
+    background: url("/Client/App/TicketsFlow/BaseComponents/TicketInfo/SeatPicker/Images/available_seat_img.gif") no-repeat scroll 0 0 transparent;
     height: 33px;
     width: 33px;
     vertical-align: top;
@@ -90,11 +90,11 @@ div.modal-footer .btn {
 }
 
 #body tr td.chosen {
-    background: url("/Client/App/SelectFlow/TicketInfo/SeatPicker/Images/selected_seat_img.gif") no-repeat scroll 0 0 transparent;
+    background: url("/Client/App/TicketsFlow/BaseComponents/TicketInfo/SeatPicker/Images/selected_seat_img.gif") no-repeat scroll 0 0 transparent;
 }
 
 #body tr td.booked {
-    background: url("/Client/App/SelectFlow/TicketInfo/SeatPicker/Images/booked_seat_img.gif") no-repeat scroll 0 0 transparent;
+    background: url("/Client/App/TicketsFlow/BaseComponents/TicketInfo/SeatPicker/Images/booked_seat_img.gif") no-repeat scroll 0 0 transparent;
 }
 
 #seatDescription {
@@ -123,15 +123,15 @@ div.modal-header {
 }
 
 #seatDescription li.available {
-    background: url("/Client/App/SelectFlow/TicketInfo/SeatPicker/Images/available_seat_img.gif") no-repeat scroll 0 0 transparent;
+    background: url("/Client/App/TicketsFlow/BaseComponents/TicketInfo/SeatPicker/Images/available_seat_img.gif") no-repeat scroll 0 0 transparent;
 }
 
 #seatDescription li.selected {
-    background: url("/Client/App/SelectFlow/TicketInfo/SeatPicker/Images/selected_seat_img.gif") no-repeat scroll 0 0 transparent;
+    background: url("/Client/App/TicketsFlow/BaseComponents/TicketInfo/SeatPicker/Images/selected_seat_img.gif") no-repeat scroll 0 0 transparent;
 }
 
 #seatDescription li.booked {
-    background: url("/Client/App/SelectFlow/TicketInfo/SeatPicker/Images/booked_seat_img.gif") no-repeat scroll 0 0 transparent;
+    background: url("/Client/App/TicketsFlow/BaseComponents/TicketInfo/SeatPicker/Images/booked_seat_img.gif") no-repeat scroll 0 0 transparent;
 }
 
 #body tr.space td {

@@ -159,8 +159,6 @@ namespace EasyFlights.Web.ApiControllers
         [EnableCors("*", "*", "*")]
         [Route("ExternalLogin", Name = "ExternalLogin")]
         public async Task<IHttpActionResult> GetExternalLogin(string provider, string error = null)
-
-
         {
             if (error != null)
             {
@@ -201,6 +199,7 @@ namespace EasyFlights.Web.ApiControllers
             }
             else
             {
+                this.authenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
                 IEnumerable<Claim> claims = externalLogin.GetClaims();
                 var identity = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
                 this.authenticationManager.SignIn(new AuthenticationProperties { IsPersistent = true }, identity);
