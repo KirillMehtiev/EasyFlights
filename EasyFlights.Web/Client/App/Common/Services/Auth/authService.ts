@@ -13,7 +13,6 @@ export class AuthService {
 
     constructor() {
         this.dataService = new DataService();
-
         this.isCurrentUserSignedIn = ko.observable<boolean>();
         this.trySignInCurrentUser();
     }
@@ -36,13 +35,10 @@ export class AuthService {
             }));
     }
 
-    public facebookLogin() {
-        return this.dataService
-            .get("api/account/externallogin?provider=Facebook")
-            .then((response => {
-                this.isCurrentUserSignedIn(true);
-                window.location.href = "#";
-            }));
+    public externalLogin(provider) {
+        var newWindow=window.open("api/account/externallogin?provider=".concat(provider),
+            provider.concat("Login"),
+            "width=800, height=600");    
     }
 
     public signOut() {
@@ -66,7 +62,7 @@ export class AuthService {
             //            this.isCurrentUserSignedIn(false);
             //        });
             .always(response => {
-                this.isCurrentUserSignedIn(response.statusCode == 200);
+                this.isCurrentUserSignedIn(response);
             });
     }
     

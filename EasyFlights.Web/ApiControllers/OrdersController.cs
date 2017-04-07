@@ -33,7 +33,9 @@ namespace EasyFlights.Web.ApiControllers
         }
 
         // GET api/<controller>
-        public async Task<IEnumerable<ShortOrderViewModel>> Get()
+        [HttpGet]
+        [Route("GetOrdersForUser")]
+        public async Task<IEnumerable<ShortOrderViewModel>> GetOrdersForUser()
         {
             var userId = User.Identity.GetUserId();
             var orders = await manageOrderService.GetOrdersForUser(userId);
@@ -94,7 +96,7 @@ namespace EasyFlights.Web.ApiControllers
                 Cost = order.Cost,
                 DateOfOrdering = order.DateOfOrdering,
                 SetOffDate = order.SetOffDate,
-                Duration = order.Duration
+                Duration = order.Duration.Remove(0,1)
             });
         }
         private Ticket CreateTicket(TicketForBookingViewModel ticket, Flight flight)
