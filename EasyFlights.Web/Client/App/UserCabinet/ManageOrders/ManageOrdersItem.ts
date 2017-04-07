@@ -5,4 +5,5 @@
     destinationCity: string;
     duration: string;
     setOffDate: string;
+    orderId: number;
 }

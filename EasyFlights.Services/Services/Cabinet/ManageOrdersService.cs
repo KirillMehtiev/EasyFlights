@@ -67,7 +67,8 @@ namespace EasyFlights.Services.Services.Cabinet
                             OrderDate = order.OrderDate.ToString(),
                             Cost = ticket.Fare,
                             Duration = flight.Duration.ToString(),
-                            DepartureDate = ""
+                            DepartureDate = flight.ScheduledDepartureTime.ToString(),
+                            OrderId =  order.Id
                         });
                 }
             }

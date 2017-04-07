@@ -101,7 +101,8 @@ namespace EasyFlights.Web.ApiControllers
                 Cost = order.Cost,
                 DateOfOrdering = order.OrderDate,
                 SetOffDate = order.DepartureDate,
-                Duration = order.Duration.Remove(0, 1)
+                Duration = order.Duration.Remove(0, 1),
+                OrderId = order.OrderId
 
             });
         }

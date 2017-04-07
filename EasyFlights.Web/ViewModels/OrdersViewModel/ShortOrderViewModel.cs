@@ -7,6 +7,8 @@ namespace EasyFlights.Web.ViewModels.OrdersViewModel
 {
     public class ShortOrderViewModel
     {
+        public int OrderId { get; set; }
+
         public string DepartureCity { get; set; }
 
         public string DestinationCity { get; set; }

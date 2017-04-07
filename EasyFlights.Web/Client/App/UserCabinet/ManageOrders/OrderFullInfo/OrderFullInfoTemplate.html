@@ -1,29 +1,31 @@
 ﻿<div>
     <busy-indicator params="isLoading: isDataLoading"></busy-indicator>
 
-    <div class="well">
+    <h1>
+        <b>OrderDate</b>&nbsp;<span data-bind="text: order.orderDate"></span>
+    </h1>
+    Tickets:
+    <div class="well" data-bind="foreach: {data: order.tickets, as: 'ticket'}">
         <div class="row">
             <div class="col-md-4 pull-left">
-                <h1>
-                    <b>Ticket #</b>&nbsp;<span data-bind="text: "></span>
-                </h1>
-                <h4><b>Name:</b>&nbsp;<span data-bind="text: "></span></h4>
-                <h4><b>Surname:</b>&nbsp;<span data-bind="text: "></span></h4>
-                <h4><b>Sex:</b>&nbsp;<span data-bind="text: "></span></h4>
-                <h4><b>Passport no:</b>&nbsp;<span data-bind="text: "></span></h4>
+                <h4><b>Name:</b>&nbsp;<span data-bind="text: ticket.firstName"></span></h4>
+                <h4><b>Surname:</b>&nbsp;<span data-bind="text: ticket.lastname"></span></h4>
+                <h4><b>Sex:</b>&nbsp;<span data-bind="text: ticket.sex"></span></h4>
+                <h4><b>Passport no:</b>&nbsp;<span data-bind="text: ticket.documentNumber"></span></h4>
+                <h4><b>Birtday:</b>&nbsp;<span data-bind="text: ticket.birthday"></span></h4>
             </div>
             <div class="col-md-4 pull-right">
-                <h4><b>Place of departure:</b>&nbsp;<span data-bind="text: "></span></h4>
-                <h4><b>Place of arrival:</b>&nbsp;<span data-bind="text: "></span></h4>
-                <h4><b>Duration:</b>&nbsp;<span data-bind="text: "></span></h4>
-                <h4><b>Departure date:</b>&nbsp;<span data-bind="text: "></span></h4>
-                <h4><b>Seat:</b>&nbsp;<span data-bind="text: "></span></h4>
-                <h4><b>Price:</b>&nbsp;<span data-bind="text: "></span></h4>
+                <h4><b>Place of departure:</b>&nbsp;<span data-bind="text: ticket.departureAirport"></span></h4>
+                <h4><b>Place of arrival:</b>&nbsp;<span data-bind="text: ticket.destinationAirport"></span></h4>
+                <h4><b>Duration:</b>&nbsp;<span data-bind="text: ticket.duration"></span></h4>
+                <h4><b>Departure date:</b>&nbsp;<span data-bind="text: ticket.departureTime"></span></h4>
+                <h4><b>Seat:</b>&nbsp;<span data-bind="text: ticket.seat"></span></h4>
+                <h4><b>Price:</b>&nbsp;<span data-bind="text: ticket.price"></span></h4>
             </div>
         </div>
     </div>
-    
-    
+
+
 
     <a class="btn btn-info" data-bind="page-href: {path: '../edit-tickets', params: { orderId: orderId}}">Edit</a>
 </div>
