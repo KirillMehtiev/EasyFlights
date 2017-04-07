@@ -15,6 +15,7 @@ using Microsoft.AspNet.Identity;
 namespace EasyFlights.Web.ApiControllers
 {
     [Authorize]
+    [RoutePrefix("api/Orders")]
     public class OrdersController : ApiController
     {
         private readonly IManageOrdersService manageOrderService;
@@ -48,6 +49,7 @@ namespace EasyFlights.Web.ApiControllers
 
         // POST api/<controller>
         [HttpPost]
+        [Route("BookTickets")]
         public async Task BookTicketsAsync([FromBody] List<TicketForBookingViewModel> ticketsForBooking)
         {
             var orderDateTime = DateTime.UtcNow;
