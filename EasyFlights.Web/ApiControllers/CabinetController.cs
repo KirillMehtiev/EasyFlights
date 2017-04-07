@@ -55,12 +55,12 @@ namespace EasyFlights.Web.ApiControllers
             }
         }
 
-        [HttpGet]
-        public async Task<List<OrderDto>> GetOrdersForUser()
-        {
-            var user = await userManager.FindByEmailAsync(User.Identity.Name);
+        //[HttpGet]
+        //public async Task<List<OrderDto>> GetOrdersForUser()
+        //{
+        //    var user = await userManager.FindByEmailAsync(User.Identity.Name);
 
-            return await manageOrderService.GetOrdersForUser(user.Id);
-        }
+        //    return await manageOrderService.GetOrdersForUser(user.Id);
+        //}
     }
 }
