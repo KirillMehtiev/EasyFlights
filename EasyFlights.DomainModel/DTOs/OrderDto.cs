@@ -4,15 +4,15 @@ namespace EasyFlights.DomainModel.DTOs
 {
     public class OrderDto
     {
-        public string DepartureCity { get; set; }
+        public string DeparturePlace { get; set; }
 
-        public string DestinationCity { get; set; }
+        public string DestinationPlace { get; set; }
 
         public decimal Cost { get; set; }
 
-        public string DateOfOrdering { get; set; }
+        public string OrderDate { get; set; }
 
-        public string SetOffDate { get; set; }
+        public string DepartureDate { get; set; }
 
         public string Duration { get; set; }
 

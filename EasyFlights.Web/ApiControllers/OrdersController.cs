@@ -41,8 +41,11 @@ namespace EasyFlights.Web.ApiControllers
         }
 
         // GET api/<controller>/5
-        public string Get(int id)
+        public string Get(int orderId)
         {
+            var userId = User.Identity.GetUserId();
+            var order = this.manageOrderService.GetOrderByIdForUserAsync(orderId, userId);
+
             return "value";
         }
 
@@ -87,14 +90,45 @@ namespace EasyFlights.Web.ApiControllers
         {
             return orders.Select(order => new ShortOrderViewModel
             {
-                DepartureCity = order.DepartureCity,
-                DestinationCity = order.DestinationCity,
+                DepartureCity = order.DeparturePlace,
+                DestinationCity = order.DestinationPlace,
                 Cost = order.Cost,
-                DateOfOrdering = order.DateOfOrdering,
-                SetOffDate = order.SetOffDate,
+                DateOfOrdering = order.OrderDate,
+                SetOffDate = order.DepartureDate,
                 Duration = order.Duration
             });
         }
+
+        private DetailedOrderViewModel MapToDetailedOrderViewModel(OrderDto order)
+        {
+            var tickets = new List<DetailedTicketViewModel>();
+
+            foreach (var ticket in order.Tickets)
+            {
+                var passenger = ticket.Passenger;
+                var seat = ticket.Seat;
+                var detailedTicketViewModel = new DetailedTicketViewModel
+                {
+                    FirstName = passenger.FirstName,
+                    LastName = passenger.LastName,
+                    Birthday = passenger.Birthday.ToString("d"),
+                    DocumentNumber = passenger.DocumentNumber,
+                    Sex = passenger.Sex,
+                    Seat = seat?.Number ?? int.MinValue,
+                    Price = ticket.Price,
+                    DeparturePlace = order.DeparturePlace,
+                    DestinationPlace = order.DestinationPlace,
+                    DepartureDate = order.DepartureDate
+                };
+            }
+
+            return new DetailedOrderViewModel()
+            {
+                OrderedDate = order.OrderDate,
+                Tickets = tickets
+            };
+        }
+
         private Ticket CreateTicket(TicketForBookingViewModel ticket, Flight flight)
         {
             return new Ticket

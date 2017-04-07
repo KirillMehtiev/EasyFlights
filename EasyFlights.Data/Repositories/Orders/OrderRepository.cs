@@ -29,5 +29,6 @@ namespace EasyFlights.Data.Repositories.Orders
             Add(order);
             SaveChanges();
         }
+
     }
 }
