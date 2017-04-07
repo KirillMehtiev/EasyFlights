@@ -3,6 +3,7 @@ import { EditablePassengerOptions } from "../EditablePassengerOptions";
 import { EditableTicketOptions } from "../EditableTicketOptions";
 import { IEditablePassengerOptions } from "../BaseComponents/PassengersInfo/EditablePassenger/IEditablePassengerOptions";
 import { IEditableTicketOptions } from "../BaseComponents/TicketInfo/EditableTicket/IEditableTicketOptions";
+import { ITicketForBooking } from "../Services/ITicketForBooking";
 import { IOrderTicketsOptions } from "./IOrderTicketsOptions";
 import { AuthService } from "../../Common/Services/Auth/authService";
 
@@ -48,6 +49,8 @@ class OrderTicketsViewModel extends TicketsFlowBaseViewModel {
             let flight = flights[i];
             let ticket = new EditableTicketOptions();
 
+            ticket.flightId = flight.flightId;
+
             ticket.departureAirport(flight.departureAirport);
             ticket.destinationAirport(flight.destinationAirport);
             ticket.duration(flight.duration);
@@ -81,10 +84,26 @@ class OrderTicketsViewModel extends TicketsFlowBaseViewModel {
             }).always(() => this.isRequestProcessing(false));
     }
 
-    private collectDataAboutTickets() : Array<any> {
+    private collectDataAboutTickets(): Array<ITicketForBooking> {
+        let result: Array<ITicketForBooking> = [];
+        for (let i = 0; i < this.passengerInfoList().length; i++) {
+            let passenger = this.passengerInfoList()[i];
 
+            for (let j = 0; j < passenger.tickets().length; j++) {
+                let ticket = passenger.tickets()[j];
 
-        return [];
+                result.push({
+                    flightId: ticket.flightId,
+                    seat: ticket.seat(),
+                    firstName: passenger.firstName(),
+                    lastName: passenger.lastName(),
+                    birthday: passenger.birthday(),
+                    documentNumber: passenger.documentNumber(),
+                    sex: passenger.sex().toString()
+                });
+            }
+        }
+        return result;
     }
 }
 
