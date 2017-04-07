@@ -4,6 +4,11 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using EasyFlights.Data.Repositories.Flights;
+using EasyFlights.DomainModel.Entities;
+using EasyFlights.Services.DtoMappers;
+using EasyFlights.Web.Infrastructure;
+using EasyFlights.Web.Util.Converters;
 
 namespace EasyFlights.Web.ApiControllers
 {
@@ -14,15 +19,28 @@ namespace EasyFlights.Web.ApiControllers
     using EasyFlights.Web.ViewModels.OrdersViewModel;
 
     using Microsoft.AspNet.Identity;
+    using ViewModels.OrdersViewModels;
 
     [Authorize]
     public class OrdersController : ApiController
     {
         private readonly IManageOrdersService manageOrderService;
+        private IRouteConverter converter;
+        private ITicketsForRouteMapper dtoMapper;
+        private readonly IFlightsRepository flightRepository;
+        private readonly IApplicationUserManager applicationUserManager;
 
-        public OrdersController(IManageOrdersService manageOrderService)
+        public OrdersController(IRouteConverter converter,
+            ITicketsForRouteMapper dtoMapper,
+            IManageOrdersService manageOrderService,
+            IApplicationUserManager applicationUserManager,
+            IFlightsRepository flightRepository)
         {
             this.manageOrderService = manageOrderService;
+            this.converter = converter;
+            this.dtoMapper = dtoMapper;
+            this.applicationUserManager = applicationUserManager;
+            this.flightRepository = flightRepository;
         }
 
         // GET api/<controller>
@@ -41,8 +59,48 @@ namespace EasyFlights.Web.ApiControllers
         }
 
         // POST api/<controller>
-        public void Post([FromBody]string value)
+        [HttpPost]
+        [Route("BookTickets")]
+        public async Task BookTicketsAsync([FromBody] BookOrderViewModel orderModel)
         {
+            //var orderDateTime = DateTime.Now.ToUniversalTime();
+
+            //orderModel.RouteId = "137";
+            //var flights = new List<Flight>();
+            //var ticketsForOrder = new List<Ticket>();
+
+            //var user = await applicationUserManager.FindByEmailAsync(User.Identity.Name);
+            //var route = await converter.RestoreRouteFromRouteIdAsync(orderModel.RouteId);
+
+            //foreach (var flight in route.Flights)
+            //{
+            //    flights.Add(await flightRepository.GetFlightsById(flight.Id));
+            //}
+
+            //foreach (var flight in flights)
+            //{
+            //    foreach (var ticket in orderModel.Tickets)
+            //    {
+            //        var newTicket = CreateTicket(ticket, flight);
+            //        ticketsForOrder.Add(newTicket);
+            //    }
+            //}
+
+            //var order = new Order
+            //{
+            //    OrderDate = orderDateTime,
+            //    Tickets = ticketsForOrder,
+            //    User = user
+            //};
+
+            //try
+            //{
+            //    manageOrderService.AddOrder(user, order);
+            //}
+            //catch (Exception ex)
+            //{
+
+            //}
         }
 
         // PUT api/<controller>/5
@@ -53,7 +111,6 @@ namespace EasyFlights.Web.ApiControllers
         // DELETE api/<controller>/5
         public void Delete(int id)
         {
-            this.applicationUserManager = applicationUserManager;
         }
 
         private IEnumerable<ShortOrderViewModel> MapToShortOrderViewModels(IEnumerable<OrderDto> orders)
@@ -68,6 +125,23 @@ namespace EasyFlights.Web.ApiControllers
                 Duration = order.Duration
             });
         }
-
+        private Ticket CreateTicket(TicketDto ticket, Flight flight)
+        {
+            return new Ticket
+            {
+                Passenger = new Passenger
+                {
+                    FirstName = ticket.Passenger.FirstName,
+                    LastName = ticket.Passenger.LastName,
+                    DocumentNumber = ticket.Passenger.DocumentNumber,
+                    Sex = ticket.Passenger.Sex,
+                    BirthDate = ticket.Passenger.Birthday
+                },
+                Fare = ticket.Price,
+                Seat = ticket.Seat.Number,
+                FlightClass = ticket.FlightClass,
+                Flight = flight
+            };
+        }
     }
 }

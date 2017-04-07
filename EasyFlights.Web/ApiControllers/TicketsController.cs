@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http;
-using EasyFlights.Data.DataContexts;
 using EasyFlights.Data.Repositories.Flights;
 using EasyFlights.DomainModel.DTOs;
-using EasyFlights.DomainModel.Entities;
 using EasyFlights.DomainModel.Entities.Enums;
 using EasyFlights.DomainModel.Entities.Identity;
 using EasyFlights.Services.DtoMappers;
@@ -39,50 +37,6 @@ namespace EasyFlights.Web.ApiControllers
             this.manageOrderService = manageOrderService;
             this.applicationUserManager = applicationUserManager;
             this.flightRepository = flightRepository;
-        }
-
-        [HttpPost]
-        [Route("BookTickets")]
-        public async Task BookTicketsAsync([FromBody] BookOrderViewModel orderModel)
-        {
-            var orderDateTime = DateTime.Now.ToUniversalTime();
-
-            orderModel.RouteId = "137";
-            var flights = new List<Flight>();
-            var ticketsForOrder = new List<Ticket>();
-
-            var user = await applicationUserManager.FindByEmailAsync(User.Identity.Name);
-            var route = await converter.RestoreRouteFromRouteIdAsync(orderModel.RouteId);
-
-            foreach (var flight in route.Flights)
-            {
-                flights.Add(await flightRepository.GetFlightsById(flight.Id));
-            }
-
-            foreach (var flight in flights)
-            {
-                foreach (var ticket in orderModel.Tickets)
-                {
-                    var newTicket = CreateTicket(ticket, flight);
-                    ticketsForOrder.Add(newTicket);
-                }
-            }
-
-            var order = new Order
-            {
-                OrderDate = orderDateTime,
-                Tickets = ticketsForOrder,
-                User = user
-            };
-
-            try
-            {
-                manageOrderService.AddOrder(user, order);
-            }
-            catch (Exception ex)
-            {
-                
-            }
         }
 
         [HttpPost]
@@ -165,24 +119,6 @@ namespace EasyFlights.Web.ApiControllers
             {
                 return Unauthorized();
             }
-        }
-        private Ticket CreateTicket(TicketDto ticket, Flight flight)
-        {
-            return new Ticket
-            {
-                Passenger = new Passenger
-                {
-                    FirstName = ticket.Passenger.FirstName,
-                    LastName = ticket.Passenger.LastName,
-                    DocumentNumber = ticket.Passenger.DocumentNumber,
-                    Sex = ticket.Passenger.Sex,
-                    BirthDate = ticket.Passenger.Birthday
-                },
-                Fare = ticket.Price,
-                Seat = ticket.Seat.Number,
-                FlightClass = ticket.FlightClass,
-                Flight = flight
-            };
         }
     }
 }
