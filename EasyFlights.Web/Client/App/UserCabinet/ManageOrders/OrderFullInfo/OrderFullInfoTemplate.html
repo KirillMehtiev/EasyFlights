@@ -1,0 +1,7 @@
+﻿<div>
+    <busy-indicator params="isLoading: isDataLoading"></busy-indicator>
+
+    <h1 data-bind="text: orderId"></h1>
+    
+    <a class="btn btn-info" data-bind="page-href: {path: '../edit-tickets', params: { orderId: orderId}}">Edit</a>
+</div>

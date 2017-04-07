@@ -9,7 +9,9 @@ namespace EasyFlights.Services.Interfaces
     public interface IManageOrdersService
     {
         Task<List<OrderDto>> GetOrdersForUser(string userId);
+
         void AddOrder(ApplicationUser user, Order order);
 
+        Task<OrderDto> GetOrderByIdAsync(int orderId);
     }
 }

@@ -1,17 +1,14 @@
-using System.Data.Entity;
 using System;
+using System.Data.Entity;
 using EasyFlights.Data.DataContexts;
 using EasyFlights.Data.Repositories.Airports;
 using EasyFlights.Data.Repositories.Base;
 using EasyFlights.Data.Repositories.Cities;
 using EasyFlights.Data.Repositories.Flights;
+using EasyFlights.Data.Repositories.Orders;
 using EasyFlights.DomainModel.Entities;
 using Ninject.Modules;
 using Ninject.Web.Common;
-using EasyFlights.Data.Repositories.Orders;
-using EasyFlights.DomainModel.Entities.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.AspNet.Identity;
 
 namespace EasyFlights.Web.NinjectModules
 {
