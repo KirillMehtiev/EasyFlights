@@ -10,7 +10,7 @@ class LoginViewModel {
     public isRequestProcessing: KnockoutObservable<boolean>;
     public dataService: DataService = new DataService();
 
-    private urlToBookTickets: string = "api/Tickets/BookTickets";
+    private urlToBookTickets: string = "api/orders/BookTickets";
     constructor() {
         this.createDefaultOptions();
     }

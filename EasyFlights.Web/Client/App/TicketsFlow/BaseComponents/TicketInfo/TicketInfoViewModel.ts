@@ -8,12 +8,15 @@ import { IEditableTicketOptions } from "./EditableTicket/IEditableTicketOptions"
 class TicketInfoViewModel {
     public onNextStep: KnockoutSubscribable<number>;
     public onPreviousStep: KnockoutSubscribable<number>;
+    public seatChosen: KnockoutObservableArray<number>;
     public passengerInfoList: KnockoutObservableArray<IEditablePassengerOptions>;
 
     constructor(options: ITicketInfoOptions) {
         this.passengerInfoList = options.passengerInfoList;
         this.onNextStep = options.onNextStep;
         this.onPreviousStep = options.onPreviousStep;
+        var amount = this.passengerInfoList().length;
+        this.seatChosen = ko.observableArray<number>(new Array(amount));
         this.nextStep.bind(this);
         this.previousStep.bind(this);
     }

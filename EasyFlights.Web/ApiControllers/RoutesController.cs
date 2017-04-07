@@ -80,7 +80,8 @@ namespace EasyFlights.Web.ApiControllers
                 ArrivalTime = flight.ScheduledArrivalTime.ToString(DateFormat),
                 DepartureTime = flight.ScheduledDepartureTime.ToString(DateFormat),
                 Duration = flight.Duration.ToString(DurationFormat),
-                Fare = flight.DefaultFare
+                Fare = flight.DefaultFare,
+                FlightId = flight.Id
             };
         }
     }
