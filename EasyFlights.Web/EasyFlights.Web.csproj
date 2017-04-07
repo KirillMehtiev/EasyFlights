@@ -263,8 +263,6 @@
     <Compile Include="ViewModels\AccountViewModels\ExternalLoginViewModel.cs" />
     <Compile Include="ViewModels\FlightViewModel.cs" />
     <Compile Include="ViewModels\OrdersViewModel\TicketForBookingViewModel.cs" />
-    <Compile Include="ViewModels\OrdersViewModel\DetailedOrderViewModel.cs" />
-    <Compile Include="ViewModels\OrdersViewModel\DetailedTicketViewModel.cs" />
     <Compile Include="ViewModels\OrdersViewModel\ShortOrderViewModel.cs" />
     <Compile Include="ViewModels\OrdersViewModel\TicketViewModel.cs" />
     <Compile Include="ViewModels\PassengerViewModel.cs" />
@@ -461,7 +459,6 @@
     <TypeScriptCompile Include="Client\App\TicketsFlow\OrderTickets\IOrderTicketsOptions.ts" />
     <TypeScriptCompile Include="Client\App\TicketsFlow\OrderTickets\OrderTicketsComponent.ts" />
     <TypeScriptCompile Include="Client\App\TicketsFlow\OrderTickets\OrderTicketsViewModel.ts" />
-    <TypeScriptCompile Include="Client\App\TicketsFlow\Services\ITicketForBooking.ts" />
     <TypeScriptCompile Include="Client\App\TicketsFlow\Services\TicketsFlowService.ts" />
     <TypeScriptCompile Include="Client\App\TicketsFlow\TicketsFlowBaseViewModel.ts" />
     <TypeScriptCompile Include="Client\App\UserCabinet\Account\AccountComponent.ts" />
@@ -550,7 +547,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>21275</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44346</IISUrl>
+          <IISUrl>https://localhost:44346/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
