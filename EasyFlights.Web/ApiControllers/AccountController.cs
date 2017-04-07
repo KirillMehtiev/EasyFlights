@@ -62,6 +62,8 @@ namespace EasyFlights.Web.ApiControllers
                 return GetErrorResult(result);
             }
 
+            ClaimsIdentity claim = await this.applicationUserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+            this.authenticationManager.SignIn(new AuthenticationProperties { IsPersistent = true }, claim);
             return Ok();
         }
 
@@ -91,7 +93,6 @@ namespace EasyFlights.Web.ApiControllers
 
             ClaimsIdentity claim = await this.applicationUserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
             this.authenticationManager.SignIn(new AuthenticationProperties { IsPersistent = true }, claim);
-            this.authenticationManager.SignIn(claim);
             return this.Ok();
         }
 
