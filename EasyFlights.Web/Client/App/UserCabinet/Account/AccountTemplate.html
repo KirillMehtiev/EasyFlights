@@ -1,27 +1,33 @@
 ﻿<div class="container">
     <div class="row" data-bind="visible: !isPasswordChanging()">
         <div class="col-md-2">
-            <input type="email" placeholder="your_email@mailprovider.domain" data-bind="value: email"/>
+            <input class="form-control" type="email" placeholder="your_email@mailprovider.domain" data-bind="value: email" />
         </div>
         <div class="col-md-2 col-md-offset-2">
             <label>Input your email to continue</label>
         </div>
-        <div class="col-md-1 col-md-offset-5" >
+        <div class="col-md-1 col-md-offset-5">
             <button class="btn btn-default" data-bind="click: validateEmail">Change password</button>
         </div>
     </div>
     <div id="ChangingPassword" data-bind="visible:isPasswordChanging">
-        <div class="row">
-            <label>Old password</label>
-            <input type="password" data-bind="value: oldPassword"/>
+        <div class="form-group">
+            <label class="col-lg-3 control-label">Old password:</label>
+            <div class="col-lg-8">
+                <input class="form-control" type="password" data-bind="value: oldPassword" />
+            </div>
         </div>
-        <div class="row">
-            <label>New password</label>
-            <input type="password" data-bind="value: newPassword" />
+        <div class="form-group">
+            <label class="col-lg-3 control-label">New password:</label>
+            <div class="col-lg-8">
+                <input class="form-control" type="password" data-bind="value: newPassword" />
+            </div>
         </div>
-        <div class="row">
-            <label>Confirm new password</label>
-            <input type="password" data-bind="value: newPasswordConfirm" />
+        <div class="form-group">
+            <label class="col-lg-3 control-label">Confirm new password:</label>
+            <div class="col-lg-8">
+                <input class="form-control" type="password" data-bind="value: newPasswordConfirm" />
+            </div>
         </div>
         <div class="row">
             <div class="col-md-offset-11 col-md-1">
