@@ -82,12 +82,9 @@ namespace EasyFlights.Services.Services.Cabinet
             var tickets = order.Tickets;
             var firstTicket = order.Tickets.FirstOrDefault();
             var lastLast = order.Tickets.LastOrDefault();
-            var duration = TimeSpan.MinValue;
+            var duration = new TimeSpan();
 
-            foreach (var ticket in tickets)
-            {
-                duration += CalculateDuration(ticket);
-            }
+            duration = tickets.Aggregate(duration, (current, ticket) => current + this.CalculateDuration(ticket));
 
             return new OrderDto()
             {
@@ -108,24 +105,35 @@ namespace EasyFlights.Services.Services.Cabinet
                 Passenger = ToPassengerDto(t.Passenger),
                 FlightClass = t.FlightClass,
                 Price = t.Fare,
-                Seat = ToSeat(t.Seat)
+                Seat = ToSeatDto(t.Seat),
+                TicketNumber = t.Id
             });
         }
 
         private PassengerDto ToPassengerDto(Passenger passenger)
         {
-            return null;
+            return new PassengerDto()
+            {
+                FirstName = passenger.FirstName,
+                LastName = passenger.LastName,
+                Birthday = passenger.BirthDate,
+                DocumentNumber = passenger.DocumentNumber,
+                Sex = passenger.Sex
+            };
         }
 
-        private SeatDto ToSeat(int seatNumber)
+        private SeatDto ToSeatDto(int seatNumber)
         {
-            return null;
+            return new SeatDto
+            {
+                Number = seatNumber
+            };
         }
 
         private TimeSpan CalculateDuration(Ticket ticket)
         {
             return ticket.Flight.ScheduledArrivalTime - ticket.Flight.ScheduledDepartureTime;
         }
-        
+
     }
 }
