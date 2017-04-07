@@ -1,7 +1,8 @@
 ﻿import ko = require("knockout");
 import { DataService } from '../../../Common/Services/dataService';
 import { IOrderFullInfoOptions } from "./IOrderFullInfoOptions";
-import OrderFullInfoModel = require("./OrderFullInfoModel");
+import OrderFullInfoModel = require("./Models/OrderFullInfoModel");
+import TicketFullInfoModel = require("./Models/TicketFullInfoModel");
 
 class OrderFullInfoViewModel {
     private dataService: DataService;
@@ -20,14 +21,33 @@ class OrderFullInfoViewModel {
     private loadOrderInfo(): void {
         this.isDataLoading(true);
         this.dataService
-            .get("api/orders/getOrderById?orderId=" + this.orderId.toString())
+            .get("api/orders?orderId=" + this.orderId.toString())
             .then(response => this.order(this.mapResponseToModel(response)))
             .always(() => this.isDataLoading(false));
     }
 
     private mapResponseToModel(response) {
         let order = new OrderFullInfoModel();
+        order.orderDate(response.orderDate);
 
+        for (let i = 0; i < response.tickets.length; i++) {
+            let t = response.tickets[i];
+            let ticket = new TicketFullInfoModel();
+
+            ticket.firstName(t.firstName);
+            ticket.lastName(t.lastName);
+            ticket.birthday(t.birthday);
+            ticket.documentNumber(t.documentNumber);
+            ticket.sex(t.sex);
+            ticket.departureAirport(t.departureAirport);
+            ticket.destinationAirport(t.destinationAirport);
+            ticket.duration(t.duration);
+            ticket.price(t.price);
+            ticket.departureTime(t.departureTime);
+            ticket.seat(t.seat);
+
+            order.tickets.push(ticket);
+        }
 
         return order;
     }

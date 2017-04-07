@@ -471,8 +471,9 @@
     <TypeScriptCompile Include="Client\App\UserCabinet\ManageOrders\ManageOrdersItem.ts" />
     <TypeScriptCompile Include="Client\App\UserCabinet\ManageOrders\ManageOrdersViewModel.ts" />
     <TypeScriptCompile Include="Client\App\UserCabinet\ManageOrders\OrderFullInfo\IOrderFullInfoOptions.ts" />
+    <TypeScriptCompile Include="Client\App\UserCabinet\ManageOrders\OrderFullInfo\Models\TicketFullInfoModel.ts" />
     <TypeScriptCompile Include="Client\App\UserCabinet\ManageOrders\OrderFullInfo\OrderFullInfoComponent.ts" />
-    <TypeScriptCompile Include="Client\App\UserCabinet\ManageOrders\OrderFullInfo\OrderFullInfoModel.ts" />
+    <TypeScriptCompile Include="Client\App\UserCabinet\ManageOrders\OrderFullInfo\Models\OrderFullInfoModel.ts" />
     <TypeScriptCompile Include="Client\App\UserCabinet\ManageOrders\OrderFullInfo\OrderFullInfoViewModel.ts" />
     <TypeScriptCompile Include="Client\App\UserCabinet\ProfileInfo\IProfileInfoOptions.ts" />
     <TypeScriptCompile Include="Client\App\UserCabinet\ProfileInfo\ProfileInfoComponent.ts" />
