@@ -13,8 +13,6 @@ export class TicketsFlowService {
     }
 
     public bookTickets(tickets: Array<ITicketForBooking>) {
-        return this.dataService.post("api/orders/bookTickets", {
-            tickets: tickets
-        });
+        return this.dataService.post("api/orders/BookTickets", tickets);
     }
 }
