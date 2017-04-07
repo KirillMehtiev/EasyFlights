@@ -36,13 +36,11 @@ export class AuthService {
             }));
     }
 
-    public facebookLogin() {
-        return this.dataService
-            .get("api/account/externallogin?provider=Facebook")
-            .then((response => {
-                this.isCurrentUserSignedIn(true);
-                window.location.href = "#";
-            }));
+    public externalLogin(provider) {
+        var newWindow=window.open("api/account/externallogin?provider=".concat(provider),
+            provider.concat("Login"),
+            "width=800, height=600,resizable=no,scrollbars=no,status=no");    
+        newWindow.onemptied=()=>newWindow.close();  
     }
 
     public signOut() {

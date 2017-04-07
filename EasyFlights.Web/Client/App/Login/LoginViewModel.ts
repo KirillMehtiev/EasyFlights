@@ -17,8 +17,10 @@ class LoginViewModel {
     }
 
     public facebookLogin(): void {
-        AuthService.current.facebookLogin().then(this.handleServiceResponse)
-            .always(() => this.isRequestProcessing(false));
+        AuthService.current.externalLogin("Facebook");
+    }
+    public googleLogin(): void {
+        AuthService.current.externalLogin("Google");
     }
 
     public login(): void {
