@@ -1,17 +1,16 @@
-﻿using EasyFlights.Data.Repositories.Orders;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using EasyFlights.Data.Repositories.Orders;
 using EasyFlights.DomainModel.DTOs;
 using EasyFlights.DomainModel.Entities;
-using EasyFlights.DomainModel.Entities.Identity;
+using EasyFlights.Services.Common;
 using EasyFlights.Services.DtoMappers;
 using EasyFlights.Services.Interfaces;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using System;
-using EasyFlights.Services.Common;
 
 namespace EasyFlights.Services.Services.Cabinet
 {
-    using System.Linq;
 
     public class ManageOrdersService : IManageOrdersService
     {
@@ -44,7 +43,7 @@ namespace EasyFlights.Services.Services.Cabinet
             return this.MapOrderToDto(order);
         }
 
-        public void AddOrder(ApplicationUser user, Order order)
+        public void AddOrder(Order order)
         {
             orderRepository.AddOrder(order);
         }
@@ -108,7 +107,8 @@ namespace EasyFlights.Services.Services.Cabinet
             {
                 Passenger = ToPassengerDto(t.Passenger),
                 FlightClass = t.FlightClass,
-                Price = t.Fare
+                Price = t.Fare,
+                Seat = ToSeat(t.Seat)
             });
         }
 
@@ -126,6 +126,6 @@ namespace EasyFlights.Services.Services.Cabinet
         {
             return ticket.Flight.ScheduledArrivalTime - ticket.Flight.ScheduledDepartureTime;
         }
-
+        
     }
 }
