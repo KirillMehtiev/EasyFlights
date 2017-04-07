@@ -10,6 +10,8 @@ import { EditableTicketOptions } from "./EditableTicketOptions";
 import { ITicketsFlowOptions } from "./ITicketsFlowOptions";
 
 abstract class TicketsFlowBaseViewModel {
+    public isRequestProcessing: KnockoutObservable<boolean>;
+
     // Shared data
     public passengerInfoList: KnockoutObservableArray<IEditablePassengerOptions>;
 
@@ -24,6 +26,10 @@ abstract class TicketsFlowBaseViewModel {
     public isShowOrderSummary: KnockoutObservable<boolean>;
 
     constructor(options: ITicketsFlowOptions) {
+        this.isRequestProcessing = ko.observable(false);
+
+        this.operationConfirmed = this.operationConfirmed.bind(this);
+
         // Flow routing
         this.onNextStep = new ko.subscribable();
         this.onPreviousStep = new ko.subscribable();
@@ -120,6 +126,8 @@ abstract class TicketsFlowBaseViewModel {
     }
 
     protected abstract initPassengerInfoList();
+
+    protected abstract operationConfirmed();
 }
 
 export = TicketsFlowBaseViewModel;

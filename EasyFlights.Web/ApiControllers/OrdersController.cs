@@ -33,7 +33,9 @@ namespace EasyFlights.Web.ApiControllers
         }
 
         // GET api/<controller>
-        public async Task<IEnumerable<ShortOrderViewModel>> Get()
+        [HttpGet]
+        [Route("GetOrdersForUser")]
+        public async Task<IEnumerable<ShortOrderViewModel>> GetOrdersForUser()
         {
             var userId = User.Identity.GetUserId();
             var orders = await manageOrderService.GetOrdersForUser(userId);
@@ -42,9 +44,12 @@ namespace EasyFlights.Web.ApiControllers
         }
 
         // GET api/<controller>/5
-        public string Get(int id)
+        public async Task<DetailedOrderViewModel> Get(int orderId)
         {
-            return "value";
+            var userId = User.Identity.GetUserId();
+            var order = await this.manageOrderService.GetOrderByIdForUserAsync(orderId, userId);
+
+            return MapToDetailedOrderViewModel(order);
         }
 
         // POST api/<controller>
@@ -72,7 +77,7 @@ namespace EasyFlights.Web.ApiControllers
                 User = user
             };
 
-            manageOrderService.AddOrder(user, order);
+            manageOrderService.AddOrder(order);
         }
 
         // PUT api/<controller>/5
@@ -89,14 +94,46 @@ namespace EasyFlights.Web.ApiControllers
         {
             return orders.Select(order => new ShortOrderViewModel
             {
-                DepartureCity = order.DepartureCity,
-                DestinationCity = order.DestinationCity,
+                DepartureCity = order.DeparturePlace,
+                DestinationCity = order.DestinationPlace,
                 Cost = order.Cost,
-                DateOfOrdering = order.DateOfOrdering,
-                SetOffDate = order.SetOffDate,
-                Duration = order.Duration
+                DateOfOrdering = order.OrderDate,
+                SetOffDate = order.DepartureDate,
+                Duration = order.Duration.Remove(0, 1)
+
             });
         }
+
+        private DetailedOrderViewModel MapToDetailedOrderViewModel(OrderDto order)
+        {
+            var tickets = new List<DetailedTicketViewModel>();
+
+            foreach (var ticket in order.Tickets)
+            {
+                var passenger = ticket.Passenger;
+                var seat = ticket.Seat;
+                var detailedTicketViewModel = new DetailedTicketViewModel
+                {
+                    FirstName = passenger.FirstName,
+                    LastName = passenger.LastName,
+                    Birthday = passenger.Birthday.ToString("d"),
+                    DocumentNumber = passenger.DocumentNumber,
+                    Sex = passenger.Sex,
+                    Seat = seat?.Number ?? int.MinValue,
+                    Price = ticket.Price,
+                    DeparturePlace = order.DeparturePlace,
+                    DestinationPlace = order.DestinationPlace,
+                    DepartureDate = order.DepartureDate
+                };
+            }
+
+            return new DetailedOrderViewModel()
+            {
+                OrderedDate = order.OrderDate,
+                Tickets = tickets
+            };
+        }
+
         private Ticket CreateTicket(TicketForBookingViewModel ticket, Flight flight)
         {
             return new Ticket

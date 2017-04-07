@@ -8,7 +8,7 @@ class ManageOrdersViewModel {
     public orders: KnockoutObservableArray<ManageOrdersItem>;
     public isRequestProcessing: KnockoutObservable<boolean>;
 
-    private url: string = "api/Orders";
+    private url: string = "api/Orders/GetOrdersForUser";
 
     constructor() {
         this.orders = ko.observableArray([]);

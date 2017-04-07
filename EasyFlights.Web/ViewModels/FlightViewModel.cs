@@ -4,6 +4,8 @@ namespace EasyFlights.Web.ViewModels
 {
     public class FlightViewModel
     {
+        public int FlightId { get; set; }
+
         public string DepartureAirport { get; set; }
 
         public string DestinationAirport { get; set; }

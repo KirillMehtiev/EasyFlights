@@ -1,4 +1,11 @@
-﻿<p><b>Departure Place:</b>&nbsp;<span data-bind="text: departurePlace"></span></p>
-<p><b>Arrival Place:</b>&nbsp;<span data-bind="text: destinationPlace"></span></p>
-<p><b>Departure Date:</b>&nbsp;<span data-bind="text: departureDate"></span></p>
-<p data-bind="if: returnDate"><b>Return Date:</b>&nbsp;<span data-bind="text: returnDate"></span></p>
+﻿    <div class="row">
+        <div class="col-md-5 pull-left">
+            <h3> <span data-bind="text: departurePlace">&nbsp;&nbsp;</span>&nbsp;<span data-bind="text: departureDate"></span></h3>
+        </div>
+        <div class="col-md-5 pull-right">
+            <h3><span data-bind="text: destinationPlace"></span>&nbsp;&nbsp;<span data-bind="if: returnDate"><span data-bind="text: returnDate"></span></span></h3>
+        </div>
+        <h3><b data-bind="if:returnDate"><==========></b></h3>
+        <h3><b data-bind="ifnot:returnDate">==========></b></h3>
+    </div>
+

@@ -12,6 +12,7 @@ export class EditableTicketOptions implements IEditableTicketOptions {
     public fare: KnockoutObservable<string>;
     public departureTime: KnockoutObservable<string>;
     public seat: KnockoutObservable<number>;
+    public flightId: number;
     public seatChosen: KnockoutObservableArray<number>;
 
     constructor() {
