@@ -1,11 +1,11 @@
 ﻿    <div class="row">
         <div class="col-md-5 pull-left">
-            <h4> <span data-bind="text: departurePlace">&nbsp;&nbsp;</span>&nbsp;<span data-bind="text: departureDate"></span></h4>
+            <h3> <span data-bind="text: departurePlace">&nbsp;&nbsp;</span>&nbsp;<span data-bind="text: departureDate"></span></h3>
         </div>
         <div class="col-md-5 pull-right">
-            <h4><span data-bind="text: destinationPlace"></span>&nbsp;&nbsp;<span data-bind="if: returnDate"><span data-bind="text: returnDate"></span></span></h4>
+            <h3><span data-bind="text: destinationPlace"></span>&nbsp;&nbsp;<span data-bind="if: returnDate"><span data-bind="text: returnDate"></span></span></h3>
         </div>
-        <h4><b data-bind="if:returnDate"><===============></b></h4>
-        <h4><b data-bind="ifnot:returnDate">===============></b></h4>
+        <h3><b data-bind="if:returnDate"><==========></b></h3>
+        <h3><b data-bind="ifnot:returnDate">==========></b></h3>
     </div>
 
