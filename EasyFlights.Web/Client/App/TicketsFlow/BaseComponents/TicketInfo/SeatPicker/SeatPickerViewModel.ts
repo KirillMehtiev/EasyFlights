@@ -36,7 +36,6 @@ class SeatPickerViewModel {
         };
         this.bodyTemplate = ko.observable('modalTemplate');
         this.bodyData = ko.computed(() => this.templateData);
-        $("a.btn.btn-default").find('a').click(() => function(){ this.modalVisible(true); console.log("hj"); });
     }
 
     public getSeatPickerInfo() {

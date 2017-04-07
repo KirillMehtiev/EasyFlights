@@ -7,18 +7,19 @@ class LoginViewModel {
     public userEmail: KnockoutObservable<string>;
     public userPassword: KnockoutObservable<string>;
     public rememberMe: KnockoutObservable<boolean>;
-
     public isRequestProcessing: KnockoutObservable<boolean>;
     public dataService: DataService = new DataService();
 
-    private urlToBookTickets: string = "api/Tickets/BookTickets";
+    private urlToBookTickets: string = "api/orders/BookTickets";
     constructor() {
         this.createDefaultOptions();
     }
 
     public facebookLogin(): void {
-        AuthService.current.facebookLogin().then(this.handleServiceResponse)
-            .always(() => this.isRequestProcessing(false));
+        AuthService.current.externalLogin("Facebook");
+    }
+    public googleLogin(): void {
+        AuthService.current.externalLogin("Google");
     }
 
     public login(): void {

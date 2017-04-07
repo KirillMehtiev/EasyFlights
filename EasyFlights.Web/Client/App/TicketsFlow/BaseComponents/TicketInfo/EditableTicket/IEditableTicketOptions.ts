@@ -9,4 +9,5 @@ export interface IEditableTicketOptions {
     seat: KnockoutObservable<number>;
     firstName: KnockoutObservable<string>;
     lastName: KnockoutObservable<string>;
+    flightId: number;
 }

@@ -3,4 +3,5 @@ import { IEditablePassengerOptions } from "../PassengersInfo/EditablePassenger/I
 
 export interface IOrderSummaryOptions extends IInternalNavigation {
     passengerInfoList: KnockoutObservableArray<IEditablePassengerOptions>;
+    confirmCallback: Function;
 }

@@ -60,7 +60,6 @@ class SearchResultViewModel {
                 this.routeItems(data);
                 this.isLoading(false);
                 this.setPage();
-                this.total = ko.observable(this.routeItems().length);
                 this.isRequestProcessing(false);
             }).fail((error) => {
                 this.isLoading(false);
@@ -71,6 +70,7 @@ class SearchResultViewModel {
 
     public setPage(): void {
         this.pagedRouteItems.removeAll();
+        this.total = ko.observable((this.routeItems().length + this.pageSize() - 1) / this.pageSize());
 
         var startIndex = (this.pageNo() - 1) * this.pageSize();
         var endIndex = this.pageNo() * this.pageSize();

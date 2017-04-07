@@ -15,6 +15,7 @@ using Microsoft.AspNet.Identity;
 namespace EasyFlights.Web.ApiControllers
 {
     [Authorize]
+    [RoutePrefix("api/Orders")]
     public class OrdersController : ApiController
     {
         private readonly IManageOrdersService manageOrderService;
@@ -32,7 +33,9 @@ namespace EasyFlights.Web.ApiControllers
         }
 
         // GET api/<controller>
-        public async Task<IEnumerable<ShortOrderViewModel>> Get()
+        [HttpGet]
+        [Route("GetOrdersForUser")]
+        public async Task<IEnumerable<ShortOrderViewModel>> GetOrdersForUser()
         {
             var userId = User.Identity.GetUserId();
             var orders = await manageOrderService.GetOrdersForUser(userId);
@@ -51,6 +54,7 @@ namespace EasyFlights.Web.ApiControllers
 
         // POST api/<controller>
         [HttpPost]
+        [Route("BookTickets")]
         public async Task BookTicketsAsync([FromBody] List<TicketForBookingViewModel> ticketsForBooking)
         {
             var orderDateTime = DateTime.UtcNow;
@@ -95,7 +99,8 @@ namespace EasyFlights.Web.ApiControllers
                 Cost = order.Cost,
                 DateOfOrdering = order.OrderDate,
                 SetOffDate = order.DepartureDate,
-                Duration = order.Duration
+                Duration = order.Duration.Remove(0, 1)
+
             });
         }
 

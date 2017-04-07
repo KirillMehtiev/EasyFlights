@@ -14,7 +14,7 @@ class EditTicketsViewModel extends TicketsFlowBaseViewModel {
 
         this.orderId = options.orderId;
 
-        // dirty hach :)
+        // dirty hack :)
         this.init();
     }
 
@@ -29,6 +29,11 @@ class EditTicketsViewModel extends TicketsFlowBaseViewModel {
         for (let i = 0; i < 4; i++) {
             this.passengerInfoList.push(new EditablePassengerOptions());
         }
+    }
+
+    protected operationConfirmed() {
+
+        console.log("confirm from edit");
     }
 }
 

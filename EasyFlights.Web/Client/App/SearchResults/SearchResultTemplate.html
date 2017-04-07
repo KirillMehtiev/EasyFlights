@@ -3,11 +3,10 @@
         <h1 class="text-info">The results of your search</h1>
         <hr />
         <route-header params="departurePlace: departurePlace, destinationPlace:arrivalPlace, departureDate:departureDate, returnDate:returnDate"></route-header>
-        <p><b>Quantity of people:</b>&nbsp;<span data-bind="text: numberOfPassenger"></span></p>
+     
 
         <hr />
 
-        <busy-indicator params="isLoading: isRequestProcessing"></busy-indicator>
 
         <div class="text-center" data-bind="if: !isLoading() && routeItems().length === 0">
             <h3>Requested information not found.</h3>
