@@ -33,7 +33,6 @@ class CabinViewModel {
     } 
 
     public choose(seatNumber: number) {
-        console.log(this.firstName);
         this.seatChosen()[this.firstName] = seatNumber;
         this.seatNumber(seatNumber);
     }

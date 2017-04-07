@@ -56,8 +56,6 @@ class SeatPickerViewModel {
 
     public loadSeatPicker(): void {
         this.rows(new Array<RowItem1.RowItem>());
-        console.log(this.firstName());
-        console.log(this.seatChosen());
         for (let i = 0; i < this.cabin().seatsPerRow; i++) {
             const seatsperrow = ko.observableArray<Item.SeatItem>();
             const start = i * this.cabin().rowsCount + 1;
@@ -75,7 +73,6 @@ class SeatPickerViewModel {
                     isSelected(true);
                 }
                 var keys = Object.keys(this.seatChosen());
-                console.log(keys);
                 for (var s = 0; s < keys.length; s++) {
                     if (this.firstName() != keys[s] && this.seatChosen()[keys[s]] === j) {
                         isBooked = true;
