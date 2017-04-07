@@ -44,6 +44,8 @@ namespace EasyFlights.Web.ApiControllers
         }
 
         // GET api/<controller>/5
+        [HttpGet]
+        [Route("GetById")]
         public async Task<DetailedOrderViewModel> Get(int orderId)
         {
             var userId = User.Identity.GetUserId();
