@@ -1,3 +1,3 @@
 ﻿export interface IOrderFullInfoOptions {
-    orderId: number;
+    orderId: KnockoutObservable<number>;
 }

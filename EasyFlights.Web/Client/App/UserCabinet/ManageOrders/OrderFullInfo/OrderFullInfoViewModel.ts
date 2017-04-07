@@ -7,21 +7,24 @@ import TicketFullInfoModel = require("./Models/TicketFullInfoModel");
 class OrderFullInfoViewModel {
     private dataService: DataService;
 
-    public orderId: number;
+    public orderId: KnockoutObservable<number>;
     public order: KnockoutObservable<OrderFullInfoModel>;
     public isDataLoading: KnockoutObservable<boolean>;
 
     constructor(options: IOrderFullInfoOptions) {
-        this.orderId = options.orderId;
+        this.dataService = new DataService();
 
-        this.order = ko.observable<OrderFullInfoModel>();
+        this.orderId = options.orderId;
+        this.order = ko.observable<OrderFullInfoModel>(new OrderFullInfoModel());
         this.isDataLoading = ko.observable(false);
+
+        this.loadOrderInfo();
     }
 
     private loadOrderInfo(): void {
         this.isDataLoading(true);
         this.dataService
-            .get("api/orders?orderId=" + this.orderId.toString())
+            .get("api/orders/GetById?orderId=" + this.orderId().toString())
             .then(response => this.order(this.mapResponseToModel(response)))
             .always(() => this.isDataLoading(false));
     }
@@ -29,7 +32,6 @@ class OrderFullInfoViewModel {
     private mapResponseToModel(response) {
         let order = new OrderFullInfoModel();
         order.orderDate(response.orderDate);
-
         for (let i = 0; i < response.tickets.length; i++) {
             let t = response.tickets[i];
             let ticket = new TicketFullInfoModel();
@@ -48,7 +50,6 @@ class OrderFullInfoViewModel {
 
             order.tickets.push(ticket);
         }
-
         return order;
     }
 }
