@@ -50,8 +50,9 @@ namespace EasyFlights.Web.ApiControllers
         {
             var userId = User.Identity.GetUserId();
             var order = await this.manageOrderService.GetOrderByIdForUserAsync(orderId, userId);
+            var result = MapToDetailedOrderViewModel(order);
 
-            return MapToDetailedOrderViewModel(order);
+            return result;
         }
 
         // POST api/<controller>
@@ -128,6 +129,8 @@ namespace EasyFlights.Web.ApiControllers
                     DestinationPlace = order.DestinationPlace,
                     DepartureDate = order.DepartureDate
                 };
+
+                tickets.Add(detailedTicketViewModel);
             }
 
             return new DetailedOrderViewModel()
