@@ -77,7 +77,7 @@ namespace EasyFlights.Web.ApiControllers
                 User = user
             };
 
-            manageOrderService.AddOrder(user, order);
+            manageOrderService.AddOrder(order);
         }
 
         // PUT api/<controller>/5

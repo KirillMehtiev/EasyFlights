@@ -10,6 +10,6 @@ namespace EasyFlights.Data.Repositories.Orders
     {
         Task<List<Order>> GetOrdersByUserId(string userId);
 
-        void AddOrder(ApplicationUser user, Order order);
+        void AddOrder(Order order);
     }
 }

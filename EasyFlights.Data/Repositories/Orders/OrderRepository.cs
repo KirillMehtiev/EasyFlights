@@ -24,7 +24,7 @@ namespace EasyFlights.Data.Repositories.Orders
             return orderDataSet.Where(x => x.User.Id.Equals(userId)).ToListAsync();
         }
 
-        public void AddOrder(ApplicationUser user, Order order)
+        public void AddOrder(Order order)
         {
             Add(order);
             SaveChanges();
