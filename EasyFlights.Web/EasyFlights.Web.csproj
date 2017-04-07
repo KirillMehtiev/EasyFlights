@@ -331,6 +331,7 @@
     </Content>
     <Content Include="webpack.config.js" />
     <Content Include="Client\App\TicketsFlow\BaseComponents\OrderSummary\OrderSummary.scss" />
+    <None Include="Properties\PublishProfiles\EasyFlights.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EasyFlights.Data\EasyFlights.Data.csproj">
