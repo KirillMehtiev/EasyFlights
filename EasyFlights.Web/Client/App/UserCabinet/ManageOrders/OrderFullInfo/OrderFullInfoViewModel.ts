@@ -25,7 +25,9 @@ class OrderFullInfoViewModel {
         this.isDataLoading(true);
         this.dataService
             .get("api/orders/GetById?orderId=" + this.orderId().toString())
-            .then(response => this.order(this.mapResponseToModel(response)))
+            .then(response => {
+                this.order(this.mapResponseToModel(response));
+            })
             .always(() => this.isDataLoading(false));
     }
 
