@@ -36,8 +36,7 @@ namespace EasyFlights.Web.ApiControllers
             ITicketsForRouteMapper dtoMapper,
             IManageOrdersService manageOrderService,
             IApplicationUserManager applicationUserManager,
-            IFlightsRepository flightRepository,
-            IDataContext context)
+            IFlightsRepository flightRepository)
         {
             this.converter = converter;
             this.dtoMapper = dtoMapper;
