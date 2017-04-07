@@ -7,12 +7,9 @@ import { IEditablePassengerOptions } from "./BaseComponents/PassengersInfo/Edita
 import { IEditableTicketOptions } from "./BaseComponents/TicketInfo/EditableTicket/IEditableTicketOptions";
 import { EditablePassengerOptions } from "./EditablePassengerOptions";
 import { EditableTicketOptions } from "./EditableTicketOptions";
+import { ITicketsFlowOptions } from "./ITicketsFlowOptions";
 
 abstract class TicketsFlowBaseViewModel {
-    // Params
-    public routeId: KnockoutObservable<string>;
-    public numberOfPassenger: KnockoutObservable<number>;
-
     // Shared data
     public passengerInfoList: KnockoutObservableArray<IEditablePassengerOptions>;
 
@@ -26,13 +23,7 @@ abstract class TicketsFlowBaseViewModel {
     public isShowTicketInfo: KnockoutObservable<boolean>;
     public isShowOrderSummary: KnockoutObservable<boolean>;
 
-    constructor(params) {
-        this.routeId = params.routeId;
-        this.numberOfPassenger = params.numberOfPassenger;
-
-        this.initPassengerInfoList(this.routeId(), this.numberOfPassenger());
-        this.extendEditablePassengerWithValidation(this.passengerInfoList);
-
+    constructor(options: ITicketsFlowOptions) {
         // Flow routing
         this.onNextStep = new ko.subscribable();
         this.onPreviousStep = new ko.subscribable();
@@ -90,6 +81,11 @@ abstract class TicketsFlowBaseViewModel {
         this.isShowOrderSummary(true);
     }
 
+    protected init() {
+        this.initPassengerInfoList();
+        this.extendEditablePassengerWithValidation(this.passengerInfoList);
+    }
+
     private extendEditablePassengerWithValidation(passengers: KnockoutObservableArray<IEditablePassengerOptions>) {
         for (let i = 0; i < passengers().length; i++) {
             let passenger = passengers()[i];
@@ -123,7 +119,7 @@ abstract class TicketsFlowBaseViewModel {
         return true;
     }
 
-    protected abstract initPassengerInfoList(routeId: string, numberOfPassenger: number);
+    protected abstract initPassengerInfoList();
 }
 
 export = TicketsFlowBaseViewModel;

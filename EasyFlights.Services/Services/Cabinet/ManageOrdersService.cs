@@ -6,6 +6,8 @@ using EasyFlights.Services.DtoMappers;
 using EasyFlights.Services.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System;
+using EasyFlights.Services.Common;
 
 namespace EasyFlights.Services.Services.Cabinet
 {
@@ -25,6 +27,17 @@ namespace EasyFlights.Services.Services.Cabinet
             var orders = await orderRepository.GetOrdersByUserId(userId);
 
             return CreateOrderResponse(orders);
+        }
+
+        public async Task<OrderDto> GetOrderByIdAsync(int orderId)
+        {
+            Guard.ArgumentValid(orderId > 0, "Invalid order id.", nameof(orderId));
+
+            Order order = await this.orderRepository.FindByIdAsync(orderId);
+
+            Guard.ArgumentValid(order != null, $"Order with id = {orderId} does't exist.", nameof(orderId));
+
+            return this.MapOrderToDto(order);
         }
 
         public void AddOrder(ApplicationUser user, Order order)
@@ -59,5 +72,12 @@ namespace EasyFlights.Services.Services.Cabinet
             return ordersResponse;
         }
 
+        private OrderDto MapOrderToDto(Order order)
+        {
+            return new OrderDto()
+            {
+                
+            };
+        }
     }
 }

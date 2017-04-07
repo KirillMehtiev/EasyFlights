@@ -15,7 +15,7 @@ class ProfileInfoViewModel {
     public birthdayDateName: KnockoutObservable<string>;
     public isDataChanged: KnockoutObservable<boolean>;
     private dataService: Service.DataService = new Service.DataService();
-    public item: Item.UserItem;
+    public item: KnockoutObservable<Item.UserItem>;
     private getUrl: string = "api/Account/ChangeUser";
 
 
@@ -35,16 +35,17 @@ class ProfileInfoViewModel {
     public changeData(): boolean {
         let result: boolean = false;
         let viewModel = <KnockoutValidationGroup>ko.validatedObservable(this);
+        this.isDataChanged(true);
         if (viewModel.isValid()) {
             this.dataService.post<boolean>(this.getUrl,
-                new UserItem(this.item.firstName, this.item.lastName, this.item.birthday, this.item.sex, this.item.contactPhone, this.item.email))
+                new UserItem(this.item().firstName, this.item().lastName, this.item().birthday, this.item().sex, this.item().contactPhone, this.item().email))
 
                 .then((data) => {
                     result = data;
                    
                     if (result) {
                        
-                        this.isDataChanged(true);
+                        //this.isDataChanged(true);
                     }
                 });
             return result;

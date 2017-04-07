@@ -62,6 +62,8 @@ namespace EasyFlights.Web.ApiControllers
                 return GetErrorResult(result);
             }
 
+            ClaimsIdentity claim = await this.applicationUserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+            this.authenticationManager.SignIn(new AuthenticationProperties { IsPersistent = true }, claim);
             return Ok();
         }
 
@@ -91,7 +93,6 @@ namespace EasyFlights.Web.ApiControllers
 
             ClaimsIdentity claim = await this.applicationUserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
             this.authenticationManager.SignIn(new AuthenticationProperties { IsPersistent = true }, claim);
-            this.authenticationManager.SignIn(claim);
             return this.Ok();
         }
 
@@ -110,11 +111,18 @@ namespace EasyFlights.Web.ApiControllers
             {
                 return this.InternalServerError();
             }
-
-            user.DateOfBirth = DateTime.Parse(model.DateOfBirth);
+            if(user.DateOfBirth!=null)
+            {
+                user.DateOfBirth = DateTime.Parse(model.DateOfBirth);
+            }
+           
             user.FirstName = model.FirstName;
             user.LastName = model.LastName;
-            user.Sex = (Sex)Enum.Parse(typeof(Sex), model.Sex);
+            if(user.Sex!= null)
+            {
+                user.Sex = (Sex)Enum.Parse(typeof(Sex), model.Sex);
+            }
+           
             user.PhoneNumber = model.ContactPhone;
 
             IdentityResult result = await this.applicationUserManager.UpdateAsync(user);
@@ -151,8 +159,6 @@ namespace EasyFlights.Web.ApiControllers
         [EnableCors("*", "*", "*")]
         [Route("ExternalLogin", Name = "ExternalLogin")]
         public async Task<IHttpActionResult> GetExternalLogin(string provider, string error = null)
-
-
         {
             if (error != null)
             {
@@ -193,6 +199,7 @@ namespace EasyFlights.Web.ApiControllers
             }
             else
             {
+                this.authenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
                 IEnumerable<Claim> claims = externalLogin.GetClaims();
                 var identity = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
                 this.authenticationManager.SignIn(new AuthenticationProperties { IsPersistent = true }, identity);
