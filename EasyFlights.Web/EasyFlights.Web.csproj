@@ -262,7 +262,7 @@
     <Compile Include="ViewModels\CabinViewModel.cs" />
     <Compile Include="ViewModels\AccountViewModels\ExternalLoginViewModel.cs" />
     <Compile Include="ViewModels\FlightViewModel.cs" />
-    <Compile Include="ViewModels\OrdersViewModel\BookOrderViewModel.cs" />
+    <Compile Include="ViewModels\OrdersViewModel\TicketForBookingViewModel.cs" />
     <Compile Include="ViewModels\OrdersViewModel\DetailedOrederViewModel.cs" />
     <Compile Include="ViewModels\OrdersViewModel\ShortOrderViewModel.cs" />
     <Compile Include="ViewModels\OrdersViewModel\TicketViewModel.cs" />

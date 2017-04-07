@@ -7,19 +7,20 @@ using EasyFlights.DomainModel.Entities.Enums;
 
 namespace EasyFlights.Web.ViewModels.OrdersViewModels
 {
-	public class BookOrderViewModel
+	public class TicketForBookingViewModel
     {
+        public int FlightId { get; set; }
+
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
 
-        public string Birthday { get; set; }
+        public DateTime Birthday { get; set; }
 
         public string DocumentNumber { get; set; }
+
         public Sex Sex { get; set; }
 
-        public List<TicketViewModel> Tickets { get; set; }
-
-        public string RouteId { get; set; }
+        public int Seat { get; set; }
     }
 }
