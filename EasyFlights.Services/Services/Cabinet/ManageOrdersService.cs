@@ -68,7 +68,7 @@ namespace EasyFlights.Services.Services.Cabinet
                             Cost = ticket.Fare,
                             Duration = flight.Duration.ToString(),
                             DepartureDate = flight.ScheduledDepartureTime.ToString(),
-                            OrderId =  order.Id
+                            OrderId = order.Id
                         });
                 }
             }
@@ -87,7 +87,7 @@ namespace EasyFlights.Services.Services.Cabinet
 
             duration = tickets.Aggregate(duration, (current, ticket) => current + this.CalculateDuration(ticket));
 
-            return new OrderDto()
+            var result = new OrderDto()
             {
                 DepartureDate = firstTicket.Flight.DepartureAirport.Title,
                 DestinationPlace = lastLast.Flight.DestinationAirport.Title,
@@ -97,6 +97,8 @@ namespace EasyFlights.Services.Services.Cabinet
                 Duration = $"{duration.Days} day(s) {duration.Hours} hour(s) {duration.Minutes} minute(s)",
                 Tickets = ToTicketDto(tickets)
             };
+
+            return result;
         }
 
         private IEnumerable<TicketDto> ToTicketDto(IEnumerable<Ticket> ticket)

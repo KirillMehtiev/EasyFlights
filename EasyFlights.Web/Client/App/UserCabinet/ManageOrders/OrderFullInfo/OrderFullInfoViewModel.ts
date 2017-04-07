@@ -3,6 +3,7 @@ import { DataService } from '../../../Common/Services/dataService';
 import { IOrderFullInfoOptions } from "./IOrderFullInfoOptions";
 import OrderFullInfoModel = require("./Models/OrderFullInfoModel");
 import TicketFullInfoModel = require("./Models/TicketFullInfoModel");
+import { Sex } from "../../../Common/Enum/Enums";
 
 class OrderFullInfoViewModel {
     private dataService: DataService;
@@ -25,7 +26,9 @@ class OrderFullInfoViewModel {
         this.isDataLoading(true);
         this.dataService
             .get("api/orders/GetById?orderId=" + this.orderId().toString())
-            .then(response => this.order(this.mapResponseToModel(response)))
+            .then(response => {
+                this.order(this.mapResponseToModel(response));
+            })
             .always(() => this.isDataLoading(false));
     }
 
@@ -41,11 +44,11 @@ class OrderFullInfoViewModel {
             ticket.birthday(t.birthday);
             ticket.documentNumber(t.documentNumber);
             ticket.sex(t.sex);
-            ticket.departureAirport(t.departureAirport);
-            ticket.destinationAirport(t.destinationAirport);
+            ticket.departureAirport(t.departurePlace);
+            ticket.destinationAirport(t.destinationPlace);
             ticket.duration(t.duration);
             ticket.price(t.price);
-            ticket.departureTime(t.departureTime);
+            ticket.departureTime(t.departureDate);
             ticket.seat(t.seat);
 
             order.tickets.push(ticket);
