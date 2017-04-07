@@ -13,7 +13,6 @@ export class AuthService {
 
     constructor() {
         this.dataService = new DataService();
-
         this.isCurrentUserSignedIn = ko.observable<boolean>();
         this.trySignInCurrentUser();
     }
@@ -39,8 +38,7 @@ export class AuthService {
     public externalLogin(provider) {
         var newWindow=window.open("api/account/externallogin?provider=".concat(provider),
             provider.concat("Login"),
-            "width=800, height=600,resizable=no,scrollbars=no,status=no");    
-        newWindow.onemptied=()=>newWindow.close();  
+            "width=800, height=600");    
     }
 
     public signOut() {
@@ -64,7 +62,7 @@ export class AuthService {
             //            this.isCurrentUserSignedIn(false);
             //        });
             .always(response => {
-                this.isCurrentUserSignedIn(response.statusCode == 200);
+                this.isCurrentUserSignedIn(response);
             });
     }
     

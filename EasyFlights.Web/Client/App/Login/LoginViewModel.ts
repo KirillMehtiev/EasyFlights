@@ -7,7 +7,6 @@ class LoginViewModel {
     public userEmail: KnockoutObservable<string>;
     public userPassword: KnockoutObservable<string>;
     public rememberMe: KnockoutObservable<boolean>;
-
     public isRequestProcessing: KnockoutObservable<boolean>;
     public dataService: DataService = new DataService();
 

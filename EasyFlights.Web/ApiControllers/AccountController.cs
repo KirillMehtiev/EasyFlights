@@ -69,14 +69,9 @@ namespace EasyFlights.Web.ApiControllers
 
         [Route("IsAuthenticated")]
         [HttpGet]
-        public IHttpActionResult IsAuthenticated()
+        public bool IsAuthenticated()
         {
-            bool result = User.Identity.IsAuthenticated;
-            if (!result)
-            {
-                return this.BadRequest();
-            }
-            return this.Ok();
+            return User.Identity.IsAuthenticated;
         }
 
         // POST api/Account/Login
