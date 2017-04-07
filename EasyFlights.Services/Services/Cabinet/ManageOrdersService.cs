@@ -46,7 +46,7 @@ namespace EasyFlights.Services.Services.Cabinet
 
         public void AddOrder(ApplicationUser user, Order order)
         {
-            orderRepository.AddOrder(user, order);
+            orderRepository.AddOrder(order);
         }
 
         private List<OrderDto> CreateOrderResponse(List<Order> orders)
