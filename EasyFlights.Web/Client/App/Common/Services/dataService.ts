@@ -8,8 +8,10 @@ export class DataService {
                 return <T>data;
             })
             .fail((error) => {
-                let msg: string = error.statusText;
-                toastr.error(msg, "Error", { timeOut: 5000 });
+                if (error.statusCode != 200) {
+                    let msg: string = error.statusText;
+                    toastr.error(msg, "Error", { timeOut: 5000 });
+                }
             });
     }
 

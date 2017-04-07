@@ -55,13 +55,16 @@ export class AuthService {
     private trySignInCurrentUser() {
         this.dataService
             .get("/api/account/IsAuthenticated")
-            .then((response) => {
-                console.log("response: " + response);
-                this.isCurrentUserSignedIn(true);
-            })
-            .fail((error) => {
-                console.log("er: ", error);
-                this.isCurrentUserSignedIn(false);
+            //        .then((response) => {
+            //            console.log("response: " + response);
+            //            this.isCurrentUserSignedIn(true);
+            //        })
+            //        .fail((error) => {
+            //            console.log("er: ", error);
+            //            this.isCurrentUserSignedIn(false);
+            //        });
+            .always(response => {
+                this.isCurrentUserSignedIn(response.statusCode == 200);
             });
     }
     
