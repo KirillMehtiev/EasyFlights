@@ -4,20 +4,15 @@ import ChangePasswordModel = require("./ChangePasswordModel");
 require("knockout.validation");
 
 class AccountViewModel {
-    public isPasswordChanging: KnockoutObservable<boolean>;
-    public isPasswordChanged: KnockoutObservable<boolean>;
     public email: KnockoutObservable<string>;
     public oldPassword: KnockoutObservable<string>;
     public newPassword: KnockoutObservable<string>;
     public newPasswordConfirm: KnockoutObservable<string>;
     private dataService:DataService = new DataService();
-    private validateEmailUrl: string = "api/Cabinet/ValidateEmail?email=";
+    private getEmailUrl: string = "api/Cabinet/GetEmail";
     private changePasswordUrl: string = "api/Cabinet/ChangePassword";
-    private isEmailValid: KnockoutObservable<boolean>;
 
     public constructor() {
-        this.isPasswordChanging = ko.observable(false);
-        this.isPasswordChanged = ko.observable(false);
         let self = this;
         this.oldPassword = ko.observable("").extend({
             required: true,
@@ -49,10 +44,7 @@ class AccountViewModel {
                 message: "New password must not be the same as old one"
             }
         });
-        this.email = ko.observable("").extend({
-            required: true,
-            email: true
-        });
+        this.email = ko.observable("");
 
         this.newPasswordConfirm = ko.observable("").extend({
             required: true,
@@ -61,20 +53,11 @@ class AccountViewModel {
                 message: "New pasword is not confirmed"
             }
         });
+        this.getEmail();
     }
-    public validateEmail(): void {
-        this.isEmailValid = ko.observable(false);
-        if (this.email.isValid()) {
-            this.dataService.get<boolean>(this.validateEmailUrl.concat(this.email()))
-                .then((data) => {
-                    this.isEmailValid(data);
-                    if (this.isEmailValid()) {
-                        this.isPasswordChanging(true);
-                    }
-                });
-        } else {
-            this.email.error();
-        } 
+    public getEmail(): void {
+        this.dataService.get(this.getEmailUrl)
+            .then((data:string)=> { this.email(data); });
     }
     public changePassword():boolean {
         let result: boolean = false;
@@ -89,8 +72,6 @@ class AccountViewModel {
                         this.oldPassword("");
                         this.newPassword("");
                         this.newPasswordConfirm("");
-                        this.isPasswordChanging(false);
-                        this.isPasswordChanged(true);
                     }
                 });
             return result;

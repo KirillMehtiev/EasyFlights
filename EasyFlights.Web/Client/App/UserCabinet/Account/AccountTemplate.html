@@ -1,45 +1,41 @@
 ﻿<div class="container">
-    <div class="row" data-bind="visible: !isPasswordChanging()">
-        <div class="col-md-2">
-            <input class="form-control" type="email" placeholder="your_email@mailprovider.domain" data-bind="value: email" />
-        </div>
-        <div class="col-md-2 col-md-offset-2">
-            <label>Input your email to continue</label>
-        </div>
-        <div class="col-md-1 col-md-offset-5">
-            <button class="btn btn-default" data-bind="click: validateEmail">Change password</button>
+    <h3>Edit account data</h3>
+    <div class="row form-group">
+        <label class="col-md-3 control-label">Your email: </label>
+        <div class="col-md-4">
+            <input class="emailInput form-control" data-bind="value:email" readonly="readonly" />
         </div>
     </div>
-    <div id="ChangingPassword" data-bind="visible:isPasswordChanging">
-        <div class="form-group">
-            <label class="col-lg-3 control-label">Old password:</label>
-            <div class="col-lg-8">
-                <input class="form-control" type="password" data-bind="value: oldPassword" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-lg-3 control-label">New password:</label>
-            <div class="col-lg-8">
-                <input class="form-control" type="password" data-bind="value: newPassword" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-lg-3 control-label">Confirm new password:</label>
-            <div class="col-lg-8">
-                <input class="form-control" type="password" data-bind="value: newPasswordConfirm" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-offset-11 col-md-1">
-                <button class="btn btn-default" data-bind="click: changePassword">
-                    Save
-                </button>
-            </div>
+    <div class="row form-group">
+        <div class="col-md-offset-3 col-md-1">
+            <button class="btn btn-default" >
+                Change email
+            </button>
         </div>
     </div>
-    <div class="row" data-bind="visible: isPasswordChanged">
-        <div class="col-md-offset-4 col-md-2">
-            <label>Password changed successfully</label>
+    <div class="row form-group">
+        <label class="col-md-3 control-label">Old password:</label>
+        <div class="col-md-4">
+            <input class="form-control" type="password" data-bind="value: oldPassword"/>
+        </div>
+    </div>
+    <div class="row form-group">
+        <label class="col-md-3 control-label">New password:</label>
+        <div class="col-md-4">
+            <input class="form-control" type="password" data-bind="value: newPassword"/>
+        </div>
+    </div>
+    <div class="row form-group">
+        <label class="col-md-3 control-label">Confirm new password:</label>
+        <div class="col-md-4">
+            <input class="form-control" type="password" data-bind="value: newPasswordConfirm"/>
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-md-offset-3 col-md-1">
+            <button class="btn btn-default" data-bind="click: changePassword">
+                Change Password
+            </button>
         </div>
     </div>
 </div>
