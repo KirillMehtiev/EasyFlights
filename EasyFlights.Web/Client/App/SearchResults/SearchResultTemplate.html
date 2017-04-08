@@ -1,13 +1,7 @@
 ﻿<div class="">
     <div class="row">
-        <h1 class="text-info">The results of your search</h1>
+        <h3 class="text-info" data-bind="text: headerSearchResult"></h3>
         <hr />
-        <route-header params="departurePlace: departurePlace, destinationPlace:arrivalPlace, departureDate:departureDate, returnDate:returnDate"></route-header>
-     
-
-        <hr />
-
-
         <div class="text-center" data-bind="if: !isLoading() && routeItems().length === 0">
             <h3>Requested information not found.</h3>
             <h4>Try to change search parameters.</h4>
@@ -30,8 +24,6 @@
 
 
             &nbsp;
-            <hr />
-            <h4><b>Flights: </b></h4>
             <div data-bind="foreach: {data: pagedRouteItems, as: 'routeItem'}">
                 <routes params="item: routeItem, quantity: $parent.numberOfPassenger"></routes>
             </div>
