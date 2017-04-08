@@ -1,6 +1,7 @@
 ﻿import ko = require("knockout");
 import validation = require("knockout.validation");
 import pager = require("pager");
+
 require("knockstrap");
 require("jquery-ui");
 import "./Components";
@@ -10,6 +11,7 @@ import './App.scss';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-datepicker/dist/css/bootstrap-datepicker.css';
 import 'toastr/build/toastr.css';
+import 'sweetalert/dist/sweetalert.css';
 
 import KnockoutValidationOptions = require("./Validation/KnockoutValidationOptions");
 

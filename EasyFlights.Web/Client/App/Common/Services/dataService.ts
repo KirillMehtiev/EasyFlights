@@ -8,10 +8,7 @@ export class DataService {
                 return <T>data;
             })
             .fail((error) => {
-                if (error.status !== 200) {
-                    let msg: string = error.statusText;
-                    toastr.error(msg, "Error", { timeOut: 5000 });
-                }
+                this.showErrorMessage(error);
             });
     }
 
@@ -22,8 +19,24 @@ export class DataService {
             data: JSON.stringify(data),
             contentType: "application/json; charset=utf-8"
         }).fail((error) => {
-            let msg: string = error.statusText;
-            toastr.error(msg, "Error", { timeOut: 5000 });
+            this.showErrorMessage(error);
         });
+    }
+
+    public delete<T>(url: string): JQueryPromise<T> {
+        return $.getJSON(url)
+            .then((data) => {
+                return <T>data;
+            })
+            .fail((error) => {
+               this.showErrorMessage(error); 
+            });
+    }
+
+    private showErrorMessage(error) {
+        if (error.status !== 200) {
+            let message: string = error.statusText;
+            toastr.error(message, "Error", { timeOut: 5000 });
+        }
     }
 }
