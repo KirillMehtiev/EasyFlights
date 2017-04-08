@@ -1,7 +1,8 @@
 ﻿<div class="row">
     <h1 class="text-info">Enter information about ticket(s)</h1>
-    <hr />
     <div data-bind="foreach: { data: passengerInfoList, as: 'passengerInfo' }">
+        <hr />
+        <h4>Ticket(s) for: <b><span data-bind="text: passengerInfo.firstName"></span>&nbsp;<span data-bind="text: passengerInfo.lastName"></span></b></h4>
         <div data-bind="foreach: { data: passengerInfo.tickets, as: 'ticket'}">
             <editable-ticket params="seat: ticket.seat,
                                      seatChosen: $component.seatChosen,
@@ -17,7 +18,7 @@
             <a class="btn btn-default" data-bind="click: previousStep"><i class="glyphicon glyphicon-menu-left"></i> Back</a>
         </div>
         <div class="pull-right">
-            <a class="btn btn-default" data-bind="click: nextStep">Go to order summary <i class="glyphicon glyphicon-menu-right"></i></a>
+            <a class="btn btn-primary" data-bind="click: nextStep">Go to order summary <i class="glyphicon glyphicon-menu-right"></i></a>
         </div>
     </div>
 </div>
