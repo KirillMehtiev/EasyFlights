@@ -5,18 +5,22 @@ class LayoutViewModel {
 
     constructor() {
         this.isCurrentUserSignedIn = AuthService.current.isCurrentUserSignedIn;
-
         // TODO: fix
         // this.guardPage.bind(this);
     }
 
     private guardPage = (page, route, callback) => {
-        if (this.isCurrentUserSignedIn()) {
-            callback();
-        }
-        else {
-            window.location.href = "#sign-in";
-        }
+
+        window.setTimeout(() => {
+            if (this.isCurrentUserSignedIn()) {
+                callback();
+            }
+            else {
+                window.location.href = "#sign-in";
+            }
+        });
+
+
     }
 }
 

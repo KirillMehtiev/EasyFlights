@@ -15,7 +15,7 @@ namespace EasyFlights.Services.DtoMappers
                 DestinationAirportTitle = model.DestinationAirport.Title,
                 DepartureCity = model.DepartureAirport.City.Name,
                 DestinationCity = model.DestinationAirport.City.Name,
-                Duration = model.ScheduledDepartureTime - model.ScheduledArrivalTime,
+                Duration = model.ScheduledArrivalTime - model.ScheduledDepartureTime,
                 DefaultFare = model.DefaultFare,
                 Id = model.Id,
                 Aircraft = new AircraftDto() { Capacity = model.Aircraft.Capacity, ModelName = model.Aircraft.Model },

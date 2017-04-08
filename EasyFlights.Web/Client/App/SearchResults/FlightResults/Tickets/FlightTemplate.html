@@ -1,24 +1,18 @@
 ﻿<div class="panel panel-default">
-    <div class="panel-heading">
-        Ticket#
-    </div>
     <div class="panel-body">
         <div class="row">
-            <div class="col-md-5 pull-left">
-                <h4><b>Departure Airport: </b> <span data-bind="text: item.departureAirport"></span></h4>
-                <h4><b>Departure Time: </b><span data-bind="text: item.departureTime"></span></h4>
+            <div class="col-md-5">
+                <i class="material-icons md-18">flight_takeoff</i>
+                <h4><p data-bind="text: item.departureTime"></p></h4>
+                <h3><p data-bind="text: item.departureAirport"></p></h3>
             </div>
-            <div class="col-md-5 pull-right">
-                <h4><b>Destination Airport: </b><span data-bind="text: item.destinationAirport"></span></h4>
-                <h4><b>Arrival Time: </b> <span data-bind="text: item.arrivalTime"></span></h4>
+            <div class="col-md-5">
+                <i class="material-icons">flight_land</i>
+                <h4><p data-bind="text: item.arrivalTime"></p></h4>
+                <h3><p data-bind="text: item.destinationAirport"></p></h3>
             </div>
-            <b>Duration: <span data-bind="text: item.duration"></span></b>
-            <h4><b>===========></b></h4>
+            <h3><span data-bind="text: item.duration"></span></h3>
         </div>
-        <p>
-        </p>
-        <p>
-            <b>Fare: <span data-bind="text: item.fare"></span></b>
-        </p>
+        <h4>$<span data-bind="text: item.fare"></span></h4>
     </div>
 </div>

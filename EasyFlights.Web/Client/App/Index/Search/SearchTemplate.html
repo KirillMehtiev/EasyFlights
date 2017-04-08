@@ -1,48 +1,56 @@
-﻿<div>
-    <div class="row">
-        <div class="col-md-6">
+﻿<hr />
+<div class="row">
+    <div class="col-md-6">
+        <label class="control-label" for="departure-autocomplete">Place of departure:</label>
+        <auto-complete params="searchItem: searchAirportFrom, direction: 'From', placeholder: placeholderAutocomplete, sourceUrl: '/api/Typeahead/airports/?name='" id="departure-autocomplete"></auto-complete>
+    </div>
+    <div class="col-md-6">
+        <label class="control-label" for="arrive-autocomplete">Place of arrival:</label>
+        <auto-complete params="searchItem: searchAirportTo, direction: 'To', placeholder: placeholderAutocomplete, sourceUrl: '/api/Typeahead/airports/?name='" id="arrive-autocomplete"></auto-complete>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-6">
+        <div class="col-md-5" style="padding:0">
+            <label class="control-label" for="departure-date-picker">Departure date:</label>
+
+            <div class="input-group">
+                <date-picker id="departure-date-picker" params="selectedDate: selectedDepartureDate, name: departureDateName"></date-picker>
+                <label class="input-group-addon btn" for="testdate">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </label>
+            </div>
+        </div>
+        <div class="col-md-5 pull-right" style="padding:0" data-bind="visible: isRoundTripSelected">
+            <label class="control-label" for="return-date-picker">Return date:</label>
+            <div class="input-group">
+                <date-picker id="return-date-picker" params="selectedDate: selectedReturnDate, name: returnDateName"></date-picker>
+                <label class="input-group-addon btn" for="testdate">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="col-md-5" style="padding: 0">
             <div class="form-group">
                 <label>Ticket type:</label>
-                <!-- params is IRadioChooserOption if change signarute reflect it here -->
                 <radio-chooser params="options: options, selectedOption:selectedTicketType, groupName:'ticket-type'"></radio-chooser>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="">
-                <div class="form-group">
-                    <label>Number of people:</label>
-                    <select class="form-control" data-bind="options: numberOfPeople, value:number"></select>
-                </div>
+        <div class="col-md-5 pull-right" style="padding: 0">
+            <div class="form-group">
+                <label>Number of people:</label>
+                <select class="form-control" data-bind="options: numberOfPeople, value:number"></select>
             </div>
-        </div>
-    </div>
-    <hr />
-    <div class="row">
-        <div class="col-md-6">
-            <label class="control-label" for="departure-autocomplete">Place of departure:</label>
-            <auto-complete params="searchItem: searchAirportFrom, direction: 'From', placeholder: placeholderAutocomplete, sourceUrl: '/api/Typeahead/airports/?name='" id="departure-autocomplete"></auto-complete>
-        </div>
-        <div class="col-md-6">
-            <label class="control-label" for="arrive-autocomplete">Place of arrival:</label>
-            <auto-complete params="searchItem: searchAirportTo, direction: 'To', placeholder: placeholderAutocomplete, sourceUrl: '/api/Typeahead/airports/?name='" id="arrive-autocomplete"></auto-complete>
-        </div>
-    </div>
-    <br />
-    <div class="row">
-        <div class="col-md-6">
-            <label class="control-label" for="departure-date-picker">Departure date:</label>
-            <date-picker id="departure-date-picker" params="selectedDate: selectedDepartureDate, name: departureDateName"></date-picker>
-        </div>
-        <div class="col-md-6" data-bind="visible: isRoundTripSelected">
-            <label class="control-label" for="return-date-picker">Return date:</label>
-            <date-picker id="return-date-picker" params="selectedDate: selectedReturnDate, name: returnDateName"></date-picker>
         </div>
     </div>
     <hr />
     <div class="row">
         <div class="col-md-12">
-                <div data-bind="if: checked()">
-                    <a class="btn btn-primary btn-lg btn-block" data-bind="page-href: {path: 'results', params: {
+            <div data-bind="if: checked()">
+                <a class="btn btn-primary btn-lg btn-block" data-bind="page-href: {path: 'results', params: {
                    departurePlace: searchAirportFrom() ? searchAirportFrom().value : '',
                    departurePlaceId: searchAirportFrom() ? searchAirportFrom().id : '' ,
                    arrivalPlace: $data.searchAirportTo() ? searchAirportTo().value : '',
@@ -50,11 +58,11 @@
                    departureDate: selectedDepartureDate, returnDate: selectedReturnDate,
                    numberOfPassenger: number,
                    type: selectedTicketType}}"><span class="glyphicon glyphicon-search"></span>Search</a>
-                </div>
-           
+            </div>
+            <hr />
             <div data-bind="ifnot: checked()">
                 <a class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-search"></span> Search</a>
             </div>
-            </div>
         </div>
     </div>
+</div>

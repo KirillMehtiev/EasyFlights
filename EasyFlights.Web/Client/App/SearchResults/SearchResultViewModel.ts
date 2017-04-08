@@ -20,6 +20,8 @@ class SearchResultViewModel {
     public type: KnockoutObservable<string>;
     public dataService: DataService = new DataService();
 
+    public headerSearchResult: KnockoutObservable<string>;
+
     public pageSize: KnockoutObservable<number>;
     public pageNo: KnockoutObservable<number>;
     public pageIndex: any;
@@ -51,7 +53,7 @@ class SearchResultViewModel {
         this.sortByPrice();
         this.isRequestProcessing = ko.observable(false);
         this.isLoading = ko.observable(true);
-
+        this.headerSearchResult = ko.observable("");
         let url: string = this.createGetRoutesUrl();
 
         this.isRequestProcessing(true);
@@ -61,11 +63,13 @@ class SearchResultViewModel {
                 this.isLoading(false);
                 this.setPage();
                 this.isRequestProcessing(false);
+                this.headerSearchResult(this.routeItems().length + " Flights from " + this.departurePlace() + " to " + this.arrivalPlace() + " on " + this.departureDate() + " for " + this.numberOfPassenger() + " passenger(s)");
             }).fail((error) => {
                 this.isLoading(false);
                 this.isRequestProcessing(false);
 
             });
+
     }
 
     public setPage(): void {

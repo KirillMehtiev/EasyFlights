@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
 using EasyFlights.DomainModel.DTOs;
+using EasyFlights.Services.Common;
 using EasyFlights.Services.Interfaces;
 using EasyFlights.Web.Util.Converters;
 using EasyFlights.Web.ViewModels;
@@ -11,9 +12,6 @@ namespace EasyFlights.Web.ApiControllers
 {
     public class RoutesController : ApiController
     {
-        private const string DateFormat = "D";
-        private const string DurationFormat = @"dd\.hh\:mm";
-
         private readonly ISearchingService searchingService;
         private readonly IRouteConverter routeConverter;
 
@@ -53,18 +51,18 @@ namespace EasyFlights.Web.ApiControllers
             FlightDto lastFlight = route.Flights.LastOrDefault();
 
             routeViewModel.TotalCoast = route.TotalCost;
-            routeViewModel.TotalTime = route.TotalTime.ToString(DurationFormat);
+            routeViewModel.TotalTime = route.TotalTime.ToString(Format.TimeSpanFormat);
             routeViewModel.Flights = route.Flights.Select(MapToFlightViewModel);
             routeViewModel.Id = routeConverter.ConvertRouteToRouteId(route);
 
             if (firstFlight != null)
             {
                 routeViewModel.DeparturePlace = firstFlight.DepartureAirportTitle;
-                routeViewModel.DepartureTime = firstFlight.ScheduledDepartureTime.ToString(DateFormat);
+                routeViewModel.DepartureTime = firstFlight.ScheduledDepartureTime.ToString(Format.DateTimeFormat);
             }
             if (lastFlight != null)
             {
-                routeViewModel.ArrivalTime = lastFlight.ScheduledArrivalTime.ToString(DateFormat);
+                routeViewModel.ArrivalTime = lastFlight.ScheduledArrivalTime.ToString(Format.DateTimeFormat);
                 routeViewModel.DestinationPlace = lastFlight.DestinationAirportTitle;
             }
 
@@ -77,9 +75,9 @@ namespace EasyFlights.Web.ApiControllers
             {
                 DepartureAirport = flight.DepartureAirportTitle,
                 DestinationAirport = flight.DestinationAirportTitle,
-                ArrivalTime = flight.ScheduledArrivalTime.ToString(DateFormat),
-                DepartureTime = flight.ScheduledDepartureTime.ToString(DateFormat),
-                Duration = flight.Duration.ToString(DurationFormat),
+                ArrivalTime = flight.ScheduledArrivalTime.ToString(Format.DateTimeFormat),
+                DepartureTime = flight.ScheduledDepartureTime.ToString(Format.DateTimeFormat),
+                Duration = flight.Duration.ToString(Format.TimeSpanFormat),
                 Fare = flight.DefaultFare,
                 FlightId = flight.Id
             };

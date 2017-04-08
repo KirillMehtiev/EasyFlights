@@ -24,11 +24,11 @@ namespace EasyFlights.Web.ApiControllers
 
         [HttpGet]
         [Authorize]
-        [Route("ValidateEmail")]
-        public async Task<bool> ValidateEmailAsync([FromUri] string email)
+        [Route("GetEmail")]
+        public async Task<string> ValidateEmailAsync()
         {
             ApplicationUser user = await userManager.FindByIdAsync(User.Identity.GetUserId());
-            return user.Email == email;
+            return user.Email;
         }
 
         [HttpPost]

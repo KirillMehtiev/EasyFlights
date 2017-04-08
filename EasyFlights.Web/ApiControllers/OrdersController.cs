@@ -7,6 +7,7 @@ using EasyFlights.DomainModel.Entities;
 using EasyFlights.Web.Infrastructure;
 using System.Threading.Tasks;
 using EasyFlights.DomainModel.DTOs;
+using EasyFlights.Services.Common;
 using EasyFlights.Services.Interfaces;
 using EasyFlights.Web.ViewModels.OrdersViewModel;
 using EasyFlights.Web.ViewModels.OrdersViewModels;
@@ -120,7 +121,7 @@ namespace EasyFlights.Web.ApiControllers
                 {
                     FirstName = passenger.FirstName,
                     LastName = passenger.LastName,
-                    Birthday = passenger.Birthday.ToString("d"),
+                    Birthday = passenger.Birthday.ToString(Format.DateFormat),
                     DocumentNumber = passenger.DocumentNumber,
                     Sex = passenger.Sex,
                     Seat = seat?.Number ?? int.MinValue,
