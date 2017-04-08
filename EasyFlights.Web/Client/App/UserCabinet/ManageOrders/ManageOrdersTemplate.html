@@ -33,12 +33,14 @@
             </div>
 
         </div>
-        <div class="row"  style="margin-bottom: 20px">
-            <a class="btn btn-default btn-md" data-bind="page-href: {path: '../order', params: { orderId: order.orderId}}">
+        <div class="row" style="margin-bottom: 20px">
+            <a class="btn btn-primary btn-md" data-bind="page-href: {path: '../order', params: { orderId: order.orderId}}">
                 <i class="glyphicon glyphicon-info-sign" aria-hidden="true"></i>
+                Details
             </a>
-            <a class="btn btn-default btn-md pull-right">
+            <a class="btn btn-danger pull-right" data-bind="click: (order) => { $parent.deleteOrder(order); }">
                 <i class="glyphicon glyphicon-trash" aria-hidden="true"></i>
+                Delete order
             </a>
         </div>
     </div>

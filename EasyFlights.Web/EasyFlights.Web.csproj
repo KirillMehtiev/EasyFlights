@@ -500,6 +500,7 @@
     <TypeScriptCompile Include="Client\Libs\typings\require\require.d.ts" />
     <TypeScriptCompile Include="Client\Libs\typings\jquery\jquery.d.ts" />
     <TypeScriptCompile Include="Client\Libs\typings\jqueryui\jqueryui.d.ts" />
+    <TypeScriptCompile Include="Client\Libs\typings\sweetalert\sweetalert.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\knockout\knockout.d.ts" />
     <TypeScriptCompile Include="Client\Libs\typings\toastr\toastr.ts" />
   </ItemGroup>
@@ -522,6 +523,7 @@
     <Content Include="Client\Libs\fonts\glyphicons-halflings-regular.woff2" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Client\App\UserCabinet\Services\" />
     <Folder Include="ViewModels\TicketViewModels\" />
   </ItemGroup>
   <ItemGroup>
