@@ -132,9 +132,9 @@ namespace EasyFlights.Web.ApiControllers
                     Sex = passenger.Sex,
                     Seat = seat?.Number ?? int.MinValue,
                     Price = ticket.Price,
-                    DeparturePlace = order.DeparturePlace,
-                    DestinationPlace = order.DestinationPlace,
-                    DepartureDate = order.DepartureDate
+                    DeparturePlace = ticket.DeparturePlace,
+                    DestinationPlace = ticket.DestinationPlace,
+                    DepartureDate = ticket.DepartureDate
                 };
 
                 tickets.Add(detailedTicketViewModel);

@@ -98,7 +98,7 @@ namespace EasyFlights.Services.Services.Cabinet
             var firstTicket = order.Tickets.FirstOrDefault();
             var lastLast = order.Tickets.LastOrDefault();
             var duration = new TimeSpan();
-
+            
             duration = tickets.Aggregate(duration, (current, ticket) => current + this.CalculateDuration(ticket));
 
             var result = new OrderDto()
@@ -123,7 +123,10 @@ namespace EasyFlights.Services.Services.Cabinet
                 FlightClass = t.FlightClass,
                 Price = t.Fare,
                 Seat = ToSeatDto(t.Seat),
-                TicketNumber = t.Id
+                TicketNumber = t.Id,
+                DestinationPlace = t.Flight.DestinationAirport.Title,
+                DeparturePlace = t.Flight.DepartureAirport.Title,
+                DepartureDate = t.Flight.ScheduledDepartureTime.ToString("f")
             });
         }
 

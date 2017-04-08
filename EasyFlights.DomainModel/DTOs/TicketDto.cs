@@ -13,5 +13,11 @@ namespace EasyFlights.DomainModel.DTOs
         public decimal Price { get; set; }
         
         public int TicketNumber { get; set; }
+
+        public string DeparturePlace { get; set; }
+
+        public string DestinationPlace { get; set; }
+
+        public string DepartureDate { get; set; }
     }
 }
