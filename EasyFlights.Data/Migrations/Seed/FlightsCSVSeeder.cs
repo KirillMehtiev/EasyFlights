@@ -12,6 +12,7 @@ namespace EasyFlights.Data.Migrations.Seed
         private const int DepartureTimeIndex = 2;
         private const int ArrivalIndex = 3;
         private const int ArrivalTimeIndex = 4;
+        private const int Costindex = 5;
         private const string TimeFormat = "HH:mm";
 
         public void Seed(IDataContext context)
@@ -27,7 +28,7 @@ namespace EasyFlights.Data.Migrations.Seed
                 for (var i = 1; i < flightsInfo.Length; i++)
                 {
                     string[] info = flightsInfo[i].Split(';');
-                    if (info.Length < ArrivalTimeIndex + 1)
+                    if (info.Length < Costindex + 1)
                     {
                         continue;
                     }
@@ -56,7 +57,8 @@ namespace EasyFlights.Data.Migrations.Seed
                             DepartureAirport = departureAirport,
                             DestinationAirport = arrivalAirport,
                             ScheduledDepartureTime = scheduledDeparture,
-                            ScheduledArrivalTime = scheduledArrival
+                            ScheduledArrivalTime = scheduledArrival,
+                            DefaultFare = decimal.Parse(info[Costindex])
                         };
                         context.Set<Flight>().Add(flight);
                         flight = new Flight
@@ -65,7 +67,8 @@ namespace EasyFlights.Data.Migrations.Seed
                             DepartureAirport = arrivalAirport,
                             DestinationAirport = departureAirport,
                             ScheduledDepartureTime = scheduledDeparture.AddHours(2),
-                            ScheduledArrivalTime = scheduledArrival.AddHours(2)
+                            ScheduledArrivalTime = scheduledArrival.AddHours(2),
+                            DefaultFare = decimal.Parse(info[Costindex])
                         };
                         context.Set<Flight>().Add(flight);
                     }
