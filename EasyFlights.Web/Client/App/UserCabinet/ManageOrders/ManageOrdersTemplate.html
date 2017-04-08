@@ -1,9 +1,16 @@
 ﻿<div class="container">
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
-            <p>
-                <h2>Your orders</h2>
-            </p>
+            <div data-bind="ifnot: areOrdersEmpty ">          
+                <p>
+                    <h2>Your orders</h2>
+                </p>
+            </div>
+            <div data-bind="if: areOrdersEmpty ">
+                <p>
+                    <h2>You have no orders</h2>
+                </p>
+            </div>
         </div>
         <br />
     </div>

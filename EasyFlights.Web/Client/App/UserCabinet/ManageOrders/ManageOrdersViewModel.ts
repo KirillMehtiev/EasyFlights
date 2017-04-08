@@ -9,13 +9,14 @@ class ManageOrdersViewModel {
 
     public orders: KnockoutObservableArray<ManageOrdersItem>;
     public isRequestProcessing: KnockoutObservable<boolean>;
-
+    public areOrdersEmpty:KnockoutObservable<boolean>;
     private url: string = "api/Orders/GetOrdersForUser";
     private deleteBaseUrl: string = "api/Orders/Delete";
 
     constructor() {
         this.orders = ko.observableArray([]);
         this.isRequestProcessing = ko.observable(false);
+        this.areOrdersEmpty = ko.observable(false);
         this.getOrdersForUser();
         this.deleteOrder.bind(this);
     }
@@ -50,6 +51,9 @@ class ManageOrdersViewModel {
         this.dataService.get<Array<ManageOrdersItem>>(this.url)
             .then((data) => {
                 this.orders(data);
+                if (data.length === 0) {
+                    this.areOrdersEmpty(true);
+                }
             }).always(() => this.isRequestProcessing(false));;
     }
 }
