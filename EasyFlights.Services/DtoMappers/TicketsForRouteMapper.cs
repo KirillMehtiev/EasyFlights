@@ -27,7 +27,7 @@ namespace EasyFlights.Services.DtoMappers
                 {
                     flight.Tickets = new List<TicketDto>();
                 }
-                List<int> availableSeats = await service.GetAvailableSeats(passengers.Count, flight.Id);
+                List<int> availableSeats = await service.GetAvailableSeats(passengers.Count, flight.Id, null);
                 for (var i = 0; i < passengers.Count; i++)
                 {
                     flight.Tickets.Add(new TicketDto()

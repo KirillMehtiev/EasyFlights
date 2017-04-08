@@ -22,15 +22,18 @@ namespace EasyFlights.Web.ApiControllers
         private readonly IManageOrdersService manageOrderService;
         private readonly IFlightsRepository flightRepository;
         private readonly IApplicationUserManager applicationUserManager;
+        private readonly IFlightService flightService;
 
         public OrdersController(
             IManageOrdersService manageOrderService,
             IApplicationUserManager applicationUserManager,
-            IFlightsRepository flightRepository)
+            IFlightsRepository flightRepository,
+            IFlightService flightService)
         {
             this.manageOrderService = manageOrderService;
             this.applicationUserManager = applicationUserManager;
             this.flightRepository = flightRepository;
+            this.flightService = flightService;
         }
 
         // GET api/<controller>
@@ -67,9 +70,32 @@ namespace EasyFlights.Web.ApiControllers
 
             var user = await applicationUserManager.FindByEmailAsync(User.Identity.Name);
 
+            var ticketsForBookingGroupedByFlightId = ticketsForBooking.GroupBy(x => x.FlightId).ToList();
+
+            foreach (var tickets in ticketsForBookingGroupedByFlightId)
+            {
+                var flightId = tickets.Key;
+
+                var count = tickets.Count(ticket => ticket.FlightId == flightId && ticket.Seat == 0);
+
+                var availibleSeats = await flightService.GetAvailableSeats(
+                    count,
+                    flightId,
+                    ticketsForBooking.Where(ticket => ticket.Seat != 0).Select(s=> s.Seat).ToList());
+
+                foreach (var ticket in tickets)
+                {
+                    if (ticket.Seat == 0)
+                        AssignSeatToTicket(availibleSeats, ticket);
+                }
+            }
+
+            ticketsForBooking = ticketsForBookingGroupedByFlightId.SelectMany(ticket => ticket).ToList();
+
             foreach (var ticket in ticketsForBooking)
             {
                 var flight = await flightRepository.GetFlightsById(ticket.FlightId);
+
                 var newTicket = CreateTicket(ticket, flight);
                 ticketsForOrder.Add(newTicket);
             }
@@ -163,6 +189,20 @@ namespace EasyFlights.Web.ApiControllers
                 Seat = ticket.Seat,
                 Flight = flight
             };
+        }
+
+        private List<TicketForBookingViewModel> GetTicketWithoutSeats(List<TicketForBookingViewModel> tickets)
+        {
+            return tickets.Where(ticket => ticket.Seat == 0).ToList();
+        }
+
+        private void AssignSeatToTicket(List<int> seats, TicketForBookingViewModel ticket)
+        {
+            var random = new Random();
+            var randomValue = random.Next(1, seats.Count);
+            var seat = seats[randomValue - 1];
+            ticket.Seat = seat;
+            seats.Remove(seat);
         }
     }
 }

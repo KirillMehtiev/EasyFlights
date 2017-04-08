@@ -33,7 +33,7 @@ namespace EasyFlights.Services.Services.Flight
             return cabin;
         }
 
-        public async Task<List<int>> GetAvailableSeats(int number, int flightId)
+        public async Task<List<int>> GetAvailableSeats(int number, int flightId, List<int> bookedTickets)
         {
             DomainModel.Entities.Flight flight = await repository.FindByIdAsync(flightId);
             var seats = new List<int>();
@@ -51,6 +51,15 @@ namespace EasyFlights.Services.Services.Flight
                 {
                     blocked.Add(ticket.Seat);
                 }
+
+                if (bookedTickets != null)
+                {
+                    foreach (int seat in bookedTickets)
+                    {
+                        blocked.Add(seat);
+                    }
+                }
+
                 for (var i = 1; i < flight.Aircraft.Capacity + 1; i++)
                 {
                     if (!blocked.Contains(i))
@@ -81,6 +90,7 @@ namespace EasyFlights.Services.Services.Flight
                     }
                 }
             }
+
             return seats;
         }
     }
