@@ -24,13 +24,15 @@ export class DataService {
     }
 
     public delete<T>(url: string): JQueryPromise<T> {
-        return $.getJSON(url)
-            .then((data) => {
-                return <T>data;
-            })
-            .fail((error) => {
-               this.showErrorMessage(error); 
-            });
+        return $.ajax({
+            url: url,
+            type: "DELETE",
+            contentType: "application/json; charset=utf-8"
+        }).then((result) => {
+            return <T>result;
+        }).fail((error) => {
+            this.showErrorMessage(error);
+        });
     }
 
     private showErrorMessage(error) {

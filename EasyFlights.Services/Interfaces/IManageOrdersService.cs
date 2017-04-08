@@ -12,6 +12,8 @@ namespace EasyFlights.Services.Interfaces
 
         void AddOrder(Order order);
 
+        Task DeleteOrder(int orderId, string userId);
+
         Task<OrderDto> GetOrderByIdForUserAsync(int userId, string orderId);
     }
 }

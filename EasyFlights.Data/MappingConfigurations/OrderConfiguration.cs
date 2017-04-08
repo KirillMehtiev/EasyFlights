@@ -6,7 +6,7 @@ namespace EasyFlights.Data.MappingConfigurations
     {
         public OrderConfiguration()
         {
-            HasMany(order => order.Tickets).WithRequired(ticket => ticket.Order).WillCascadeOnDelete(false);
+            HasMany(order => order.Tickets).WithRequired(ticket => ticket.Order).WillCascadeOnDelete(true);
             HasRequired(order => order.User).WithMany(user => user.Orders);
         }
     }

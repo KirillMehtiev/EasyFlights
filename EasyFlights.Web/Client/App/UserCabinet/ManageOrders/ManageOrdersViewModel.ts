@@ -2,6 +2,7 @@
 import { DataService } from "../../Common/Services/dataService";
 import { ManageOrdersItem } from "./ManageOrdersItem";
 import swal = require("sweetalert");
+import toastr = require("toastr");
 
 class ManageOrdersViewModel {
     public dataService: DataService = new DataService();
@@ -30,11 +31,14 @@ class ManageOrdersViewModel {
             closeOnConfirm: true
         },
             () => {
-                let index = this.orders().indexOf(order);
+
                 let url = `${this.deleteBaseUrl}?orderId=${order.orderId}`;
 
-                this.dataService.delete(url).then((result) => {
-                    this.orders().slice(index, 1);
+                this.dataService.delete(url).then(() => {
+                    this.getOrdersForUser();
+                    //let index = this.orders().indexOf(order);
+                    //let updated = this.orders.slice(index, 1);
+                    //this.orders(updated);
                     toastr.success("Action succesfully completed!", "Succes");
                 });
 

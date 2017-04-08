@@ -113,6 +113,10 @@
     <Compile Include="Migrations\201704041435559_MakeNotRequiredFieldsOfApplicationUserNullable.Designer.cs">
       <DependentUpon>201704041435559_MakeNotRequiredFieldsOfApplicationUserNullable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704081536091_Add-cascadeDeelete-for-orders.cs" />
+    <Compile Include="Migrations\201704081536091_Add-cascadeDeelete-for-orders.Designer.cs">
+      <DependentUpon>201704081536091_Add-cascadeDeelete-for-orders.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Seed\AircraftsCSVSeeder.cs" />
     <Compile Include="Migrations\201703231630146_ChangeAiportTimeZoneOffsetType.cs" />
     <Compile Include="Migrations\201703231630146_ChangeAiportTimeZoneOffsetType.Designer.cs">
@@ -190,6 +194,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704041435559_MakeNotRequiredFieldsOfApplicationUserNullable.resx">
       <DependentUpon>201704041435559_MakeNotRequiredFieldsOfApplicationUserNullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704081536091_Add-cascadeDeelete-for-orders.resx">
+      <DependentUpon>201704081536091_Add-cascadeDeelete-for-orders.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

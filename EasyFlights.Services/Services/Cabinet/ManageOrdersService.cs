@@ -32,6 +32,26 @@ namespace EasyFlights.Services.Services.Cabinet
 
         public async Task<OrderDto> GetOrderByIdForUserAsync(int orderId, string userId)
         {
+            var order = await GetOrder(orderId, userId);
+
+            return this.MapOrderToDto(order);
+        }
+
+        public void AddOrder(Order order)
+        {
+            orderRepository.AddOrder(order);
+        }
+
+        public async Task DeleteOrder(int orderId, string userId)
+        {
+            var order = await GetOrder(orderId, userId);
+
+            this.orderRepository.Delete(order);
+            this.orderRepository.SaveChanges();
+        }
+
+        private async Task<Order> GetOrder(int orderId, string userId)
+        {
             Guard.ArgumentValid(orderId > 0, "Invalid order id.", nameof(orderId));
 
             Order order = await this.orderRepository.FindByIdAsync(orderId);
@@ -40,12 +60,7 @@ namespace EasyFlights.Services.Services.Cabinet
 
             Guard.ArgumentValid(order != null, $"Order with id = {orderId} does't exist.", nameof(orderId));
 
-            return this.MapOrderToDto(order);
-        }
-
-        public void AddOrder(Order order)
-        {
-            orderRepository.AddOrder(order);
+            return order;
         }
 
         private List<OrderDto> CreateOrderResponse(List<Order> orders)

@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Http;
 using EasyFlights.Data.Repositories.Flights;
-using EasyFlights.DomainModel.Entities;
-using EasyFlights.Web.Infrastructure;
-using System.Threading.Tasks;
 using EasyFlights.DomainModel.DTOs;
+using EasyFlights.DomainModel.Entities;
 using EasyFlights.Services.Common;
 using EasyFlights.Services.Interfaces;
+using EasyFlights.Web.Infrastructure;
 using EasyFlights.Web.ViewModels.OrdersViewModel;
 using EasyFlights.Web.ViewModels.OrdersViewModels;
 using Microsoft.AspNet.Identity;
@@ -90,8 +90,14 @@ namespace EasyFlights.Web.ApiControllers
         }
 
         // DELETE api/<controller>/5
-        public void Delete(int id)
+        [HttpDelete]
+        [Route("Delete")]
+        public async Task<IHttpActionResult> Delete(int orderId)
         {
+            var userId = User.Identity.GetUserId();
+            await this.manageOrderService.DeleteOrder(orderId, userId);
+
+            return Ok();
         }
 
         private IEnumerable<ShortOrderViewModel> MapToShortOrderViewModels(IEnumerable<OrderDto> orders)
