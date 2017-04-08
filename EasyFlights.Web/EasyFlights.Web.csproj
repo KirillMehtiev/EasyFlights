@@ -290,6 +290,7 @@
     <Content Include="Client\App\Layout\Footer\FooterTemplate.html" />
     <Content Include="Client\App\Layout\Header\HeaderTemplate.html" />
     <Content Include="Client\App\Layout\LayoutTemplate.html" />
+    <Content Include="Client\App\Index\Search\Search.scss" />
     <None Include="Client\App\Login\Login.scss" />
     <Content Include="Client\App\Login\LoginTemplate.html" />
     <Content Include="Client\App\SearchResults\FlightResults\RouteResult.html" />
