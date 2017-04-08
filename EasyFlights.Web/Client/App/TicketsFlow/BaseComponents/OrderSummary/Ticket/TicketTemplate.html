@@ -11,7 +11,12 @@
             <h4><b>Place of arrival:</b>&nbsp;<span data-bind="text: ticket.destinationAirport()"></span></h4>
             <h4><b>Duration:</b>&nbsp;<span data-bind="text: ticket.duration()"></span></h4>
             <h4><b>Departure date:</b>&nbsp;<span data-bind="text: ticket.departureTime()"></span></h4>
-            <h4><b>Seat:</b>&nbsp;<span data-bind="text: ticket.seat()"></span></h4>
+            <div data-bind="if: ticket.seat()">
+                <h4><b>Seat:</b>&nbsp;<span data-bind="text: ticket.seat()"></span></h4>
+            </div>
+            <div data-bind="ifnot: ticket.seat()">
+                <h4><b>Seat: </b>Not Selected</h4>
+            </div>
             <h4><b>Price:</b>&nbsp;<span data-bind="text: ticket.fare()"></span></h4>
         </div>
     </div>
