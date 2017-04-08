@@ -6,6 +6,7 @@ using EasyFlights.Data.Repositories.Flights;
 using EasyFlights.DomainModel.DTOs;
 using EasyFlights.DomainModel.Entities.Enums;
 using EasyFlights.DomainModel.Entities.Identity;
+using EasyFlights.Services.Common;
 using EasyFlights.Services.DtoMappers;
 using EasyFlights.Services.Interfaces;
 using EasyFlights.Web.Infrastructure;
@@ -63,7 +64,7 @@ namespace EasyFlights.Web.ApiControllers
                 ArrivalCity = dto.ArrivalCity,
                 DepartureAirport = dto.DepartureAirport,
                 DepartureCity = dto.DepartureCity,
-                Duration = dto.Duration.ToString("d' days, 'hh':'mm"),
+                Duration = dto.Duration.ToString(Format.TimeSpanFormat),
                 Flights = new List<FlightViewModel>(),
                 TotalPrice = dto.TotalPrice
             };
@@ -75,7 +76,7 @@ namespace EasyFlights.Web.ApiControllers
                     DepartureAirport = flight.DepartureAirportTitle,
                     DepartureTime = flight.ScheduledDepartureTime.ToShortDateString(),
                     DestinationAirport = flight.DestinationAirportTitle,
-                    Duration = flight.Duration.ToString("d' days, 'hh':'mm"),
+                    Duration = flight.Duration.ToString(Format.TimeSpanFormat),
                     Fare = flight.DefaultFare,
                     Tickets = new List<TicketVIewModel>()
                 };

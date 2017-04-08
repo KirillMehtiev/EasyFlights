@@ -58,16 +58,15 @@ namespace EasyFlights.Services.Services.Cabinet
                 foreach (var ticket in order.Tickets)
                 {
                     flight = flightMapper.Map(ticket.Flight);
-
                     ordersResponse.Add(
                         new OrderDto
                         {
                             DeparturePlace = flight.DepartureAirportTitle,
                             DestinationPlace = flight.DestinationAirportTitle,
-                            OrderDate = order.OrderDate.ToString(),
+                            OrderDate = order.OrderDate.ToString(Format.DateTimeFormat),
                             Cost = ticket.Fare,
-                            Duration = flight.Duration.ToString(),
-                            DepartureDate = flight.ScheduledDepartureTime.ToString(),
+                            Duration = flight.Duration.ToString(Format.TimeSpanFormat),
+                            DepartureDate = flight.ScheduledDepartureTime.ToString(Format.DateTimeFormat),
                             OrderId = order.Id
                         });
                 }
@@ -89,12 +88,12 @@ namespace EasyFlights.Services.Services.Cabinet
 
             var result = new OrderDto()
             {
-                DepartureDate = firstTicket.Flight.DepartureAirport.Title,
+                DepartureDate = firstTicket.Flight.ScheduledDepartureTime.ToString(Format.DateTimeFormat),
                 DestinationPlace = lastLast.Flight.DestinationAirport.Title,
                 Cost = tickets.Sum(s => s.Fare),
-                OrderDate = order.OrderDate.ToString("d"),
-                DeparturePlace = firstTicket.Flight.ScheduledDepartureTime.ToString("yyyy mmmm dd"),
-                Duration = $"{duration.Days} day(s) {duration.Hours} hour(s) {duration.Minutes} minute(s)",
+                OrderDate = order.OrderDate.ToString(Format.DateTimeFormat),
+                DeparturePlace = firstTicket.Flight.DepartureAirport.Title,
+                Duration = duration.ToString(Format.TimeSpanFormat),
                 Tickets = ToTicketDto(tickets)
             };
 
