@@ -1,21 +1,27 @@
 ﻿<div class="row">
     <h1 class="text-info">Summary information</h1>
     <hr />
-    <div data-bind="foreach: {data: passengerInfoList, as: 'passenger'}">
-        <div data-bind="foreach: {data: passenger.tickets(), as: 'ticket'}">
-            <ticket params="passenger: passenger, ticketIndex: $index"></ticket>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div data-bind="foreach: {data: passengerInfoList, as: 'passenger'}">
+                <div data-bind="foreach: {data: passenger.tickets(), as: 'ticket'}">
+                    <ticket params="passenger: passenger, ticketIndex: $index"></ticket>
+                </div>
+            </div>
         </div>
-    </div>
-   
-    <div class="row">
-        <div class="pull-right bookAndbuyButtons">
-            <button type="button" class="btn btn-primary" data-bind="click: confirm">Book</button>
-        </div>
-        <div class="pull-left">
-            <h1><b>Total price: </b><span data-bind="text: totalPrice"></span></h1>
-        </div>
-        <div class="pull-right previousStepButton">
-            <a class="btn btn-default" data-bind="click: previousStep">Back</a>
+        <div class="panel-footer">
+            <div class="row">
+                <div class="pull-right col-md-2 bookAndbuyButtons">
+                    <button type="button" class="btn btn-primary btn-block" data-bind="click: confirm">Book</button>
+                </div>
+                <div class="col-md-4">
+                    <h2><b>Total price: </b><span data-bind="text: totalPrice"></span></h2>
+                </div>
+                <div class="pull-right previousStepButton">
+                    <a class="btn btn-default" data-bind="click: previousStep"><i class="glyphicon glyphicon-menu-left"></i> Back</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+

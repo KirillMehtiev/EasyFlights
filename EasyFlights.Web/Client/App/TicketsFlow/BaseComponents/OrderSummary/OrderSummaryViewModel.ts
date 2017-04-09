@@ -28,7 +28,7 @@ class OrderSummaryViewModel {
     public confirm():void {
     swal({
         title: "Are you sure?",
-        text: "Did you check your personal information&",
+        text: "Did you check your personal information?",
         type: "warning",
         showCancelButton: true,
         confirmButtonColor: "#DD6B55",
