@@ -27,7 +27,7 @@ namespace EasyFlights.Services.Services.Cabinet
         {
             var orders = await orderRepository.GetOrdersByUserId(userId);
 
-            return CreateOrderResponse(orders);
+            return orders.Select(MapOrderToDto).ToList();
         }
 
         public async Task<OrderDto> GetOrderByIdForUserAsync(int orderId, string userId)
@@ -63,33 +63,6 @@ namespace EasyFlights.Services.Services.Cabinet
             return order;
         }
 
-        private List<OrderDto> CreateOrderResponse(List<Order> orders)
-        {
-            var flight = new FlightDto();
-            var ordersResponse = new List<OrderDto>();
-
-            foreach (var order in orders)
-            {
-                foreach (var ticket in order.Tickets)
-                {
-                    flight = flightMapper.Map(ticket.Flight);
-                    ordersResponse.Add(
-                        new OrderDto
-                        {
-                            DeparturePlace = flight.DepartureAirportTitle,
-                            DestinationPlace = flight.DestinationAirportTitle,
-                            OrderDate = order.OrderDate.ToString(Format.DateTimeFormat),
-                            Cost = ticket.Fare,
-                            Duration = flight.Duration.ToString(Format.TimeSpanFormat),
-                            DepartureDate = flight.ScheduledDepartureTime.ToString(Format.DateTimeFormat),
-                            OrderId = order.Id
-                        });
-                }
-            }
-
-            return ordersResponse;
-        }
-
         private OrderDto MapOrderToDto(Order order)
         {
             Guard.ArgumentValid(order.Tickets != null, $"Order id {order.Id} does not have tickets", nameof(order.Tickets));
@@ -109,7 +82,8 @@ namespace EasyFlights.Services.Services.Cabinet
                 OrderDate = order.OrderDate.ToString(Format.DateTimeFormat),
                 DeparturePlace = firstTicket.Flight.DepartureAirport.Title,
                 Duration = duration.ToString(Format.TimeSpanFormat),
-                Tickets = ToTicketDto(tickets)
+                Tickets = ToTicketDto(tickets),
+                OrderId = order.Id
             };
 
             return result;
