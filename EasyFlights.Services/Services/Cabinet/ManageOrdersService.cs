@@ -79,7 +79,7 @@ namespace EasyFlights.Services.Services.Cabinet
                 DepartureDate = firstTicket.Flight.ScheduledDepartureTime.ToString(Format.DateTimeFormat),
                 DestinationPlace = lastLast.Flight.DestinationAirport.Title,
                 Cost = tickets.Sum(s => s.Fare),
-                OrderDate = order.OrderDate.ToString(Format.DateTimeFormat),
+                OrderDate = order.OrderDate,
                 DeparturePlace = firstTicket.Flight.DepartureAirport.Title,
                 Duration = duration.ToString(Format.TimeSpanFormat),
                 Tickets = ToTicketDto(tickets),

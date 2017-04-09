@@ -44,7 +44,7 @@ namespace EasyFlights.Web.ApiControllers
             var userId = User.Identity.GetUserId();
             var orders = await manageOrderService.GetOrdersForUser(userId);
 
-            return MapToShortOrderViewModels(orders);
+            return MapToShortOrderViewModels(orders.OrderByDescending(o => o.OrderDate));
         }
 
         // GET api/<controller>/5
@@ -133,7 +133,7 @@ namespace EasyFlights.Web.ApiControllers
                 DepartureCity = order.DeparturePlace,
                 DestinationCity = order.DestinationPlace,
                 Cost = order.Cost,
-                DateOfOrdering = order.OrderDate,
+                DateOfOrdering = order.OrderDate.ToString(Format.DateFormat),
                 SetOffDate = order.DepartureDate,
                 Duration = order.Duration.Remove(0, 1),
                 OrderId = order.OrderId
@@ -168,7 +168,7 @@ namespace EasyFlights.Web.ApiControllers
 
             return new DetailedOrderViewModel()
             {
-                OrderedDate = order.OrderDate,
+                OrderedDate = order.OrderDate.ToString(Format.DateFormat),
                 Tickets = tickets
             };
         }
