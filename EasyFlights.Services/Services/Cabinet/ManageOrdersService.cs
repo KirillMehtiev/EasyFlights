@@ -100,7 +100,8 @@ namespace EasyFlights.Services.Services.Cabinet
                 TicketNumber = t.Id,
                 DestinationPlace = t.Flight.DestinationAirport.Title,
                 DeparturePlace = t.Flight.DepartureAirport.Title,
-                DepartureDate = t.Flight.ScheduledDepartureTime.ToString("f")
+                DepartureDate = t.Flight.ScheduledDepartureTime.ToString(Format.DateTimeFormat),
+                FlightId = t.Flight.Id,
             });
         }
 

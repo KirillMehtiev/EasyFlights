@@ -19,5 +19,7 @@ namespace EasyFlights.DomainModel.DTOs
         public string DestinationPlace { get; set; }
 
         public string DepartureDate { get; set; }
+
+        public int FlightId { get; set; }
     }
 }

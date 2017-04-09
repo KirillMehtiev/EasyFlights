@@ -2,6 +2,7 @@
 require("knockout.validation");
 import { AuthService } from "../Common/Services/Auth/authService";
 import { DataService } from "../Common/Services/dataService";
+import { TicketsFlowService } from "../TicketsFlow/Services/TicketsFlowService"
 
 class LoginViewModel {
     public userEmail: KnockoutObservable<string>;
@@ -9,6 +10,7 @@ class LoginViewModel {
     public rememberMe: KnockoutObservable<boolean>;
     public isRequestProcessing: KnockoutObservable<boolean>;
     public dataService: DataService = new DataService();
+    public ticketsFlowService: TicketsFlowService = new TicketsFlowService();
 
     private urlToBookTickets: string = "api/orders/BookTickets";
     constructor() {
@@ -37,14 +39,16 @@ class LoginViewModel {
         else {
             viewModel.errors.showAllMessages();
         }
-
         var filledData = window.localStorage.getItem("filledData");
         if (filledData !== null) {
             this.isRequestProcessing(true);
-            this.dataService.post(this.urlToBookTickets, JSON.parse(filledData))
+            this.ticketsFlowService
+                .bookTickets(JSON.parse(filledData))
                 .then(() => {
-                    window.localStorage.removeItem("filledData");
-                    window.location.href = "#";
+                    if (AuthService.current.isCurrentUserSignedIn) {
+                        window.localStorage.removeItem("filledData");
+                        window.location.href = "#";
+                    }
                 }).always(() => this.isRequestProcessing(false));;
         }
     };

@@ -28,7 +28,12 @@
             <div class="col-md-3">
                 <div class="form-group">
                     <label class="control-label">Date of Birth:</label>
-                    <date-picker params="selectedDate: birthday, name: 'birthday'"></date-picker>
+                        <div class="input-group">
+                            <date-picker params="selectedDate: birthday, name: 'birthday'"></date-picker>
+                            <label class="input-group-addon" for="testdate">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </label>
+                        </div>
                 </div>
             </div>
             <div class="col-md-3">
