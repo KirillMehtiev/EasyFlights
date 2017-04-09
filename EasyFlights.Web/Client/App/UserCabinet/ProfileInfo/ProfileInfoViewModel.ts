@@ -11,11 +11,11 @@ import { ChangeUserItem } from "./ChangeUserItem"
 
 class ProfileInfoViewModel {
     
-    private sexOptions: Array<RadioChooserItem>;
+    public sexOptions: Array<RadioChooserItem>;
     public selectedBirthday: KnockoutObservable<string>;
     public birthdayDateName: KnockoutObservable<string>;
     public isRequestProcessing: KnockoutObservable<boolean>;
-
+    public selectedSex:KnockoutObservable<string>;
     private dataService: Service.DataService = new Service.DataService();
     public item: KnockoutObservable<ProfileItem>;
     private changeUrl: string = "api/Account/ChangeUser";
@@ -23,12 +23,12 @@ class ProfileInfoViewModel {
 
 
     constructor() {
-       
+        this.selectedSex = ko.observable("");
         this.sexOptions = [
             new RadioChooserItem("Male", Sex.Male),
             new RadioChooserItem("Female", Sex.Female)
         ];
-        this.item = ko.observable(new ProfileItem("", "","", "","", ""));
+        this.item = ko.observable(new ProfileItem("", "", "", "", "", ""));
         this.isRequestProcessing = ko.observable(false);
         this.selectedBirthday = ko.observable("");
         this.getUser();
@@ -43,6 +43,9 @@ class ProfileInfoViewModel {
         this.dataService.get<ProfileItem>(this.getUrl)
             .then((data) => {
                 this.item(data);
+                this.selectedSex(Sex[data.sex].toString());
+                console.log(this.selectedSex());
+                this.selectedBirthday(data.dateOfBirth);
             }).always(() => this.isRequestProcessing(false));;
            
       
@@ -53,11 +56,11 @@ class ProfileInfoViewModel {
         let viewModel = <KnockoutValidationGroup>ko.validatedObservable(this);
         //toastr.success("Information successfully updated!", "Succes");
         if (viewModel.isValid()) {
+            this.item().sex = this.selectedSex();
             this.dataService.post<boolean>(this.changeUrl,
                 new ChangeUserItem(this.item().firstName, this.item().lastName, moment(this.selectedBirthday()).format("L"), this.item().contactPhone, this.item().email, this.item().sex))
                 .then((data) => {
                     result = data;
-                    console.log(moment(this.selectedBirthday()).format("L"));
                     if (result) {
                         toastr.success("Information successfully updated!", "Succes");
                      

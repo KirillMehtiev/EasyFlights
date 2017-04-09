@@ -190,7 +190,7 @@ namespace EasyFlights.Web.ApiControllers
                 Cost = order.Cost,
                 DateOfOrdering = order.OrderDate.ToString(Format.DateFormat),
                 SetOffDate = order.DepartureDate,
-                Duration = order.Duration.Remove(0, 1),
+                Duration = order.Duration,
                 OrderId = order.OrderId
             });
         }
@@ -214,7 +214,8 @@ namespace EasyFlights.Web.ApiControllers
                     Price = ticket.Price,
                     DeparturePlace = ticket.DeparturePlace,
                     DestinationPlace = ticket.DestinationPlace,
-                    DepartureDate = ticket.DepartureDate
+                    DepartureDate = ticket.DepartureDate,
+                    Duration = order.Duration
                 };
 
                 tickets.Add(detailedTicketViewModel);

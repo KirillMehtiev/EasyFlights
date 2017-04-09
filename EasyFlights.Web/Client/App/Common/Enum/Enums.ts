@@ -5,8 +5,8 @@
 }
 
 export enum Sex {
-    Male,
-    Female
+    Male=1,
+    Female=2
 }
 
 export enum TicketClass {
