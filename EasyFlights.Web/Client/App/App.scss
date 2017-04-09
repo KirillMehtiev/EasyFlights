@@ -142,3 +142,12 @@ div.modal-header {
 .no-margin-top {
     margin-top: 0;
 }
+
+.input-group .validation-message {
+    display: block;
+    position: absolute;
+    left: 0px;
+    top: 28px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}

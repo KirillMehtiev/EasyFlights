@@ -264,6 +264,8 @@
     <Compile Include="ViewModels\FlightViewModel.cs" />
     <Compile Include="ViewModels\OrdersViewModel\DetailedOrderViewModel.cs" />
     <Compile Include="ViewModels\OrdersViewModel\DetailedTicketViewModel.cs" />
+    <Compile Include="ViewModels\OrdersViewModel\EditOrderPassengerInformationViewModel.cs" />
+    <Compile Include="ViewModels\OrdersViewModel\EditOrderTicketViewModel.cs" />
     <Compile Include="ViewModels\OrdersViewModel\TicketForBookingViewModel.cs" />
     <Compile Include="ViewModels\OrdersViewModel\ShortOrderViewModel.cs" />
     <Compile Include="ViewModels\OrdersViewModel\TicketViewModel.cs" />
@@ -522,7 +524,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Client\App\UserCabinet\Services\" />
-    <Folder Include="ViewModels\TicketViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Client\App\SignUp\SignUp.scss" />
