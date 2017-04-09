@@ -7,6 +7,7 @@ using System.Web.Http;
 using System.Web.Http.Cors;
 using EasyFlights.DomainModel.Entities.Enums;
 using EasyFlights.DomainModel.Entities.Identity;
+using EasyFlights.Services.Common;
 using EasyFlights.Web.Identity;
 using EasyFlights.Web.Infrastructure;
 using EasyFlights.Web.Results;
@@ -129,13 +130,12 @@ namespace EasyFlights.Web.ApiControllers
             var profileInfo = new ProfileViewModel
             {
                 ContactPhone = user.PhoneNumber,
-                DateOfBirth = user.DateOfBirth.ToString(),
+                DateOfBirth = user.DateOfBirth?.ToString(Format.DateFormat) ?? "",
                 Email = user.Email,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
-                Sex = user.Sex.ToString()
-            };
-
+                Sex = user.Sex?.ToString("G")
+                };
             return profileInfo;
         }
 
