@@ -20,8 +20,11 @@ namespace EasyFlights.Web.ApiControllers
     public class OrdersController : ApiController
     {
         private readonly IManageOrdersService manageOrderService;
+
         private readonly IFlightsRepository flightRepository;
+
         private readonly IApplicationUserManager applicationUserManager;
+
         private readonly IFlightService flightService;
 
         public OrdersController(
@@ -52,9 +55,19 @@ namespace EasyFlights.Web.ApiControllers
         [Route("GetById")]
         public async Task<DetailedOrderViewModel> Get(int orderId)
         {
-            var userId = User.Identity.GetUserId();
-            var order = await this.manageOrderService.GetOrderByIdForUserAsync(orderId, userId);
+            var order = await GetOrderForCurrentUser(orderId);
             var result = MapToDetailedOrderViewModel(order);
+
+            return result;
+        }
+
+        [HttpGet]
+        [Route("getOrderForEdit")]
+        public async Task<IEnumerable<EditOrderPassengerInformationViewModel>> GetPassengerInformationForOrder(int orderId)
+        {
+            var order = await GetOrderForCurrentUser(orderId);
+
+            var result = MapToEditOrderPassengerInformationViewModel(order);
 
             return result;
         }
@@ -81,7 +94,7 @@ namespace EasyFlights.Web.ApiControllers
                 var availibleSeats = await flightService.GetAvailableSeats(
                     count,
                     flightId,
-                    ticketsForBooking.Where(ticket => ticket.Seat != 0).Select(s=> s.Seat).ToList());
+                    ticketsForBooking.Where(ticket => ticket.Seat != 0).Select(s => s.Seat).ToList());
 
                 foreach (var ticket in tickets)
                 {
@@ -126,6 +139,48 @@ namespace EasyFlights.Web.ApiControllers
             return Ok();
         }
 
+        private async Task<OrderDto> GetOrderForCurrentUser(int orderId)
+        {
+            var userId = User.Identity.GetUserId();
+            return await this.manageOrderService.GetOrderByIdForUserAsync(orderId, userId);
+        }
+
+        private IEnumerable<EditOrderPassengerInformationViewModel> MapToEditOrderPassengerInformationViewModel(
+            OrderDto order)
+        {
+            var tickets = order.Tickets.ToList();
+            var passengers = order.Tickets.Distinct().Select(p => p.Passenger);
+            var result = new List<EditOrderPassengerInformationViewModel>();
+
+            foreach (var passenger in passengers)
+            {
+                result.Add(new EditOrderPassengerInformationViewModel
+                {
+                    FirstName = passenger.FirstName,
+                    LastName = passenger.LastName,
+                    Birthday = passenger.Birthday.ToString(Format.DateFormat),
+                    DocumentNumber = passenger.DocumentNumber,
+                    Sex = passenger.Sex,
+                    Tickets = MapToEditOrderTicketViewModel(tickets)
+                });
+            }
+
+            return result;
+        }
+
+        private IEnumerable<EditOrderTicketViewModel> MapToEditOrderTicketViewModel(IEnumerable<TicketDto> tickets)
+        {
+            return tickets.Select(ticket => new EditOrderTicketViewModel
+            {
+                DepartureAirport = ticket.DeparturePlace,
+                DestinationAirport = ticket.DestinationPlace,
+                DepartureTime = ticket.DepartureDate,
+                Seat = ticket.Seat.Number,
+                Fare = ticket.Price,
+                FlightId = ticket.FlightId
+            });
+        }
+
         private IEnumerable<ShortOrderViewModel> MapToShortOrderViewModels(IEnumerable<OrderDto> orders)
         {
             return orders.Select(order => new ShortOrderViewModel
@@ -137,7 +192,6 @@ namespace EasyFlights.Web.ApiControllers
                 SetOffDate = order.DepartureDate,
                 Duration = order.Duration.Remove(0, 1),
                 OrderId = order.OrderId
-
             });
         }
 
