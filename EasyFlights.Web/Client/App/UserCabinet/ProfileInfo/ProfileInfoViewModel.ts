@@ -38,13 +38,13 @@ class ProfileInfoViewModel {
 
         
     }
-    private getUser(): ProfileItem {
+    private getUser() {
         this.isRequestProcessing(true);
         this.dataService.get<ProfileItem>(this.getUrl)
             .then((data) => {
                 this.item(data);
             }).always(() => this.isRequestProcessing(false));;
-            return this.item();
+           
       
 
     } 

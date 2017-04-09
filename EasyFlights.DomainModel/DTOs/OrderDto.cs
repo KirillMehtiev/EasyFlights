@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace EasyFlights.DomainModel.DTOs
 {
@@ -12,7 +13,7 @@ namespace EasyFlights.DomainModel.DTOs
 
         public decimal Cost { get; set; }
 
-        public string OrderDate { get; set; }
+        public DateTime OrderDate { get; set; }
 
         public string DepartureDate { get; set; }
 
