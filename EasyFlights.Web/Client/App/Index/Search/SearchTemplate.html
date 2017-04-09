@@ -12,23 +12,27 @@
 <br />
 <div class="row">
     <div class="col-md-6">
-        <div class="col-md-5" style="padding:0">
-            <label class="control-label" for="departure-date-picker">Departure date:</label>
+        <div class="col-md-5" style="padding: 0">
+            <div class="form-group">
+                <label class="control-label" for="departure-date-picker">Departure date:</label>
 
-            <div class="input-group">
-                <date-picker id="departure-date-picker" params="selectedDate: selectedDepartureDate, name: departureDateName"></date-picker>
-                <label class="input-group-addon" for="testdate">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </label>
+                <div class="input-group">
+                    <date-picker id="departure-date-picker" params="selectedDate: selectedDepartureDate, name: departureDateName"></date-picker>
+                    <label class="input-group-addon" for="testdate">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </label>
+                </div>
             </div>
         </div>
-        <div class="col-md-5 pull-right" style="padding:0" data-bind="visible: isRoundTripSelected">
-            <label class="control-label" for="return-date-picker">Return date:</label>
-            <div class="input-group">
-                <date-picker id="return-date-picker" params="selectedDate: selectedReturnDate, name: returnDateName"></date-picker>
-                <label class="input-group-addon" for="testdate">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </label>
+        <div class="col-md-5 pull-right" style="padding: 0" data-bind="visible: isRoundTripSelected">
+            <div class="form-group">
+                <label class="control-label" for="return-date-picker">Return date:</label>
+                <div class="input-group">
+                    <date-picker id="return-date-picker" params="selectedDate: selectedReturnDate, name: returnDateName"></date-picker>
+                    <label class="input-group-addon" for="testdate">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </label>
+                </div>
             </div>
         </div>
     </div>
@@ -47,7 +51,7 @@
         </div>
     </div>
     <hr />
-    <div class="row">
+    <div class="row" style="margin-top:70px">
         <div class="col-md-12">
             <div data-bind="if: checked()">
                 <a class="btn btn-primary btn-lg btn-block" data-bind="page-href: {path: 'results', params: {
