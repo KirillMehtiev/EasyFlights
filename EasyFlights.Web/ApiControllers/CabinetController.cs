@@ -41,6 +41,10 @@ namespace EasyFlights.Web.ApiControllers
                 return false;
             }
             ApplicationUser user = await userManager.FindByIdAsync(User.Identity.GetUserId());
+            if (user.PasswordHash != userManager.PasswordHasher.HashPassword(model.OldPassword))
+            {
+                return false;
+            }
             user.PasswordHash = userManager.PasswordHasher.HashPassword(model.NewPassword);
             IdentityResult result = await userManager.UpdateAsync(user);
             if (!result.Succeeded)

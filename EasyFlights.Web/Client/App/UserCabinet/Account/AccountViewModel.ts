@@ -59,25 +59,24 @@ class AccountViewModel {
         this.dataService.get(this.getEmailUrl)
             .then((data:string)=> { this.email(data); });
     }
-    public changePassword():boolean {
-        let result: boolean = false;
+    public changePassword():void {
         let viewModel = <KnockoutValidationGroup>ko.validatedObservable(this);
         if (viewModel.isValid()) {
             this.dataService.post<boolean>(this.changePasswordUrl,
                     new ChangePasswordModel(this.oldPassword(), this.newPassword(), this.newPasswordConfirm()))
-                .then((data) => {
-                    result = data;
-                    if (result) {
+                .done(data => {
+                    if (data) {
                         this.email("");
                         this.oldPassword("");
                         this.newPassword("");
                         this.newPasswordConfirm("");
+                        swal("Success!", "Your password was successfully changed!", "success");
+                    } else {
+                        swal("Oops!", "Something gone wrong!", "error");
                     }
                 });
-            return result;
         } else {
-            viewModel.errors.showAllMessages();
-            return false;
+            viewModel.errors.showAllMessages();  
         }
     }
 }
