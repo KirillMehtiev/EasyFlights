@@ -10,29 +10,49 @@ import { ChangeUserItem } from "./ChangeUserItem"
 
 
 class ProfileInfoViewModel {
-    
+
+    public item: KnockoutObservable<ProfileItem>;
+    public firstName: KnockoutObservable<string>;
+    public lastName: KnockoutObservable<string>;
+    public contactPhone: KnockoutObservable<string>;
     public sexOptions: Array<RadioChooserItem>;
+    public selectedSex: KnockoutObservable<Sex>;
     public selectedBirthday: KnockoutObservable<string>;
     public birthdayDateName: KnockoutObservable<string>;
+
     public isRequestProcessing: KnockoutObservable<boolean>;
-    public selectedSex:KnockoutObservable<string>;
     private dataService: Service.DataService = new Service.DataService();
-    public item: KnockoutObservable<ProfileItem>;
     private changeUrl: string = "api/Account/ChangeUser";
     private getUrl: string = "api/Account/UserInfo";
 
-
     constructor() {
-        this.selectedSex = ko.observable("");
+        this.selectedSex = ko.observable(Sex.Female);
         this.sexOptions = [
             new RadioChooserItem("Male", Sex.Male),
             new RadioChooserItem("Female", Sex.Female)
         ];
-        this.item = ko.observable(new ProfileItem("", "", "", "", "", ""));
-        this.isRequestProcessing = ko.observable(false);
-        this.selectedBirthday = ko.observable("");
-        this.getUser();
 
+        this.item = ko.observable(new ProfileItem("", "", "", "", "", Sex.Female));
+        this.isRequestProcessing = ko.observable(false);
+        this.firstName = ko.observable("").extend({
+            required: true,
+            minLength: 1,
+            maxLength: 50
+        });
+        this.lastName = ko.observable("").extend({
+            required: true,
+            minLength: 1,
+            maxLength: 50
+        });
+        this.contactPhone = ko.observable("").extend({
+            required: true,
+            phoneUS: true
+        });
+        this.selectedBirthday = ko.observable("").extend({
+            dateBefore: moment().format("L")
+        });
+
+        this.getUser();
         this.birthdayDateName = ko.observable("birthdayDate");
         this.changeData.bind(this);
 
@@ -43,35 +63,32 @@ class ProfileInfoViewModel {
         this.dataService.get<ProfileItem>(this.getUrl)
             .then((data) => {
                 this.item(data);
-                this.selectedSex(Sex[data.sex].toString());
-                console.log(this.selectedSex());
+                this.selectedSex(Sex[(data.sex).toString()]);
                 this.selectedBirthday(data.dateOfBirth);
+                this.firstName(data.firstName);
+                this.lastName(data.lastName);
+                this.contactPhone(data.contactPhone);
             }).always(() => this.isRequestProcessing(false));;
-           
-      
-
     } 
-    public changeData(): boolean {
-        let result: boolean = false;
+
+    private changeData() {
+       
         let viewModel = <KnockoutValidationGroup>ko.validatedObservable(this);
-        //toastr.success("Information successfully updated!", "Succes");
         if (viewModel.isValid()) {
+            this.item().firstName = this.firstName();
+            this.item().lastName = this.lastName();
+            this.item().contactPhone = this.contactPhone();
             this.item().sex = this.selectedSex();
             this.dataService.post<boolean>(this.changeUrl,
                 new ChangeUserItem(this.item().firstName, this.item().lastName, moment(this.selectedBirthday()).format("L"), this.item().contactPhone, this.item().email, this.item().sex))
                 .then((data) => {
-                    result = data;
-                    if (result) {
-                        toastr.success("Information successfully updated!", "Succes");
-                     
-                    }
+                 
+                    toastr.success("Information successfully updated!", "Succes");
+
                 });
-            return result;
         } else {
             viewModel.errors.showAllMessages();
-            return false;
         }
     }
 }
-
 export = ProfileInfoViewModel;

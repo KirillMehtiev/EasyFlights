@@ -39,11 +39,13 @@ class SearchViewModel {
         this.selectedTicketType = ko.observable(TicketType.OneWay);
 
         this.selectedDepartureDate = ko.observable("").extend({
+            requred:true,
             dateAfter: moment().format("L")
         });
         let self = this;
 
         this.selectedReturnDate = ko.observable("").extend({
+            required: true,
             dateAfter: self.selectedDepartureDate
         });
 
@@ -76,6 +78,7 @@ class SearchViewModel {
 
                 return true;
             }
+           // viewModel1.errors.showAllMessages();
             return false;
         }
         var viewModel2 = <KnockoutValidationGroup>ko
@@ -84,8 +87,9 @@ class SearchViewModel {
 
             return true;
         }
-        
+        //viewModel2.errors.showAllMessages();
         return false;
+
 
     }
 

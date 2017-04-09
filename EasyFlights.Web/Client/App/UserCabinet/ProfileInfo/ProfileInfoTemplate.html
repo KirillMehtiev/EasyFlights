@@ -1,21 +1,22 @@
 ﻿<div class="container">
     <h3>Edit your personal information</h3>
+   <br />
     <div class="row form-group">
         <label class="col-md-3 control-label">First name:</label>
         <div class="col-md-4">
-            <input class="form-control" type="text" placeholder="Ivan" data-bind="value: item().firstName" />
+            <input  class="form-control" type="text" placeholder="Ivan" data-bind="value: firstName" required/>
         </div>
     </div>
     <div class="row form-group">
         <label class="col-md-3 control-label">Last name:</label>
         <div class="col-md-4">
-            <input class="form-control" type="text" placeholder="Ivanov" data-bind="value: item().lastName" />
+            <input class="form-control" type="text" placeholder="Ivanov" data-bind="value: lastName" />
         </div>
     </div>
     <div class="row form-group">
         <label class="col-md-3 control-label">Contact Phone:</label>
         <div class="col-md-4">
-            <input class="form-control" type="text" placeholder="e.g. 1-202-505-5050" data-bind="value: item().contactPhone" />
+            <input class="form-control" type="text" placeholder="e.g. 1-202-505-5050" data-bind="value: contactPhone" />
         </div>
     </div>
     <div class="row form-group">
@@ -32,9 +33,10 @@
     </div>
     <div class="row form-group">
         <label class="col-md-3 control-label"></label>
-        <div class="col-md-4 pull-right">
+        <div class="col-md-4">
             <button class="btn btn-primary" data-bind="click: changeData">
-                Save changes
+                <i class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></i>
+               Save changes
             </button>
         </div>
         </div>

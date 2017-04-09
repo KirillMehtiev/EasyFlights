@@ -107,10 +107,18 @@ namespace EasyFlights.Web.ApiControllers
             {
                 return this.InternalServerError();
             }
-            user.DateOfBirth = DateTime.Parse(model.DateOfBirth);
+            if(!string.IsNullOrEmpty(model.DateOfBirth))
+            {
+                user.DateOfBirth = DateTime.Parse(model.DateOfBirth);
+            }
+            
             user.FirstName = model.FirstName;
             user.LastName = model.LastName;
-            user.Sex = (Sex)Enum.Parse(typeof(Sex), model.Sex);
+            if(!string.IsNullOrEmpty(model.Sex))
+            {
+                user.Sex = (Sex)Enum.Parse(typeof(Sex), model.Sex);
+            }
+           
             user.PhoneNumber = model.ContactPhone;
             IdentityResult result = await this.applicationUserManager.UpdateAsync(user);
 
