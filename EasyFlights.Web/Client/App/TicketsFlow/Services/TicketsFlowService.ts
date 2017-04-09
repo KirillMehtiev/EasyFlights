@@ -1,5 +1,6 @@
 ﻿import { DataService } from '../../Common/Services/dataService';
 import { ITicketForBooking } from "./ITicketForBooking";
+import { IEditablePassengerOptions } from "../BaseComponents/PassengersInfo/EditablePassenger/IEditablePassengerOptions";
 
 export class TicketsFlowService {
     private dataService: DataService = new DataService();
@@ -9,7 +10,7 @@ export class TicketsFlowService {
     }
 
     public loadOrder(orderId: string): JQueryPromise<any> {
-        return this.dataService.get("api/orders/getOrderById?orderId=" + orderId);
+        return this.dataService.get("api/orders/getOrderForEdit?orderId=" + orderId);
     }
 
     public bookTickets(tickets: Array<ITicketForBooking>) {

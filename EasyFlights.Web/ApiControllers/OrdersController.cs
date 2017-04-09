@@ -158,7 +158,7 @@ namespace EasyFlights.Web.ApiControllers
                 {
                     FirstName = passenger.FirstName,
                     LastName = passenger.LastName,
-                    Birthday = passenger.Birthday.ToString(Format.DateFormat),
+                    Birthday = passenger.Birthday.ToString("d"),
                     DocumentNumber = passenger.DocumentNumber,
                     Sex = passenger.Sex,
                     Tickets = MapToEditOrderTicketViewModel(tickets)
