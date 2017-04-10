@@ -191,7 +191,9 @@ namespace EasyFlights.Web.ApiControllers
                 DateOfOrdering = order.OrderDate.ToString(Format.DateFormat),
                 SetOffDate = order.DepartureDate,
                 Duration = order.Duration,
-                OrderId = order.OrderId
+                OrderId = order.OrderId,
+                arrivalCity = order.arrivalCity,
+                departureCity = order.departureCity
             });
         }
 

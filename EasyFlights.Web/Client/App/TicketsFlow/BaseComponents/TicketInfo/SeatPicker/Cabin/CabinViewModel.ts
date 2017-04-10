@@ -29,10 +29,12 @@ class CabinViewModel {
     } 
 
     public chooseNumber(seatNumber: number) {
-        this.rows().forEach(x => x.seats().forEach(z => (z.seat !== seatNumber) ? z.isChosen(false) : this.choose(seatNumber, z.isChosen())));
+        this.rows().forEach(x => x.seats().forEach(z => (z.seat !== seatNumber) ? z.isChosen(false) : this.choose(seatNumber, z.isChosen(), z.isBooked())));
     } 
 
-    public choose(seatNumber: number, isChoosen: boolean) {
+    public choose(seatNumber: number, isChoosen: boolean, isBooked: boolean) {
+        if (isBooked)
+            return;
         if (isChoosen) {
             console.log(isChoosen);
             this.seatChosen()[this.firstName] = seatNumber;
