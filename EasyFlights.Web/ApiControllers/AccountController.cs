@@ -209,9 +209,13 @@ namespace EasyFlights.Web.ApiControllers
                 };
 
                 IdentityResult result = await this.applicationUserManager.CreateAsync(user);
-                ClaimsIdentity claim = await this.applicationUserManager.CreateIdentityAsync(user,
-                    DefaultAuthenticationTypes.ApplicationCookie);
-                this.authenticationManager.SignIn(new AuthenticationProperties {IsPersistent = true}, claim);
+                if (result.Succeeded)
+                {
+                    ClaimsIdentity claim = await this.applicationUserManager.CreateIdentityAsync(user,
+                        DefaultAuthenticationTypes.ApplicationCookie);
+                    this.authenticationManager.SignIn(new AuthenticationProperties {IsPersistent = true}, claim);
+                }
+                return this.BadRequest();
             }
 
             return Redirect(Url.Content("~/#userCabinet"));
