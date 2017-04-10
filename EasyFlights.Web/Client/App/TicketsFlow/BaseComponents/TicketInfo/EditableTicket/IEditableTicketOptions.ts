@@ -7,6 +7,7 @@ export interface IEditableTicketOptions {
     duration: KnockoutObservable<string>;
     fare: KnockoutObservable<string>;
     departureTime: KnockoutObservable<string>;
+    arrivalTime: KnockoutObservable<string>;
     seat: KnockoutObservable<number>;
     firstName: KnockoutObservable<string>;
     lastName: KnockoutObservable<string>;

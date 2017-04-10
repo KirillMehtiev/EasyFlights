@@ -1,6 +1,6 @@
 ﻿<div>
     <h2 class="text-center">Detailed order information</h2>
-    <hr/>
+    <hr />
     <busy-indicator params="isLoading: isDataLoading"></busy-indicator>
     <div data-bind="foreach: {data: order().tickets(), as: 'ticket'}">
         <div class="well">
@@ -15,13 +15,14 @@
                     <h4>
                         <span data-bind="text: ticket.destinationAirport()"></span>
                     </h4>
+                    <h5><span data-bind="text: ticket.arrivalTime()"></span></h5>
                 </div>
                 <div class="col-md-4">
                     <i class="material-icons">timelapse</i>
                     <h4>Duration: <span data-bind="text: ticket.duration()"></span></h4>
                 </div>
             </div>
-            <hr/>
+            <hr />
             <div class="row">
                 <div class="col-md-3">
                     <h4>Name: <b data-bind="text: ticket.firstName()"></b></h4>
@@ -36,7 +37,7 @@
                     <h4>Passport no: <b data-bind="text: ticket.documentNumber()"></b></h4>
                 </div>
             </div>
-            <hr/>
+            <hr />
             <div class="row">
                 <div class="col-md-6">
                     <h4>Price: $<b data-bind="text: ticket.price()"></b></h4>

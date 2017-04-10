@@ -47,6 +47,7 @@ class EditTicketsViewModel extends TicketsFlowBaseViewModel {
                     ticket.departureAirport(initTicket.departureAirport);
                     ticket.destinationAirport(initTicket.destinationAirport);
                     ticket.departureTime(initTicket.departureTime);
+                    ticket.arrivalTime(initTicket.arrivalTime);
                     ticket.fare(initTicket.fare);
                     ticket.duration(initTicket.duration);
                     ticket.seat(initTicket.seat);

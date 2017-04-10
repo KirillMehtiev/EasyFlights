@@ -11,6 +11,7 @@ class TicketFullInfoModel {
     public duration: KnockoutObservable<string>;
     public price: KnockoutObservable<string>;
     public departureTime: KnockoutObservable<string>;
+    public arrivalTime: KnockoutObservable<string>;
     public seat: KnockoutObservable<number>;
 
     constructor() {
@@ -24,6 +25,7 @@ class TicketFullInfoModel {
         this.duration = ko.observable("");
         this.price = ko.observable("");
         this.departureTime = ko.observable("");
+        this.arrivalTime = ko.observable("");
         this.seat = ko.observable<number>();
     }
 }

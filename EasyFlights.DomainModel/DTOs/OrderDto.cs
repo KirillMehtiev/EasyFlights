@@ -17,6 +17,8 @@ namespace EasyFlights.DomainModel.DTOs
 
         public string DepartureDate { get; set; }
 
+        public string ArrivalTime { get; set; }
+
         public string Duration { get; set; }
 
         public IEnumerable<TicketDto> Tickets { get; set; }

@@ -83,7 +83,8 @@ namespace EasyFlights.Services.Services.Cabinet
                 DeparturePlace = firstTicket.Flight.DepartureAirport.Title,
                 Duration = duration.ToString(Format.TimeSpanFormat),
                 Tickets = ToTicketDto(tickets),
-                OrderId = order.Id
+                OrderId = order.Id,
+                ArrivalTime = firstTicket.Flight.ScheduledArrivalTime.ToString(Format.DateTimeFormat)
             };
 
             return result;

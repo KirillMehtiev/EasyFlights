@@ -49,6 +49,7 @@ class OrderFullInfoViewModel {
             ticket.duration(t.duration);
             ticket.price(t.price);
             ticket.departureTime(t.departureDate);
+            ticket.arrivalTime(t.arrivalTime);
             ticket.seat(t.seat);
 
             order.tickets.push(ticket);

@@ -56,7 +56,7 @@ class OrderTicketsViewModel extends TicketsFlowBaseViewModel {
             ticket.duration(flight.duration);
             ticket.fare(flight.fare);
             ticket.departureTime(flight.departureTime);
-
+            ticket.arrivalTime(flight.arrivalTime);
             ticket.firstName = passengerInfo.firstName;
             ticket.lastName = passengerInfo.lastName;
 

@@ -11,6 +11,7 @@ export class EditableTicketOptions implements IEditableTicketOptions {
     public duration: KnockoutObservable<string>;
     public fare: KnockoutObservable<string>;
     public departureTime: KnockoutObservable<string>;
+    public arrivalTime: KnockoutObservable<string>;
     public seat: KnockoutObservable<number>;
     public flightId: number;
     public seatChosen: KnockoutObservableArray<number>;
@@ -21,6 +22,7 @@ export class EditableTicketOptions implements IEditableTicketOptions {
         this.duration = ko.observable("");
         this.fare = ko.observable("");
         this.departureTime = ko.observable("");
+        this.arrivalTime = ko.observable("");
         this.seat = ko.observable<number>();
     }
 }

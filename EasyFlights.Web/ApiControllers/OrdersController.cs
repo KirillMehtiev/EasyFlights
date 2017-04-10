@@ -215,7 +215,8 @@ namespace EasyFlights.Web.ApiControllers
                     DeparturePlace = ticket.DeparturePlace,
                     DestinationPlace = ticket.DestinationPlace,
                     DepartureDate = ticket.DepartureDate,
-                    Duration = order.Duration
+                    Duration = order.Duration,
+                    ArrivalTime =  order.ArrivalTime
                 };
 
                 tickets.Add(detailedTicketViewModel);
