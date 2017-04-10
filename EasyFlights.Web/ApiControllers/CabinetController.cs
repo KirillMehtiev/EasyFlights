@@ -40,21 +40,17 @@ namespace EasyFlights.Web.ApiControllers
             {
                 return false;
             }
-            ApplicationUser user = await userManager.FindByIdAsync(User.Identity.GetUserId());
-            if (user.PasswordHash != userManager.PasswordHasher.HashPassword(model.OldPassword))
+            if (model.NewPassword != model.NewPasswordConfirm)
             {
                 return false;
             }
-            user.PasswordHash = userManager.PasswordHasher.HashPassword(model.NewPassword);
-            IdentityResult result = await userManager.UpdateAsync(user);
+            ApplicationUser user = await userManager.FindByIdAsync(User.Identity.GetUserId());
+            IdentityResult result = await userManager.ChangePasswordAsync(user.Id, model.OldPassword, model.NewPassword);
             if (!result.Succeeded)
             {
                 return false;
             }
-            else
-            {
-                return true;
-            }
+            return true;
         }
 
         //[HttpGet]
