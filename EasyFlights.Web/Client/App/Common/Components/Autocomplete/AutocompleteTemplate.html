@@ -1,3 +1,5 @@
 ﻿<div>
-    <input class="form-control" type="text" data-bind="autoComplete: {selected: searchItem,  sourceUrl: sourceUrl }, attr: {placeholder: placeholder}"  />
+    <span class="validation-message-hack hidden" data-bind="validationMessage: searchItem"></span>
+    <input class="form-control" type="text" data-bind="autoComplete: {selected: searchItem,  sourceUrl: sourceUrl }, attr: {placeholder: placeholder}"/>
+    <span class="validation-message-hack" data-bind="validationMessage: searchItem"></span>
 </div>

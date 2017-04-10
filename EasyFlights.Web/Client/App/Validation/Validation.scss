@@ -1,3 +1,16 @@
 ﻿.validation-message{
    color: #b94a48;
 }
+
+.validation-message-hack{
+    color: #b94a48;
+}
+
+// I apologize for this
+.input-has-error{
+    border-color: #a94442 !important;
+}
+
+.validation-message-hack:not(:empty) + .form-control{
+    border-color: #a94442;
+}

@@ -23,16 +23,13 @@
                 <order-tickets params="routeId: routeId,  numberOfPassenger: numberOfPassenger"></order-tickets>
             </lazy-page>
             
-            <!-- , guard: guardPage -->
-            <lazy-page params="id: 'edit-tickets', params: ['orderId']">
+            <lazy-page params="id: 'edit-tickets', guard: guardPage, params: ['orderId']">
                 <edit-tickets params="orderId: orderId"></edit-tickets>
             </lazy-page>
-            
-            <!-- , guard: guardPage -->
-            <lazy-page params="id: 'order', params: ['orderId']">
+
+            <lazy-page params="id: 'order', guard: guardPage, params: ['orderId']">
                 <order-full-info params="orderId: orderId"></order-full-info>
             </lazy-page>
-
 
             <lazy-page params="id: 'sign-in'">
                 <sign-in></sign-in>

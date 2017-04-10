@@ -11,7 +11,7 @@
         this.decorateInputElement = true;
         this.errorsAsTitle = false;
 
-        this.errorElementClass = "has-error";
+        this.errorElementClass = "input-has-error";
         this.errorMessageClass = "validation-message";
 
         this.grouping = {

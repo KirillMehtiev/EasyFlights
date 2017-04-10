@@ -1,4 +1,6 @@
 ﻿import ko = require("knockout");
+require("knockout.validation");
+import pager = require("pager");
 import moment = require("moment");
 import { RadioChooserItem } from "../../Common/Components/RadioChooser/RadioChooserItem";
 import { TicketType } from "../../Common/Enum/Enums"
@@ -23,9 +25,6 @@ class SearchViewModel {
     public returnDateName: KnockoutObservable<string>;
     public number: KnockoutObservable<number>;
     public numberOfPeople: KnockoutObservableArray<number>;
-    //public isSuccess: KnockoutObservable<boolean>;
-
-
 
     constructor() {
         this.options = [
@@ -49,9 +48,6 @@ class SearchViewModel {
             dateAfter: self.selectedDepartureDate
         });
 
-
-
-
         this.searchAirportFrom = ko.observable<Item.AutocompleteItem>().extend({
             required: {
                 params: true,
@@ -67,38 +63,48 @@ class SearchViewModel {
 
         this.isRoundTripSelected = ko.observable(false);
 
-        this.checked.bind(this);
+        this.onSearch = this.onSearch.bind(this);
         this.selectedTicketType.subscribe(this.onTicketTypeChanged, this);
     }
 
-    public checked(): boolean {
-        if (this.isRoundTripSelected()) {
-            var viewModel1 = <KnockoutValidationGroup>ko.validatedObservable([this.searchAirportFrom, this.searchAirportTo, this.selectedDepartureDate, this.selectedReturnDate]);
-            if (viewModel1.isValid()) {
+    public onSearch() {
+        let viewModel = <KnockoutValidationGroup>ko.validatedObservable([
+                this.searchAirportFrom,
+                this.searchAirportTo,
+                this.selectedDepartureDate
+        ]);
 
-                return true;
+        if (!viewModel.isValid()) {
+            viewModel.errors.showAllMessages();
+        }
+        else {
+            if (this.isRoundTripSelected()) {
+                let selectedReturnDateViewModel = <KnockoutValidationGroup>ko.validatedObservable(this.selectedReturnDate);
+
+                if (!selectedReturnDateViewModel.isValid()) {
+                    selectedReturnDateViewModel.errors.showAllMessages();
+                    return;
+                }
             }
-           // viewModel1.errors.showAllMessages();
-            return false;
+
+            let searchResultsUrl: string = "results?" + 
+                "departurePlace=" + this.searchAirportFrom().value + "&" + 
+                "departurePlaceId=" + this.searchAirportFrom().id + "&" + 
+                "arrivalPlace=" + this.searchAirportTo().value + "&" + 
+                "arrivalPlaceId=" + this.searchAirportTo().id + "&" + 
+                "departureDate=" + encodeURIComponent(this.selectedDepartureDate()) + "&" + 
+                (this.selectedReturnDate() ? "returnDate=" + encodeURIComponent(this.selectedReturnDate()) + "&" : "") +
+                "numberOfPassenger=" + this.number() + "&" + 
+                "type=" + TicketType[this.selectedTicketType()];
+
+            pager.navigate(searchResultsUrl);
         }
-        var viewModel2 = <KnockoutValidationGroup>ko
-            .validatedObservable([this.searchAirportFrom, this.searchAirportTo, this.selectedDepartureDate]);
-        if (viewModel2.isValid()) {
-
-            return true;
-        }
-        //viewModel2.errors.showAllMessages();
-        return false;
-
-
     }
 
     public onTicketTypeChanged(newValue: TicketType) {
         this.isRoundTripSelected(newValue === TicketType.RoundTrip);
         if (!this.isRoundTripSelected()) {
-
             this.selectedReturnDate("");
-
         }
     }
 

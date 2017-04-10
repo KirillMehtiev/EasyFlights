@@ -3,6 +3,7 @@
     start();
     start(startingPage: string);
     onSourceError: { add: (any) => void };
+    navigate(searchResultsUrl: string);
 }
 interface IPagerPage { }
 interface IPagerPageConfig {
