@@ -37,8 +37,6 @@ class SearchResultViewModel {
     private routesService: RoutesService = new RoutesService();
 
     constructor(params) {
-        console.log("Params: ", params);
-
         this.routeItems = ko.observableArray([]);
         this.departureDate = params.departureDate;
         this.arrivalPlace = params.arrivalPlace;
@@ -113,8 +111,7 @@ class SearchResultViewModel {
         let result: string;
         result = `GetAsync?departureAirportId=${this.departurePlaceId()}&destinationAirportId=${this.arrivalPlaceId()}&numberOfPeople=${this.numberOfPassenger()}&departureTime=${moment(this.departureDate()).toISOString()}`;
 
-        if (moment(this.returnDate()).toISOString() != null) {
-
+        if (this.returnDate()) {
             result += `&returnTime=${moment(this.returnDate()).toISOString()}`;
         }
         return result;
