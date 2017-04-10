@@ -1,43 +1,58 @@
 ﻿<div>
+    <h2 class="text-center">Detailed order information</h2>
+    <hr/>
     <busy-indicator params="isLoading: isDataLoading"></busy-indicator>
     <div data-bind="foreach: {data: order().tickets(), as: 'ticket'}">
         <div class="well">
             <div class="row">
-                <div class="col-md-5">
+                <div class="col-md-4">
                     <i class="material-icons md-18">flight_takeoff</i>
-                    <h3><p data-bind="text: ticket.departureAirport()"></p></h3>
-                    <h4><p data-bind="text: ticket.departureTime()"></p></h4>
+                    <h4><span data-bind="text: ticket.departureAirport()"></span></h4>
+                    <h5><span data-bind="text: ticket.departureTime()"></span></h5>
                 </div>
                 <div class="col-md-4">
                     <i class="material-icons">flight_land</i>
-                    <h3><p data-bind="text: ticket.destinationAirport()"></p></h3>
+                    <h4>
+                        <span data-bind="text: ticket.destinationAirport()"></span>
+                    </h4>
                 </div>
-                <div class="col-md-3">
-                    <h3><span data-bind="text: ticket.duration()"></span></h3>
-                    <div data-bind="if: ticket.seat()">
-                        <h3>Seat: <span data-bind="text: ticket.seat()"></span></h3>
-                    </div>
-                    <div data-bind="ifnot: ticket.seat()">
-                        <h3>Seat: Not Selected</h3>
-                    </div>
+                <div class="col-md-4">
+                    <i class="material-icons">timelapse</i>
+                    <h4>Duration: <span data-bind="text: ticket.duration()"></span></h4>
                 </div>
             </div>
+            <hr/>
             <div class="row">
                 <div class="col-md-3">
-                    <h4><b>Name:</b>&nbsp;<span data-bind="text: ticket.firstName()"></span></h4>
-                    <h3><b>Price:</b>&nbsp;<span data-bind="text: ticket.price()"></span></h3>
+                    <h4>Name: <b data-bind="text: ticket.firstName()"></b></h4>
                 </div>
                 <div class="col-md-3">
-                    <h4><b>Surname:</b>&nbsp;<span data-bind="text: ticket.lastName()"></span></h4>
+                    <h4>Surname: <b data-bind="text: ticket.lastName()"></b></h4>
                 </div>
                 <div class="col-md-3">
-                    <h4><b>Birthdate:</b>&nbsp;<span data-bind="text: ticket.birthday()"></span></h4>
+                    <h4>Sex: <b data-bind="text: ticket.birthday()"></b></h4>
                 </div>
                 <div class="col-md-3">
-                    <h4><b>Passport:</b>&nbsp;<span data-bind="text: ticket.documentNumber()"></span></h4>
+                    <h4>Passport no: <b data-bind="text: ticket.documentNumber()"></b></h4>
+                </div>
+            </div>
+            <hr/>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Price: $<b data-bind="text: ticket.price()"></b></h4>
+                </div>
+                <div class="col-md-6">
+                    <div data-bind="if: ticket.seat()">
+                        <h4>
+                            Seat: <b data-bind="text: ticket.seat()"></b>
+                        </h4>
+                    </div>
+                    <div data-bind="ifnot: ticket.seat()">
+                        <h4>Seat: <b>Not Selected</b></h4>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <a class="btn btn-info" data-bind="page-href: {path: '../edit-tickets', params: { orderId: orderId}}">Edit</a>
+    <!--<a class="btn btn-info" data-bind="page-href: {path: '../edit-tickets', params: { orderId: orderId}}">Edit</a>-->
 </div>
