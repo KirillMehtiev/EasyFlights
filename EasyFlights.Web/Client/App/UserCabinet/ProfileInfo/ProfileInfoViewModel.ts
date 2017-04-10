@@ -48,9 +48,8 @@ class ProfileInfoViewModel {
             required: true,
             phoneUS: true
         });
-        this.selectedBirthday = ko.observable("").extend({
-            dateBefore: moment().format("L")
-        });
+        this.selectedBirthday = ko.observable("");
+
 
         this.getUser();
         this.birthdayDateName = ko.observable("birthdayDate");
@@ -63,11 +62,17 @@ class ProfileInfoViewModel {
         this.dataService.get<ProfileItem>(this.getUrl)
             .then((data) => {
                 this.item(data);
-                this.selectedSex(Sex[(data.sex).toString()]);
-                this.selectedBirthday(data.dateOfBirth);
+                console.log(this.item());
                 this.firstName(data.firstName);
                 this.lastName(data.lastName);
                 this.contactPhone(data.contactPhone);
+                if (data.sex != null) {
+                    this.selectedSex(Sex[(data.sex).toString()]);
+                }
+                if (data.dateOfBirth != null) {
+                    this.selectedBirthday(data.dateOfBirth);
+                }
+          
             }).always(() => this.isRequestProcessing(false));;
     } 
 
@@ -80,7 +85,7 @@ class ProfileInfoViewModel {
             this.item().contactPhone = this.contactPhone();
             this.item().sex = this.selectedSex();
             this.dataService.post<boolean>(this.changeUrl,
-                new ChangeUserItem(this.item().firstName, this.item().lastName, moment(this.selectedBirthday()).format("L"), this.item().contactPhone, this.item().email, this.item().sex))
+                new ChangeUserItem(this.item().firstName, this.item().lastName, moment(this.selectedBirthday()).format('DD.MM.YYYY'), this.item().contactPhone, this.item().email, this.item().sex))
                 .then((data) => {
                  
                     toastr.success("Information successfully updated!", "Succes");
