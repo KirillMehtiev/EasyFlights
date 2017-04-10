@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Net;
-using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using System.Web;
+using EasyFlights.Web.Identity;
 using EasyFlights.Web.Infrastructure;
 using EasyFlights.Web.Providers;
 using Microsoft.AspNet.Identity;
@@ -11,8 +9,8 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.DataProtection;
 using Microsoft.Owin.Security.Facebook;
+using Microsoft.Owin.Security.Google;
 using Microsoft.Owin.Security.OAuth;
-using Newtonsoft.Json;
 using Owin;
 
 namespace EasyFlights.Web
@@ -62,62 +60,16 @@ namespace EasyFlights.Web
             {
                 AppId = "197059630795187",
                 AppSecret = "3d57cfebeca91a5335ba52a6535d2eca",
-                BackchannelHttpHandler = new FacebookBackChannelHandler()
+                BackchannelHttpHandler = new FacebookBackChannelHandler(),
+                UserInformationEndpoint = "https://graph.facebook.com/v2.4/me?fields=id,name,email,first_name,last_name"
             });
 
-            //FacebookAuthOptions = new FacebookAuthenticationOptions()
-            //{
-            //    AppId = "197059630795187",
-            //    AppSecret = "3d57cfebeca91a5335ba52a6535d2eca",
-            //    Provider = new FacebookAuthenticationProvider()
-            //    {
-            //        OnAuthenticated = async context =>
-            //        {
-            //            context.Identity.AddClaim(new System.Security.Claims.Claim("FacebookAccessToken",context.AccessToken));               
-            //            context.Identity.AddClaim(new System.Security.Claims.Claim("urn:facebook:name", context.Name));
-            //            context.Identity.AddClaim(new System.Security.Claims.Claim("urn:facebook:email", context.Email));
-            //        }
-            //    }
-            //};
-
-            //app.UseFacebookAuthentication(FacebookAuthOptions);
-        }
-    }
-
-    public class FacebookBackChannelHandler : HttpClientHandler
-    {
-        protected override async System.Threading.Tasks.Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, System.Threading.CancellationToken cancellationToken)
-        {
-            var result = await base.SendAsync(request, cancellationToken);
-            if (!request.RequestUri.AbsolutePath.Contains("access_token"))
-                return result;
-
-            // For the access token we need to now deal with the fact that the response is now in JSON format, not form values. Owin looks for form values.
-            var content = await result.Content.ReadAsStringAsync();
-            var facebookOauthResponse = JsonConvert.DeserializeObject<FacebookOauthResponse>(content);
-
-            var outgoingQueryString = HttpUtility.ParseQueryString(string.Empty);
-            outgoingQueryString.Add(nameof(facebookOauthResponse.access_token), facebookOauthResponse.access_token);
-            outgoingQueryString.Add(nameof(facebookOauthResponse.expires_in), facebookOauthResponse.expires_in + string.Empty);
-            outgoingQueryString.Add(nameof(facebookOauthResponse.token_type), facebookOauthResponse.token_type);
-            var postdata = outgoingQueryString.ToString();
-
-            var modifiedResult = new HttpResponseMessage(HttpStatusCode.OK)
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {
-                Content = new StringContent(postdata)
-            };
-
-            return modifiedResult;
+                ClientId = "597379744281-u7u378hh1g3bf2bdufnkhpf515chcdun.apps.googleusercontent.com",
+                ClientSecret = "ZHGIbd45VdD0QLozbVmL2Qvk"
+            });
         }
     }
-
-    public class FacebookOauthResponse
-    {
-        public string access_token { get; set; }
-        public string token_type { get; set; }
-        public int expires_in { get; set; }
-    }
-
-
 }
 

@@ -30,7 +30,8 @@ namespace EasyFlights.Web.ApiControllers
 
         private readonly IApplicationUserManager applicationUserManager;
 
-        public AccountController(IAuthenticationManager authenticationManager, IApplicationUserManager applicationUserManager)
+        public AccountController(IAuthenticationManager authenticationManager,
+            IApplicationUserManager applicationUserManager)
         {
             this.authenticationManager = authenticationManager;
             this.applicationUserManager = applicationUserManager;
@@ -64,6 +65,7 @@ namespace EasyFlights.Web.ApiControllers
             }
 
             ClaimsIdentity claim = await this.applicationUserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+
             this.authenticationManager.SignIn(new AuthenticationProperties { IsPersistent = true }, claim);
             return Ok();
         }
@@ -78,7 +80,7 @@ namespace EasyFlights.Web.ApiControllers
         // POST api/Account/Login
         [Route("SignIn")]
         [HttpPost]
-        public async Task<IHttpActionResult> SignIn([FromBody]LoginViewModel model)
+        public async Task<IHttpActionResult> SignIn([FromBody] LoginViewModel model)
         {
             this.authenticationManager.SignOut();
             ApplicationUser user = await this.applicationUserManager.FindAsync(model.UserEmail, model.UserPassword);
@@ -87,15 +89,16 @@ namespace EasyFlights.Web.ApiControllers
                 return GetErrorResult(IdentityResult.Failed());
             }
 
-            ClaimsIdentity claim = await this.applicationUserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
-            this.authenticationManager.SignIn(new AuthenticationProperties { IsPersistent = true }, claim);
+            ClaimsIdentity claim = await this.applicationUserManager.CreateIdentityAsync(user,
+                DefaultAuthenticationTypes.ApplicationCookie);
+            this.authenticationManager.SignIn(new AuthenticationProperties {IsPersistent = true}, claim);
             return this.Ok();
         }
 
         // POST api/Account/ChangeUser
         [Route("ChangeUser")]
         [HttpPost]
-        public async Task<IHttpActionResult> ChangeUser([FromBody]ProfileViewModel model)
+        public async Task<IHttpActionResult> ChangeUser([FromBody] ProfileViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -107,18 +110,18 @@ namespace EasyFlights.Web.ApiControllers
             {
                 return this.InternalServerError();
             }
-            if(!string.IsNullOrEmpty(model.DateOfBirth))
+            if (!string.IsNullOrEmpty(model.DateOfBirth))
             {
                 user.DateOfBirth = DateTime.Parse(model.DateOfBirth);
             }
-            
+
             user.FirstName = model.FirstName;
             user.LastName = model.LastName;
-            if(!string.IsNullOrEmpty(model.Sex))
+            if (!string.IsNullOrEmpty(model.Sex))
             {
-                user.Sex = (Sex)Enum.Parse(typeof(Sex), model.Sex);
+                user.Sex = (Sex) Enum.Parse(typeof(Sex), model.Sex);
             }
-           
+
             user.PhoneNumber = model.ContactPhone;
             IdentityResult result = await this.applicationUserManager.UpdateAsync(user);
 
@@ -138,12 +141,12 @@ namespace EasyFlights.Web.ApiControllers
             var profileInfo = new ProfileViewModel
             {
                 ContactPhone = user.PhoneNumber,
-                DateOfBirth = user.DateOfBirth?.ToString(Format.DateFormat) ?? "",
+                DateOfBirth = user.DateOfBirth?.ToString(Format.DateFormat) ?? string.Empty,
                 Email = user.Email,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Sex = user.Sex?.ToString("G")
-                };
+            };
             return profileInfo;
         }
 
@@ -177,7 +180,7 @@ namespace EasyFlights.Web.ApiControllers
                 return new ChallengeResult(provider, this);
             }
 
-            ApplicationUser user = await this.applicationUserManager.FindAsync(new UserLoginInfo(externalLogin.LoginProvider, externalLogin.ProviderKey));
+            ApplicationUser user = await this.applicationUserManager.FindByEmailAsync(externalLogin.Email);
 
             bool hasRegistered = user != null;
 
@@ -185,72 +188,33 @@ namespace EasyFlights.Web.ApiControllers
             {
                 this.authenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
 
-                ClaimsIdentity authIdentity = await this.applicationUserManager.CreateIdentityAsync(user, OAuthDefaults.AuthenticationType);
-                ClaimsIdentity cookieIdentity = await this.applicationUserManager.CreateIdentityAsync(user, CookieAuthenticationDefaults.AuthenticationType);
+                ClaimsIdentity authIdentity = await this.applicationUserManager.CreateIdentityAsync(user,
+                    OAuthDefaults.AuthenticationType);
+                ClaimsIdentity cookieIdentity = await this.applicationUserManager.CreateIdentityAsync(user,
+                    DefaultAuthenticationTypes.ApplicationCookie);
 
-                AuthenticationProperties properties = ApplicationOAuthProvider.CreateProperties(user.UserName);
+                AuthenticationProperties properties = ApplicationOAuthProvider.CreateProperties(user.Email);
                 this.authenticationManager.SignIn(properties, authIdentity, cookieIdentity);
             }
             else
             {
-                this.authenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-                IEnumerable<Claim> claims = externalLogin.GetClaims();
-                var identity = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
-                this.authenticationManager.SignIn(new AuthenticationProperties { IsPersistent = true }, identity);
+                this.authenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
+                string[] name = externalLogin.UserName.Split(' ');
+                user = new ApplicationUser
+                {
+                    UserName = externalLogin.Email,
+                    Email = externalLogin.Email,
+                    FirstName = name[0],
+                    LastName = name[1]
+                };
+
+                IdentityResult result = await this.applicationUserManager.CreateAsync(user);
+                ClaimsIdentity claim = await this.applicationUserManager.CreateIdentityAsync(user,
+                    DefaultAuthenticationTypes.ApplicationCookie);
+                this.authenticationManager.SignIn(new AuthenticationProperties {IsPersistent = true}, claim);
             }
 
-            return Ok();
-        }
-
-        // POST api/Account/RegisterExternal
-        [AllowAnonymous]
-        [Route("RegisterExternal")]
-        public async Task<IHttpActionResult> RegisterExternal(RegisterExternalBindingModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            ParsedExternalAccessToken verifiedAccessToken = await VerifyExternalAccessToken(model.Provider, model.ExternalAccessToken);
-            if (verifiedAccessToken == null)
-            {
-                return BadRequest("Invalid Provider or External Access Token");
-            }
-
-            ApplicationUser user = await this.applicationUserManager.FindAsync(new UserLoginInfo(model.Provider, verifiedAccessToken.UserId));
-
-            bool hasRegistered = user != null;
-
-            if (hasRegistered)
-            {
-                return BadRequest("External user is already registered");
-            }
-
-            user = new ApplicationUser { UserName = model.UserName };
-
-            IdentityResult result = await this.applicationUserManager.CreateAsync(user);
-            if (!result.Succeeded)
-            {
-                return GetErrorResult(result);
-            }
-
-            var info = new ExternalLoginInfo()
-            {
-                DefaultUserName = model.UserName,
-                Login = new UserLoginInfo(model.Provider, verifiedAccessToken.UserId)
-            };
-
-            result = await this.applicationUserManager.AddLoginAsync(user.Id, info.Login);
-            if (!result.Succeeded)
-            {
-                return GetErrorResult(result);
-            }
-
-            // generate access token response
-            JObject accessTokenResponse = GenerateLocalAccessTokenResponse(model.UserName);
-
-            return Ok(accessTokenResponse);
+            return Redirect(Url.Content("~/#userCabinet"));
         }
 
         // POST api/Account/ChangePassword
@@ -262,7 +226,8 @@ namespace EasyFlights.Web.ApiControllers
                 return BadRequest(ModelState);
             }
 
-            IdentityResult result = await this.applicationUserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
+            IdentityResult result = await this.applicationUserManager.ChangePasswordAsync(User.Identity.GetUserId(),
+                model.OldPassword, model.NewPassword);
 
             if (!result.Succeeded)
             {
@@ -278,37 +243,6 @@ namespace EasyFlights.Web.ApiControllers
         {
             this.authenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return Ok();
-        }
-
-        [AllowAnonymous]
-        [HttpGet]
-        [Route("ObtainLocalAccessToken")]
-        public async Task<IHttpActionResult> ObtainLocalAccessToken(string provider, string externalAccessToken)
-        {
-            if (string.IsNullOrWhiteSpace(provider) || string.IsNullOrWhiteSpace(externalAccessToken))
-            {
-                return BadRequest("Provider or external access token is not sent");
-            }
-
-            ParsedExternalAccessToken verifiedAccessToken = await VerifyExternalAccessToken(provider, externalAccessToken);
-            if (verifiedAccessToken == null)
-            {
-                return BadRequest("Invalid Provider or External Access Token");
-            }
-
-            IdentityUser user = await this.applicationUserManager.FindAsync(new UserLoginInfo(provider, verifiedAccessToken.UserId));
-
-            bool hasRegistered = user != null;
-
-            if (!hasRegistered)
-            {
-                return BadRequest("External user is not registered");
-            }
-
-            // generate access token response
-            JObject accessTokenResponse = GenerateLocalAccessTokenResponse(user.UserName);
-
-            return Ok(accessTokenResponse);
         }
 
         protected override void Dispose(bool disposing)
@@ -348,81 +282,6 @@ namespace EasyFlights.Web.ApiControllers
             }
 
             return null;
-        }
-
-        private async Task<ParsedExternalAccessToken> VerifyExternalAccessToken(string provider, string accessToken)
-        {
-            ParsedExternalAccessToken parsedToken = null;
-
-            string verifyTokenEndPoint = string.Empty;
-
-            if (provider == "Facebook")
-            {
-                // You can get it from here: https://developers.facebook.com/tools/accesstoken/
-                // More about debug_tokn here: http://stackoverflow.com/questions/16641083/how-does-one-get-the-app-access-token-for-debug-token-inspection-on-facebook
-                var appToken = "197059630795187";
-                verifyTokenEndPoint = string.Format("https://graph.facebook.com/debug_token?input_token={0}&access_token={1}", accessToken, appToken);
-            }
-            else
-            {
-                return null;
-            }
-
-            var client = new HttpClient();
-            var uri = new Uri(verifyTokenEndPoint);
-            HttpResponseMessage response = await client.GetAsync(uri);
-
-            if (response.IsSuccessStatusCode)
-            {
-                string content = await response.Content.ReadAsStringAsync();
-
-                dynamic jObj = (JObject)Newtonsoft.Json.JsonConvert.DeserializeObject(content);
-
-                parsedToken = new ParsedExternalAccessToken();
-
-                if (provider == "Facebook")
-                {
-                    parsedToken.UserId = jObj["data"]["user_id"];
-                    parsedToken.AppId = jObj["data"]["app_id"];
-
-                    if (!string.Equals(Startup.FacebookAuthOptions.AppId, parsedToken.AppId, StringComparison.OrdinalIgnoreCase))
-                    {
-                        return null;
-                    }
-                }
-            }
-
-            return parsedToken;
-        }
-
-        private JObject GenerateLocalAccessTokenResponse(string userName)
-        {
-            TimeSpan tokenExpiration = TimeSpan.FromDays(1);
-
-            var identity = new ClaimsIdentity(OAuthDefaults.AuthenticationType);
-
-            identity.AddClaim(new Claim(ClaimTypes.Name, userName));
-            identity.AddClaim(new Claim("role", "user"));
-
-            var props = new AuthenticationProperties()
-            {
-                IssuedUtc = DateTime.UtcNow,
-                ExpiresUtc = DateTime.UtcNow.Add(tokenExpiration),
-            };
-
-            var ticket = new AuthenticationTicket(identity, props);
-
-            string accessToken = Startup.OAuthBearerOptions.AccessTokenFormat.Protect(ticket);
-
-            var tokenResponse = new JObject(
-                                        new JProperty("userName", userName),
-                                        new JProperty("access_token", accessToken),
-                                        new JProperty("token_type", "bearer"),
-                                        new JProperty("expires_in", tokenExpiration.TotalSeconds.ToString()),
-                                        new JProperty(".issued", ticket.Properties.IssuedUtc.ToString()),
-                                        new JProperty(".expires", ticket.Properties.ExpiresUtc.ToString()));
-
-            return tokenResponse;
         }
     }
 }
