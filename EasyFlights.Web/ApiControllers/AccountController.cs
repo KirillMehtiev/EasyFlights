@@ -102,7 +102,7 @@ namespace EasyFlights.Web.ApiControllers
             {
                 return this.InternalServerError();
             }
-            if (!string.IsNullOrEmpty(model.DateOfBirth))
+            if (!string.IsNullOrEmpty(model.DateOfBirth) && model.DateOfBirth!="Invalid date")
             {
                 user.DateOfBirth = DateTime.Parse(model.DateOfBirth);
             }
