@@ -86,7 +86,7 @@ class ProfileInfoViewModel {
             this.item().contactPhone = this.contactPhone();
             this.item().sex = this.selectedSex();
             this.dataService.post<boolean>(this.changeUrl,
-                new ChangeUserItem(this.item().firstName, this.item().lastName, moment(this.selectedBirthday()).format("L"), this.item().contactPhone, this.item().email, this.item().sex))
+                new ChangeUserItem(this.item().firstName, this.item().lastName, moment(this.selectedBirthday()).format('DD.MM.YYYY'), this.item().contactPhone, this.item().email, this.item().sex))
                 .then((data) => {
                  
                     toastr.success("Information successfully updated!", "Succes");
