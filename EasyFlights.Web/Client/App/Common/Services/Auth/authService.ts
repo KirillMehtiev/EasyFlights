@@ -36,10 +36,8 @@ export class AuthService {
     }
 
     public externalLogin(provider) {
-        var newWindow=window.open("api/account/externallogin?provider=".concat(provider),
-            provider.concat("Login"),
-            "width=800, height=600");    
-        window.location.href = "#";        
+        let location: string = "api/account/externallogin?provider=" + provider;
+        window.location.replace(location); 
     }
 
     public signOut() {
