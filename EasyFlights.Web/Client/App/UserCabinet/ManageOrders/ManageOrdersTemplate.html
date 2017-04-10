@@ -1,47 +1,42 @@
 ﻿<div class="container">
     <div class="row">
-        <div class="col-md-4 col-md-offset-4">
-            <div data-bind="ifnot: areOrdersEmpty ">          
-                <p>
-                    <h2>Your orders</h2>
-                </p>
-            </div>
-            <div data-bind="if: areOrdersEmpty ">
-                <p>
-                    <h2>You have no orders</h2>
-                </p>
-            </div>
+        <div class="col-md-12 text-center">
+            <h2 data-bind="ifnot: areOrdersEmpty ">Your orders</h2>
+            <h2 data-bind="if: areOrdersEmpty ">You have no orders</h2>
+            <hr />
         </div>
-        <br />
     </div>
     <busy-indicator params="isLoading: isRequestProcessing"></busy-indicator>
-
     <div data-bind="foreach: {data: orders, as: 'order'}">
-        <div class="row well">
-            <div class="row">
-                <div class="col-md-4 pull-left">
-                    <h4><b>Place of departure:</b>&nbsp;<span data-bind="text: order.departureCity"></span></h4>
-                    <h4><b>Cost:</b>&nbsp;<span data-bind="text: order.cost"></span></h4>
-                    <h4><b>Date of ordering:</b>&nbsp;<span data-bind="text: order.dateOfOrdering"></span></h4>
-                </div>
-                <div class="col-md-4 pull-right">
-                    <h4><b>Place of arrival:</b>&nbsp;<span data-bind="text: order.destinationCity"></span></h4>
-                    <h4><b>Duration:</b>&nbsp;<span data-bind="text: order.duration"></span></h4>
-                    <h4><b>Departure date and time:</b>&nbsp;<span data-bind="text: order.setOffDate"></span></h4>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <span><span data-bind="text: order.departureCity"></span> - <span data-bind="text: order.arrivalCity"></span></span>
+                <span class="pull-right">Order created: <b data-bind="text: order.dateOfOrdering"></b></span>
+            </div>
+            <div class="panel-body">
+                <div class="col-md-6">
+                    <h4><span>Place of departure:</span>&nbsp;<b data-bind="text: order.departureAirport"></b></h4>
+                    <h4><span>Departure date:</span>&nbsp;<b data-bind="text: order.setOffDate"></b></h4>
 
+                </div>
+                <div class="col-md-6">
+                    <h4><span>Place of arrival:</span>&nbsp;<b data-bind="text: order.destinationAirport"></b></h4>
+                    <h4><span>Cost:</span>&nbsp;<b data-bind="text: order.cost"></b></h4>
                 </div>
             </div>
-
+            <div class="panel-footer">
+                <a class="btn btn-primary btn-md" data-bind="page-href: {path: '../order', params: { orderId: order.orderId}}">
+                    <i class="glyphicon glyphicon-info-sign" aria-hidden="true"></i>
+                    Details
+                </a>
+                <a class="btn btn-danger pull-right" data-bind="click: (order) => { $parent.deleteOrder(order); }">
+                    <i class="glyphicon glyphicon-trash" aria-hidden="true"></i>
+                    Delete order
+                </a>
+            </div>
         </div>
         <div class="row" style="margin-bottom: 20px">
-            <a class="btn btn-primary btn-md" data-bind="page-href: {path: '../order', params: { orderId: order.orderId}}">
-                <i class="glyphicon glyphicon-info-sign" aria-hidden="true"></i>
-                Details
-            </a>
-            <a class="btn btn-danger pull-right" data-bind="click: (order) => { $parent.deleteOrder(order); }">
-                <i class="glyphicon glyphicon-trash" aria-hidden="true"></i>
-                Delete order
-            </a>
+            
         </div>
     </div>
 </div>

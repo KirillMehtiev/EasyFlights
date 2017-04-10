@@ -193,7 +193,8 @@ namespace EasyFlights.Web.ApiControllers
                 Duration = order.Duration,
                 OrderId = order.OrderId,
                 ArrivalCity = order.ArrivalCity,
-                DepartureCity = order.DepartureCity
+                DepartureCity = order.DepartureCity,
+                ArrivalDate = order.ArrivalTime
             });
         }
 

@@ -24,5 +24,7 @@ namespace EasyFlights.Web.ViewModels.OrdersViewModel
         public string DepartureCity { get; set; }
 
         public string ArrivalCity { get; set; }
+
+        public string ArrivalDate { get; set; }
     }
 }
