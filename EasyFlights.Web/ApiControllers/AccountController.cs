@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -14,12 +12,8 @@ using EasyFlights.Web.Results;
 using EasyFlights.Web.ViewModels.AccountViewModels;
 using EasyFlights.Web.ViewModels.ProfileInfo;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
-using Newtonsoft.Json.Linq;
 
 namespace EasyFlights.Web.ApiControllers
 {
@@ -30,8 +24,7 @@ namespace EasyFlights.Web.ApiControllers
 
         private readonly IApplicationUserManager applicationUserManager;
 
-        public AccountController(IAuthenticationManager authenticationManager,
-            IApplicationUserManager applicationUserManager)
+        public AccountController(IAuthenticationManager authenticationManager, IApplicationUserManager applicationUserManager)
         {
             this.authenticationManager = authenticationManager;
             this.applicationUserManager = applicationUserManager;
@@ -89,9 +82,8 @@ namespace EasyFlights.Web.ApiControllers
                 return GetErrorResult(IdentityResult.Failed());
             }
 
-            ClaimsIdentity claim = await this.applicationUserManager.CreateIdentityAsync(user,
-                DefaultAuthenticationTypes.ApplicationCookie);
-            this.authenticationManager.SignIn(new AuthenticationProperties {IsPersistent = true}, claim);
+            ClaimsIdentity claim = await this.applicationUserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+            this.authenticationManager.SignIn(new AuthenticationProperties { IsPersistent = true }, claim);
             return this.Ok();
         }
 
@@ -119,7 +111,7 @@ namespace EasyFlights.Web.ApiControllers
             user.LastName = model.LastName;
             if (!string.IsNullOrEmpty(model.Sex))
             {
-                user.Sex = (Sex) Enum.Parse(typeof(Sex), model.Sex);
+                user.Sex = (Sex)Enum.Parse(typeof(Sex), model.Sex);
             }
 
             user.PhoneNumber = model.ContactPhone;
@@ -188,10 +180,8 @@ namespace EasyFlights.Web.ApiControllers
             {
                 this.authenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
 
-                ClaimsIdentity authIdentity = await this.applicationUserManager.CreateIdentityAsync(user,
-                    OAuthDefaults.AuthenticationType);
-                ClaimsIdentity cookieIdentity = await this.applicationUserManager.CreateIdentityAsync(user,
-                    DefaultAuthenticationTypes.ApplicationCookie);
+                ClaimsIdentity authIdentity = await this.applicationUserManager.CreateIdentityAsync(user, OAuthDefaults.AuthenticationType);
+                ClaimsIdentity cookieIdentity = await this.applicationUserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
 
                 AuthenticationProperties properties = ApplicationOAuthProvider.CreateProperties(user.Email);
                 this.authenticationManager.SignIn(properties, authIdentity, cookieIdentity);
@@ -211,9 +201,8 @@ namespace EasyFlights.Web.ApiControllers
                 IdentityResult result = await this.applicationUserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
-                    ClaimsIdentity claim = await this.applicationUserManager.CreateIdentityAsync(user,
-                        DefaultAuthenticationTypes.ApplicationCookie);
-                    this.authenticationManager.SignIn(new AuthenticationProperties {IsPersistent = true}, claim);
+                    ClaimsIdentity claim = await this.applicationUserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+                    this.authenticationManager.SignIn(new AuthenticationProperties { IsPersistent = true }, claim);
                 }
                 return this.BadRequest();
             }
@@ -230,8 +219,7 @@ namespace EasyFlights.Web.ApiControllers
                 return BadRequest(ModelState);
             }
 
-            IdentityResult result = await this.applicationUserManager.ChangePasswordAsync(User.Identity.GetUserId(),
-                model.OldPassword, model.NewPassword);
+            IdentityResult result = await this.applicationUserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
 
             if (!result.Succeeded)
             {
