@@ -63,11 +63,17 @@ class ProfileInfoViewModel {
         this.dataService.get<ProfileItem>(this.getUrl)
             .then((data) => {
                 this.item(data);
-                this.selectedSex(Sex[(data.sex).toString()]);
+
+                console.log(this.item());
+                
                 this.selectedBirthday(data.dateOfBirth);
                 this.firstName(data.firstName);
                 this.lastName(data.lastName);
                 this.contactPhone(data.contactPhone);
+                if (data.sex != null) {
+                    this.selectedSex(Sex[(data.sex).toString()]);
+                }
+          
             }).always(() => this.isRequestProcessing(false));;
     } 
 
