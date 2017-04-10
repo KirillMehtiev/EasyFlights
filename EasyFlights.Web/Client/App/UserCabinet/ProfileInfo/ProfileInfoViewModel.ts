@@ -48,9 +48,8 @@ class ProfileInfoViewModel {
             required: true,
             phoneUS: true
         });
-        this.selectedBirthday = ko.observable("").extend({
-            dateBefore: moment().format("L")
-        });
+        this.selectedBirthday = ko.observable("");
+
 
         this.getUser();
         this.birthdayDateName = ko.observable("birthdayDate");
@@ -63,15 +62,15 @@ class ProfileInfoViewModel {
         this.dataService.get<ProfileItem>(this.getUrl)
             .then((data) => {
                 this.item(data);
-
                 console.log(this.item());
-                
-                this.selectedBirthday(data.dateOfBirth);
                 this.firstName(data.firstName);
                 this.lastName(data.lastName);
                 this.contactPhone(data.contactPhone);
                 if (data.sex != null) {
                     this.selectedSex(Sex[(data.sex).toString()]);
+                }
+                if (data.dateOfBirth != null) {
+                    this.selectedBirthday(data.dateOfBirth);
                 }
           
             }).always(() => this.isRequestProcessing(false));;
