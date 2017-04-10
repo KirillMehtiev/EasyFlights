@@ -17,7 +17,6 @@ namespace EasyFlights.Web.ApiControllers
 
         [HttpGet]
         [Route]
-        [Authorize]
         public async Task<CabinDto> GetCabin(int flightId = 1)
         {
             CabinDto cabin = await this.service.GetCabinForFlight(flightId);
