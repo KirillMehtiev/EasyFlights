@@ -78,7 +78,7 @@ class ProfileInfoViewModel {
 
     private changeData() {
        
-        let viewModel = <KnockoutValidationGroup>ko.validatedObservable(this);
+        let viewModel = <KnockoutValidationGroup>ko.validatedObservable([this.contactPhone, this.firstName, this.lastName]);
         if (viewModel.isValid()) {
             this.item().firstName = this.firstName();
             this.item().lastName = this.lastName();

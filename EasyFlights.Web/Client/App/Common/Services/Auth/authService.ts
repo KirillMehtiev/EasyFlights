@@ -39,6 +39,7 @@ export class AuthService {
         var newWindow=window.open("api/account/externallogin?provider=".concat(provider),
             provider.concat("Login"),
             "width=800, height=600");    
+        window.location.href = "#";        
     }
 
     public signOut() {
