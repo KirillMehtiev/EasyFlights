@@ -69,7 +69,7 @@ namespace EasyFlights.Services.Services.Cabinet
 
             var tickets = order.Tickets;
             var firstTicket = order.Tickets.FirstOrDefault();
-            var lastLast = order.Tickets.LastOrDefault();
+            var lastTicket = order.Tickets.LastOrDefault();
             var duration = new TimeSpan();
             
             duration = tickets.Aggregate(duration, (current, ticket) => current + this.CalculateDuration(ticket));
@@ -77,14 +77,16 @@ namespace EasyFlights.Services.Services.Cabinet
             var result = new OrderDto()
             {
                 DepartureDate = firstTicket.Flight.ScheduledDepartureTime.ToString(Format.DateTimeFormat),
-                DestinationPlace = lastLast.Flight.DestinationAirport.Title,
+                DestinationPlace = lastTicket.Flight.DestinationAirport.Title,
                 Cost = tickets.Sum(s => s.Fare),
                 OrderDate = order.OrderDate,
                 DeparturePlace = firstTicket.Flight.DepartureAirport.Title,
                 Duration = duration.ToString(Format.TimeSpanFormat),
                 Tickets = ToTicketDto(tickets),
                 OrderId = order.Id,
-                ArrivalTime = firstTicket.Flight.ScheduledArrivalTime.ToString(Format.DateTimeFormat)
+                ArrivalTime = firstTicket.Flight.ScheduledArrivalTime.ToString(Format.DateTimeFormat),
+                departureCity = firstTicket.Flight.DepartureAirport.City.Name,
+                arrivalCity = lastTicket.Flight.DestinationAirport.City.Name
             };
 
             return result;
