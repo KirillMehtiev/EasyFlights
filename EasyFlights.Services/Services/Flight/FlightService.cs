@@ -37,7 +37,7 @@ namespace EasyFlights.Services.Services.Flight
         {
             DomainModel.Entities.Flight flight = await repository.FindByIdAsync(flightId);
             var seats = new List<int>();
-            if (flight.Tickets == null || flight.Tickets.Count == 0)
+            if ((flight.Tickets == null || flight.Tickets.Count == 0) && bookedTickets == null)
             {
                 for (var i = 1; i < number + 1; i++)
                 {
