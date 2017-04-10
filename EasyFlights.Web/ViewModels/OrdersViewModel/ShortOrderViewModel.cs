@@ -9,9 +9,9 @@ namespace EasyFlights.Web.ViewModels.OrdersViewModel
     {
         public int OrderId { get; set; }
 
-        public string DepartureCity { get; set; }
+        public string DepartureAirport { get; set; }
 
-        public string DestinationCity { get; set; }
+        public string DestinationAirport { get; set; }
 
         public decimal Cost { get; set; }
 
@@ -21,8 +21,8 @@ namespace EasyFlights.Web.ViewModels.OrdersViewModel
 
         public string Duration { get; set; }
 
-        public string departureCity { get; set; }
+        public string DepartureCity { get; set; }
 
-        public string arrivalCity { get; set; }
+        public string ArrivalCity { get; set; }
     }
 }

@@ -85,8 +85,8 @@ namespace EasyFlights.Services.Services.Cabinet
                 Tickets = ToTicketDto(tickets),
                 OrderId = order.Id,
                 ArrivalTime = firstTicket.Flight.ScheduledArrivalTime.ToString(Format.DateTimeFormat),
-                departureCity = firstTicket.Flight.DepartureAirport.City.Name,
-                arrivalCity = lastTicket.Flight.DestinationAirport.City.Name
+                DepartureCity = firstTicket.Flight.DepartureAirport.City.Name,
+                ArrivalCity = lastTicket.Flight.DestinationAirport.City.Name
             };
 
             return result;

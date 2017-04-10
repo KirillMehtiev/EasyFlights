@@ -185,15 +185,15 @@ namespace EasyFlights.Web.ApiControllers
         {
             return orders.Select(order => new ShortOrderViewModel
             {
-                DepartureCity = order.DeparturePlace,
-                DestinationCity = order.DestinationPlace,
+                DepartureAirport = order.DeparturePlace,
+                DestinationAirport = order.DestinationPlace,
                 Cost = order.Cost,
                 DateOfOrdering = order.OrderDate.ToString(Format.DateFormat),
                 SetOffDate = order.DepartureDate,
                 Duration = order.Duration,
                 OrderId = order.OrderId,
-                arrivalCity = order.arrivalCity,
-                departureCity = order.departureCity
+                ArrivalCity = order.ArrivalCity,
+                DepartureCity = order.DepartureCity
             });
         }
 
