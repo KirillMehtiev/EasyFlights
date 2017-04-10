@@ -33,23 +33,24 @@ class LoginViewModel {
                 userEmail: this.userEmail(),
                 userPassword: this.userPassword(),
                 rememberMe: this.rememberMe()
-            }).then(this.handleServiceResponse)
+            }).then((response) => {
+                    this.handleServiceResponse(response); 
+                    var filledData = window.localStorage.getItem("filledData");
+                    if (filledData !== null) {
+                        this.ticketsFlowService
+                            .bookTickets(JSON.parse(filledData))
+                            .then(() => {
+                                if (AuthService.current.isCurrentUserSignedIn) {
+                                    window.localStorage.removeItem("filledData");
+                                    window.location.href = "#";
+                                }
+                            });
+                    }
+                })
                 .always(() => this.isRequestProcessing(false));
         }
         else {
             viewModel.errors.showAllMessages();
-        }
-        var filledData = window.localStorage.getItem("filledData");
-        if (filledData !== null) {
-            this.isRequestProcessing(true);
-            this.ticketsFlowService
-                .bookTickets(JSON.parse(filledData))
-                .then(() => {
-                    if (AuthService.current.isCurrentUserSignedIn) {
-                        window.localStorage.removeItem("filledData");
-                        window.location.href = "#";
-                    }
-                }).always(() => this.isRequestProcessing(false));;
         }
     };
 
