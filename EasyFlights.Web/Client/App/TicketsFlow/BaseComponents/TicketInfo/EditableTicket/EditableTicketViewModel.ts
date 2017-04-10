@@ -9,6 +9,7 @@ class EditableTicketViewModel {
     public seatChosen: KnockoutObservableArray<number>;
     public firstName: KnockoutObservable<string>;
     public lastName: KnockoutObservable<string>;
+    public seatPickerNumber: KnockoutObservable<string>;
 
     constructor(options: IEditableTicketOptions) {
         this.seat = options.seat;
@@ -17,6 +18,7 @@ class EditableTicketViewModel {
         this.destinationAirport = options.destinationAirport;
         this.firstName = options.firstName;
         this.lastName = options.lastName;
+        this.seatPickerNumber = ko.observable(options.firstName() + options.lastName());
     }
 }
 
